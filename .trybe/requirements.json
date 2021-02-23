@@ -1,0 +1,64 @@
+{
+  "requirements": [
+    { 
+      "description": "1 - Adicione uma cor de fundo específica para a página",
+      "bonus": false
+    },
+    { 
+      "description": "2 - Adicione uma barra superior com um título",
+      "bonus": false
+    },
+    { 
+      "description": "3 - Adicione uma foto sua à página",
+      "bonus": false
+    },
+    { 
+      "description": "4 - Adicione uma lista de lições aprendidas à página",
+      "bonus": false
+    },
+    { 
+      "description": "5 - Crie uma lista de lições que ainda deseja aprender para a página",
+      "bonus": false
+    },
+    { 
+      "description": "6 - Adicione um rodapé para a página",
+      "bonus": false
+    },
+    { 
+      "description": "7 - Insira pelo menos um link externo na página",
+      "bonus": false
+    },
+    { 
+      "description": "8 - Crie um artigo sobre seu aprendizado",
+      "bonus": false
+    },
+    { 
+      "description": "9 - Crie uma seção que conta uma passagem sobre seu aprendizado",
+      "bonus": false
+    },
+    { 
+      "description": "10 - Aplique elementos HTML de acordo com o sentido e propósito de cada um deles",
+      "bonus": false
+    },
+    { 
+      "description": "11 - Teste a semântica da sua página está aprovada pelo site achecker",
+      "bonus": false
+    },
+    { 
+      "description": "12 - Adicione uma tabela à página",
+      "bonus": true
+    },
+    { 
+      "description": "13 - Utilize o Box model",
+      "bonus": true
+    },
+    { 
+      "description": "14 - Altere atributos relacionados as fontes",
+      "bonus": true
+    },
+    { 
+      "description": "15 - Posicione o seu artigo e a seção sobre aprendizados um ao lado do outro",
+      "bonus": true
+    }
+  ]
+}
