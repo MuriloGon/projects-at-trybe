@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+// colors
+$bg-color: #{'rgb(253, 251, 251)'};
+
+$primary-01: #00930aff;
+$primary-02: #227a1eff;
+$light-01: #fefcfcfb;
+$light-02: #fbffcbff;
+$dark-01: #070707ff;
+$dark-02: #383835ff;
+
+// mixings and placeholders
+%block-center {
+    display: block;
+    margin: 0 auto;
+}
+
+%flex-vcenter-layout {
+    display: flex;
+    align-items: center;
+}
+
+%reset-list {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+%reset-styles {
+    text-decoration: none;
+    color: $light-01;
+}
+
+@mixin bsize($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+// Base rules
+:root {
+    font-family: 'Noto Sans TC', sans-serif;
+    ;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: $bg-color;
+}
+
+// Nav
+$nav-max-width: 980px;
+
+.header {
+    position: fixed;
+    width: 100%;
+    background-color: $primary-01;
+    top: 0px;
+    color: $light-01;
+
+    &__title {
+        text-align: center;
+        font-size: 1.15rem;
+        padding: 0 1em;
+        background-color: $primary-02;
+        cursor: cell;
+    }
+
+    &__content {
+        max-width: $nav-max-width;
+        margin: auto;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    &__item {
+        @extend %reset-list;
+        display: block;
+
+        & a {
+            display: inline-block;
+            padding: 0.5em;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            transition: color 0.15s;
+
+        }
+
+        & a:hover {
+            color: $dark-02;
+            border-block-end: 1em $dark-02;
+        }
+    }
+
+
+    & a:visited,
+    & a:link,
+    & a:hover {
+        @extend %reset-styles;
+    }
+
+}
+
+#numero1 {
+    @extend %reset-list;
+    background-color: brown;
+}
+
+
+#numero2 {
+    @extend %reset-list;
+    background-color: yellow;
+}

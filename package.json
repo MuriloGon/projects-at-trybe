@@ -8,7 +8,7 @@
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx",
     "lint:styles": "stylelint **/*.css --config .stylelintrc.json --ignore-disables --allow-empty-input",
     "cypress:open": "cypress open",
-    "watch-sass": "sass --watch src/scss/style.scss style.css"
+    "watch-sass": "sass --watch sass/style.scss style.css"
   },
   "repository": {
     "type": "git",

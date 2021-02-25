@@ -1,6 +1,72 @@
-/* Variables */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+#numero2, #numero1, .header__item {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.header a:visited, .header a:link, .header a:hover {
+  text-decoration: none;
+  color: #fefcfcfb;
+}
+
+:root {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
 body {
   background-color: rgb(253, 251, 251);
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: #00930aff;
+  top: 0px;
+  color: #fefcfcfb;
+}
+.header__title {
+  text-align: center;
+  font-size: 1.15rem;
+  padding: 0 1em;
+  background-color: #227a1eff;
+  cursor: cell;
+}
+.header__content {
+  max-width: 980px;
+  margin: auto;
+}
+.header__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__item {
+  display: block;
+}
+.header__item a {
+  display: inline-block;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  transition: color 0.15s;
+}
+.header__item a:hover {
+  color: #383835ff;
+  border-block-end: 1em #383835ff;
+}
+#numero1 {
+  background-color: brown;
+}
+
+#numero2 {
+  background-color: yellow;
 }
 
 /*# sourceMappingURL=style.css.map */
