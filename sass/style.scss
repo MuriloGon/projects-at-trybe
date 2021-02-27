@@ -261,3 +261,33 @@ $nav-max-width: 980px;
     }
 
 }
+
+.ulist {
+    @extend %flex-vcenter-layout;
+    flex-direction: column;
+
+    &__title {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    &__list {
+        font-size: 2.5rem;
+        line-height: 1.5;
+        list-style-type: none;
+        & li {
+            transition: background-color 0.25s;
+            text-align: center;
+            font-size: 2.75rem
+        }
+
+        & li:hover {
+            background-color: $primary-01;
+            color: $light-02;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+
+}

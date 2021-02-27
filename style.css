@@ -7,7 +7,7 @@ p {
   color: #383835ff;
 }
 
-.olist, .hero__buttons, .hero__photo, .hero__profile {
+.ulist, .olist, .hero__buttons, .hero__photo, .hero__profile {
   display: flex;
   align-items: center;
 }
@@ -187,6 +187,31 @@ body {
 .olist__list li:hover {
   background-color: #fbffcbff;
   color: #383835ff;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ulist {
+  flex-direction: column;
+}
+.ulist__title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+.ulist__list {
+  font-size: 2.5rem;
+  line-height: 1.5;
+  list-style-type: none;
+}
+.ulist__list li {
+  transition: background-color 0.25s;
+  text-align: center;
+  font-size: 2.75rem;
+}
+.ulist__list li:hover {
+  background-color: #00930aff;
+  color: #fbffcbff;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
