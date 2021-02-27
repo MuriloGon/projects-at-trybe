@@ -7,7 +7,7 @@ p {
   color: #383835ff;
 }
 
-#rodape section .links a, .ulist, .olist, .hero__buttons, .hero__photo, .hero__profile {
+.herot__profile, #rodape section .links a, .ulist, .olist, .hero__buttons, .hero__photo, .hero__profile {
   display: flex;
   align-items: center;
 }
@@ -259,6 +259,38 @@ body {
 }
 #rodape img {
   width: 8rem;
+}
+
+.herot {
+  width: 100%;
+  background-color: #383835ff;
+  color: #fefcfcfb;
+}
+.herot__content {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  max-width: 980px;
+  height: 550px;
+}
+.herot__profile {
+  flex-direction: column;
+  padding: 5rem;
+  justify-items: center;
+}
+.herot__title {
+  font-size: 3.75rem;
+  letter-spacing: 0.25rem;
+  padding: 1rem 0px;
+}
+.herot__paragraph {
+  color: inherit;
+  font-size: 2rem;
+  letter-spacing: 0.25rem;
+  line-height: 1.6;
+  padding: 1.5rem 0px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 /*# sourceMappingURL=style.css.map */

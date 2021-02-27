@@ -18,6 +18,8 @@ $light-02: #fbffcbff;
 $dark-01: #070707ff;
 $dark-02: #383835ff;
 
+$hero-height: 550px;
+
 // mixings and placeholders
 %block-center {
     display: block;
@@ -173,7 +175,7 @@ $nav-max-width: 980px;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         max-width: $nav-max-width;
-        height: 550px;
+        height: $hero-height;
     }
 
     &__profile {
@@ -345,5 +347,43 @@ $nav-max-width: 980px;
 
     & img {
         width: 8rem;
+    }
+}
+
+
+.herot {
+    width: 100%;
+    background-color: $dark-02;
+    color: $light-01;
+
+    &__content {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        max-width: $nav-max-width;
+        height: $hero-height;
+    }
+
+    &__profile {
+        @extend %flex-vcenter-layout;
+        flex-direction: column;
+        padding: 5rem;
+        justify-items: center;
+    }
+
+    &__title {
+        font-size: 3.75rem;
+        letter-spacing: 0.25rem;
+        padding: 1rem 0px;
+    }
+
+    &__paragraph {
+        color: inherit;
+        font-size: 2rem;
+        letter-spacing: 0.25rem;
+        line-height: 1.6;
+        padding: 1.5rem 0px;
+        text-align: justify;
+        text-justify: inter-word;
     }
 }
