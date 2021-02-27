@@ -245,6 +245,7 @@ $nav-max-width: 980px;
         font-size: 2.5rem;
         line-height: 1.5;
         list-style-type: none;
+
         & li {
             transition: background-color 0.25s;
             text-align: center;
@@ -275,6 +276,7 @@ $nav-max-width: 980px;
         font-size: 2.5rem;
         line-height: 1.5;
         list-style-type: none;
+
         & li {
             transition: background-color 0.25s;
             text-align: center;
@@ -290,4 +292,58 @@ $nav-max-width: 980px;
         }
     }
 
+}
+
+#rodape {
+    background-color: $primary-01;
+    padding-bottom: 2rem;
+
+    section {
+        display: block;
+        max-width: $nav-max-width;
+        margin: auto;
+
+        & .links {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 4rem;
+
+            & a {
+                @extend %flex-vcenter-layout;
+                gap: 2rem;
+                background-color: unset;
+                align-items: center;
+                text-decoration: none;
+                padding: 2rem;
+
+                & p {
+                    background-color: transparent;
+                    font-style: normal;
+                    font-weight: bold;
+                }
+
+                &:hover {
+                    background-color: $light-02;
+                    color: $dark-01;
+                    border-radius: 1rem;
+
+                    & p {
+                        color: $dark-01;
+                    }
+
+                }
+            }
+        }
+
+        & p {
+            text-align: center;
+            font-size: 2rem;
+            color: $light-02;
+            font-style: italic;
+        }
+    }
+
+    & img {
+        width: 8rem;
+    }
 }

@@ -7,7 +7,7 @@ p {
   color: #383835ff;
 }
 
-.ulist, .olist, .hero__buttons, .hero__photo, .hero__profile {
+#rodape section .links a, .ulist, .olist, .hero__buttons, .hero__photo, .hero__profile {
   display: flex;
   align-items: center;
 }
@@ -215,6 +215,50 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+}
+
+#rodape {
+  background-color: #00930aff;
+  padding-bottom: 2rem;
+}
+#rodape section {
+  display: block;
+  max-width: 980px;
+  margin: auto;
+}
+#rodape section .links {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 4rem;
+}
+#rodape section .links a {
+  gap: 2rem;
+  background-color: unset;
+  align-items: center;
+  text-decoration: none;
+  padding: 2rem;
+}
+#rodape section .links a p {
+  background-color: transparent;
+  font-style: normal;
+  font-weight: bold;
+}
+#rodape section .links a:hover {
+  background-color: #fbffcbff;
+  color: #070707ff;
+  border-radius: 1rem;
+}
+#rodape section .links a:hover p {
+  color: #070707ff;
+}
+#rodape section p {
+  text-align: center;
+  font-size: 2rem;
+  color: #fbffcbff;
+  font-style: italic;
+}
+#rodape img {
+  width: 8rem;
 }
 
 /*# sourceMappingURL=style.css.map */
