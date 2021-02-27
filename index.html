@@ -19,18 +19,18 @@
             <h1 class="header__title" id="titulo">Lições aprendidas<br>TRYBE</h1>
           </li>
           <li class="header__item">
-            <a href="#minha_foto">Presentation</a>
+            <a class="header__item-link" href="#minha_foto">Presentation</a>
           </li>
           <li class="header__item">
-            <a href="#licoes_aprendidas">
+            <a class="header__item-link" href="#licoes_aprendidas">
               Lessons Learned
             </a>
           </li>
           <li class=" header__item">
-            <a href="#licoes_a_aprender">Lessons to Learn</a>
+            <a class="header__item-link" href="#licoes_a_aprender">Lessons to Learn</a>
           </li>
           <li class="header__item">
-            <a href="#rodape">Footer</a>
+            <a class="header__item-link" href="#rodape">Footer</a>
           </li>
         </ul>
       </div>
@@ -39,9 +39,20 @@
 
   <main>
     <div class="hero light2">
-      <div class="hero__content"><article class="hero__profile"><h2 class="hero__title">Loren ipsum</h2><div><p class="hero__paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium ut est posuere ultrices. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium ut est posuere ultrices.</p>
-<div class="hero__buttons"><div class="button">Contact</div> <div class="button button--outline">Info</div></div></div></article>
-        <section class="hero__photo lado-direito">
+      <div class="hero__content">
+        <section class="hero__profile">
+          <h2 class="hero__title">Loren ipsum</h2>
+          <div>
+            <p class="hero__paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium ut est
+              posuere ultrices. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium ut est posuere
+              ultrices.</p>
+            <div class="hero__buttons">
+              <div class="button">Contact</div>
+              <div class="button button--outline">Info</div>
+            </div>
+          </div>
+        </section>
+        <section class="hero__photo" >
           <h2 style="display: none">Photo Section</h2>
           <img id="minha_foto" alt="picture profile"
             src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png">
@@ -51,12 +62,16 @@
 
     <div class="herot">
       <div class="herot__content">
-        <article class="herot__profile lado-esquerdo"><h2 class="herot__title">What I've Learned so far?</h2><p class="herot__paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pellentesque lacinia erat id pretium.Nullam congue nisi sit amet nibh fringilla, in sollicitudin erat ornare. Aenean id auctor dolor, vitae efficitur erat.</p></article>
-        <aside>
+        <article class="herot__profile lado-esquerdo">
+          <div>
+            <h2 class="herot__title">What I've Learned so far?</h2>
+            <p class="herot__paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pellentesquelacinia erat id pretium.Nullam congue nisi sit amet nibh fringilla, in sollicitudin erat ornare. Aenean id auctor dolor, vitae efficitur erat.</p>
+          </div>
+        </article>
+        <aside class="herot__aside lado-direito">
           <figure>
-            <blockquote>
-              <p>‘‘By three methods we may learn wisdom: First, by reflection, which is noblest; Second, by imitation,
-                which is easiest; and third by experience, which is the bitterest.’’</p>
+            <blockquote class="_blckq">
+              <p class="herot__aside__paragraph">‘‘By three methods we may learn wisdom: First, by reflection, which is noblest; Second, by imitation, which is easiest; and third by experience, which is the bitterest.’’</p>
             </blockquote>
             <figcaption>—Confucius</figcaption>
           </figure>
@@ -70,16 +85,16 @@
           <div class="ulist">
             <h2 class="ulist__title">Lessons To Learn</h2>
             <ul class="ulist__list" id="licoes_a_aprender">
-              <li>PWA</li>
-              <li>JS ES6</li>
-              <li>Jest</li>
-              <li>React</li>
-              <li>Agile</li>
-              <li>Node.js</li>
-              <li>Mongo.db</li>
-              <li>SOLID</li>
-              <li>ORM</li>
-              <li>Sockets</li>
+              <li class="ulist__li">PWA</li>
+              <li class="ulist__li">JS ES6</li>
+              <li class="ulist__li">Jest</li>
+              <li class="ulist__li">React</li>
+              <li class="ulist__li">Agile</li>
+              <li class="ulist__li">Node.js</li>
+              <li class="ulist__li">Mongo.db</li>
+              <li class="ulist__li">SOLID</li>
+              <li class="ulist__li">ORM</li>
+              <li class="ulist__li">Sockets</li>
             </ul>
           </div>
         </section>
@@ -121,20 +136,20 @@
     </div>
   </main>
 
-  <footer id="rodape">
-    <section>
-      <div class="links">
-        <a href="https://github.com/MuriloGon/" target="_blank">
+  <footer class="footer" id="rodape">
+    <section class="footer__content">
+      <div class="footer__links">
+        <a class="footer__links__social" href="https://github.com/MuriloGon/" target="_blank">
           <p>Github Page</p>
           <img alt="Github link" src="assets/github-logo.svg">
         </a>
-        <a href="http://https://www.linkedin.com/in/murilogon/" target="_blank">
+        <a class="footer__links__social" href="http://https://www.linkedin.com/in/murilogon/" target="_blank">
           <p>Linkedin</p>
           <img alt="Linkedin" src="assets/linkedin-logo.png">
         </a>
       </div>
-      <p>Copyright©2001-2020</p>
-      <p>All Rights Reserved. Made and Designed by Murilo Gonçalves.</p>
+      <p class="footer__cpy">Copyright©2001-2020</p>
+      <p class="footer__cpy">All Rights Reserved. Made and Designed by Murilo Gonçalves.</p>
     </section>
   </footer>
 </body>

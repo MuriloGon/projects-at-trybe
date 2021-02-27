@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
 
 h1,
@@ -140,7 +140,8 @@ $nav-max-width: 980px;
         @extend %reset-list;
         display: block;
 
-        & a {
+        &-link {
+            @extend %reset-styles;
             display: inline-block;
             padding: 0.5em;
             text-align: center;
@@ -150,19 +151,11 @@ $nav-max-width: 980px;
 
         }
 
-        & a:hover {
+        &-link:hover {
             color: $dark-02;
             border-block-end: 1em $dark-02;
         }
     }
-
-
-    & a:visited,
-    & a:link,
-    & a:hover {
-        @extend %reset-styles;
-    }
-
 }
 
 // hero
@@ -279,75 +272,74 @@ $nav-max-width: 980px;
         line-height: 1.5;
         list-style-type: none;
 
-        & li {
-            transition: background-color 0.25s;
-            text-align: center;
-            font-size: 2.75rem
-        }
+    }
 
-        & li:hover {
-            background-color: $primary-01;
-            color: $light-02;
-            text-transform: uppercase;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    &__li {
+        transition: background-color 0.25s;
+        text-align: center;
+        font-size: 2.75rem
+    }
+
+    &__li:hover {
+        background-color: $primary-01;
+        color: $light-02;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
     }
 
 }
 
-#rodape {
+.footer {
     background-color: $primary-01;
     padding-bottom: 2rem;
 
-    section {
+    &__content {
         display: block;
         max-width: $nav-max-width;
         margin: auto;
 
-        & .links {
-            display: flex;
-            justify-content: space-evenly;
-            padding: 4rem;
+    }
 
-            & a {
-                @extend %flex-vcenter-layout;
-                gap: 2rem;
-                background-color: unset;
-                align-items: center;
-                text-decoration: none;
-                padding: 2rem;
+    &__links {
+        display: flex;
+        justify-content: space-evenly;
+        padding: 4rem;
+        text-align: center;
+        font-size: 2rem;
+        color: $light-02;
+        font-style: italic;
 
-                & p {
-                    background-color: transparent;
-                    font-style: normal;
-                    font-weight: bold;
-                }
+        &__social {
+            @extend %flex-vcenter-layout;
+            gap: 2rem;
+            background-color: unset;
+            align-items: center;
+            text-decoration: none;
+            padding: 2rem;
 
-                &:hover {
-                    background-color: $light-02;
-                    color: $dark-01;
-                    border-radius: 1rem;
 
-                    & p {
-                        color: $dark-01;
-                    }
+            &:hover {
+                background-color: $light-02;
+                color: $dark-01;
+                border-radius: 1rem;
 
-                }
+            }
+
+            &>img {
+                width: 8rem;
             }
         }
-
-        & p {
-            text-align: center;
-            font-size: 2rem;
-            color: $light-02;
-            font-style: italic;
-        }
     }
 
-    & img {
-        width: 8rem;
+    &__cpy {
+        text-align: center;
+        font-size: 2rem;
+        color: $light-02;
+        font-style: italic;
     }
+
+
 }
 
 
@@ -388,7 +380,7 @@ $nav-max-width: 980px;
         text-justify: inter-word;
     }
 
-    & aside {
+    &__aside {
         flex: 1;
         font-size: 2rem;
         color: $light-01;
@@ -396,22 +388,24 @@ $nav-max-width: 980px;
         justify-content: center;
         align-items: center;
 
-        & figure p {
+        &__paragraph {
             color: inherit;
             font-style: italic;
             line-height: 2;
         }
 
-        & figure blockquote {
+        &__blckq {
             margin-bottom: 4rem;
         }
     }
 }
 
-.lado-esquerdo{
+.lado-esquerdo {
     float: left;
+    width: 100%;
 }
 
-.lado-direito{
+.lado-direito {
     float: right;
+    width: 100%;
 }
