@@ -275,8 +275,9 @@ body {
 }
 .herot__profile {
   flex-direction: column;
-  padding: 5rem;
   justify-items: center;
+  padding: 5rem;
+  flex: 1.5;
 }
 .herot__title {
   font-size: 3.75rem;
@@ -291,6 +292,22 @@ body {
   padding: 1.5rem 0px;
   text-align: justify;
   text-justify: inter-word;
+}
+.herot aside {
+  flex: 1;
+  font-size: 2rem;
+  color: #fefcfcfb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.herot aside figure p {
+  color: inherit;
+  font-style: italic;
+  line-height: 2;
+}
+.herot aside figure blockquote {
+  margin-bottom: 4rem;
 }
 
 /*# sourceMappingURL=style.css.map */

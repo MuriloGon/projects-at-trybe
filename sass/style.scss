@@ -367,8 +367,9 @@ $nav-max-width: 980px;
     &__profile {
         @extend %flex-vcenter-layout;
         flex-direction: column;
-        padding: 5rem;
         justify-items: center;
+        padding: 5rem;
+        flex: 1.5;
     }
 
     &__title {
@@ -385,5 +386,24 @@ $nav-max-width: 980px;
         padding: 1.5rem 0px;
         text-align: justify;
         text-justify: inter-word;
+    }
+
+    & aside {
+        flex: 1;
+        font-size: 2rem;
+        color: $light-01;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & figure p {
+            color: inherit;
+            font-style: italic;
+            line-height: 2;
+        }
+
+        & figure blockquote {
+            margin-bottom: 4rem;
+        }
     }
 }
