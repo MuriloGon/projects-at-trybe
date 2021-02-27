@@ -310,4 +310,12 @@ body {
   margin-bottom: 4rem;
 }
 
+.lado-esquerdo {
+  float: left;
+}
+
+.lado-direito {
+  float: right;
+}
+
 /*# sourceMappingURL=style.css.map */
