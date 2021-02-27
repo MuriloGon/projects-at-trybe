@@ -1,12 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=ABeeZee&display=swap");
-h1, p {
+h1,
+p {
   font-family: "ABeeZee", sans-serif;
   color: #383835ff;
 }
 
-.hero__buttons, .hero__photo, .hero__profile {
+.olist, .hero__buttons, .hero__photo, .hero__profile {
   display: flex;
   align-items: center;
 }
@@ -164,6 +165,31 @@ body {
 .dark2 {
   background-color: #383835ff;
   color: #fefcfcfb;
+}
+
+.olist {
+  flex-direction: column;
+}
+.olist__title {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+.olist__list {
+  font-size: 2.5rem;
+  line-height: 1.5;
+  list-style-type: none;
+}
+.olist__list li {
+  transition: background-color 0.25s;
+  text-align: center;
+  font-size: 2.75rem;
+}
+.olist__list li:hover {
+  background-color: #fbffcbff;
+  color: #383835ff;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
