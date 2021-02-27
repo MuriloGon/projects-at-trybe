@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
+h1, p{
+    font-family: 'ABeeZee', sans-serif;
+    color: #383835ff;
+}
 // colors
 $bg-color: #{'rgb(253, 251, 251)'};
 
@@ -40,7 +45,7 @@ $dark-02: #383835ff;
 // Base rules
 :root {
     font-family: 'Noto Sans TC', sans-serif;
-    ;
+    font-size: 10px;
 }
 
 * {
@@ -50,7 +55,49 @@ $dark-02: #383835ff;
 
 body {
     background-color: $bg-color;
+    padding-top: 6rem;
 }
+
+// componentes
+
+.button {
+    box-sizing: border-box;
+    min-width: 15rem;
+    display: inline-block;
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    background: $primary-01;
+    color: #ffffff;
+    font-size: 2.5rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:hover {
+        background-color: $dark-02;
+    }
+
+    &:active {
+        background-color: $dark-01;
+    }
+
+
+    &--outline {
+        background-color: lighten($dark-02, 60%);
+        color: $dark-01;
+
+        &:hover {
+            color: $light-01;
+            background-color: $dark-02;
+        }
+    }
+}
+
 
 // Nav
 $nav-max-width: 980px;
@@ -64,8 +111,10 @@ $nav-max-width: 980px;
 
     &__title {
         text-align: center;
-        font-size: 1.15rem;
+        font-size: 1.9rem;
         padding: 0 1em;
+        color: $light-01;
+        text-transform: uppercase;
         background-color: $primary-02;
         cursor: cell;
     }
@@ -90,7 +139,7 @@ $nav-max-width: 980px;
             display: inline-block;
             padding: 0.5em;
             text-align: center;
-            font-size: 1.25rem;
+            font-size: 1.75rem;
             font-weight: bold;
             transition: color 0.15s;
 
@@ -111,13 +160,71 @@ $nav-max-width: 980px;
 
 }
 
-#numero1 {
-    @extend %reset-list;
-    background-color: brown;
+// hero
+
+.hero {
+    width: 100%;
+
+    &__content {
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: $nav-max-width;
+        height: 550px;
+    }
+
+    &__profile {
+        @extend %flex-vcenter-layout;
+        flex-direction: column;
+        padding: 5rem;
+        justify-items: center;
+    }
+
+    &__title {
+        font-size: 3.75rem;
+        letter-spacing: 0.25rem;
+        padding: 1rem 0px;
+    }
+
+    &__paragraph {
+        font-size: 2rem;
+        letter-spacing: 0.25rem;
+        line-height: 1.6;
+        padding: 1.5rem 0px;
+        text-align: justify;
+        text-justify: inter-word;
+    }
+
+    &__photo {
+        @extend %flex-vcenter-layout;
+        justify-content: center;
+
+        & img {
+            max-height: 370px;
+            width: auto;
+            border-radius: 50%;
+
+        }
+    }
+
+    &__buttons {
+        @extend %flex-vcenter-layout;
+        justify-content: space-between;
+        margin-top: 3em;
+    }
 }
 
+.light1 {
+    background-color: $light-02;
+    color: $primary-01;
+}
 
-#numero2 {
-    @extend %reset-list;
-    background-color: yellow;
+.light2 {
+    background-color: $light-02;
+    color: $dark-01
+}
+
+.dark2 {
+    background-color: $dark-02;
+    color: $light-01
 }

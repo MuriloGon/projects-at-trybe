@@ -1,5 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
-#numero2, #numero1, .header__item {
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee&display=swap");
+h1, p {
+  font-family: "ABeeZee", sans-serif;
+  color: #383835ff;
+}
+
+.hero__buttons, .hero__photo, .hero__profile {
+  display: flex;
+  align-items: center;
+}
+
+.header__item {
   list-style-type: none;
   margin: 0px;
   padding: 0px;
@@ -12,6 +24,7 @@
 
 :root {
   font-family: "Noto Sans TC", sans-serif;
+  font-size: 10px;
 }
 
 * {
@@ -21,6 +34,40 @@
 
 body {
   background-color: rgb(253, 251, 251);
+  padding-top: 6rem;
+}
+
+.button {
+  box-sizing: border-box;
+  min-width: 15rem;
+  display: inline-block;
+  border: none;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: #00930aff;
+  color: #ffffff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.button:hover {
+  background-color: #383835ff;
+}
+.button:active {
+  background-color: #070707ff;
+}
+.button--outline {
+  background-color: #d1d1ce;
+  color: #070707ff;
+}
+.button--outline:hover {
+  color: #fefcfcfb;
+  background-color: #383835ff;
 }
 
 .header {
@@ -32,8 +79,10 @@ body {
 }
 .header__title {
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 1.9rem;
   padding: 0 1em;
+  color: #fefcfcfb;
+  text-transform: uppercase;
   background-color: #227a1eff;
   cursor: cell;
 }
@@ -53,7 +102,7 @@ body {
   display: inline-block;
   padding: 0.5em;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   font-weight: bold;
   transition: color 0.15s;
 }
@@ -61,12 +110,60 @@ body {
   color: #383835ff;
   border-block-end: 1em #383835ff;
 }
-#numero1 {
-  background-color: brown;
+.hero {
+  width: 100%;
+}
+.hero__content {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 980px;
+  height: 550px;
+}
+.hero__profile {
+  flex-direction: column;
+  padding: 5rem;
+  justify-items: center;
+}
+.hero__title {
+  font-size: 3.75rem;
+  letter-spacing: 0.25rem;
+  padding: 1rem 0px;
+}
+.hero__paragraph {
+  font-size: 2rem;
+  letter-spacing: 0.25rem;
+  line-height: 1.6;
+  padding: 1.5rem 0px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.hero__photo {
+  justify-content: center;
+}
+.hero__photo img {
+  max-height: 370px;
+  width: auto;
+  border-radius: 50%;
+}
+.hero__buttons {
+  justify-content: space-between;
+  margin-top: 3em;
 }
 
-#numero2 {
-  background-color: yellow;
+.light1 {
+  background-color: #fbffcbff;
+  color: #00930aff;
+}
+
+.light2 {
+  background-color: #fbffcbff;
+  color: #070707ff;
+}
+
+.dark2 {
+  background-color: #383835ff;
+  color: #fefcfcfb;
 }
 
 /*# sourceMappingURL=style.css.map */
