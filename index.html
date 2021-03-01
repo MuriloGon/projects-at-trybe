@@ -19,15 +19,15 @@
             <h1 class="header__title" id="titulo">Lições aprendidas<br>TRYBE</h1>
           </li>
           <li class="header__item">
-            <a class="header__item-link" href="#minha_foto">Presentation</a>
-          </li>
-          <li class="header__item">
-            <a class="header__item-link" href="#licoes_aprendidas">
-              Lessons Learned
-            </a>
+            <a class="header__item-link" href="#presentation">Presentation</a>
           </li>
           <li class=" header__item">
-            <a class="header__item-link" href="#licoes_a_aprender">Lessons to Learn</a>
+            <a class="header__item-link" href="#lessons-to-learn">Lessons to Learn</a>
+          </li>
+          <li class="header__item">
+            <a class="header__item-link" href="#lessons-learned">
+              Lessons Learned
+            </a>
           </li>
           <li class="header__item">
             <a class="header__item-link" href="#rodape">Footer</a>
@@ -38,7 +38,7 @@
   </header>
 
   <main>
-    <div class="hero light2">
+    <div class="hero light2" id="presentation">
       <div class="hero__content">
         <section class="hero__profile">
           <h2 class="hero__title">Loren ipsum</h2>
@@ -47,8 +47,8 @@
               posuere ultrices. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium ut est posuere
               ultrices.</p>
             <div class="hero__buttons">
-              <div class="button">Contact</div>
-              <div class="button button--outline">Info</div>
+              <a class="button" href="#rodape">Contact</a>
+              <a class="button button--outline" href="#about-me">So Far</a>
             </div>
           </div>
         </section>
@@ -60,7 +60,7 @@
       </div>
     </div>
 
-    <div class="herot">
+    <div class="herot" id="about-me">
       <div class="herot__content">
         <article class="herot__profile lado-esquerdo">
           <div>
@@ -79,7 +79,7 @@
       </div>
     </div>
 
-    <div class="hero light2">
+    <div class="hero light2" id="lessons-to-learn">
       <div class="hero__content">
         <section class="hero__profile">
           <div class="ulist">
@@ -99,18 +99,16 @@
           </div>
         </section>
         <section class="hero__photo">
-          <div>
-            Insert Animation2
+          <div data-anim="tolearn">
           </div>
         </section>
       </div>
     </div>
 
-    <div class="hero dark2">
+    <div class="hero dark2" id="lessons-learned">
       <div class="hero__content">
         <section class="hero__profile">
-          <div>
-            Inser Animation
+          <div data-anim="learned">
           </div>
         </section>
         <section class="hero__photo">
@@ -145,7 +143,7 @@
         </a>
         <a class="footer__links__social" href="http://https://www.linkedin.com/in/murilogon/" target="_blank">
           <p>Linkedin</p>
-          <img alt="Linkedin" src="assets/linkedin-logo.png">
+          <img alt="Linkedin" src="assets/linkedin-logo.svg">
         </a>
       </div>
       <p class="footer__cpy">Copyright©2001-2020</p>

@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
-
 h1 , p {
-  font-family: ABeeZee, sans-serif;
-  color: rgb(56, 56, 53);
+  font-family: Noto Sans TC, sans-serif;
+}
+
+a , a:active , a:link {
+  text-decoration: none;
+  color: unset;
 }
 
 .olist , .hero__buttons , .hero__photo , .hero__profile {
@@ -20,6 +22,11 @@ h1 , p {
 :root {
   font-family: Noto Sans TC, sans-serif;
   font-size: 10px;
+  scroll-behavior: smooth;
+
+  --bg-color: rgb(0, 112, 7);
+
+  --hero-height: 650px;
 }
 
 * {
@@ -29,19 +36,20 @@ h1 , p {
 
 body {
   background-color: rgb(253, 251, 251);
-  padding-top: 6rem;
+  padding-top: 4rem;
 }
 
 .button {
+  font-weight: 400;
   box-sizing: border-box;
-  min-width: 15rem;
+  min-width: 12rem;
   display: inline-block;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem 2rem;
+  border: 4px solid rgb(184, 183, 183);
+  border-radius: 1.5rem;
+  padding: 1rem;
   margin: 0;
   text-decoration: none;
-  background: rgb(0, 147, 10);
+  background: var(--bg-color);
   color: white;
   font-size: 2.5rem;
   cursor: pointer;
@@ -54,12 +62,12 @@ body {
 }
 
 .button:active {
-  background-color: rgb(7, 7, 7);
+  background-color: rgb(117, 117, 117);
 }
 
 .button--outline {
-  background-color: rgb(209, 209, 206);
-  color: rgb(7, 7, 7);
+  background-color: rgb(243, 243, 243);
+  color: rgb(131, 131, 131);
 }
 
 .button--outline:hover {
@@ -67,21 +75,26 @@ body {
   background-color: rgb(56, 56, 53);
 }
 
+.button--outline:active {
+  color: rgba(254, 252, 252, 0.984);
+  background-color: black;
+}
+
 .header {
   position: fixed;
   width: 100%;
-  background-color: rgb(0, 147, 10);
+  background-color: var(--bg-color);
   top: 0;
   color: rgba(254, 252, 252, 0.984);
+  z-index: 9999;
 }
 
 .header__title {
   text-align: center;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   padding: 0 1em;
   color: rgba(254, 252, 252, 0.984);
   text-transform: uppercase;
-  background-color: rgb(34, 122, 30);
   cursor: cell;
 }
 
@@ -112,8 +125,8 @@ body {
 }
 
 .header__item-link:hover {
-  color: hsl(60, 3%, 21%);
-  border-block-end: 1em hsl(60, 3%, 21%);
+  color: rgb(55, 55, 52);
+  border-block-end: 1em rgb(55, 55, 52);
 }
 
 .hero {
@@ -125,17 +138,18 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   max-width: 980px;
-  height: 550px;
+  height: var(--hero-height);
+  align-items: center;
 }
 
 .hero__profile {
   flex-direction: column;
-  padding: 5rem;
+  padding: 3rem;
   justify-items: center;
 }
 
 .hero__title {
-  font-size: 3.75rem;
+  font-size: 4.5rem;
   letter-spacing: 0.25rem;
   padding: 1rem 0;
 }
@@ -157,6 +171,7 @@ body {
   max-height: 370px;
   width: auto;
   border-radius: 50%;
+  filter: hue-rotate(250deg);
 }
 
 .hero__buttons {
@@ -165,17 +180,17 @@ body {
 }
 
 .light1 {
-  background-color: hsl(65, 100%, 90%);
-  color: hsl(124, 100%, 29%);
+  background-color: rgb(251, 255, 204);
+  color: rgb(2, 122, 10);
 }
 
 .light2 {
-  background-color: hsl(65, 100%, 90%);
-  color: hsl(0, 0%, 3%);
+  background-color: rgb(254, 255, 241);
+  color: rgb(8, 8, 8);
 }
 
 .dark2 {
-  background-color: hsl(60, 3%, 21%);
+  background-color: rgb(55, 55, 52);
   color: rgba(254, 252, 252, 0.984);
 }
 
@@ -201,8 +216,8 @@ body {
 }
 
 .olist__list li:hover {
-  background-color: hsl(65, 100%, 90%);
-  color: hsl(60, 3%, 21%);
+  background-color: rgb(251, 255, 204);
+  color: rgb(55, 55, 52);
   text-transform: uppercase;
   font-weight: 400;
   cursor: pointer;
@@ -230,15 +245,15 @@ body {
 }
 
 .ulist__li:hover {
-  background-color: hsl(124, 100%, 29%);
-  color: hsl(65, 100%, 90%);
+  background-color: rgb(0, 148, 10);
+  color: rgb(251, 255, 204);
   text-transform: uppercase;
   font-weight: 400;
   cursor: pointer;
 }
 
 .footer {
-  background-color: hsl(124, 100%, 29%);
+  background-color: var(--bg-color);
   padding-bottom: 2rem;
 }
 
@@ -267,8 +282,8 @@ body {
 }
 
 .footer__links__social:hover {
-  background-color: rgb(251, 255, 204);
-  color: rgb(8, 8, 8);
+  background-color: rgb(55, 55, 52);
+  color: rgb(251, 255, 204);
   border-radius: 1rem;
 }
 
@@ -294,14 +309,14 @@ body {
   display: flex;
   justify-content: center;
   max-width: 980px;
-  height: 550px;
+  height: var(--hero-height);
 }
 
 .herot__profile {
   flex-direction: column;
   justify-items: center;
   padding: 5rem;
-  flex: 1.5;
+  flex: 1;
 }
 
 .herot__title {
@@ -314,8 +329,9 @@ body {
   color: inherit;
   font-size: 2rem;
   letter-spacing: 0.25rem;
-  line-height: 1.6;
+  line-height: 2;
   padding: 1.5rem 0;
+  padding-right: 4rem;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -332,7 +348,7 @@ body {
 .herot__aside__paragraph {
   color: inherit;
   font-style: italic;
-  line-height: 2;
+  line-height: 3;
 }
 
 .herot__aside__blckq {
@@ -353,7 +369,118 @@ body {
   top: 0;
 }
 
-.herot__paragraph{
-  line-height: 2;
+@media only screen and ( max-width : 800px ) {
+
+  :root {
+    font-size: 11px;
+  }
+
+  .hero__content {
+    margin: auto;
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: repeat(2, 1fr);
+    height: calc(var(--hero-height) * 2);
+  }
+
+  .herot__aside {
+    box-sizing: border-box;
+    padding: 5rem;
+  }
+
+  .hero__profile {
+    order: 2;
+  }
+
+  .hero__photo {
+    height: calc(var(--hero-height));
+    order: 1;
+  }
+
+  #minha_foto {
+    margin-top: 10rem;
+  }
+
+  [ id *= 'lessons-learned' ] .hero__profile {
+    order: 1;
+  }
+
+  [ id *= 'lessons-learned' ] .hero__photo {
+    order: 2;
+  }
+
+  .herot__content {
+    margin: auto;
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: repeat(2, 1fr);
+    height: calc(var(--hero-height) * 2.25);
+  }
+
+  .lado-esquerdo {
+    box-sizing: border-box;
+  }
 }
-/*# sourceMappingURL=style.css.map */
+
+[ data-anim = 'tolearn' ]:after {
+  animation: toLearn 5s linear infinite forwards;
+  display: block;
+  content: 'Sockets';
+  font-size: 7.5rem;
+  text-align: center;
+}
+
+@keyframes toLearn {
+
+  5% { content: 'PWA'; }
+
+  15% { content: 'JS ES6'; }
+
+  25% { content: 'Jest'; }
+
+  35% { content: 'React'; }
+
+  45% { content: 'Agile'; }
+
+  55% { content: 'Node.js'; }
+
+  65% { content: 'Mongo.db'; }
+
+  75% { content: 'SOLID'; }
+
+  85% { content: 'ORM'; }
+
+  95% { content: 'Sockets'; }
+}
+
+[ data-anim = 'learned' ]:after {
+  animation: learned 5s linear infinite forwards;
+  display: block;
+  content: 'NoSql';
+  font-size: 7.5rem;
+  text-align: center;
+}
+
+@keyframes learned {
+
+  5% { content: 'ShellScript'; }
+
+  15% { content: 'Semantic HTML'; }
+
+  25% { content: 'CSS'; }
+
+  35% { content: 'Sass'; }
+
+  45% { content: 'Javascript'; }
+
+  55% { content: 'Typescript'; }
+
+  65% { content: 'Angular'; }
+
+  75% { content: 'Next.js'; }
+
+  85% { content: 'SQL'; }
+
+  95% { content: 'NoSql'; }
+
+}
