@@ -55,8 +55,36 @@ function catAndMouse(mouse, cat1, cat2) {
 }
 
 // Desafio 8
-function fizzBuzz() {
-  // seu código aqui
+function isDiv3(num) {
+  if (num % 3 === 0) return true;
+  return false;
+}
+
+function isDiv5(num) {
+  if (num % 5 === 0) return true;
+  return false;
+}
+
+function isDiv3a5(num) {
+  if ((num % 3 === 0) && (num % 5 === 0)) { return true; }
+  return false;
+}
+
+function fizzBuzz(array) {
+  let output = [];
+  for (let num of array) {
+    if ((isDiv3(num) || isDiv5(num)) && !isDiv3a5(num)) {
+      if (isDiv3(num)) output.push('fizz');
+      if (isDiv5(num)) output.push('buzz');
+    }
+    if ((isDiv3(num) || isDiv5(num)) && isDiv3a5(num)) {
+      if (isDiv3a5(num)) output.push('fizzBuzz');
+    }
+    if (!(isDiv3(num) || isDiv5(num)) && !isDiv3a5(num)) {
+      output.push('bug!');
+    }
+  }
+  return output;
 }
 
 // Desafio 9
