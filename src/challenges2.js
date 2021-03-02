@@ -16,8 +16,45 @@ function techList(techArr, nameStr) {
 }
 
 // Desafio 11
-function generatePhoneNumber() {
-  // seu código aqui
+function outZeroToNine(array) {
+  let isGreaterThan3 = false;
+  for (let num of array) if (num < 0 || num > 9) isGreaterThan3 = true;
+  return isGreaterThan3;
+}
+
+function mostRepeatedThan3(array) {
+  let repeatedNumbers = {};
+  let moreEqual3 = false;
+
+  for (let num of array) repeatedNumbers[num] = 0;
+  for (let num of array) repeatedNumbers[num] += 1;
+  for (let num in repeatedNumbers) {
+    if (repeatedNumbers[num] >= 3) moreEqual3 = true;
+  }
+
+  return moreEqual3;
+}
+
+function subArrayToString(array, pos1, pos2) {
+  let output = '';
+  for (let pos = pos1; pos <= pos2; pos += 1) {
+    output += array[pos].toString();
+  }
+  return output;
+}
+
+function generatePhoneNumber(numberPhone) {
+  if (numberPhone.length !== 11) return 'Array com tamanho incorreto.';
+
+  if (outZeroToNine(numberPhone) || mostRepeatedThan3(numberPhone)) {
+    return 'não é possível gerar um número de telefone com esses valores';
+  }
+  let output = '';
+  output += `(${subArrayToString(numberPhone, 0, 1)}) `;
+  output += `${subArrayToString(numberPhone, 2, 6)}-`;
+  output += `${subArrayToString(numberPhone, 7, 10)}`;
+
+  return output;
 }
 
 // Desafio 12
