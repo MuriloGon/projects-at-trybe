@@ -2,7 +2,7 @@
 function techList(techArr, nameStr) {
   let outputObj = [];
 
-  if (techArr.length <= 0) return null;
+  if (techArr.length <= 0) return 'Vazio!';
 
   for (let techItem of techArr.sort()) {
     outputObj.push(
