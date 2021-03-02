@@ -70,19 +70,36 @@ function isDiv3a5(num) {
   return false;
 }
 
+function cond1(num) {
+  return (isDiv3(num) || isDiv5(num)) && !isDiv3a5(num);
+}
+
+function cond2(num) {
+  return (isDiv3(num) || isDiv5(num)) && isDiv3a5(num);
+}
+
+function cond1Code(num) {
+  let out = '';
+  if (cond1(num)) {
+    if (isDiv3(num)) out = 'fizz';
+    if (isDiv5(num)) out = 'buzz';
+  }
+  return out;
+}
+
+function cond2Code(num) {
+  let out = '';
+  if (cond2(num)) {
+    if (isDiv3a5(num)) out = 'fizzBuzz';
+  } else if (!cond2(num)) out = 'bug!';
+  return out;
+}
+
 function fizzBuzz(array) {
   let output = [];
   for (let num of array) {
-    if ((isDiv3(num) || isDiv5(num)) && !isDiv3a5(num)) {
-      if (isDiv3(num)) output.push('fizz');
-      if (isDiv5(num)) output.push('buzz');
-    }
-    if ((isDiv3(num) || isDiv5(num)) && isDiv3a5(num)) {
-      if (isDiv3a5(num)) output.push('fizzBuzz');
-    }
-    if (!(isDiv3(num) || isDiv5(num)) && !isDiv3a5(num)) {
-      output.push('bug!');
-    }
+    if (cond1Code(num) !== '') output.push(cond1Code(num));
+    if (cond2Code(num) !== '') output.push(cond2Code(num));
   }
   return output;
 }
