@@ -70,36 +70,30 @@ function isDiv3a5(num) {
   return false;
 }
 
-function cond1(num) {
-  return (isDiv3(num) || isDiv5(num)) && !isDiv3a5(num);
+function doFuzzAndBuzz(num, array) {
+  let ref = array;
+  if (isDiv3(num)) {
+    ref.push('fizz');
+  } else ref.push('buzz');
 }
 
-function cond2(num) {
-  return (isDiv3(num) || isDiv5(num)) && isDiv3a5(num);
+function doFuBuBu(num, array) {
+  let ref = array;
+  if (isDiv3a5(num)) {
+    ref.push('fizzBuzz');
+  } else ref.push('bug!');
 }
 
-function cond1Code(num) {
-  let out = '';
-  if (cond1(num)) {
-    if (isDiv3(num)) out = 'fizz';
-    if (isDiv5(num)) out = 'buzz';
-  }
-  return out;
-}
-
-function cond2Code(num) {
-  let out = '';
-  if (cond2(num)) {
-    if (isDiv3a5(num)) out = 'fizzBuzz';
-  } else if (!cond2(num)) out = 'bug!';
-  return out;
+function fizzBuzzConditions(num, outArr) {
+  if ((isDiv3(num) || isDiv5(num)) && !isDiv3a5(num)) {
+    doFuzzAndBuzz(num, outArr);
+  } else doFuBuBu(num, outArr);
 }
 
 function fizzBuzz(array) {
   let output = [];
   for (let num of array) {
-    if (cond1Code(num) !== '') output.push(cond1Code(num));
-    if (cond2Code(num) !== '') output.push(cond2Code(num));
+    fizzBuzzConditions(num, output);
   }
   return output;
 }
