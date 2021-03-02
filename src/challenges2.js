@@ -86,7 +86,10 @@ function totalCups(str) {
 }
 
 function hydrate(str) {
-  return `${totalCups(str)} cups of water`;
+  let totalCupsNum = totalCups(str);
+
+  if (totalCupsNum > 1) return `${totalCupsNum} copos de água`;
+  return `${totalCupsNum} copo de água`;
 }
 
 module.exports = {
