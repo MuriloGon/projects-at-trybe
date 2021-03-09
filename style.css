@@ -1,6 +1,8 @@
 :root {
-    --header-heigth: 100px;
-    --tools-width: 200px;   
+    --header-heigth     : 100px;
+    --tools-width       : 200px;
+    --collor-pallet-side: 25px;
+    --time-animations   : 0.25s;
 }
 
 html,
@@ -10,10 +12,10 @@ body {
 }
 
 .main-container {
-    display           : grid;
-    grid-template-rows: var(--header-heigth) auto;
+    display              : grid;
+    grid-template-rows   : var(--header-heigth) auto;
     grid-template-columns: var(--tools-width) auto;
-    grid-template-areas:
+    grid-template-areas  :
         'header header header header'
         'tools paper paper paper'
         'tools paper paper paper'
@@ -39,3 +41,32 @@ body {
     grid-area       : paper;
     background-color: yellow;
 }
+
+
+/*Color Palette*/
+
+#color-palette {
+    display  : flex;
+    flex-wrap: wrap;
+}
+
+.color {
+    width     : var(--collor-pallet-side);
+    height    : var(--collor-pallet-side);
+    border    : 1px solid black;
+    box-sizing: border-box;
+    display   : inline-block;
+    transition: transform var(--time-animations);
+}
+
+.color:hover {
+    cursor   : pointer;
+    transform: scale(1.5) rotateZ(90deg);
+
+}
+
+.selected {
+    transition: border var(--time-animations), transform var(--time-animations);
+    border    : 3px dotted red;
+}
+
