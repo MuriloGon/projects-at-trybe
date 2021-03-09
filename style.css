@@ -1,0 +1,41 @@
+:root {
+    --header-heigth: 100px;
+    --tools-width: 200px;   
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.main-container {
+    display           : grid;
+    grid-template-rows: var(--header-heigth) auto;
+    grid-template-columns: var(--tools-width) auto;
+    grid-template-areas:
+        'header header header header'
+        'tools paper paper paper'
+        'tools paper paper paper'
+        'tools paper paper paper'
+        'tools paper paper paper';
+    height: 100%;
+}
+
+/*Header Component*/
+.header {
+    grid-area       : header;
+    background-color: yellowgreen;
+}
+
+/*Tools Component*/
+.tools {
+    grid-area       : tools;
+    background-color: aqua;
+}
+
+/*Paper Component*/
+.paper {
+    grid-area       : paper;
+    background-color: yellow;
+}
