@@ -57,14 +57,21 @@ function colorListItemBehaviourEventListener(ulElement) {
     if (localName === 'li') target.style.backgroundColor = defaultColor;
   });
 }
+function clearList(buttonElement, ulElement) {
+  buttonElement.addEventListener('click', () => {
+    const ulEl = ulElement;
+    ulEl.innerHTML = '';
+  });
+}
 
 /* Requirement 05 */
-const buttonElement = document.getElementById('criar-tarefa');
+const buttonAddElement = document.getElementById('criar-tarefa');
+const buttonClearElement = document.getElementById('apaga-tudo');
 const ulElement = document.getElementById('lista-tarefas');
 const inputElement = document.getElementById('texto-tarefa');
-buttonListenerAddItem(buttonElement, ulElement, inputElement);
+buttonListenerAddItem(buttonAddElement, ulElement, inputElement);
 colorListItemBehaviourEventListener(ulElement);
-// listDoneEventListener(ulElement);
+clearList(buttonClearElement, ulElement);
 
 // teste items
 addListItem(ulElement, 'Linha1');
