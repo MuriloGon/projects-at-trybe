@@ -88,6 +88,6 @@ clearList(buttonClearElement, ulElement);
 removeDoneEvnLst(buttonRemoveDoneElement, ulElement);
 
 // teste items
-addListItem(ulElement, 'Linha1');
-addListItem(ulElement, 'Linha1');
-addListItem(ulElement, 'Linha1');
+// addListItem(ulElement, 'Linha1');
+// addListItem(ulElement, 'Linha1');
+// addListItem(ulElement, 'Linha1');
