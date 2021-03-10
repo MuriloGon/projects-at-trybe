@@ -61,9 +61,50 @@ function selectColor(parentComponent, colorSelectedElement) {
   });
 }
 
+/* PaperComponent */
+
+function addPixel(sideLength) {
+  const pixelElement = document.createElement('div');
+  pixelElement.className = 'pixel';
+  pixelElement.style.width = sideLength;
+  pixelElement.style.height = sideLength;
+  return pixelElement;
+}
+
+function addPixelRow(columns, sideLength) {
+  const rowElement = document.createElement('div');
+  rowElement.classList.add('board__row');
+
+  for (let column = 0; column < columns; column += 1) {
+    const colElement = addPixel(sideLength);
+    rowElement.appendChild(colElement);
+  }
+  return rowElement;
+}
+
+function addBoard(parentElement, rows, columuns, sideLength) {
+  for (let r = 0; r < rows; r += 1) {
+    const row = addPixelRow(columuns, sideLength);
+    parentElement.appendChild(row);
+  }
+}
+
+function paintBoard(parentElement) {
+  const arrFunc = (e) => {
+    const pixelElement = e.target;
+    pixelElement.style.backgroundColor = localStorage.colorSelected;
+  };
+  parentElement.addEventListener('mousedown', arrFunc);
+  parentElement.addEventListener('wheel', arrFunc);
+}
+
+
 /* Function Callss */
 // ColorPalette Component
 const colorPallet = document.getElementById('color-palette');
 const colorSelectedElement = document.getElementById('palette__color-selected');
+const boardElement = document.getElementById('pixel-board');
 addAllPaletteColors(colorPallet, 100);
 selectColor(colorPallet, colorSelectedElement);
+addBoard(boardElement, 5, 5, '40px');
+paintBoard(boardElement);
