@@ -24,7 +24,7 @@ function addAllPaletteColors(parentElement, n) {
   const ColorfullLen = Math.floor(n * 0.8);
   const BWLen = n - ColorfullLen;
 
-  for (let i = 0; i <= BWLen; i += 1) {
+  for (let i = 0; i < BWLen; i += 1) {
     let color;
     color = 'hsl(0deg, ';
     color += '0%, ';
@@ -95,16 +95,35 @@ function paintBoard(parentElement) {
     pixelElement.style.backgroundColor = localStorage.colorSelected;
   };
   parentElement.addEventListener('mousedown', arrFunc);
-  parentElement.addEventListener('wheel', arrFunc);
 }
 
+/* ResetBoard */
+
+function addResetButton(parentElement) {
+  const btnElement = document.createElement('button');
+  btnElement.id = 'clear-board';
+  btnElement.classList.add('reset__button');
+  btnElement.innerText = 'Limpar';
+
+  btnElement.addEventListener('click', () => {
+    const pixels = [...document.getElementsByClassName('pixel')];
+
+    pixels.forEach((x) => {
+      const pixel = x.style;
+      pixel.backgroundColor = 'white';
+    });
+  });
+  parentElement.appendChild(btnElement);
+}
 
 /* Function Callss */
 // ColorPalette Component
 const colorPallet = document.getElementById('color-palette');
 const colorSelectedElement = document.getElementById('palette__color-selected');
 const boardElement = document.getElementById('pixel-board');
-addAllPaletteColors(colorPallet, 100);
+const buttonElement = document.querySelector('.reset');
+addAllPaletteColors(colorPallet, 75);
 selectColor(colorPallet, colorSelectedElement);
-addBoard(boardElement, 5, 5, '40px');
+addBoard(boardElement, 10, 10, '40px');
 paintBoard(boardElement);
+addResetButton(buttonElement);
