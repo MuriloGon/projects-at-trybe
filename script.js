@@ -133,8 +133,6 @@ function addInputElement() {
   inputElement.step = '1';
   inputElement.min = '5';
   inputElement.max = '50';
-  inputElement.minLength = '1';
-  inputElement.maxLength = '2';
 
   return inputElement;
 }
@@ -166,8 +164,8 @@ function addSizeComponet(parentElement) {
   const divElement = document.createElement('div');
   divElement.classList.add('size__interaction');
 
-  divElement.appendChild(btnElment);
   divElement.appendChild(inputElement);
+  divElement.appendChild(btnElment);
 
   parentElement.appendChild(divElement);
   // parentElement.appendChild(inputElement);

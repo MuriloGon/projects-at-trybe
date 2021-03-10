@@ -20,10 +20,10 @@ html , body {
 .main-container {
   display: grid;
   grid-template: 'header header header header' var(--header-heigth)
-    'tools paper paper paper'
-    'tools paper paper paper'
-    'tools paper paper paper'
-    'tools paper paper paper' / var(--tools-width) auto;
+    'tools tools tools tools'
+    'paper paper paper paper'
+    'paper paper paper paper'
+    'paper paper paper paper' / var(--tools-width) auto;
   height: 100%;
 }
 
@@ -187,7 +187,7 @@ html , body {
 }
 
 #board-size {
-  margin-left: 1rem;
+  margin-right: 1rem;
   display: inline;
 }
 
