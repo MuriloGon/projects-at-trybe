@@ -46,9 +46,15 @@ function colorListItemBehaviourEventListener(ulElement) {
   ulElement.addEventListener('click', (e) => {
     const { target } = e;
     const { localName } = target;
+    const bgColor = e.target.style.backgroundColor;
+    const defaultColor = 'rgb(128, 128, 128)';
+
+    if (localName === 'li' && bgColor === defaultColor) {
+      e.target.classList.add('completed');
+    }
 
     applyStyles('#lista-tarefas li', { backgroundColor: '' });
-    if (localName === 'li') target.style.backgroundColor = 'rgb(128, 128, 128)';
+    if (localName === 'li') target.style.backgroundColor = defaultColor;
   });
 }
 
@@ -58,6 +64,7 @@ const ulElement = document.getElementById('lista-tarefas');
 const inputElement = document.getElementById('texto-tarefa');
 buttonListenerAddItem(buttonElement, ulElement, inputElement);
 colorListItemBehaviourEventListener(ulElement);
+// listDoneEventListener(ulElement);
 
 // teste items
 addListItem(ulElement, 'Linha1');
