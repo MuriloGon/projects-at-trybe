@@ -42,6 +42,11 @@ function addAllPaletteColors(parentElement, n) {
 }
 
 // selectColor
+function resetClassName(className) {
+  const selection = [...document.getElementsByClassName(className)];
+  selection.forEach((el) => el.classList.remove(className));
+}
+
 function selectColor(parentComponent, colorSelectedElement) {
   const slctElement = colorSelectedElement;
   slctElement.style.backgroundColor = localStorage.colorSelected;
@@ -53,8 +58,7 @@ function selectColor(parentComponent, colorSelectedElement) {
 
       slctElement.style.backgroundColor = localDataChecker('colorSelected', colorSected);
 
-      const selection = [...document.getElementsByClassName(stringSelected)];
-      selection.forEach((el) => el.classList.remove(stringSelected));
+      resetClassName(stringSelected);
 
       e.target.classList.add(stringSelected);
     }
@@ -88,6 +92,7 @@ function addBoard(parentElement, rows, columuns, sideLength) {
     const row = addPixelRow(columuns, sideLength);
     parentElement.appendChild(row);
   }
+  resetClassName('selected');
   document.querySelector('.color').classList.add('selected');
 }
 
@@ -125,7 +130,7 @@ function addInputElement() {
   inputElement.type = 'number';
   inputElement.id = 'board-size';
   inputElement.value = '';
-  inputElement.min = '1';
+  inputElement.min = '5';
   inputElement.max = '50';
   return inputElement;
 }
@@ -174,7 +179,7 @@ const boardElement = document.getElementById('pixel-board');
 const buttonElement = document.querySelector('.reset');
 const sizeElement = document.querySelector('.size');
 const sizeComponent = addSizeComponet(sizeElement);
-addAllPaletteColors(colorPallet, 15);
+addAllPaletteColors(colorPallet, 4);
 selectColor(colorPallet, colorSelectedElement);
 addBoard(boardElement, 5, 5, '40px');
 paintBoard(boardElement);
