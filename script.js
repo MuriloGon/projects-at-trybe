@@ -63,15 +63,29 @@ function clearList(buttonElement, ulElement) {
     ulEl.innerHTML = '';
   });
 }
+function removeDoneEvnLst(buttonElement, ulElement) {
+  buttonElement.addEventListener('click', () => {
+    const doneEl = document.querySelectorAll('.completed');
+    const doneElemKeys = Object.keys(doneEl);
+    console.log(doneElemKeys);
+    for (let i = 0; i < doneElemKeys.length; i += 1) {
+      ulElement.removeChild(doneEl[i]);
+    }
+  });
+}
 
 /* Requirement 05 */
 const buttonAddElement = document.getElementById('criar-tarefa');
 const buttonClearElement = document.getElementById('apaga-tudo');
+const buttonRemoveDoneElement = document.getElementById('remover-finalizados');
+
 const ulElement = document.getElementById('lista-tarefas');
 const inputElement = document.getElementById('texto-tarefa');
+
 buttonListenerAddItem(buttonAddElement, ulElement, inputElement);
 colorListItemBehaviourEventListener(ulElement);
 clearList(buttonClearElement, ulElement);
+removeDoneEvnLst(buttonRemoveDoneElement, ulElement);
 
 // teste items
 addListItem(ulElement, 'Linha1');
