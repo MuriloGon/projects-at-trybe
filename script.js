@@ -125,7 +125,7 @@ function addInputElement() {
   inputElement.type = 'number';
   inputElement.id = 'board-size';
   inputElement.value = '5';
-  inputElement.min = '5';
+  inputElement.min = '1';
   inputElement.max = '50';
   return inputElement;
 }
@@ -168,7 +168,7 @@ const boardElement = document.getElementById('pixel-board');
 const buttonElement = document.querySelector('.reset');
 const sizeElement = document.querySelector('.size');
 const sizeComponent = addSizeComponet(sizeElement);
-addAllPaletteColors(colorPallet, 75);
+addAllPaletteColors(colorPallet, 4);
 selectColor(colorPallet, colorSelectedElement);
 addBoard(boardElement, 5, 5, '40px');
 paintBoard(boardElement);
