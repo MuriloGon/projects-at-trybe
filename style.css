@@ -92,9 +92,7 @@ html , body {
 
 .selected {
   transition: border var(--time-animations), transform var(--time-animations);
-  outline-style: dotted;
-  outline-color: red;
-  outline-width: 3px;
+  outline-style: 3px dotted red;
   z-index: 10;
 
   /* border    : 3px dotted red; */
