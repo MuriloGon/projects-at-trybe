@@ -35,8 +35,8 @@ function addAllPaletteColors(parentElement, n) {
   for (let i = 1; i <= ColorfullLen; i += 1) {
     let color;
     color = `hsl(${Math.floor((360 * i) / n)}deg, `;
-    color += `${'80%'}, `;
-    color += `${'50%'})`;
+    color += `${Math.floor(Math.random() * 100)}%, `;
+    color += `${Math.floor(Math.random() * 100)}%)`;
     addColorElement(parentElement, color);
   }
 }
