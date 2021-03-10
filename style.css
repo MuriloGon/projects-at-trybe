@@ -150,19 +150,19 @@ html , body {
   -moz-osx-font-smoothing: inherit;
 }
 
-#clear-board {
+#clear-board , .reset__button {
   transition    : box-shadow var(--time-animations);
   font-weight   : 800;
   letter-spacing: 0.25rem;
 }
 
-#clear-board:hover {
+#clear-board:hover , .reset__button:hover {
   box-shadow      : 0 2px 5px 2px rgba(0, 0, 0, 0.4);
   cursor          : pointer;
   background-color: rgb(112, 0, 112);
 }
 
-#clear-board:active {
+#clear-board:active , .reset__button:hover {
   background-color: rgb(88, 0, 88);
 }
 

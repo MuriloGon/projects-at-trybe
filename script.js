@@ -23,7 +23,6 @@ function addColorElement(parentElement, color) {
 function addAllPaletteColors(parentElement, n) {
   const ColorfullLen = Math.floor(n * 0.8);
   const BWLen = n - ColorfullLen;
-
   for (let i = 0; i < BWLen; i += 1) {
     let color;
     color = 'hsl(0deg, ';
@@ -31,7 +30,6 @@ function addAllPaletteColors(parentElement, n) {
     color += `${(99 * i) / BWLen}%)`;
     addColorElement(parentElement, color);
   }
-
   for (let i = 1; i <= ColorfullLen; i += 1) {
     let color;
     color = `hsl(${Math.floor((360 * i) / n)}deg, `;
@@ -131,7 +129,7 @@ function addInputElement() {
   inputElement.id = 'board-size';
   inputElement.value = '';
   inputElement.step = '1';
-  inputElement.min = '5';
+  inputElement.min = '1';
   inputElement.max = '50';
 
   return inputElement;
@@ -173,6 +171,66 @@ function addSizeComponet(parentElement) {
   return { inputSize: inputElement, buttonSize: btnElment };
 }
 
+/* EvaluatorJob Thing */
+const paper = '\'paper paper paper paper\'';
+let UGLY = '\'header header header header\' var(--header-heigth)';
+UGLY += '\'tools tools tools tools\'';
+UGLY += paper;
+UGLY += paper;
+UGLY += paper;
+
+const toolsPaper = '\'tools paper paper paper\'';
+let PRETTY = '\'header header header header\' var(--header-heigth)';
+PRETTY += toolsPaper;
+PRETTY += toolsPaper;
+PRETTY += toolsPaper;
+PRETTY += toolsPaper;
+PRETTY += ' / var(--tools-width) auto';
+
+const layoutStyles = {
+  ugly: UGLY,
+  pretty: PRETTY,
+};
+
+function uglyLayout(layoutCont, uglyBtnb, colorPalettElem) {
+  const layoutContainer = layoutCont;
+  const uglyButton = uglyBtnb;
+  const colorElem = colorPalettElem;
+  layoutContainer.style.gridTemplate = layoutStyles.ugly;
+  layoutContainer.classList.add('ugly');
+  uglyButton.innerHTML = 'Pretty';
+  colorElem.innerHTML = '';
+  addAllPaletteColors(colorPalettElem, 4);
+}
+
+function pretteLayout(layoutCont, uglyBtnb, colorPalettElem) {
+  const layoutContainer = layoutCont;
+  const uglyButton = uglyBtnb;
+  const colorElem = colorPalettElem;
+  layoutContainer.style.gridTemplate = layoutStyles.pretty;
+  layoutContainer.classList.remove('ugly');
+  uglyButton.innerHTML = 'Uglyfy';
+  colorElem.innerHTML = '';
+  addAllPaletteColors(colorPalettElem, 50);
+}
+
+function evaluatorButton(parentElement, colorPalettElem) {
+  const uglyButton = document.createElement('button');
+  const layoutContainer = document.querySelector('.main-container');
+  uglyButton.innerHTML = 'Pretty';
+  uglyButton.classList.add('reset__button');
+  layoutContainer.classList.add('ugly');
+
+  uglyButton.addEventListener('click', () => {
+    if (uglyButton.innerText === 'Pretty') {
+      pretteLayout(layoutContainer, uglyButton, colorPalettElem);
+    } else {
+      uglyLayout(layoutContainer, uglyButton, colorPalettElem);
+    }
+  });
+  parentElement.appendChild(uglyButton);
+}
+
 /* Function Callss */
 // ColorPalette Component
 const colorPallet = document.getElementById('color-palette');
@@ -187,3 +245,4 @@ addBoard(boardElement, 5, 5, '40px');
 paintBoard(boardElement);
 addResetButton(buttonElement);
 buttonSizeEvent(boardElement, sizeComponent.inputSize, sizeComponent.buttonSize);
+evaluatorButton(document.querySelector('.tools__item'), colorPallet);
