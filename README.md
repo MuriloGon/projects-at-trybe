@@ -17,7 +17,6 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 - [Entregáveis](#entregáveis)
   - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
   - [Desenvolvimento](#desenvolvimento)
-  - [Data de Entrega](#data-de-entrega)
 - [Instruções para entregar seu projeto](#instruções-para-entregar-seu-projeto)
   - [Antes de começar a desenvolver](#antes-de-começar-a-desenvolver)
   - [Durante o desenvolvimento](#durante-o-desenvolvimento)
@@ -72,14 +71,7 @@ Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://
 
 ## Desenvolvimento
 
-- Desenvoler uma aplicação usando HTML, CSS e JAVASCRIPT onde seja possivel fazer upload de imagens
-
----
-
-## Data de Entrega
-
-  - Serão `X` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+- Desenvoler uma aplicação usando HTML, CSS e JAVASCRIPT onde seja possivel fazer upload de imagens.
 
 ---
 
@@ -234,11 +226,11 @@ O não cumprimento de um requisito, total ou parcialmente, impactará em sua ava
 
 **O que será verificado:**
 
-- Será validado se o input de texto existe e conseguimos inputar texto nele
+- Será validado se o input de texto existe e conseguimos inputar texto nele;
 
-- Será validado se o texto digitado no input é visível na tela
+- Será validado se o texto digitado no input é visível na tela;
 
-- Será validado se existe um elemento de container para onde o texto será mostrado
+- Será validado se existe um elemento de container para onde o texto será mostrado.
 
 ### 2 - O site deve permitir que quem usa faça upload de uma imagem de seu computador.
 
@@ -252,11 +244,11 @@ O não cumprimento de um requisito, total ou parcialmente, impactará em sua ava
 
 **O que será verificado:**
 
-- Será validado se é possível carregar uma imagem através do elemento correto
+- Será validado se é possível carregar uma imagem através do elemento correto;
 
-- Será validado se a imagem carregada é exibida dentro do elemento correto
+- Será validado se a imagem carregada é exibida dentro do elemento correto;
 
-- Será validado se o texto é inserido corretamente sobre a imagem
+- Será validado se o texto é inserido corretamente sobre a imagem.
 
 ### 3 - Adicione uma moldura no container. A moldura deve ter 1 pixel de largura, deve ser preta e do tipo 'solid'. A área onde a imagem aparecerá deve ter fundo branco.
 
@@ -268,11 +260,11 @@ O não cumprimento de um requisito, total ou parcialmente, impactará em sua ava
 
 **O que será verificado:**
 
-- Será validado se o elemento que serve de container para a imagem tem a cor de fundo branca
+- Será validado se o elemento que serve de container para a imagem tem a cor de fundo branca;
 
-- Será validado se o elemento que serve de container para a imagem tem uma borda preta, sólida, com 1 pixel de largura
+- Será validado se o elemento que serve de container para a imagem tem uma borda preta, sólida, com 1 pixel de largura;
 
-- Será validado se a imagem deve estar totalmente contida dentro do elemento identificado como `meme-image-container`
+- Será validado se a imagem deve estar totalmente contida dentro do elemento identificado como `meme-image-container`.
 
 ### 4 - Adicione o texto que será inserido sobre a imagem deve ter uma cor, sombra e tamanho específicos.
 
@@ -280,15 +272,15 @@ O não cumprimento de um requisito, total ou parcialmente, impactará em sua ava
 
 - O texto do elemento `meme-text` deve ter a fonte com o tamanho de 30 pixels;
 
-- O texto do elemento `meme-text` deve estar na cor branca;
+- O texto do elemento `meme-text` deve estar na cor branca.
 
 **O que será verificado:**
 
-- Será validado se o texto do elemento `meme-text` dtem uma sombra preta, de 5 pixels na horizontal, 5 pixels na vertical e um raio de desfoque de 5 pixels
+- Será validado se o texto do elemento `meme-text` dtem uma sombra preta, de 5 pixels na horizontal, 5 pixels na vertical e um raio de desfoque de 5 pixels;
 
-- Será validado se o texto do elemento `meme-text` tem a fonte com o tamanho de 30 pixels
+- Será validado se o texto do elemento `meme-text` tem a fonte com o tamanho de 30 pixels;
 
-- Será validado se o texto do elemento `meme-text` deve estar na cor branca
+- Será validado se o texto do elemento `meme-text` deve estar na cor branca.
 
 ### 5 - Limite o tamanho do texto que o usuário pode inserir.
 
