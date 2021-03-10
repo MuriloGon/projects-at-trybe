@@ -35,8 +35,8 @@ function addAllPaletteColors(parentElement, n) {
   for (let i = 1; i <= ColorfullLen; i += 1) {
     let color;
     color = `hsl(${Math.floor((360 * i) / n)}deg, `;
-    color += `${Math.floor(Math.random() * 60 + 5)}%, `;
-    color += `${Math.floor(Math.random() * 100)}%)`;
+    color += `${Math.floor(Math.random() * 60 + 10)}%, `;
+    color += `${Math.floor(Math.random() * 60 + 10)}%)`;
     addColorElement(parentElement, color);
   }
 }
@@ -124,7 +124,7 @@ function addInputElement() {
   const inputElement = document.createElement('input');
   inputElement.type = 'number';
   inputElement.id = 'board-size';
-  inputElement.value = '5';
+  inputElement.value = '';
   inputElement.min = '1';
   inputElement.max = '50';
   return inputElement;
@@ -154,9 +154,15 @@ function buttonSizeEvent(boardElement, inputElement, buttonElement) {
 function addSizeComponet(parentElement) {
   const inputElement = addInputElement();
   const btnElment = addButtonElement('VQV');
-  parentElement.appendChild(inputElement);
-  parentElement.appendChild(btnElment);
+  const divElement = document.createElement('div');
+  divElement.classList.add('size__interaction');
 
+  divElement.appendChild(btnElment);
+  divElement.appendChild(inputElement);
+
+  parentElement.appendChild(divElement);
+  // parentElement.appendChild(inputElement);
+  // parentElement.appendChild(btnElment);
   return { inputSize: inputElement, buttonSize: btnElment };
 }
 
@@ -168,7 +174,7 @@ const boardElement = document.getElementById('pixel-board');
 const buttonElement = document.querySelector('.reset');
 const sizeElement = document.querySelector('.size');
 const sizeComponent = addSizeComponet(sizeElement);
-addAllPaletteColors(colorPallet, 4);
+addAllPaletteColors(colorPallet, 15);
 selectColor(colorPallet, colorSelectedElement);
 addBoard(boardElement, 5, 5, '40px');
 paintBoard(boardElement);
