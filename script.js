@@ -116,14 +116,60 @@ function addResetButton(parentElement) {
   parentElement.appendChild(btnElement);
 }
 
+/* Size Component */
+
+function addInputElement() {
+  const inputElement = document.createElement('input');
+  inputElement.type = 'number';
+  inputElement.id = 'board-size';
+  inputElement.value = '5';
+  inputElement.min = '5';
+  inputElement.max = '50';
+  return inputElement;
+}
+
+function addButtonElement(name) {
+  const btnElment = document.createElement('button');
+  btnElment.id = 'generate-board';
+  btnElment.innerHTML = name;
+  return btnElment;
+}
+
+function buttonSizeEvent(boardElement, inputElement, buttonElement) {
+  buttonElement.addEventListener('click', () => {
+    const target = boardElement;
+    const inputEl = inputElement;
+    const input = parseInt(inputElement.value, 10);
+
+    target.innerHTML = '';
+    if (inputEl.value === '') alert('Board inválido!');
+    if (input < 5) inputEl.value = '5';
+    if (input > 50) inputEl.value = '50';
+    addBoard(target, inputElement.valueAsNumber, inputElement.valueAsNumber, '40px');
+  });
+}
+
+function addSizeComponet(parentElement) {
+  const inputElement = addInputElement();
+  const btnElment = addButtonElement('VQV');
+  parentElement.appendChild(inputElement);
+  parentElement.appendChild(btnElment);
+
+  return { inputSize: inputElement, buttonSize: btnElment };
+}
+
 /* Function Callss */
 // ColorPalette Component
 const colorPallet = document.getElementById('color-palette');
 const colorSelectedElement = document.getElementById('palette__color-selected');
 const boardElement = document.getElementById('pixel-board');
 const buttonElement = document.querySelector('.reset');
+const sizeElement = document.querySelector('.size');
+const sizeComponent = addSizeComponet(sizeElement);
 addAllPaletteColors(colorPallet, 75);
 selectColor(colorPallet, colorSelectedElement);
 addBoard(boardElement, 10, 10, '40px');
 paintBoard(boardElement);
 addResetButton(buttonElement);
+
+buttonSizeEvent(boardElement, sizeComponent.inputSize, sizeComponent.buttonSize);
