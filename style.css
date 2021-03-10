@@ -188,13 +188,14 @@ html , body {
 
 #board-size {
   margin-left: 1rem;
+  display: inline;
 }
 
 #generate-board {
   border                 : none;
   margin                 : auto;
   padding                : 0;
-  display                : block;
+  display                : inline;
   width                  : 100%;
   height                 : 40px;
   border-radius          : 20px;

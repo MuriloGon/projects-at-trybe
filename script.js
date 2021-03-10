@@ -130,8 +130,12 @@ function addInputElement() {
   inputElement.type = 'number';
   inputElement.id = 'board-size';
   inputElement.value = '';
+  inputElement.step = '1';
   inputElement.min = '5';
   inputElement.max = '50';
+  inputElement.minLength = '1';
+  inputElement.maxLength = '2';
+
   return inputElement;
 }
 
