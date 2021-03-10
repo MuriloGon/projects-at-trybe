@@ -80,7 +80,7 @@ html , body {
   height    : var(--collor-pallet-side);
   border    : 1px solid black;
   box-sizing: border-box;
-  display   : inline-block;
+  display   : inline;
   transition: transform var(--time-animations);
 }
 
@@ -92,7 +92,12 @@ html , body {
 
 .selected {
   transition: border var(--time-animations), transform var(--time-animations);
-  border    : 3px dotted red;
+  outline-style: dotted;
+  outline-color: red;
+  outline-width: 3px;
+  z-index: 10;
+
+  /* border    : 3px dotted red; */
 }
 
 /* Palette Component */
