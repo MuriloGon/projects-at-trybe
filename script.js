@@ -62,12 +62,16 @@ function colorListItemBehaviourEventListener(olElement) {
     if (localName === 'li') target.style.backgroundColor = defaultColor;
   });
 }
+
+/* Remove All List Items */
 function clearList(buttonElement, olElement) {
   buttonElement.addEventListener('click', () => {
     const ulEl = olElement;
     ulEl.innerHTML = '';
   });
 }
+
+/* Remove Completed Tasks */
 function removeDoneEvnLst(buttonElement, olElement) {
   buttonElement.addEventListener('click', () => {
     const doneEl = document.querySelectorAll('.completed');
@@ -78,6 +82,8 @@ function removeDoneEvnLst(buttonElement, olElement) {
     }
   });
 }
+
+/* Save List */
 function saveElements(buttonElement, olElement) {
   buttonElement.addEventListener('click', () => {
     const currentList = olElement.innerHTML;
