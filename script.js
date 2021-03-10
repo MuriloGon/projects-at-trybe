@@ -68,6 +68,7 @@ function addPixel(sideLength) {
   pixelElement.className = 'pixel';
   pixelElement.style.width = sideLength;
   pixelElement.style.height = sideLength;
+  pixelElement.style.backgroundColor = 'white';
   return pixelElement;
 }
 
@@ -87,6 +88,7 @@ function addBoard(parentElement, rows, columuns, sideLength) {
     const row = addPixelRow(columuns, sideLength);
     parentElement.appendChild(row);
   }
+  document.querySelector('.color').classList.add('selected');
 }
 
 function paintBoard(parentElement) {
@@ -168,8 +170,7 @@ const sizeElement = document.querySelector('.size');
 const sizeComponent = addSizeComponet(sizeElement);
 addAllPaletteColors(colorPallet, 75);
 selectColor(colorPallet, colorSelectedElement);
-addBoard(boardElement, 10, 10, '40px');
+addBoard(boardElement, 5, 5, '40px');
 paintBoard(boardElement);
 addResetButton(buttonElement);
-
 buttonSizeEvent(boardElement, sizeComponent.inputSize, sizeComponent.buttonSize);
