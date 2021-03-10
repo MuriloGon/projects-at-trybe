@@ -6,6 +6,7 @@ function isWrongInput(logicTest) {
 }
 
 /* List Behaviour */
+// Add Item Behaviour
 function addListItem(parentElement, inputElement) {
   const liElement = document.createElement('li');
 
@@ -19,7 +20,7 @@ function addListItem(parentElement, inputElement) {
   return liElement;
 }
 
-function buttonListener(buttonTarget, ulElement, inputElement) {
+function buttonListenerAddItem(buttonTarget, ulElement, inputElement) {
   const inputEl = inputElement;
   buttonTarget.addEventListener('click', () => {
     addListItem(ulElement, inputEl);
@@ -27,8 +28,23 @@ function buttonListener(buttonTarget, ulElement, inputElement) {
   });
 }
 
+// Click Item Behavior
+function colorListItemBehaviourEventListener(ulElement) {
+  ulElement.addEventListener('click', (e) => {
+    const { target } = e;
+    const { localName } = target;
+    if (localName === 'li') target.style.backgroundColor = 'rgb(128, 128, 128)';
+  });
+}
+
 /* Requirement 05 */
 const buttonElement = document.getElementById('criar-tarefa');
 const ulElement = document.getElementById('lista-tarefas');
 const inputElement = document.getElementById('texto-tarefa');
-buttonListener(buttonElement, ulElement, inputElement);
+buttonListenerAddItem(buttonElement, ulElement, inputElement);
+colorListItemBehaviourEventListener(ulElement);
+
+// teste items
+addListItem(ulElement, 'Linha1');
+addListItem(ulElement, 'Linha1');
+addListItem(ulElement, 'Linha1');
