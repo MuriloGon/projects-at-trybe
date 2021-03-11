@@ -42,24 +42,32 @@ function applyStyles(selector, styleObject) {
     }
   }
 }
+function manageSelected(elementTarget) {
+  const selectedElement = document.querySelector('.selected');
+
+  if (selectedElement === null) {
+    elementTarget.classList.add('selected');
+  } else selectedElement.classList.remove('selected');
+
+  elementTarget.classList.add('selected');
+}
 function colorListItemBehaviourEventListener(olElement) {
   olElement.addEventListener('click', (e) => {
     const { target } = e;
     const { localName } = target;
     const bgColor = e.target.style.backgroundColor;
     const defaultColor = 'rgb(128, 128, 128)';
-
-    const islocalName = localName === 'li';
-    const isBg = bgColor === defaultColor;
     const isCompleted = e.target.classList.contains('completed');
-    if (islocalName && isBg && !isCompleted) {
+    if (localName === 'li' && bgColor === defaultColor && !isCompleted) {
       e.target.classList.add('completed');
     } else {
       e.target.classList.remove('completed');
     }
-
     applyStyles('#lista-tarefas li', { backgroundColor: '' });
-    if (localName === 'li') target.style.backgroundColor = defaultColor;
+    if (localName === 'li') {
+      target.style.backgroundColor = defaultColor;
+      manageSelected(e.target);
+    }
   });
 }
 
@@ -96,8 +104,32 @@ function getSavedList(olElement) {
   if (listSaved !== null) {
     const olEl = olElement;
     olEl.innerHTML = localStorage.listSaved;
-    console.log(localStorage.listSaved);
   }
+}
+
+/* Move List Items */
+function moveItemUp(buttonUpElement, olElement) {
+  buttonUpElement.addEventListener('click', () => {
+    const listElement = olElement;
+    const itemSelected = document.querySelector('.selected');
+    if (itemSelected === null) return console.log('Nada selecionado /\\');
+
+    const previousLi = itemSelected.previousElementSibling;
+    if (previousLi !== null) {
+      listElement.insertBefore(itemSelected, previousLi);
+    }
+  });
+}
+function moveItemDown(buttonUpElement, olElement) {
+  buttonUpElement.addEventListener('click', () => {
+    const listElement = olElement;
+    const itemSelected = document.querySelector('.selected');
+    if (itemSelected === null) return console.log('Nada selecionado \\/');
+    const nextLi = itemSelected.nextElementSibling;
+    if (nextLi !== null && nextLi !== undefined) {
+      listElement.insertBefore(nextLi, itemSelected);
+    }
+  });
 }
 
 /* Requirement 05 */
@@ -105,6 +137,8 @@ const buttonAddElement = document.getElementById('criar-tarefa');
 const buttonClearElement = document.getElementById('apaga-tudo');
 const buttonRemoveDoneElement = document.getElementById('remover-finalizados');
 const buttonSaveList = document.getElementById('salvar-tarefas');
+const buttonMoveUp = document.getElementById('mover-cima');
+const buttonMoveDown = document.getElementById('mover-baixo');
 
 const olElement = document.getElementById('lista-tarefas');
 const inputElement = document.getElementById('texto-tarefa');
@@ -116,6 +150,8 @@ colorListItemBehaviourEventListener(olElement);
 clearList(buttonClearElement, olElement);
 removeDoneEvnLst(buttonRemoveDoneElement, olElement);
 saveElements(buttonSaveList, olElement);
+moveItemUp(buttonMoveUp, olElement);
+moveItemDown(buttonMoveDown, olElement);
 
 // teste items
 // addListItem(olElement, 'Linha1');
