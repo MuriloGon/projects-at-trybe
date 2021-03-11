@@ -125,7 +125,7 @@ Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://
   * Clique no botão verde _"Create pull request"_
   * Adicione uma descrição para o _Pull Request_, um título claro que o identifique, e clique no botão verde _"Create pull request"_
   * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-meme-generator/pulls) e confira que o seu _Pull Request_ está criado
+  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-meme-generator/pulls) e confira que o seu _Pull Request_ está criado
 
 ---
 
