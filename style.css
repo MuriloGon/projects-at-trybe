@@ -1,3 +1,7 @@
 .completed {
   text-decoration: line-through solid black;
 }
+
+#lista-tarefas {
+  user-select        : none;
+}

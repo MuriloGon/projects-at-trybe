@@ -55,19 +55,20 @@ function colorListItemBehaviourEventListener(olElement) {
   olElement.addEventListener('click', (e) => {
     const { target } = e;
     const { localName } = target;
-    const bgColor = e.target.style.backgroundColor;
     const defaultColor = 'rgb(128, 128, 128)';
-    const isCompleted = e.target.classList.contains('completed');
-    if (localName === 'li' && bgColor === defaultColor && !isCompleted) {
-      e.target.classList.add('completed');
-    } else {
-      e.target.classList.remove('completed');
-    }
+
     applyStyles('#lista-tarefas li', { backgroundColor: '' });
     if (localName === 'li') {
       target.style.backgroundColor = defaultColor;
       manageSelected(e.target);
     }
+  });
+
+  olElement.addEventListener('dblclick', (e) => {
+    const isSelected = e.target.classList.contains('selected');
+    const isCompleted = e.target.classList.contains('completed');
+    if (isSelected && !isCompleted) e.target.classList.add('completed');
+    else e.target.classList.remove('completed');
   });
 }
 
