@@ -132,6 +132,15 @@ function moveItemDown(buttonUpElement, olElement) {
   });
 }
 
+/* Remove Selected Button */
+function removeSelected(buttonRemoveElement, olElement) {
+  buttonRemoveElement.addEventListener('click', () => {
+    const selectedItem = document.querySelector('.selected');
+    const olList = olElement;
+    olList.removeChild(selectedItem);
+  });
+}
+
 /* Requirement 05 */
 const buttonAddElement = document.getElementById('criar-tarefa');
 const buttonClearElement = document.getElementById('apaga-tudo');
@@ -139,6 +148,7 @@ const buttonRemoveDoneElement = document.getElementById('remover-finalizados');
 const buttonSaveList = document.getElementById('salvar-tarefas');
 const buttonMoveUp = document.getElementById('mover-cima');
 const buttonMoveDown = document.getElementById('mover-baixo');
+const buttonRemoveSelected = document.getElementById('remover-selecionado');
 
 const olElement = document.getElementById('lista-tarefas');
 const inputElement = document.getElementById('texto-tarefa');
@@ -152,7 +162,7 @@ removeDoneEvnLst(buttonRemoveDoneElement, olElement);
 saveElements(buttonSaveList, olElement);
 moveItemUp(buttonMoveUp, olElement);
 moveItemDown(buttonMoveDown, olElement);
-
+removeSelected(buttonRemoveSelected, olElement);
 // teste items
 // addListItem(olElement, 'Linha1');
 // addListItem(olElement, 'Linha1');
