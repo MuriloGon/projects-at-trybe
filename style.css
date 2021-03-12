@@ -1,13 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #meme-image-container {
   position: relative;
+  border: 1px solid black;
+  background: white;
+  overflow: hidden;
+  width: 400px;
+  height: 300px;
+  z-index: -5;
+  display: flex;
+  align-items: center;
+}
+
+#meme-text {
+  word-break: break-all;
+  font-size: 30px;
+  color: white;
+  text-shadow: 5px 5px 5px black;
+  padding: 0.5rem;
 }
 
 #meme-image {
   position: absolute;
-  background-size: contain;
+  background-size: cover;
+  background-position: center center;
   width: 100%;
-  border: 2px solid black;
   left: 0;
   top: 0;
-  z-index: -5;
+  z-index: -4;
 }
