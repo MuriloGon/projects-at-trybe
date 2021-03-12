@@ -1,7 +1,3 @@
-/* LocalSession Manager */
-localStorage.colorSelected = 'rgb(0, 0, 0)';
-console.log(localStorage);
-
 function localDataChecker(key, value) {
   if (localStorage[key] === undefined) {
     localStorage.setItem(key, value);
@@ -232,6 +228,10 @@ function evaluatorButton(parentElement, colorPalettElem) {
 }
 
 /* Function Callss */
+
+// LocalSession Manager
+localStorage.colorSelected = 'rgb(0, 0, 0)';
+
 // ColorPalette Component
 const colorPallet = document.getElementById('color-palette');
 const colorSelectedElement = document.getElementById('palette__color-selected');
@@ -239,6 +239,7 @@ const boardElement = document.getElementById('pixel-board');
 const buttonElement = document.querySelector('.reset');
 const sizeElement = document.querySelector('.size');
 const sizeComponent = addSizeComponet(sizeElement);
+
 addAllPaletteColors(colorPallet, 4);
 selectColor(colorPallet, colorSelectedElement);
 addBoard(boardElement, 5, 5, '40px');
