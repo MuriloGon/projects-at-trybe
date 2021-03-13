@@ -9,18 +9,34 @@
 </head>
 
 <body>
+  <main>
+    <h2>Meme Generator</h2>
 
-  <h3>Texto</h3>
-  <input type='text' maxlength="60" id='text-input'>
+    <section>
+      <h3>Texto</h3>
+      <input type='text' maxlength="60" id='text-input'>
+    </section>
 
-  <h3>Selecionar Imagem</h3>
-  <input type='file' id='meme-insert' accept="image/png, image/jpeg">
+    <section>
+      <h3>Selecionar Imagem</h3>
+      <input type='file' id='meme-insert' accept="image/png, image/jpeg">
+    </section>
 
-  <div id='meme-image-container'>
-    <img id='meme-image' src='placeholder-image.jpg'>
-    <p id='meme-text'></p>
-  </div>
+    <div id='meme-image-container' class="default">
+      <img id='meme-image' src='placeholder-image.jpg'>
+      <p id='meme-text'></p>
+    </div>
 
+    <div id="border-buttons">
+      <button id='fire'>Fire</button>
+      <button id='water'>Water</button>
+      <button id='earth'>Earth</button>
+    </div>
+
+    <div id="default-images">
+
+    </div>
+  </main>
 
   <script src='script.js'></script>
 </body>
