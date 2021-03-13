@@ -1,7 +1,3 @@
-function setRandomNumber(targetElement, colorRgb) {
-  const tEl = targetElement;
-  tEl.innerText = colorRgb;
-}
 function addCircles(parentElement, quantity) {
   const n = quantity;
   for (let i = 0; i < n; i += 1) {
@@ -12,8 +8,31 @@ function addCircles(parentElement, quantity) {
   }
 }
 
+function setRandomNumber(targetElement, ballsElements) {
+  const balls = ballsElements;
+  const tEl = targetElement;
+  tEl.innerText = balls[Math.floor(Math.random() * balls.length)].style.backgroundColor;
+}
+
+function verifyAnswear(parentElement, answearElement, mainColor) {
+  parentElement.addEventListener('click', (e) => {
+    const mColor = mainColor.innerText;
+    const ansEl = answearElement;
+    const { target } = e;
+    const colorClicked = target.style.backgroundColor;
+
+    if (target.classList.contains('ball')) {
+      if (colorClicked === mColor) ansEl.innerText = 'Acertou!';
+      else ansEl.innerText = 'Errou! Tente novamente!';
+    }
+  });
+}
+
 const mainColorElement = document.getElementById('rgb-color');
 const colorCirclesElement = document.getElementById('color-circles');
+const colorsBallsElements = document.getElementsByClassName('ball');
+const answearElement = document.getElementById('answer');
 
-setRandomNumber(mainColorElement, 'rgb(120, 120, 120)');
 addCircles(colorCirclesElement, 6);
+setRandomNumber(mainColorElement, colorsBallsElements);
+verifyAnswear(colorCirclesElement, answearElement, mainColorElement);
