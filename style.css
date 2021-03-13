@@ -1,0 +1,12 @@
+#color-circles {
+  display: flex;
+  justify-content: center;
+}
+
+.ball {
+
+  --side-length: 50px;
+  height: var(--side-length);
+  width : var(--side-length);
+  border-radius: 50%;
+}
