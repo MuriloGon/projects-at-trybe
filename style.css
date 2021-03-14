@@ -1,0 +1,29 @@
+.newspapper {
+  background-color: antiquewhite;
+  font-weight     : 700;
+}
+
+.magazine1 {
+  background-color: teal;
+  color           : white;
+  font-family     : Verdana;
+  font-weight     : 900;
+  text-transform  : uppercase;
+}
+
+.magazine2 {
+  background-image: url('images/pink-pattern.png');
+  color           : fuchsia;
+  font-family     : Verdana;
+  font-weight     : 900;
+  text-transform  : uppercase;
+}
+
+.medium {
+  font-size: 20px;
+  padding: 8px;
+}
+
+.big {
+  font-size: 30px;
+}
