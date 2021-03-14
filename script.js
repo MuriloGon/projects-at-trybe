@@ -23,7 +23,7 @@ function managaScore(scoreElement) {
 
 function verifyAnswear(parentElement, answearElement, mainColor) {
   parentElement.addEventListener('click', (e) => {
-    const mColor = mainColor.innerText;
+    const mColor = mainColor.innerText.toLowerCase();
     const ansEl = answearElement;
     const { target } = e;
     const colorClicked = target.style.backgroundColor;
@@ -33,7 +33,11 @@ function verifyAnswear(parentElement, answearElement, mainColor) {
         const scoreEl = document.getElementById('pontos');
         ansEl.innerText = 'Acertou!';
         managaScore(scoreEl);
-      } else ansEl.innerText = 'Errou! Tente novamente!';
+        target.classList.add('correct');
+      } else {
+        ansEl.innerText = 'Errou! Tente novamente!';
+        target.classList.add('wrong');
+      }
     }
   });
 }
