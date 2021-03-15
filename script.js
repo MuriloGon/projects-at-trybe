@@ -5,6 +5,38 @@ function isWrongInput(logicTest) {
   return false;
 }
 
+// Notification
+function containerDiv(containerClass, text) {
+  const containerElement = document.createElement('div');
+  containerElement.classList.add(containerClass);
+
+  const pElement = document.createElement('p');
+  pElement.innerText = text;
+  containerElement.appendChild(pElement);
+
+  return containerElement;
+}
+
+function callNotification(targetElement, actionText) {
+  targetElement.classList.add(actionText);
+}
+
+function hideNotification(targetElement, actionText) {
+  targetElement.classList.remove(actionText);
+}
+
+function notify(timeNotification, text, containerClass, actionClass) {
+  const timeDelay = 50;
+  const containerEl = containerDiv(containerClass, text);
+  const transitionTime = 500;
+
+  document.body.appendChild(containerEl);
+
+  setTimeout(() => { callNotification(containerEl, actionClass); }, timeDelay);
+  setTimeout(() => { hideNotification(containerEl, actionClass); }, timeDelay + timeNotification);
+  setTimeout(() => { containerEl.remove(); }, timeDelay + transitionTime + timeNotification);
+}
+
 /* List Behaviour */
 // Add Item Behaviour
 function addListItem(parentElement, inputElement) {
@@ -15,8 +47,10 @@ function addListItem(parentElement, inputElement) {
     return null;
   }
   liElement.innerHTML = inputElement.value;
-
   parentElement.appendChild(liElement);
+
+  const ntfMsg = `"${liElement.innerText}" Adicionado`;
+  notify(1500, ntfMsg, 'ntfy-top-add', 'open');
   return liElement;
 }
 
@@ -55,12 +89,9 @@ function colorListItemBehaviourEventListener(olElement) {
   olElement.addEventListener('click', (e) => {
     const { target } = e;
     const { localName } = target;
-    const defaultColor = 'rgb(128, 128, 128)';
-
     applyStyles('#lista-tarefas li', { backgroundColor: '' });
     if (localName === 'li') {
-      target.style.backgroundColor = defaultColor;
-      manageSelected(e.target);
+      manageSelected(target);
     }
   });
 
@@ -77,6 +108,7 @@ function clearList(buttonElement, olElement) {
   buttonElement.addEventListener('click', () => {
     const ulEl = olElement;
     ulEl.innerHTML = '';
+    notify(1500, 'Todos os itens deletados', 'ntfy-top-delete', 'open');
   });
 }
 
@@ -85,10 +117,12 @@ function removeDoneEvnLst(buttonElement, olElement) {
   buttonElement.addEventListener('click', () => {
     const doneEl = document.querySelectorAll('.completed');
     const doneElemKeys = Object.keys(doneEl);
-    console.log(doneElemKeys);
+
     for (let i = 0; i < doneElemKeys.length; i += 1) {
       olElement.removeChild(doneEl[i]);
     }
+
+    notify(1500, 'Todos os itens completados foram deletados', 'ntfy-top-delete-completed', 'open');
   });
 }
 
@@ -96,7 +130,9 @@ function removeDoneEvnLst(buttonElement, olElement) {
 function saveElements(buttonElement, olElement) {
   buttonElement.addEventListener('click', () => {
     const currentList = olElement.innerHTML;
+    console.log(currentList);
     localStorage.listSaved = currentList;
+    notify(1500, 'Itens salvos', 'ntfy-top-save-list', 'open');
   });
 }
 function getSavedList(olElement) {
@@ -138,7 +174,9 @@ function removeSelected(buttonRemoveElement, olElement) {
   buttonRemoveElement.addEventListener('click', () => {
     const selectedItem = document.querySelector('.selected');
     const olList = olElement;
-    olList.removeChild(selectedItem);
+    const deleted = `"${selectedItem.innerText}" foi removido`;
+    notify(1500, deleted, 'ntfy-top-delete', 'open');
+    if (selectedItem !== null) olList.removeChild(selectedItem);
   });
 }
 
@@ -164,7 +202,3 @@ saveElements(buttonSaveList, olElement);
 moveItemUp(buttonMoveUp, olElement);
 moveItemDown(buttonMoveDown, olElement);
 removeSelected(buttonRemoveSelected, olElement);
-// teste items
-// addListItem(olElement, 'Linha1');
-// addListItem(olElement, 'Linha1');
-// addListItem(olElement, 'Linha1');
