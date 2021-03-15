@@ -10,13 +10,21 @@
 </head>
 
 <body>
-  <input type='text' id='carta-texto'>
-  <button id='criar-carta'>Criar Carta</button>
-  <p id='carta-contador'></p>
+  <main>
+    <header class='topbar'>
+      <input class='topbar__input' type='text' id='carta-texto'>
+      <div class="topbar__counter">
+        <span id='counter-label'><b>Palavras: </b></span>
+        <p id='carta-contador'>0</p>
+      </div>
+      <button class='topbar__button' id='criar-carta'>Criar Carta</button>
+    </header>
 
-  <p id='carta-gerada'></p>
-
-  <script src='script.js'></script>
+    <section class='letter'>
+      <p class='letter__content' id='carta-gerada'></p>
+    </section>
+    <script src='script.js'></script>
+  </main>
 </body>
 
 </html>

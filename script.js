@@ -51,6 +51,14 @@ function countWords(pWordCountElement, pLetteElement) {
   pCountEl.innerText = `${words}`;
 }
 
+function inputUpdateWord(inputElement, pWordCountElement) {
+  inputElement.addEventListener('input', () => {
+    const pCountEl = pWordCountElement;
+    const words = inputElement.value.split(' ').filter((x) => x !== '');
+    pCountEl.innerText = words.length;
+  });
+}
+
 function generateLetter(btnGenerateLetter, inputElement, groupClasses, pElObjs) {
   btnGenerateLetter.addEventListener('click', () => {
     const inputEl = inputElement;
@@ -78,3 +86,4 @@ const pElementsObj = {
 const btnGenLetter = document.getElementById('criar-carta');
 const inputElement = document.getElementById('carta-texto');
 generateLetter(btnGenLetter, inputElement, letterGroups, pElementsObj);
+inputUpdateWord(inputElement, pElementsObj.pCountElement);
