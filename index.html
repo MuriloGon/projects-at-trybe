@@ -51,10 +51,32 @@
             <input type="text" name="firstname" placeholder="Nome">
             <input type="text" name="lastname" placeholder="Sobrenome">
           </div>
+
           <input class="width_input" type="text" name="phone_email" placeholder="Celular ou email">
+
           <input class="width_input" type="password" name="password" placeholder="Nova senha">
-          <label for="birthdate" id="label-birthdate">Data de nascimento</label>
-          <input type="text" name="birthdate" placeholder="dd/mm/aaaa" id="birthdate">
+
+          <div class="birth-sign">
+            <label for="birthdate" id="label-birthdate">Data de nascimento</label>
+            <input type="text" name="birthdate" placeholder="dd/mm/aaaa" id="birthdate">
+          </div>
+
+          <div class="gender">
+            <div class="gender__label"><label id='label-gender '>Gênero</label></div>
+            <div class="gender__radios">
+              <!-- <div class="gender__radio"> -->
+              <input type="radio" name="gender" id="Feminino" value="Feminino">
+              <label for='Feminino'>Feminino</label>
+              <!-- </div> -->
+              <!-- <div class="gender__radio"> -->
+              <input type="radio" name="gender" id="Masculino" value="Masculino">
+              <label for='Masculino'>Masculino</label>
+              <!-- </div> -->
+              <!-- <div class="gender__radio"> -->
+              <input type="radio" name="gender" id="Personalizado" value="Personalizado">
+              <label for='Personalizado'>Personalizado</label>
+              <!-- </div> -->
+            </div>
         </form>
 
       </div>

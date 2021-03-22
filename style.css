@@ -76,3 +76,27 @@ body , html {
   width: 100%;
   box-sizing: border-box;
 }
+
+.right-content > form > * {
+  margin-top: 1rem;
+}
+
+/* BIRTHDAY INPUT */
+
+/* .birth-sign {} */
+
+/* GENDER INPUT */
+
+/* .gender {
+} */
+
+.gender__radios {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* .gender__radio {
+  display: flex;
+  flex-flow: nowrap column;
+  align-items: center;
+} */
