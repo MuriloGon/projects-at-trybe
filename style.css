@@ -1,6 +1,8 @@
 :root {
+
   --m-width: 980px;
-  --primary-color: rgb(66, 103, 178)
+
+  --primary-color: rgb(66, 103, 178);
 }
 
 .header {
