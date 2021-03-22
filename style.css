@@ -33,4 +33,9 @@ body , html {
 .form-group {
   display: flex;
   flex-flow: nowrap column;
+  justify-content: center;
+}
+
+.form-control {
+  align-self: flex-end;
 }
