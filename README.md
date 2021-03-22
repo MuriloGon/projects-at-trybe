@@ -4,11 +4,11 @@ Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e
 
 ---
 
-# Boas vindas ao repositório do projeto do Facebook Signup!
+# Boas vindas ao repositório do projeto Página de Login do Facebook!
 
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
+Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Atenção a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
 
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir desse repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
+Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto à partir desse repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
 
 ---
 
@@ -25,7 +25,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
   - [Depois de terminar o desenvolvimento (opcional)](#depois-de-terminar-o-desenvolvimento-opcional)
   - [Dicas](#dicas)
 - [Como desenvolver](#como-desenvolver)
-- [Code Climate](#code-climate)
+- [ESLint](#eslint)
 - [Requisitos do projeto](#requisitos-do-projeto)
 - [Lista de requisitos obrigatórios](#lista-de-requisitos-obrigatórios)
   - [1. Crie uma barra azul na parte superior da página](#1-crie-uma-barra-azul-na-parte-superior-da-página)
@@ -55,7 +55,7 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 
 ## Habilidades
 
-Neste projeto, verificamos se você é capaz de:
+Neste projeto, verificaremos se você é capaz de:
 
   * Criar formulários em HTML;
 
@@ -83,15 +83,12 @@ Neste projeto, você irá desenvolver a página inicial do Facebook. O projeto d
 
 O seu Pull Request deverá conter os arquivos `index.html`, `style.css` e `script.js`, que conterão seu código HTML, CSS e JavaScript, respectivamente.
 
-Você pode adicionar outros arquivos se julgar necessário. Qualquer dúvida, procure a monitoria.
+Você pode adicionar outros arquivos se julgar necessário. Qualquer dúvida, procure o time de instrução.
 
 ### Data de Entrega
 
-    - Projeto em dupla.
-
-    - Será um dia de projeto.
-
-    - O projeto tem até a seguinte data: `DD/MM/YYYY - 14:00h`. Para ser entregue a avaliação final.
+  - Será `1` dia de projeto.
+  - Data de entrega para avaliação final do projeto: `29/03/2021 - 14:00h`.
 
 ---
 
@@ -165,20 +162,6 @@ Você pode adicionar outros arquivos se julgar necessário. Qualquer dúvida, pr
 
 ---
 
-### Depois de terminar o desenvolvimento (opcional)
-
-Para sinalizar que o seu projeto está pronto para o _"Code Review"_ dos seus colegas, faça o seguinte:
-
-* Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas:
-
-  * No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**;
-
-  * No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
-
-  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-010-a`.
-
-Caso tenha alguma dúvida, [aqui tem um vídeo explicativo](https://vimeo.com/362189205).
-
 ### Dicas
 
 - Para colocar sua página no [GitHub Pages](https://pages.github.com/), não é necessário remover o conteúdo que já está lá, você pode apenas adicionar essa nova página. Para isso, todo o conteúdo desse projeto deve ser colocado em uma pasta `/projetos/facebook-signup`.
@@ -203,7 +186,7 @@ Algumas coisas devem seguir um padrão pré-estabelecido para que os teste de co
 
 ⚠️ Leia-os atentamente e siga à risca o que for pedido. Em particular, **atente-se para os nomes de _ids_ que alguns elementos de seu projeto devem possuir**. ⚠️
 
-⚠ **Alguns requisitos pedem para utilizar flex box. Tenha atenção no que é solicitado caso vá usar algum framework CSS para que o requisitos sejam atendidos.** ⚠
+⚠ **Alguns requisitos pedem para utilizar flexbox. Tenha atenção no que é solicitado caso vá usar algum framework CSS para que os requisitos sejam atendidos.** ⚠
 
 O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação.
 
@@ -214,7 +197,7 @@ O não cumprimento de um requisito, total ou parcialmente, impactará em sua ava
 * Atente-se para o tamanho das imagens que você utilizará neste projeto. **Não utilize imagens com um tamanho maior que _500Kb_.**
   * #### ⚠️ Utilize uma ferramenta [como esta](https://picresize.com/pt) para redimensionar as imagens. ⚠️
 
-  * Caso a avaliação falhe com alguma mensagem de erro parecida com `[409:0326/130838.878602:FATAL:memory.cc(22)] Out of memory. size=4194304`, provavelmente as imagens que você está utilizando estão muito grandes. Tente redimensiona-las para um tamanho menor.
+  * Caso a avaliação falhe com alguma mensagem de erro parecida com `[409:0326/130838.878602:FATAL:memory.cc(22)] Out of memory. size=4194304`, provavelmente as imagens que você está utilizando estão muito grandes. Tente redimensioná-las para um tamanho menor.
 
 * Para verificar se a sua avaliação foi computada com sucesso, você pode verificar os **detalhes da execução do avaliador**.
 
@@ -234,15 +217,25 @@ O não cumprimento de um requisito, total ou parcialmente, impactará em sua ava
 
 ---
 
-## Code Climate
+## ESLint
 
-⚠️ Lembre-se que o seu projeto só será avaliado se estiver passando pelos _checks_ do **CodeClimate**.
+⚠️ Lembre-se que o seu projeto só será avaliado se estiver passando pelos _checks_ do **ESLint**.
+
+Para garantir a qualidade do código, vamos utilizar neste projeto os linters ESLint e StyleLint. Assim o código estará alinhado com as boas práticas de desenvolvimento, sendo mais legível e de fácil manutenção! Para rodá-los localmente no projeto, execute os comandos abaixo:
+
+```bash
+npm run lint
+npm run lint:styles
+```
+
+Quando é executado o comando npm run lint:styles, será avaliado se os arquivos com a extensão CSS estão com o padrão correto.
+Quando é executado o comando npm run lint, será avaliado se os arquivos com a extensão JS e JSX estão com o padrão correto.
 
 ---
 
 ## Requisitos do projeto
 
-Caso você faça o download de bibliotecas externas, utilize o diretório libs (a partir da raiz do projeto) para colocar os arquivos (*.css, *.js, etc...) baixados.
+Caso você faça o download de bibliotecas externas, utilize o diretório libs (à partir da raiz do projeto) para colocar os arquivos (*.css, *.js, etc...) baixados.
 
 ### Lista de requisitos obrigatórios:
 
@@ -382,6 +375,7 @@ Caso você faça o download de bibliotecas externas, utilize o diretório libs (
   * Posicione os radio buttons para ficar na mesma linha
   * Posicione os radio buttons para ficar abaixo do label
 
+
 ### 17. Crie um botão para finalizar o cadastro dentro do formulário criado no requisito 10
 
   Pontos importantes:
@@ -394,11 +388,13 @@ Caso você faça o download de bibliotecas externas, utilize o diretório libs (
   Pontos importantes:
   * Exibir uma mensagem "Campos inválidos" dentro do formulário caso pelo menos um campo não esteja preenchido
 
+
 ### 19. Adicione um novo campo de texto no formulário se a pessoa usuária selecionar a opção `Personalizado` no campo Gênero
 
   Pontos importantes:
   * O novo campo dever ser uma campo de texto com o atributo name "gender-custom" e um placeholder "Gênero (opcional)"
   * O novo campo deve estar posicionado entre as opções de gênero e o botão "Cadastrar-se"
+
 
 ### 20. Substitua o conteúdo do container com a classe right-content se o formulário estiver completamente preenchido e validado
 
@@ -411,21 +407,44 @@ Caso você faça o download de bibliotecas externas, utilize o diretório libs (
   * Caso a opção selecionada no campo Gênero seja Masculino exibir "Masculino"
   * Caso a opção selecionada no campo Gênero seja Personalizado exibir "Personalizado":
 
+
 ### Requisito Bônus
 
-Esse requisito **não** é verificável pelo avaliador automático. Sua apresentação **(opcional)** será realizada durante o fechamento do dia seguinte ao final do projeto
+Esse requisito **não** é verificável pelo avaliador automático.
 
 **Realize o desenvolvimento da versão mobile do Facebook.**
 
 ![Página Facebook](./facebook-mobile.png)
 
 ---
+### Depois de terminar o desenvolvimento
+
+Para sinalizar que o seu projeto está pronto para o _"Code Review"_ dos seus colegas, faça o seguinte:
+
+* Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas:
+
+  * No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**;
+
+  * No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
+
+  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-010-b`.
+
+Caso tenha alguma dúvida, [aqui tem um vídeo explicativo](https://vimeo.com/362189205).
+
+---
+
+### Revisando um pull request
+
+À medida que você e as outras pessoas que estudam na Trybe forem entregando os projetos, vocês receberão um alerta via Slack para também fazer a revisão dos Pull Requests das outras pessoas estudantes. Atenção às mensagens do "Pull Reminders" no Slack!
+
+Use o material que você já viu sobre [Code Review](https://course.betrybe.com/real-life-engineer/code-review/) para te ajudar a revisar os projetos que chegaram para você.
+
 
 # Avisos finais
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/39qMu3s)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/3ta7hA0)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
 
