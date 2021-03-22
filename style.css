@@ -47,7 +47,6 @@ body , html {
 .main-content , .main__content {
   display: flex;
   height: 629px;
-  background-color: rgba(66, 103, 178, 0.05);
   justify-content: space-between;
 }
 
@@ -66,8 +65,14 @@ body , html {
 
 .user-name-inputs > input {
   width: 50%;
+  box-sizing: border-box;
 }
 
 .user-name-inputs {
   display: flex;
+}
+
+.width_input {
+  width: 100%;
+  box-sizing: border-box;
 }
