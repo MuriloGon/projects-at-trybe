@@ -20,7 +20,7 @@ body , html {
 }
 
 .header__content {
-  height: 75px;
+  height: 82px;
 }
 
 .facebook-login {
@@ -46,8 +46,9 @@ body , html {
 
 .main-content , .main__content {
   display: flex;
-  height: 500px;
+  height: 629px;
   background-color: rgba(66, 103, 178, 0.05);
+  justify-content: space-between;
 }
 
 .center-block {
@@ -57,4 +58,8 @@ body , html {
 
 .left-content {
   width: 800px;
+}
+
+.right-content {
+  width: 300px;
 }
