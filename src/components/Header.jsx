@@ -1,2 +1,7 @@
-// implement Header component here
-// Iniciando o projeto 🚀
+import React from 'react';
+
+export default class Header extends React.Component {
+  render() {
+    return null;
+  }
+}
