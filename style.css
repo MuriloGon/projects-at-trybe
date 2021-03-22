@@ -1,0 +1,19 @@
+:root {
+  --m-width: 980px;
+  --primary-color: rgb(66, 103, 178)
+}
+
+.header {
+  background-color: var(--primary-color);
+}
+
+.top-bar {
+  background-color: var(--primary-color);
+  margin: auto;
+  max-width: var(--m-width);
+  display: flex;
+}
+
+.header__content {
+  height: 75px;
+}
