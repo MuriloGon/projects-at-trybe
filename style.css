@@ -15,8 +15,6 @@ body , html {
 
 .top-bar {
   background-color: var(--primary-color);
-  margin: auto;
-  max-width: var(--m-width);
   display: flex;
   justify-content: space-between;
 }
@@ -38,4 +36,21 @@ body , html {
 
 .form-control {
   align-self: flex-end;
+}
+
+/* MAIN */
+.main {
+  width: 100%;
+  background: linear-gradient(white, hsl(226, 31%, 87%));
+}
+
+.main-content , .main__content {
+  display: flex;
+  height: 500px;
+  background-color: rgba(66, 103, 178, 0.05);
+}
+
+.center-block {
+  width: var(--m-width);
+  margin: 0 auto;
 }
