@@ -63,3 +63,11 @@ body , html {
 .right-content {
   width: 300px;
 }
+
+.user-name-inputs > input {
+  width: 50%;
+}
+
+.user-name-inputs {
+  display: flex;
+}
