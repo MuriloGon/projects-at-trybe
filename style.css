@@ -5,6 +5,10 @@
   --primary-color: rgb(66, 103, 178);
 }
 
+body , html {
+  margin: 0;
+}
+
 .header {
   background-color: var(--primary-color);
 }
@@ -14,8 +18,15 @@
   margin: auto;
   max-width: var(--m-width);
   display: flex;
+  justify-content: space-between;
 }
 
 .header__content {
   height: 75px;
+}
+
+.forms {
+  background-color: white;
+  height: 100%;
+  width: 400px;
 }
