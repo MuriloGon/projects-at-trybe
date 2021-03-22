@@ -29,3 +29,8 @@ body , html {
   display: flex;
   color: white;
 }
+
+.form-group {
+  display: flex;
+  flex-flow: nowrap column;
+}
