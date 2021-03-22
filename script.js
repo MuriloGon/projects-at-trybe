@@ -1,7 +1,9 @@
 function alertUserEmail(buttonElement, text) {
   const button = buttonElement;
   button.addEventListener('click', () => {
-    alert(text.value);
+    if (text.value !== '') {
+      alert(text.value);
+    }
   });
 }
 const button = document.querySelector('#button-login');
