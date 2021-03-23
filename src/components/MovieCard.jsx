@@ -12,7 +12,7 @@ export default class MovieCard extends React.Component {
           <img src={ imagePath } alt={ title } />
         </div>
         <div className="movie__content">
-          <h2 className="movie__title">{title}</h2>
+          <h4 className="movie__title">{title}</h4>
           <h3 className="movie__subtitle">{subtitle}</h3>
           <p className="movie__description">{storyline}</p>
         </div>
