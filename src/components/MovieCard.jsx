@@ -18,7 +18,7 @@ export default class MovieCard extends React.Component {
           <p className="movie__description">{storyline}</p>
         </div>
         <div className="movie__footer">
-          <Rating rate={ rating } />
+          <Rating rating={ rating } />
         </div>
       </div>
     );
