@@ -80,9 +80,17 @@ function createCustomGender(parentForm, submitButton) {
   input.type = 'text';
   input.id = gCustomName;
   input.name = gCustomName;
+  input.classList.add(gCustomName);
   input.placeholder = 'Gênero (opcional)';
 
   form.insertBefore(input, submitButton);
+}
+
+function removeElements(selector) {
+  const childs = document.querySelectorAll(selector);
+  for (let x = 0; x < childs.length; x += 1) {
+    childs[x].remove();
+  }
 }
 
 function customGender(GenderRadiosElement, submitButton, parentForm) {
@@ -90,12 +98,12 @@ function customGender(GenderRadiosElement, submitButton, parentForm) {
   radios.addEventListener('click', (e) => {
     const { target } = e;
     const { localName, id } = target;
+
+    console.log(localName.split(''), target, id);
     if (localName === 'input' && id === 'Personalizado') {
+      removeElements('.gender-custom');
       createCustomGender(parentForm, submitButton);
-    } else {
-      const child = document.getElementById('gender-custom');
-      if (child) parentForm.removeChild(child);
-    }
+    } else if (localName === 'input') removeElements('.gender-custom');
   });
 }
 
