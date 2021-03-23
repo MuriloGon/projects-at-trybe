@@ -59,6 +59,10 @@ body , html {
   width: 800px;
 }
 
+input {
+  border-radius: 5px;
+}
+
 .right-content {
   width: 300px;
 }
@@ -95,8 +99,27 @@ body , html {
   justify-content: space-evenly;
 }
 
-/* .gender__radio {
+.gender__radio {
   display: flex;
-  flex-flow: nowrap column;
+  flex-flow: nowrap column-reverse;
   align-items: center;
-} */
+}
+
+.error > p {
+  text-align: center;
+  color: hsl(0, 50%, 50%);
+  font-weight: 600;
+  margin: 0.5em 0;
+}
+
+.error {
+  box-sizing: border-box;
+  border: 2px solid hsl(0, 50%, 60%);
+  background-color: hsl(0, 50%, 85%);
+  transform : scale(0) rotate(0deg);
+  transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 150ms;
+}
+
+.open {
+  transform: scale(1);
+}
