@@ -5,7 +5,7 @@ import './MovieCard.css';
 export default class MovieCard extends React.Component {
   render() {
     const { movie } = this.props;
-    const { title, subtitle, rating, storyline, imagePath } = movie;
+    const { title, subtitle, storyline, imagePath, rating } = movie;
     return (
       <div className="movie">
         <div className="movie__image">
