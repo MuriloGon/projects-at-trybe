@@ -19,6 +19,7 @@ function validateInputsRegister(inputElements) {
       validate = validate && validateFalse;
     }
   }
+  console.log('validate', inputs);
   return validate;
 }
 function validateRadioButton(radioButtonElement) {
@@ -32,9 +33,11 @@ function validateRadioButton(radioButtonElement) {
   return validate;
 }
 
-function validateRegister(buttonValidate, inputElements, radioElements) {
+function validateRegister(buttonValidate, selector, radioElements) {
   const buttonRegister = buttonValidate;
+
   buttonRegister.addEventListener('click', (e) => {
+    const inputElements = document.querySelectorAll(selector);
     const validateInputs = validateInputsRegister(inputElements);
     const validateRadios = validateRadioButton(radioElements);
     if ((validateInputs && validateRadios) === false) {
@@ -45,9 +48,37 @@ function validateRegister(buttonValidate, inputElements, radioElements) {
   });
 }
 
+function createCustomGender(parentForm, submitButton) {
+  const form = parentForm;
+  const input = document.createElement('input');
+  const gCustomName = 'gender-custom';
+  input.type = 'text';
+  input.id = gCustomName;
+  input.name = gCustomName;
+  input.placeholder = 'Gênero (opcional)';
+
+  form.insertBefore(input, submitButton);
+}
+
+function customGender(GenderRadiosElement, submitButton, parentForm) {
+  const radios = GenderRadiosElement;
+  radios.addEventListener('click', (e) => {
+    const { target } = e;
+    const { localName, id } = target;
+    if (localName === 'input' && id === 'Personalizado') {
+      createCustomGender(parentForm, submitButton);
+    } else {
+      const child = document.getElementById('gender-custom');
+      if (child) parentForm.removeChild(child);
+    }
+  });
+}
+
 const buttonValidate = document.querySelector('#facebook-register');
-const inputsRegister = document.querySelectorAll(
-  '.right-content input[type="text"]',
-);
+
 const radiosRegister = document.querySelectorAll('.gender input');
-validateRegister(buttonValidate, inputsRegister, radiosRegister);
+const custoGender = document.querySelector('.gender__radios');
+const registerForm = document.querySelector('.right-content form');
+const inputsSelector = '.right-content input[type="text"]';
+validateRegister(buttonValidate, inputsSelector, radiosRegister);
+customGender(custoGender, buttonValidate, registerForm);

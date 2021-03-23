@@ -1,6 +1,6 @@
 :root {
 
-  --m-width: 980px;
+  --m-width: 1100px;
 
   --primary-color: rgb(66, 103, 178);
 }
@@ -51,7 +51,7 @@ body , html {
 }
 
 .center-block {
-  width: var(--m-width);
+  max-width: var(--m-width);
   margin: 0 auto;
 }
 
@@ -120,6 +120,13 @@ input {
   transition: transform cubic-bezier(0.075, 0.82, 0.165, 1) 150ms;
 }
 
+
 .open {
   transform: scale(1);
+}
+
+#gender-custom , #birthdate {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
 }
