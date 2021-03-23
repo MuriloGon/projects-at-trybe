@@ -19,7 +19,6 @@ function validateInputsRegister(inputElements) {
       validate = validate && validateFalse;
     }
   }
-  console.log('validate', inputs);
   return validate;
 }
 function validateRadioButton(radioButtonElement) {
@@ -33,6 +32,31 @@ function validateRadioButton(radioButtonElement) {
   return validate;
 }
 
+function elementText(element, text) {
+  const el = document.createElement(element);
+  el.innerHTML = text;
+  return el;
+}
+
+function logEntries() {
+  const rightContent = document.querySelector('.right-content');
+  const firstName = document.querySelector('input[name="firstname"]');
+  const lastName = document.querySelector('input[name="lastname"]');
+  const emailAndPhone = document.querySelector('input[name="phone_email"]');
+  const birthDate = document.querySelector('input[name="birthdate"]');
+  const gender = [...document.querySelectorAll('.gender__radios input')];
+  console.log(gender);
+  rightContent.innerHTML = '';
+  rightContent.appendChild(elementText('h3',
+    `Olá, ${firstName.value} ${lastName.value}`));
+  rightContent.appendChild(elementText('p',
+    `<strong>Email/telefone:</strong> ${emailAndPhone.value}`));
+  rightContent.appendChild(elementText('p',
+    `<strong>Data de nascimento:</strong> ${birthDate.value}`));
+  rightContent.appendChild(elementText('p',
+    `<strong>Gênero:</strong> ${gender.filter((x) => x.checked)[0].value}`));
+}
+
 function validateRegister(buttonValidate, selector, radioElements) {
   const buttonRegister = buttonValidate;
 
@@ -42,9 +66,10 @@ function validateRegister(buttonValidate, selector, radioElements) {
     const validateRadios = validateRadioButton(radioElements);
     if ((validateInputs && validateRadios) === false) {
       document.querySelector('.error').classList.add('open');
-      e.preventDefault();
+    } else {
+      logEntries();
     }
-    console.log(validateInputs, validateRadios);
+    e.preventDefault();
   });
 }
 
