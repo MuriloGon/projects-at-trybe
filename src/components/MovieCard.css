@@ -1,0 +1,73 @@
+:root {
+
+  --card-width: 300px;
+
+  --card-heigth: 420px;
+  font-size: 10px;
+}
+
+.movie * {
+  margin: 0;
+}
+
+.movie {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: nowrap column;
+  height: var(--card-heigth);
+  justify-content: space-between;
+  overflow: hidden;
+  width: var(--card-width);
+}
+
+.movie__image > img {
+  height: auto;
+  width: 100%;
+}
+
+.movie__image {
+  overflow: hidden;
+}
+
+.movie__title {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+
+.movie__subtitle {
+  color: rgb(50, 50, 50);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 1.5rem 0;
+}
+
+.movie__description {
+  color: rgb(50, 50, 50);
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.movie__content {
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.movie__footer > p > span {
+  background-color: blue;
+  border-radius: 40%;
+  color: white;
+  display: inline-block;
+  padding: 0.5rem;
+  text-align: center;
+  width: 3rem;
+}
+
+.movie__footer {
+  font-size: 1.75rem;
+  padding: 0 1.5rem 1.5rem;
+  text-align: right;
+}

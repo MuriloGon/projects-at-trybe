@@ -5,14 +5,10 @@ import MovieCard from './MovieCard';
 export default class MovieList extends React.Component {
   render() {
     const { movies } = this.props;
-    console.log('movies', movies);
     return (
       <div>
-        {movies.map((movie) => {
-          console.log(movie);
-          return (
-            <MovieCard key={ movie.title.split(' ').join('-') } movie={ movie } />);
-        })}
+        {movies.map((movie) => (
+          <MovieCard key={ movie.title.split(' ').join('-') } movie={ movie } />))}
       </div>
     );
   }
@@ -23,9 +19,9 @@ MovieList.propTypes = {
     {
       title: PropTypes.string.isRequired,
       subtitle: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      storyline: PropTypes.string.isRequired,
       rating: PropTypes.number.isRequired,
-      img: PropTypes.string.isRequired,
+      imagePath: PropTypes.string.isRequired,
     },
   )).isRequired,
 };
