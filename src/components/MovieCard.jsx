@@ -13,7 +13,7 @@ export default class MovieCard extends React.Component {
         </div>
         <div className="movie__content">
           <h4 className="movie__title">{title}</h4>
-          <h3 className="movie__subtitle">{subtitle}</h3>
+          <h5 className="movie__subtitle">{subtitle}</h5>
           <p className="movie__description">{storyline}</p>
         </div>
         <div className="movie__footer">
