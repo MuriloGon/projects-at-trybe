@@ -69,9 +69,9 @@ Você implementará várias funções para atender aos requisitos propostos e/ou
 ### Antes de começar a desenvolver:
 
 1. Clone o repositório
-  * `git clone git@github.com:tryber/sd-0x-project-js-unit-tests.git`.
+  * `git clone git@github.com:tryber/sd-010-a-project-js-unit-tests.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-0x-project-js-unit-tests`
+    * `cd sd-010-a-project-js-unit-tests`
 
 2. Instale as dependências
   * `npm install`
@@ -110,13 +110,13 @@ module.exports = average
   * Usando o exemplo anterior: `git push -u origin joaozinho-js-unit-tests`
 
 7. Crie um novo `Pull Request` _(PR)_
-  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-project-js-unit-tests/pulls)
+  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-010-a-project-js-unit-tests/pulls)
   * Clique no botão verde _"New pull request"_
   * Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
   * Clique no botão verde _"Create pull request"_
   * Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
   * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-project-js-unit-tests/pulls) e confira que o seu _Pull Request_ está criado
+  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-project-js-unit-tests/pulls) e confira que o seu _Pull Request_ está criado
 
 ---
 
@@ -277,7 +277,7 @@ Para **"entregar"** seu projeto, siga os passos a seguir:
 * Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas
   * No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**
   * No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**
-  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-0x`
+  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-010-a`
 
 Se ainda houver alguma dúvida sobre como entregar seu projeto, [aqui tem um video explicativo](https://vimeo.com/362189205).
 
@@ -298,7 +298,7 @@ Use o conteúdo sobre [Code Review](https://course.betrybe.com/real-life-enginee
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/39qMu3s)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
 
