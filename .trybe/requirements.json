@@ -1,0 +1,40 @@
+{
+  "requirements": [
+    {
+      "description": "#average",
+      "bonus": false
+    },
+    {
+      "description": "#numbers",
+      "bonus": false
+    },
+    {
+      "description": "#vqv",
+      "bonus": false
+    },
+    {
+      "description": "#circle",
+      "bonus": false
+    },
+    {
+      "description": "#createStudent",
+      "bonus": false
+    },
+    {
+      "description": "#productDetails",
+      "bonus": false
+    },
+    {
+      "description": "#calculator",
+      "bonus": false
+    },
+    {
+      "description": "#myCounter",
+      "bonus": false
+    },
+    {
+      "description": "#createMenu",
+      "bonus": false
+    }
+  ]
+}
