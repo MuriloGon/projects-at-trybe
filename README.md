@@ -2,11 +2,11 @@
 
 Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
 
-# Boas vindas ao repositório do projeto de ES6 e Testes Unitários!
+# Boas vindas ao repositório do projeto de ES6 Testes Unitários!
 
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
+Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções à seguir. Tenha atenção a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
 
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
+Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto à partir deste repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
 
 
 ---
@@ -44,7 +44,7 @@ Nesse projeto, você será capaz de:
 
 - Escrever testes unitários para funções utilizando o módulo Assert do NodeJS para verificar o correto funcionamento dessas funções;
 - A partir de testes já implementados, escrever funções de forma que elas atendam aos testes propostos;
-- Escrever testes e funções utilizando uma abordagem de desenvolvimento orientado a testes.
+- Escrever testes e funções utilizando uma abordagem de desenvolvimento orientado a testes (TDD).
 
 ---
 
@@ -60,7 +60,7 @@ Você implementará várias funções para atender aos requisitos propostos e/ou
 
   - Será um dia de projeto;
 
-  - O projeto tem até a seguinte data: `DD/MM/YYYY - 14:00h` para ter entregue a avaliação final.
+  - O projeto tem até a seguinte data: `02/04/2021 - 14:00h` para ser entregue a avaliação final.
 
 ---
 
@@ -137,27 +137,49 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 
 Para entregar o seu projeto você deverá criar um _Pull Request_ neste repositório. Este _Pull Request_ deverá conter a implementação dos arquivos solicitados abaixo.
 
-**⚠️ É importante que seus arquivos tenham exatamente estes nomes! ⚠️**. Apesar de não ser necessário para ser aprovado no projeto, você pode adicionar outros arquivos se julgar necessário. Qualquer dúvida, procure a Pessoa Instrutora que te acompanha.
+**⚠️ É importante que seus arquivos tenham exatamente estes nomes! ⚠️**. Apesar de não ser necessário para ser aprovado no projeto, você pode adicionar outros arquivos se julgar necessário. Qualquer dúvida, procure o time de instrução.
 
 Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://course.betrybe.com/intro/git/) sempre que precisar!
 
-### Code Climate
+### Durante o desenvolvimento
 
-Seu projeto só será avaliado se estiver passando pelos _checks_ do **CodeClimate**.
+ ⚠ **PULL REQUESTS COM ISSUES NO ESLINT NÃO SERÃO AVALIADOS, ATENTE-SE PARA RESOLVÊ-LOS ANTES DE FINALIZAR O DESENVOLVIMENTO!** ⚠
+
+* Nos testes unitários que não estão implementados, vocês verão um `assert.fail();`. Esse código deve ser removido a partir do momento que vocês começarem a escrever o teste unitário. Ele só existe para fazer o teste falhar. Se o `assert.fail();` não estivesse nos blocos em que não há testes unitários implementados ainda, o teste iria passar com sucesso, pois não haveria nada para ser testado dentro.
+
+* Faça `commits` das alterações que você fizer no código regularmente
+
+* Lembre-se de sempre após um (ou alguns) `commits` atualizar o repositório remoto
+
+* Os comandos que você utilizará com mais frequência são:
+  1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_
+  2. `git add` _(para adicionar arquivos ao stage do Git)_
+  3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_
+  4. `git push -u nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_
+  5. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_
+  6. `npm test` _(executa todos os testes presentes na aplicação)_
+  7. `npm test path/to/file` _(executa apenas os testes presentes no arquivo path/to/file)_
+    * exemplo: `npm test tests/average.spec.js`
+  8. `jest path/to/file` _(executa apenas os testes presentes no arquivo path/to/file)_
+    * exemplo: `jest tests/average.spec.js`
+
+### ESLint
+
+Seu projeto só será avaliado se estiver passando pelos _checks_ do **ESLint**.
 
 ---
 
 ### Lista de requisitos
 
-### Implemente a função `average`
+### 1 - Implemente a função `average`
 
 A função average recebe um array (tamanho variável) e retorna a média dos valores recebidos. Caso a função receba algum valor não númerico ou um array vazio, o valor undefined deve ser retornado. Todos os resultados devem ser arredondados para valores inteiros. Ex: 4,6 vira 5; 1,3 vira 1. O arquivo `average.spec.js` contém os testes para `average` já implementados. Implemente a função no arquivo `src/average.js` de forma que ela atenda aos testes propostos.  
 
-### Implemente os casos de teste para a função `numbers`
+### 2 - Implemente os casos de teste para a função `numbers`
 
  A função `numbers` recebe um array (tamanho variável) e retorna true se todos os parâmetros forem do tipo 'number' e false caso contrário. Essa função já está implementada no arquivo `src/numbers.js`. Escreva os testes para essa função para garantir que a implementação de `numbers` está correta.
 
-### Implemente a função `vqv`
+### 3 - Implemente a função `vqv`
 
 Use template literals para escrever uma função que recebe seu nome e sua idade e retorna o parágrafo descrito abaixo:
 
@@ -170,18 +192,18 @@ trabalho na Trybe e mando muito em programação!
 
 Caso a função seja chamada sem nenhum parâmetro, o valor undefined deve ser retornado. O arquivo `vqv.spec.js` contém os testes para `vqv` já implementados. Implemente a função no arquivo `src/vqv.js` de forma que ela atenda aos testes propostos.
 
-### Implemente os casos de teste para a função `circle`
+### 4 - Implemente os casos de teste para a função `circle`
 
 A função `circle` recebe o raio de um círculo e retorna um objeto contendo suas informações (Raio, Área e Circunferência). Se não for especificado um raio, a função retorna `undefined`. Essa função já está implementada no arquivo `src/circle.js`. Escreva os testes para essa função para garantir que a implementação de `circle` está correta.
 
-### Implemente a função `createStudent`
+### 5 - Implemente a função `createStudent`
 
 A função `createStudent` recebe como parâmetro um nome, e retorna um objeto contendo duas chaves:
     (1) name, contendo o nome passado como parâmetro;
     (2) feedback, contendo uma função que retorna a frase 'Eita pessoa boa!' ao ser chamada.
 O arquivo `createStudent.spec.js` contém os testes para `createStudent` já implementados. Implemente a função no arquivo `src/createStudent.js` de forma que ela atenda aos testes propostos.
 
-### Implemente os casos de teste para a função `productDetails`
+### 6 - Implemente os casos de teste para a função `productDetails`
 
 A função `productDetails` recebe duas strings que representam nomes de produtos, e retorna um array contendo dois objetos com os detalhes dos respectivos produtos:
 
@@ -205,7 +227,7 @@ productDetails('Alcool gel', 'Máscara') // Retorna:
 
 Essa função já está implementada no arquivo `src/productDetails.js`. Escreva os testes para essa função no arquivo `tests/productDetails.js` para garantir que a implementação de `productDetails` está correta.
 
-### Implemente a função `objCalculator`
+### 7 - Implemente a função `objCalculator`
 Desenvolva um objeto calculator que possui quatro chaves:
   - add;
   - mult;
@@ -214,10 +236,10 @@ Desenvolva um objeto calculator que possui quatro chaves:
 
 Para cada uma delas atribua uma função que realiza a respectiva operação. A função deve receber dois inteiros e retornar um inteiro. Os resultados das divisões devem sempre ser arredondados para baixo. O arquivo `objCalculator.spec.js` contém os testes para `objCalculator` já implementados. Implemente a função no arquivo `src/objCalculator.js` de forma que ela atenda aos testes propostos.
 
-### Implemente a função `myCounter`
+### 8 - Implemente a função `myCounter`
 A função myCounter possui dois loops aninhados que inserem valores dentro de um array. Como podemos perceber, eles vão adicionando valores ao array até sua condição de parada. Corrija a função `myCounter` para que a função retorne o array correto. O arquivo `myCounter.spec.js` contém os testes para `myCounter` já implementados. Implemente a função no arquivo `src/myCounter.js` de forma que ela atenda aos testes propostos. 
 
-### Implemente os casos de teste e a função `createMenu`
+### 9 - Implemente os casos de teste e a função `createMenu`
 
 **Agora prepare-se! Esse último requisito vai te guiar através de um longo e rico processo de desenvolvimento orientado a testes (Test Driven Development, ou TDD). Dará trabalho, mas vale a pena!**
 
@@ -241,32 +263,6 @@ A estrutura deste código e deste objeto já foi definida e você irá implement
   10. No arquivo `tests/restaurant.spec.js`, escreva um teste que verifica se a função `order` aceita que pedidos repetidos sejam acrescidos a consumption.
   11. No arquivo `tests/restaurant.spec.js`, escreva um teste que verifica que, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`.
   12. No arquivo `src/restaurant.js`, adicione ao objeto retornado por `createMenu()` uma chave `pay` com uma função que varre todo os itens de `objetoRetornado.consumption`, soma o preço de todos checando-os no menu e retorna o valor somado acrescido de 10%. DICA: para isso, você precisará varrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
-
----
-
-## Instruções para entregar seu projeto:
-
-### Durante o desenvolvimento
-
- ⚠ **PULL REQUESTS COM ISSUES NO CODE CLIMATE NÃO SERÃO AVALIADAS, ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO!** ⚠
-
-* Nos testes unitários que não estão implementados, vocês verão um `assert.fail();`. Esse código deve ser removido a partir do momento que vocês começarem a escrever o teste unitário. Ele só existe para fazer o teste falhar. Se o `assert.fail();` não estivesse nos blocos em que não há testes unitários implementados ainda, o teste iria passar com sucesso, pois não haveria nada para ser testado dentro.
-
-* Faça `commits` das alterações que você fizer no código regularmente
-
-* Lembre-se de sempre após um (ou alguns) `commits` atualizar o repositório remoto
-
-* Os comandos que você utilizará com mais frequência são:
-  1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_
-  2. `git add` _(para adicionar arquivos ao stage do Git)_
-  3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_
-  4. `git push -u nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_
-  5. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_
-  6. `npm test` _(executa todos os testes presentes na aplicação)_
-  7. `npm test path/to/file` _(executa apenas os testes presentes no arquivo path/to/file)_
-    * exemplo: `npm test tests/average.spec.js`
-  8. `jest path/to/file` _(executa apenas os testes presentes no arquivo path/to/file)_
-    * exemplo: `jest tests/average.spec.js`
 
 ---
 
@@ -298,7 +294,7 @@ Use o conteúdo sobre [Code Review](https://course.betrybe.com/real-life-enginee
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/39qMu3s)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/3ta7hA0)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
 
