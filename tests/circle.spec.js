@@ -40,11 +40,11 @@ describe('#circle', () => {
     // Teste que a função retorna, num objeto, os dados corretos de um círculo de raio 3.
     const areaR3 = circle(3);
     areaR3.area = parseFloat((areaR3.area).toPrecision(5));
-    areaR3.circumference = parseFloat((areaR3.circumference).toPrecision(5))
+    areaR3.circumference = parseFloat((areaR3.circumference).toPrecision(5));
     assert.deepStrictEqual(areaR3, {
       radius: 3,
       area: 28.26,
-      circumference: 18.84
+      circumference: 18.84,
     });
   });
 });
