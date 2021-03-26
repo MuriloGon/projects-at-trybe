@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+/* eslint-disable max-lines-per-function */
 /* eslint-disable no-unused-vars */
 
 const assert = require('assert');
@@ -93,7 +94,7 @@ describe('#createMenu', () => {
     // Implementação 6: Agora faça o PASSO 2 no arquivo `src/restaurant.js`.
 
     // --------------------------------------------------------------------------------------
-    // TESTE 7: Verifique que chamar uma função associada à chave `order` no objeto retornado, passando uma string como parâmetro, 
+    // TESTE 5: Verifique que chamar uma função associada à chave `order` no objeto retornado, passando uma string como parâmetro,
     // como `objetoRetornado.order('coxinha')`, tal string é adicionada ao array retornado em `objetoRetornado.consumption
     // ```
     // const objetoRetornado = createMenu(objetoQualquer);

@@ -2,7 +2,7 @@
 
 Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
 
-# Boas vindas ao repositório do projeto de ES6 Testes Unitários!
+# Boas vindas ao repositório do projeto ES6 Testes Unitários!
 
 Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções à seguir. Tenha atenção a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
 
@@ -19,7 +19,6 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 - [Como desenvolver](#como-desenvolver)
   - [Antes de começar a desenvolver](#antes-de-começar-a-desenvolver)
 - [Requisitos do projeto](#requisitos-do-projeto)
-  - [Code Climate](#code-climate)
 - [Lista de requisitos](#lista-de-requisitos)
   - [Implemente a função average](#implemente-a-função-average)
   - [Implemente os casos de teste para a função numbers](#implemente-os-casos-de-teste-para-a-função-numbers)
@@ -276,8 +275,6 @@ Para **"entregar"** seu projeto, siga os passos a seguir:
   * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-010-a`
 
 Se ainda houver alguma dúvida sobre como entregar seu projeto, [aqui tem um video explicativo](https://vimeo.com/362189205).
-
-⚠ Lembre-se que garantir que todas as _issues_ comentadas pelo CodeClimate estão resolvidas! ⚠
 
 ---
 
