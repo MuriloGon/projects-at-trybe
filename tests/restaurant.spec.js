@@ -145,6 +145,12 @@ describe('#createMenu', () => {
     // objetoRetornado.order('coxinha');
     // objetoRetornado.pay() // Retorno: somaDosPreçosDosPedidos
     // ```
+    const objetoRetornado11 = createMenu({ food: { coxinha: 5 }, drink: { agua: 3 } });
+    objetoRetornado11.order('coxinha');
+    objetoRetornado11.order('agua');
+    objetoRetornado11.order('coxinha');
+    assert.deepStrictEqual(objetoRetornado11.pay(), 14.3);
+
     // TESTE 14: Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
   });
 });
