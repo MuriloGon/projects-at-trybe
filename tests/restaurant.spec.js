@@ -106,7 +106,7 @@ describe('#createMenu', () => {
     assert.deepStrictEqual(tst7, true)
 
     // Implementação 8: Agora faça o PASSO 3 no arquivo `src/restaurant.js`.
-    
+
     // --------------------------------------------------------------------------------------
     // TESTE 9: Verifique que as três orders seguintes, de bebidas e comidas mescladas, somam três itens no array `objetoRetornado.consumption` conforme os itens pedidos.
     // ```
@@ -116,24 +116,35 @@ describe('#createMenu', () => {
     // objetoRetornado.order("sashimi");
     // objetoRetornado.consumption // Retorno: ["coxinha", "agua", "sopa", "sashimi"]
     // ```
-    // TESTE 8: Agora faça o TESTE 7 deste arquivo.
+    const objetoRetornado9 = createMenu();
+    objetoRetornado9.order("coxinha");
+    objetoRetornado9.order("agua");
+    objetoRetornado9.order("sopa");
+    objetoRetornado9.order("sashimi");
+    assert.deepStrictEqual(objetoRetornado9.consumption, ["coxinha", "agua", "sopa", "sashimi"])
+    // Implementação 10: Agora faça o TESTE 7 deste arquivo.
     // --------------------------------------------------------------------------------------
-    // TESTE 9: Verifique que a função `order` aceita que pedidos repetidos sejam acrescidos a consumption.
+    // TESTE 11: Verifique que a função `order` aceita que pedidos repetidos sejam acrescidos a consumption.
     // ```
     // objetoRetornado.order('coxinha');
     // objetoRetornado.order('agua');
     // objetoRetornado.order('coxinha');
     // objetoRetornado.comsuption // Retorno: ['coxinha', 'agua', 'coxinha']
     // ```
-    // TESTE 10: Agora faça o TESTE 8 deste arquivo.
+    const objetoRetornado10 = createMenu();
+    objetoRetornado10.order('coxinha');
+    objetoRetornado10.order('agua');
+    objetoRetornado10.order('coxinha');
+    assert.deepStrictEqual(objetoRetornado10.consumption, ['coxinha', 'agua', 'coxinha'])
+    // TESTE 12: Agora faça o TESTE 8 deste arquivo.
     // --------------------------------------------------------------------------------------
-    // TESTE 11: Verifique que, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`
+    // TESTE 13: Verifique que, ao chamar `objetoRetornado.pay()`, retorna-se a soma dos preços de tudo que foi pedido, conforme registrado em `objetoRetornado.consumption`
     // ```
     // objetoRetornado.order('coxinha');
     // objetoRetornado.order('agua');
     // objetoRetornado.order('coxinha');
     // objetoRetornado.pay() // Retorno: somaDosPreçosDosPedidos
     // ```
-    // TESTE 12: Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
+    // TESTE 14: Agora faça o PASSO 4 no arquivo `src/restaurant.js`.
   });
 });
