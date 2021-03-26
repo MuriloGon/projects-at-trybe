@@ -1,4 +1,4 @@
-/* eslint-disable max-len*/
+/* eslint-disable max-len */
 
 const assert = require('assert');
 const myCounter = require('../src/myCounter');
