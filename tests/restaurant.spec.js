@@ -75,7 +75,11 @@ describe('#createMenu', () => {
     // const objetoRetornado = createMenu(objetoQualquer);
     // objetoRetornado.fetchMenu() // Retorno: objetoQualquer
     // ```
-    
+    const objCriado3 = { food: {}, drink: {} };
+    const objetoRetornado3 = createMenu(objCriado3);
+    const keyTst3 = objetoRetornado3.fetchMenu();
+    assert.strictEqual(objCriado3 === keyTst3, true);
+
     // Agora faça o PASSO 1 no arquivo `src/restaurant.js`.
     // --------------------------------------------------------------------------------------
     // TESTE 4: Verifique que 'objetoRetornado.consumption', após a criação do menu, retorna um array vazio.
