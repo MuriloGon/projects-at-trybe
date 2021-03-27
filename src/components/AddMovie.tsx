@@ -17,18 +17,29 @@ export class AddMovie extends Component<IProp, IMovie> {
   }
 
   readonly handleTitleInput = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>):void => {
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const value = e.target.value
-    this.setState({title: value});
+    this.setState({ title: value });
+  }
+
+  readonly handleSubtitleInput = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const value = e.target.value
+    this.setState({ subtitle: value });
   }
 
   render(): JSX.Element {
-    const { title } = this.state;
+    const { title, subtitle } = this.state;
     return (
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label">
           Título
           <input type="text" value={title} data-testid="title-input" onChange={this.handleTitleInput} />
+        </label>
+
+        <label data-testid="subtitle-input-label">
+          Subtítulo
+          <input type="text" value={subtitle} data-testid="subtitle-input" onChange={this.handleSubtitleInput} />
         </label>
       </form>
     );
