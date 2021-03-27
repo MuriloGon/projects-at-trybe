@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {IMovie} from './Interfaces';
+import { IMovie } from './Interfaces';
 interface IProp {
-  onClick: ()=>void;
+  onClick?: () => void;
 }
 
-class AddMovie extends Component<IProp, IMovie> {
-  constructor(props: IProp){
+export class AddMovie extends Component<IProp, IMovie> {
+  constructor(props: IProp) {
     super(props);
     this.state = {
       title: '',
@@ -15,12 +15,22 @@ class AddMovie extends Component<IProp, IMovie> {
       storyline: 'action',
     }
   }
-  
+
+  readonly handleTitleInput = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>):void => {
+    const value = e.target.value
+    this.setState({title: value});
+  }
+
   render(): JSX.Element {
+    const { title } = this.state;
     return (
-    <form data-testid="add-movie-form">
-      
-    </form>
+      <form data-testid="add-movie-form">
+        <label data-testid="title-input-label">
+          Título
+          <input type="text" value={title} data-testid="title-input" onChange={this.handleTitleInput} />
+        </label>
+      </form>
     );
   }
 }
