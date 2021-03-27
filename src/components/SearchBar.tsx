@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 
 interface IProps{
   searchText: string;
@@ -8,9 +8,12 @@ interface IProps{
   selectedGenre: string;
   onSelectedGenreChange: ()=>void;
 }
-class SearchBar extends Component<IProps> {
+class SearchBar extends React.Component<IProps> {
   render() {
-    return 0;
+    return (
+      <form data-testid="search-bar-form">
+      </form>
+    );
   }
 }
 
