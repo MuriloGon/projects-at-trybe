@@ -1,19 +1,27 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 
 interface Props {
-  searchText: string;
-  onSearchTextChange: () => void;
-  bookmarkedOnly: boolean;
-  onBookmarkedChange: () => void;
-  selectedGenre: string;
-  onSelectedGenreChange: () => void;
+  searchText?: string;
+  onSearchTextChange?: () => void;
+  bookmarkedOnly?: boolean;
+  onBookmarkedChange?: () => void;
+  selectedGenre?: string;
+  onSelectedGenreChange?: () => void;
 }
-class SearchBar extends React.Component<Props> {
+export class SearchBar extends React.Component<Props> {
   render(): JSX.Element {
-    const { searchText, bookmarkedOnly } = this.props;
-    const { onSearchTextChange, onBookmarkedChange } = this.props;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.props;
+    const { onSearchTextChange, onBookmarkedChange, onSelectedGenreChange } = this.props;
+
+    const options = {
+      Todos: '',
+      Ação: 'action',
+      Comédia: 'comedy',
+      Suspense: 'thriller',
+    };
     return (
       <form data-testid="search-bar-form">
         <label data-testid="text-input-label">
@@ -34,6 +42,28 @@ class SearchBar extends React.Component<Props> {
             checked={ bookmarkedOnly }
             onChange={ onBookmarkedChange }
           />
+        </label>
+
+        <label data-testid="select-input-label">
+          Filtrar por gênero
+          <select
+            data-testid="select-input"
+            value={ selectedGenre }
+            onChange={ onSelectedGenreChange }
+          >
+            {
+              Object.entries(options).map(
+                (op, i) => (
+                  <option
+                    data-testid="select-option"
+                    key={ i }
+                    value={ op[1] }
+                  >
+                    {op[0]}
+                  </option>),
+              )
+            }
+          </select>
         </label>
       </form>
     );
