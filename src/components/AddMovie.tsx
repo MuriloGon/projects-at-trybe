@@ -17,7 +17,11 @@ class AddMovie extends Component<IProp, IMovie> {
   }
   
   render(): JSX.Element {
-    return <h1>oi</h1>;
+    return (
+    <form data-testid="add-movie-form">
+      
+    </form>
+    );
   }
 }
 
