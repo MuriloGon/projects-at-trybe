@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import MovieCard from './MovieCard';
+import {IMovie} from './Interfaces';
 
-class MovieList extends React.Component {
+interface IProps {
+  movies: Array<IMovie>;
+}
+
+export class MovieList extends React.Component<IProps> {
   render() {
     const { movies } = this.props;
 
@@ -15,10 +19,9 @@ class MovieList extends React.Component {
   }
 }
 
-MovieList.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.object,
-  ).isRequired,
-};
-
-export default MovieList;
+// MovieList.propTypes = {
+//   movies: PropTypes.arrayOf(
+//     PropTypes.object,
+//   ).isRequired,
+// };react-app-env.d
+// export default MovieList;

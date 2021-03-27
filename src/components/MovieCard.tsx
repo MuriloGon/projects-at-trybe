@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Rating from './Rating';
+import {IMovie} from './Interfaces';
 
-class MovieCard extends React.Component {
+interface IProps {
+  movie: IMovie;
+}
+
+class MovieCard extends React.Component<IProps> {
   render() {
     const { movie } = this.props;
     const { title, subtitle, storyline, rating, imagePath } = movie;
@@ -20,14 +25,14 @@ class MovieCard extends React.Component {
   }
 }
 
-MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    storyline: PropTypes.string,
-    rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    imagePath: PropTypes.string,
-  }).isRequired,
-};
+// MovieCard.propTypes = {
+//   movie: PropTypes.shape({
+//     title: PropTypes.string,
+//     subtitle: PropTypes.string,
+//     storyline: PropTypes.string,
+//     rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+//     imagePath: PropTypes.string,
+//   }).isRequired,
+// };
 
 export default MovieCard;
