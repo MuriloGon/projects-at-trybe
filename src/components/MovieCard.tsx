@@ -1,13 +1,14 @@
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Rating from './Rating';
-import {IMovie} from './Interfaces';
+import { IMovie } from './Interfaces';
 
-interface IProps {
+interface Props {
   movie: IMovie;
 }
-
-class MovieCard extends React.Component<IProps> {
+class MovieCard extends React.Component<Props> {
   render() {
     const { movie } = this.props;
     const { title, subtitle, storyline, rating, imagePath } = movie;
