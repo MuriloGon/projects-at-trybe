@@ -39,9 +39,15 @@ export class AddMovie extends Component<IProp, IMovie> {
     this.setState({ storyline: value });
   }
 
+  readonly handleRatingInput = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const value = parseFloat(e.target.value);
+    this.setState({ rating: value });
+  }
 
   render(): JSX.Element {
-    const { title, subtitle, imagePath, storyline } = this.state;
+    const { title, subtitle, imagePath, storyline, rating } = this.state;
+
     return (
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label">
@@ -61,7 +67,12 @@ export class AddMovie extends Component<IProp, IMovie> {
 
         <label data-testid="storyline-input-label">
           Sinopse
-          <input type="text" value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput} />
+          <textarea value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput}/>
+        </label>
+
+        <label data-testid="rating-input-label">
+          Avaliação
+          <input type="number" value={rating} data-testid="rating-input" onChange={this.handleRatingInput} />
         </label>
       </form>
     );
