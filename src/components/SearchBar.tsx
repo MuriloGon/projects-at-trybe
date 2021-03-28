@@ -31,29 +31,30 @@ export class SearchBar extends React.Component<Props, States> {
   readonly handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
     this.props.onSearchTextChange(value);
-    this.setState({searchText: value})
+    this.setState({ searchText: value })
   }
 
   readonly handleBookmarkedChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.checked;
     this.props.onBookmarkedChange(value);
-    this.setState({bookmarkedOnly: value})
+    this.setState({ bookmarkedOnly: value })
   }
 
   readonly handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     const value = event.target.value;
     this.props.onSelectedGenreChange(value);
-    this.setState({selectedGenre: value})
+    this.setState({ selectedGenre: value })
   }
 
   render(): JSX.Element {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-    const options = {
-      Todos: '',
-      Ação: 'action',
-      Comédia: 'comedy',
-      Suspense: 'thriller',
-    };
+    const options = [
+      { innerText: 'Todos', value: '' },
+      { innerText: 'Ação', value: 'action' },
+      { innerText: 'Comédia', value: 'comedy' },
+      { innerText: 'Suspense', value: 'thriller' },
+      // { innerText: 'Fantasia', value: 'fantasy' }
+    ];
     return (
       <form data-testid="search-bar-form">
         <label data-testid="text-input-label">
@@ -84,14 +85,14 @@ export class SearchBar extends React.Component<Props, States> {
             onChange={this.handleGenreChange}
           >
             {
-              Object.entries(options).map(
+              options.map(
                 (op, i) => (
                   <option
                     data-testid="select-option"
                     key={i}
-                    value={op[1]}
+                    value={op.value}
                   >
-                    {op[0]}
+                    {op.innerText}
                   </option>),
               )
             }

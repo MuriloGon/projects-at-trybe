@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import MovieCard from './MovieCard';
-import {IMovie} from './Interfaces';
+import { IMovie } from './Interfaces';
 
 interface IProps {
   movies: Array<IMovie>;
@@ -13,7 +13,10 @@ export class MovieList extends React.Component<IProps> {
 
     return (
       <div data-testid="movie-list" className="movie-list">
-        { movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />) }
+        { movies.map((movie) => {
+          const key = [...movie.title.split(' '), ...movie.title.split(' ')].join('-');
+          return <MovieCard key={key} movie={movie} />;
+        })}
       </div>
     );
   }
@@ -24,4 +27,4 @@ export class MovieList extends React.Component<IProps> {
 //     PropTypes.object,
 //   ).isRequired,
 // };react-app-env.d
-// export default MovieList;
+export default MovieList;

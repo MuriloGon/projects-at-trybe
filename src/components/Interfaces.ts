@@ -5,7 +5,8 @@ export interface IMovie {
   storyline: string;
   rating: number;
   imagePath: string;
-  genre: string
+  genre: string;
+  bookmarked: boolean;
 }
 
 export interface IMovieLibrary {

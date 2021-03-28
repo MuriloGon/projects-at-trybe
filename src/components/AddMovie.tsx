@@ -13,6 +13,7 @@ export class AddMovie extends Component<IProp, IMovie> {
       imagePath: '',
       rating: 0,
       storyline: '',
+      bookmarked: false,
       genre: 'action'
     }
   }
