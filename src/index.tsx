@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { AddMovie } from './components/AddMovie';
+import MovieLibrary from './components/MovieLibrary';
+import movies from './data';
 
 ReactDOM.render(
-  <AddMovie onClick={(st)=>{console.log(st); }}/>, document.getElementById('root'),
+  <MovieLibrary movies={movies}/>, document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
