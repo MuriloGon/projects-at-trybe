@@ -1,6 +1,7 @@
 .movie-card {
   display: flex;
   flex-flow: nowrap column;
+  height: 440px;
   margin: 0.5rem;
   width: 290px;
 }
