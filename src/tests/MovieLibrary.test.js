@@ -229,7 +229,7 @@ describe('19 - Renderize `<AddMovie />` dentro de `<MovieLibrary />`', () => {
 
     movieCards = getAllByTestId(movieCardTestId);
 
-    expect(movieCards).toHaveLength(movies.length + 1);
+    expect(movieCards).toHaveLength(movies.length);
     const newMovieTitle = getAllByTestId(movieCardTitleId);
     expect(newMovieTitle[movieCards.length - 1]).toHaveTextContent(newMovie.title);
   });
