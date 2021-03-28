@@ -1,0 +1,18 @@
+.movie-card {
+  display: flex;
+  flex-flow: nowrap column;
+  margin: 0.5rem;
+  width: 290px;
+}
+
+.movie-card > *:nth-child( 1 ) {
+  flex: 1 1 100px;
+}
+
+.movie-card > *:nth-child( 2 ) {
+  flex: 1 1 auto;
+}
+
+.movie-card > *:nth-child( 3 ) {
+  flex: 1 1 1;
+}

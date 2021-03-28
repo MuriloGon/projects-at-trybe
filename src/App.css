@@ -1,30 +1,31 @@
 body {
   background-color: whitesmoke;
-  box-sizing: border-box;
-  font-size: 16px;
+  box-sizing      : border-box;
+  font-size       : 16px;
 }
 
 .movie-card-header {
-  align-items: center;
+  align-items     : center;
   background-color: #343a40;
-  display: flex;
-  height: 100px;
-  justify-content: center;
+  display         : flex;
+  height          : 100px;
+  justify-content : center;
 }
 
 .page-title {
-  color: #f8f9fa;
-  font-size: 28px;
+  color      : #f8f9fa;
+  font-size  : 28px;
   font-weight: 500;
-  text-align: center;
+  text-align : center;
 }
 
 .movie-list {
-  display: flex;
+  display  : flex;
   flex-flow: row wrap;
-  padding: 48px 30px;
+  padding  : 1rem 0;
 }
 
+/*
 .movie-card {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -35,49 +36,60 @@ body {
   margin: 5px;
   overflow: hidden;
   width: 300px;
-}
-
+} */
 
 .movie-card-image {
   width: 100%;
 }
 
 .movie-card-body {
-  flex: 1 1 auto;
+  flex   : 1 1 auto;
   padding: 20px;
 }
 
 .movie-card-title {
-  font-size: 24px;
+  font-size  : 24px;
   font-weight: 500;
-  margin: 0 0 12px;
+  margin     : 0 0 12px;
 }
 
 .movie-card-subtitle {
-  color: #6c757d;
-  font-size: 16px;
+  color      : #6c757d;
+  font-size  : 16px;
   font-weight: 500;
-  margin: 0 0 8px;
+  margin     : 0 0 8px;
 }
 
 .movie-card-storyline {
-  font-size: 14px;
+  font-size : 14px;
   text-align: justify;
+}
+
+select {
+  display: block;
+  width  : 100%;
+}
+
+[ data-testid = 'checkbox-input' ] {
+  margin-left: 1rem;
 }
 
 .rating {
   background-color: #007bff;
-  border-radius: 25px;
-  color: white;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 3px 9px;
+  border-radius   : 25px;
+  color           : white;
+  font-size       : 16px;
+  font-weight     : 700;
+  padding         : 3px 9px;
+}
+
+.card-footer {
+  display        : flex;
+  justify-content: flex-end;
 }
 
 .movie-card-rating {
   background-color: rgba(0, 0, 0, 0.03);
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
-  display: flex;
-  justify-content: flex-end;
-  padding: 12px 20px;
+  display         : flex;
+  flex-flow       : nowrap row-reverse;
 }

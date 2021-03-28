@@ -2,6 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import MovieCard from './MovieCard';
 import { IMovie } from './Interfaces';
+import './MovieList.css';
 
 interface IProps {
   movies: Array<IMovie>;

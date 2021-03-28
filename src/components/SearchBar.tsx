@@ -57,9 +57,10 @@ export class SearchBar extends React.Component<Props, States> {
     ];
     return (
       <form data-testid="search-bar-form">
-        <label data-testid="text-input-label">
+        <label className="label" data-testid="text-input-label">
           Inclui o texto
           <input
+            className="input"
             type="text"
             data-testid="text-input"
             value={searchText}
@@ -67,9 +68,10 @@ export class SearchBar extends React.Component<Props, States> {
           />
         </label>
 
-        <label data-testid="checkbox-input-label">
+        <label className="label" data-testid="checkbox-input-label">
           Mostrar somente favoritos
           <input
+            className="checkbox"
             type="checkbox"
             data-testid="checkbox-input"
             checked={bookmarkedOnly}
@@ -77,9 +79,10 @@ export class SearchBar extends React.Component<Props, States> {
           />
         </label>
 
-        <label data-testid="select-input-label">
+        <label className="label" data-testid="select-input-label">
           Filtrar por gênero
           <select
+            className="select"
             data-testid="select-input"
             value={selectedGenre}
             onChange={this.handleGenreChange}

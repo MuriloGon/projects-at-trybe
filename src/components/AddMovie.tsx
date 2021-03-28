@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { IMovie } from './Interfaces';
+import 'bulma/css/bulma.min.css';
 interface IProp {
   onClick: (args: IMovie) => void;
 }
-
 export class AddMovie extends Component<IProp, IMovie> {
   constructor(props: IProp) {
     super(props);
@@ -73,7 +73,7 @@ export class AddMovie extends Component<IProp, IMovie> {
     // const test = (storyline !== '' && imagePath !== '' && subtitle !== '' && title !== '');
 
     // if (test) {
-      this.props.onClick(this.state);
+    this.props.onClick(this.state);
     // }
     // else { alert('Preencha tudo') };
     this.reset();
@@ -89,34 +89,34 @@ export class AddMovie extends Component<IProp, IMovie> {
     ]
     return (
       <form data-testid="add-movie-form">
-        <label data-testid="title-input-label">
+        <label className="label" data-testid="title-input-label">
           Título
-          <input required type="text" value={title} data-testid="title-input" onChange={this.handleTitleInput} />
+          <input className="input" required type="text" value={title} data-testid="title-input" onChange={this.handleTitleInput} />
         </label>
 
-        <label data-testid="subtitle-input-label">
+        <label className="label" data-testid="subtitle-input-label">
           Subtítulo
-          <input required type="text" value={subtitle} data-testid="subtitle-input" onChange={this.handleSubtitleInput} />
+          <input className="input" required type="text" value={subtitle} data-testid="subtitle-input" onChange={this.handleSubtitleInput} />
         </label>
 
-        <label data-testid="image-input-label">
+        <label className="label" data-testid="image-input-label">
           Imagem
-          <input required type="text" value={imagePath} data-testid="image-input" onChange={this.handleImgPathInput} />
+          <input className="input" required type="text" value={imagePath} data-testid="image-input" onChange={this.handleImgPathInput} />
         </label>
 
-        <label data-testid="storyline-input-label">
+        <label className="label" data-testid="storyline-input-label">
           Sinopse
-          <textarea required value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput} />
+          <textarea className="textarea" required value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput} />
         </label>
 
-        <label data-testid="rating-input-label">
+        <label className="label" data-testid="rating-input-label">
           Avaliação
-          <input required type="number" value={isNaN(rating) ? 0 : rating} data-testid="rating-input" onChange={this.handleRatingInput} />
+          <input className="input" required type="number" value={isNaN(rating) ? 0 : rating} data-testid="rating-input" onChange={this.handleRatingInput} />
         </label>
 
-        <label data-testid="genre-input-label">
+        <label className="label" data-testid="genre-input-label">
           Gênero
-          <select required data-testid="genre-input" onChange={this.handleSelect} value={genre}>
+          <select className="select"required data-testid="genre-input" onChange={this.handleSelect} value={genre}>
             {options.map(
               (op, i) =>
                 <option data-testid="genre-option" key={i} value={op.value}>{op.innerText}</option>)
@@ -124,7 +124,7 @@ export class AddMovie extends Component<IProp, IMovie> {
           </select>
         </label>
 
-        <button data-testid="send-button" onClick={this.handleSubmit}>Adicionar filme</button>
+        <button className="button is-primary" data-testid="send-button" onClick={this.handleSubmit}>Adicionar filme</button>
       </form>
     );
   }
