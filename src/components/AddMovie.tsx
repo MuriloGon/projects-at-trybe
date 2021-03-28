@@ -1,7 +1,7 @@
-import React, { ButtonHTMLAttributes, Component } from 'react';
+import React, { Component } from 'react';
 import { IMovie } from './Interfaces';
 interface IProp {
-  onClick: (args: (IMovie | null | undefined)) => (void | null);
+  onClick: (args: IMovie) => void;
 }
 
 export class AddMovie extends Component<IProp, IMovie> {
@@ -23,7 +23,7 @@ export class AddMovie extends Component<IProp, IMovie> {
     const value = e.target.value
     this.setState({ title: value });
   }
-  
+
   readonly handleSubtitleInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const value = e.target.value
@@ -44,7 +44,8 @@ export class AddMovie extends Component<IProp, IMovie> {
 
   readonly handleRatingInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    const value = parseFloat(e.target.value);
+    let value = parseFloat(e.target.value);
+    value = value < 0 || isNaN(value) ? 0 : value;
     this.setState({ rating: value });
   }
 
@@ -54,16 +55,28 @@ export class AddMovie extends Component<IProp, IMovie> {
     this.setState({ genre: value });
   }
 
-  readonly handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    this.props.onClick(this.state);
+  readonly reset = (): void => {
     this.setState({
       genre: 'Action',
       rating: 0,
       storyline: '',
       imagePath: '',
       subtitle: '',
-      title: ''
-    })
+      title: '',
+      bookmarked: false,
+    }, () => { });
+  }
+
+  readonly handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+    // const { storyline, imagePath, subtitle, title } = this.state;
+    // const test = (storyline !== '' && imagePath !== '' && subtitle !== '' && title !== '');
+
+    // if (test) {
+      this.props.onClick(this.state);
+    // }
+    // else { alert('Preencha tudo') };
+    this.reset();
     e.preventDefault();
   }
 
@@ -78,32 +91,32 @@ export class AddMovie extends Component<IProp, IMovie> {
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label">
           Título
-          <input type="text" value={title} data-testid="title-input" onChange={this.handleTitleInput} />
+          <input required type="text" value={title} data-testid="title-input" onChange={this.handleTitleInput} />
         </label>
 
         <label data-testid="subtitle-input-label">
           Subtítulo
-          <input type="text" value={subtitle} data-testid="subtitle-input" onChange={this.handleSubtitleInput} />
+          <input required type="text" value={subtitle} data-testid="subtitle-input" onChange={this.handleSubtitleInput} />
         </label>
 
         <label data-testid="image-input-label">
           Imagem
-          <input type="text" value={imagePath} data-testid="image-input" onChange={this.handleImgPathInput} />
+          <input required type="text" value={imagePath} data-testid="image-input" onChange={this.handleImgPathInput} />
         </label>
 
         <label data-testid="storyline-input-label">
           Sinopse
-          <textarea value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput} />
+          <textarea required value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput} />
         </label>
 
         <label data-testid="rating-input-label">
           Avaliação
-          <input type="number" value={rating} data-testid="rating-input" onChange={this.handleRatingInput} />
+          <input required type="number" value={isNaN(rating) ? 0 : rating} data-testid="rating-input" onChange={this.handleRatingInput} />
         </label>
 
         <label data-testid="genre-input-label">
           Gênero
-          <select data-testid="genre-input" onChange={this.handleSelect} value={genre}>
+          <select required data-testid="genre-input" onChange={this.handleSelect} value={genre}>
             {options.map(
               (op, i) =>
                 <option data-testid="genre-option" key={i} value={op.value}>{op.innerText}</option>)

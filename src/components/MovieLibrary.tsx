@@ -3,8 +3,9 @@ import SearchBar from './SearchBar';
 import { IMovieLibrary, IMovie } from './Interfaces';
 // import MovieCard from './MovieCard';
 import { MovieList } from './MovieList';
+import { AddMovie } from './AddMovie';
 interface IProps {
-  movies: Array<IMovie>
+  movies: Array<IMovie>;
 }
 class MovieLibrary extends Component<IProps, IMovieLibrary> {
   constructor(props: any) {
@@ -65,11 +66,22 @@ class MovieLibrary extends Component<IProps, IMovieLibrary> {
     });
   }
 
+  readonly addNewEntry = (movie: IMovie): void => {
+    // this.props.onClicko(movie);
+    this.props.movies.push(movie);
+    this.filterMovies();
+    this.setState({ movies: this.props.movies })
+  }
+
+  componentDidMount() {
+  }
+
   render(): JSX.Element {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
 
     return (
       <>
+        <AddMovie onClick={this.addNewEntry} />
         <SearchBar
           searchText={searchText}
           onSearchTextChange={this.onSearchChange}
