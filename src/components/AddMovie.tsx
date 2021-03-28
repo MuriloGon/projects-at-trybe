@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { ButtonHTMLAttributes, Component } from 'react';
 import { IMovie } from './Interfaces';
 interface IProp {
-  onClick?: () => void;
+  onClick: (args: (IMovie | null | undefined)) => (void | null);
 }
 
 export class AddMovie extends Component<IProp, IMovie> {
@@ -22,6 +22,7 @@ export class AddMovie extends Component<IProp, IMovie> {
     const value = e.target.value
     this.setState({ title: value });
   }
+  
   readonly handleSubtitleInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const value = e.target.value
@@ -52,6 +53,18 @@ export class AddMovie extends Component<IProp, IMovie> {
     this.setState({ genre: value });
   }
 
+  readonly handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    this.props.onClick(this.state);
+    this.setState({
+      genre: 'Action',
+      rating: 0,
+      storyline: '',
+      imagePath: '',
+      subtitle: '',
+      title: ''
+    })
+    e.preventDefault();
+  }
 
   render(): JSX.Element {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
@@ -96,6 +109,8 @@ export class AddMovie extends Component<IProp, IMovie> {
             }
           </select>
         </label>
+
+        <button data-testid="send-button" onClick={this.handleSubmit}>Adicionar filme</button>
       </form>
     );
   }

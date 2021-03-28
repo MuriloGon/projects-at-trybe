@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { AddMovie } from './components/AddMovie';
 
 ReactDOM.render(
-  <AddMovie/>, document.getElementById('root'),
+  <AddMovie onClick={(st)=>{console.log(st); }}/>, document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
