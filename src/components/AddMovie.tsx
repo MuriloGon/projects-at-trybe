@@ -12,7 +12,7 @@ export class AddMovie extends Component<IProp, IMovie> {
       subtitle: '',
       imagePath: '',
       rating: 0,
-      storyline: 'action',
+      storyline: '',
     }
   }
 
@@ -33,8 +33,15 @@ export class AddMovie extends Component<IProp, IMovie> {
     this.setState({ imagePath: value });
   }
 
+  readonly handleHistorylineInput = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const value = e.target.value
+    this.setState({ storyline: value });
+  }
+
+
   render(): JSX.Element {
-    const { title, subtitle, imagePath } = this.state;
+    const { title, subtitle, imagePath, storyline } = this.state;
     return (
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label">
@@ -50,6 +57,11 @@ export class AddMovie extends Component<IProp, IMovie> {
         <label data-testid="image-input-label">
           Imagem
           <input type="text" value={imagePath} data-testid="image-input" onChange={this.handleImgPathInput} />
+        </label>
+
+        <label data-testid="storyline-input-label">
+          Sinopse
+          <input type="text" value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput} />
         </label>
       </form>
     );
