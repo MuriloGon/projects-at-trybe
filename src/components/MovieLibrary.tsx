@@ -67,13 +67,9 @@ class MovieLibrary extends Component<IProps, IMovieLibrary> {
   }
 
   readonly addNewEntry = (movie: IMovie): void => {
-    // this.props.onClicko(movie);
     this.props.movies.push(movie);
     this.filterMovies();
     this.setState({ movies: this.props.movies })
-  }
-
-  componentDidMount() {
   }
 
   render(): JSX.Element {
