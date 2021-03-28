@@ -4,18 +4,50 @@
 import React from 'react';
 
 interface Props {
-  searchText?: string;
-  onSearchTextChange?: () => void;
-  bookmarkedOnly?: boolean;
-  onBookmarkedChange?: () => void;
-  selectedGenre?: string;
-  onSelectedGenreChange?: () => void;
+  searchText: string;
+  onSearchTextChange: (text: string) => void;
+  bookmarkedOnly: boolean;
+  onBookmarkedChange: (condition: boolean) => void;
+  selectedGenre: string;
+  onSelectedGenreChange: (text: string) => void;
 }
-export class SearchBar extends React.Component<Props> {
-  render(): JSX.Element {
-    const { searchText, bookmarkedOnly, selectedGenre } = this.props;
-    const { onSearchTextChange, onBookmarkedChange, onSelectedGenreChange } = this.props;
 
+interface States {
+  searchText: string;
+  bookmarkedOnly: boolean;
+  selectedGenre: string;
+}
+export class SearchBar extends React.Component<Props, States> {
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      searchText: props.searchText,
+      bookmarkedOnly: props.bookmarkedOnly,
+      selectedGenre: props.selectedGenre,
+    }
+  }
+
+  readonly handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const value = event.target.value;
+    this.props.onSearchTextChange(value);
+    this.setState({searchText: value})
+  }
+
+  readonly handleBookmarkedChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const value = event.target.checked;
+    this.props.onBookmarkedChange(value);
+    this.setState({bookmarkedOnly: value})
+  }
+
+  readonly handleGenreChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    const value = event.target.value;
+    this.props.onSelectedGenreChange(value);
+    this.setState({selectedGenre: value})
+  }
+
+  render(): JSX.Element {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     const options = {
       Todos: '',
       Ação: 'action',
@@ -29,8 +61,8 @@ export class SearchBar extends React.Component<Props> {
           <input
             type="text"
             data-testid="text-input"
-            value={ searchText }
-            onChange={ onSearchTextChange }
+            value={searchText}
+            onChange={this.handleSearchChange}
           />
         </label>
 
@@ -39,8 +71,8 @@ export class SearchBar extends React.Component<Props> {
           <input
             type="checkbox"
             data-testid="checkbox-input"
-            checked={ bookmarkedOnly }
-            onChange={ onBookmarkedChange }
+            checked={bookmarkedOnly}
+            onChange={this.handleBookmarkedChange}
           />
         </label>
 
@@ -48,16 +80,16 @@ export class SearchBar extends React.Component<Props> {
           Filtrar por gênero
           <select
             data-testid="select-input"
-            value={ selectedGenre }
-            onChange={ onSelectedGenreChange }
+            value={selectedGenre}
+            onChange={this.handleGenreChange}
           >
             {
               Object.entries(options).map(
                 (op, i) => (
                   <option
                     data-testid="select-option"
-                    key={ i }
-                    value={ op[1] }
+                    key={i}
+                    value={op[1]}
                   >
                     {op[0]}
                   </option>),
