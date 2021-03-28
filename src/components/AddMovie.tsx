@@ -13,6 +13,7 @@ export class AddMovie extends Component<IProp, IMovie> {
       imagePath: '',
       rating: 0,
       storyline: '',
+      genre: 'action'
     }
   }
 
@@ -45,9 +46,20 @@ export class AddMovie extends Component<IProp, IMovie> {
     this.setState({ rating: value });
   }
 
-  render(): JSX.Element {
-    const { title, subtitle, imagePath, storyline, rating } = this.state;
+  readonly handleSelect = (
+    e: React.ChangeEvent<HTMLSelectElement>): void => {
+    const value = e.target.value;
+    this.setState({ genre: value });
+  }
 
+
+  render(): JSX.Element {
+    const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
+    const options = [
+      { innerText: 'Ação', value: 'action' },
+      { innerText: 'Comédia', value: 'comedy' },
+      { innerText: 'Suspense', value: 'thriller' },
+    ]
     return (
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label">
@@ -67,12 +79,22 @@ export class AddMovie extends Component<IProp, IMovie> {
 
         <label data-testid="storyline-input-label">
           Sinopse
-          <textarea value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput}/>
+          <textarea value={storyline} data-testid="storyline-input" onChange={this.handleHistorylineInput} />
         </label>
 
         <label data-testid="rating-input-label">
           Avaliação
           <input type="number" value={rating} data-testid="rating-input" onChange={this.handleRatingInput} />
+        </label>
+
+        <label data-testid="genre-input-label">
+          Gênero
+          <select data-testid="genre-input" onChange={this.handleSelect} value={genre}>
+            {options.map(
+              (op, i) =>
+                <option data-testid="genre-option" key={i} value={op.value}>{op.innerText}</option>)
+            }
+          </select>
         </label>
       </form>
     );

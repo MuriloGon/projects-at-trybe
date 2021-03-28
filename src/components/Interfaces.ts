@@ -5,4 +5,5 @@ export interface IMovie {
   storyline: string;
   rating: number;
   imagePath: string;
+  genre: string
 }
