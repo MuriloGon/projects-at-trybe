@@ -1,0 +1,18 @@
+.MovieLibrary {
+  display: flex;
+}
+
+.left-side {
+  flex: 0 0 300px;
+  padding: 1rem;
+}
+
+.left-wrapper {
+  position: sticky;
+  top: 0;
+}
+
+.right-side {
+  flex: 1 1 100%;
+  padding: 1rem;
+}

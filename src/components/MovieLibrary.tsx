@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
 import { IMovieLibrary, IMovie } from './Interfaces';
-// import MovieCard from './MovieCard';
 import { MovieList } from './MovieList';
 import { AddMovie } from './AddMovie';
+import 'bulma/css/bulma.min.css';
+import './MovieLibrary.css';
 interface IProps {
   movies: Array<IMovie>;
 }
@@ -76,18 +77,27 @@ class MovieLibrary extends Component<IProps, IMovieLibrary> {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
 
     return (
-      <>
-        <AddMovie onClick={this.addNewEntry} />
-        <SearchBar
-          searchText={searchText}
-          onSearchTextChange={this.onSearchChange}
-          bookmarkedOnly={bookmarkedOnly}
-          onBookmarkedChange={this.onBookMarkedChange}
-          selectedGenre={selectedGenre}
-          onSelectedGenreChange={this.onSelecGenreChange}
-        />
-        <MovieList movies={movies} />
-      </>
+      <div className="MovieLibrary container is-fullhd">
+        <div className="left-side">
+          <div className="left-wrapper">
+            <h4 className="title is-4">Filtrar Filmes</h4>
+            <SearchBar
+              searchText={searchText}
+              onSearchTextChange={this.onSearchChange}
+              bookmarkedOnly={bookmarkedOnly}
+              onBookmarkedChange={this.onBookMarkedChange}
+              selectedGenre={selectedGenre}
+              onSelectedGenreChange={this.onSelecGenreChange}
+            />
+            <hr/>
+            <h4 className="title is-4">Adicionar Filme</h4>
+            <AddMovie onClick={this.addNewEntry} />
+          </div>
+        </div>
+        <div className="rigth-side">
+          <MovieList movies={movies} />
+        </div>
+      </div>
     );
   }
 }
