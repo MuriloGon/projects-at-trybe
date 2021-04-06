@@ -6,6 +6,8 @@ import MovieDetails from './pages/MovieDetails';
 import EditMovie from './pages/EditMovie';
 import NotFound from './pages/NotFound';
 
+import 'bulma/css/bulma.min.css';
+
 function App() {
   return (
     <BrowserRouter>

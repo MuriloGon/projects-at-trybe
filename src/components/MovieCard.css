@@ -1,0 +1,43 @@
+.card {
+
+  --card-heigth: 450px;
+
+  --card-width    : 300px;
+  background-color: red;
+  display         : flex;
+  flex-flow       : nowrap column;
+  height          : var(--card-heigth);
+  justify-content : space-between;
+  width           : var(--card-width);
+}
+
+.card-header {
+  background-position: center;
+  background-size    : cover;
+  height             : calc(var(--card-width) * 0.6);
+  overflow           : hidden;
+  position           : relative;
+}
+
+.card .card-header-title {
+  align-items: flex-end;
+  color      : aliceblue;
+  display    : flex;
+  font-size  : 1.25rem;
+  text-shadow: 0 0 0.15rem black;
+}
+
+.card .card-footer {
+  align-items: flex-end;
+  border     : 1.5px 0 0 0 solid hsl(0deg, 0%, 75%);
+  display    : flex;
+  height     : calc(var(--card-width) * 0.15);
+}
+
+.footer-text {
+  align-self  : center;
+  color       : brown;
+  display     : inline-block;
+  justify-self: flex-start;
+  padding     : 0 1.5rem;
+}

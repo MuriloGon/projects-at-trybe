@@ -1,10 +1,23 @@
 import React from 'react';
+import './MovieCard.css';
+import 'bulma/css/bulma.min.css';
 
 class MovieCard extends React.Component {
   render() {
+    const { title, imagePath, storyline } = this.props.movie;
     return (
-      <div data-testid="movie-card">
-        Movie Card
+      <div className="card" data-testid="movie-card">
+        <div className="card-header" style={ { backgroundImage: `url(${imagePath})` } }>
+          <div className="card-header-title">
+            {title}
+          </div>
+        </div>
+        <div className="card-content">
+          {storyline}
+        </div>
+        <div className="card-footer">
+          <span className="footer-text">Ver Detalhes</span>
+        </div>
       </div>
     );
   }
