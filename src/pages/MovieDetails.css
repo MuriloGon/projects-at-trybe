@@ -1,0 +1,46 @@
+.movie-details {
+
+  --card-details-height: 600px;
+
+  --card-details-width: 800px;
+  height              : auto;
+  margin              : 1rem auto;
+  max-width           : var(--card-details-width);
+  width               : auto;
+}
+
+.movie-details__header .movie-details__header-title {
+  align-self : flex-end;
+  color      : aliceblue;
+  font-size  : 2.5rem;
+  position: absolute;
+  text-shadow: 0 0 0.25rem black;
+  z-index    : 2;
+}
+
+
+.movie-details__header > img {
+  height: 100%;
+  object-fit: cover;
+  width   : 100%;
+  z-index : 1;
+}
+
+.movie-details__header {
+  display        : flex;
+  height         : calc(var(--card-details-height) * 0.6);
+  overflow       : hidden;
+  position       : relative;
+}
+
+.movie-details__content {
+  display: flex;
+  flex-flow: nowrap column;
+  font-size: 1.15rem;
+  height: calc(var(--card-details-width) * 0.3);
+  justify-content: space-evenly;
+}
+
+.movie-details .movie-details__footer {
+  height: calc(var(--card-details-height) * 0.1);
+}

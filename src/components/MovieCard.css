@@ -1,4 +1,4 @@
-.card {
+.movie-card {
 
   --card-heigth: 450px;
 
@@ -11,7 +11,7 @@
   width           : var(--card-width);
 }
 
-.card-header {
+.movie-card__header {
   background-position: center;
   background-size    : cover;
   height             : calc(var(--card-width) * 0.6);
@@ -19,15 +19,15 @@
   position           : relative;
 }
 
-.card .card-header-title {
+.movie-card__header .movie-card__header-title {
   align-items: flex-end;
   color      : aliceblue;
   display    : flex;
   font-size  : 1.25rem;
-  text-shadow: 0 0 0.15rem black;
+  text-shadow: 0 0 0.25rem black;
 }
 
-.card .card-footer {
+.movie-card__footer {
   align-items: flex-end;
   border     : 1.5px 0 0 0 solid hsl(0deg, 0%, 75%);
   display    : flex;
