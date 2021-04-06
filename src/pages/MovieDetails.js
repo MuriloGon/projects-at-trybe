@@ -25,7 +25,6 @@ class MovieDetails extends Component {
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
-    console.log(params);
     const movie = await movieAPI.getMovie(id);
     this.setState({ movie }, () => {
       this.setState({ loading: false });
@@ -80,7 +79,7 @@ class MovieDetails extends Component {
 MovieDetails.propTypes = {
   match: PropTypes.shape(
     {
-      params: PropTypes.shape({ id: PropTypes.number.isRequired }),
+      params: PropTypes.shape({ id: PropTypes.string.isRequired }),
       url: PropTypes.string.isRequired,
     },
   ).isRequired,

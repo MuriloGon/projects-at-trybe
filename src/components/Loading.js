@@ -6,7 +6,7 @@ class Loading extends Component {
     return (
       <div className="hero is-max-desktop">
         <div className="hero-body">
-          <img src="/images/loading.gif" alt="loading" width="200px" height="auto" />
+          <img src="/images/loading2.gif" alt="loading" width="200px" height="auto" />
           <span id="body-title">Carregando...</span>
         </div>
       </div>
