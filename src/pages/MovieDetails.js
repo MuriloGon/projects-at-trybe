@@ -11,6 +11,7 @@ import './MovieDetails.css';
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
+    this.deleteMovie = this.deleteMovie.bind(this);
     this.state = {
       movie: {},
       loading: true,
@@ -21,10 +22,13 @@ class MovieDetails extends Component {
     this.fetchMovie();
   }
 
+  deleteMovie() {
+    const { match: { params: { id } } } = this.props;
+    movieAPI.deleteMovie(Number(id));
+  }
+
   async fetchMovie() {
-    const { match } = this.props;
-    const { params } = match;
-    const { id } = params;
+    const { match: { params: { id } } } = this.props;
     const movie = await movieAPI.getMovie(id);
     this.setState({ movie }, () => {
       this.setState({ loading: false });
@@ -68,7 +72,10 @@ class MovieDetails extends Component {
             <Link to={ `${url}/edit` }>EDITAR</Link>
           </span>
           <span className="footer-text">
-            <Link to="/"> VOLTAR </Link>
+            <Link to="/" onClick={ this.deleteMovie }>DELETAR</Link>
+          </span>
+          <span className="footer-text">
+            <Link to="/">VOLTAR</Link>
           </span>
         </div>
       </div>
