@@ -1,0 +1,33 @@
+.mnav {
+  background-color: rgb(85, 85, 85);
+  height: 50px;
+  width: 100%;
+}
+
+.mnav__content > ul a {
+  align-items: center;
+  color: rgb(230, 230, 230);
+  display: flex;
+  font-size: 1.3rem;
+  text-decoration: none;
+  transition: color linear 150ms;
+}
+
+.mnav__content ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.mnav__content {
+  align-items: stretch;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+.mnav__content > ul a:hover {
+  color: rgb(255, 160, 71);
+}

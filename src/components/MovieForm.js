@@ -189,7 +189,11 @@ MovieForm.propTypes = {
       bookmarked: PropTypes.bool.isRequired,
       genre: PropTypes.string.isRequired,
     },
-  ).isRequired,
+  ),
+};
+
+MovieForm.defaultProps = {
+  movie: {},
 };
 
 export default MovieForm;
