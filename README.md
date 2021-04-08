@@ -73,7 +73,7 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 
 ### DATA DE ENTREGA
 
-  - O projeto tem até a seguinte data: `dd/mm/yyyy - 14:00h` para ter entregue a avaliação final.
+  - O projeto tem até a seguinte data: `16/04/2021 - 14:00h` para ter entregue a avaliação final.
 
 ---
 
@@ -82,9 +82,9 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
 ### ANTES DE COMEÇAR A DESENVOLVER
 
 1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-010-a-project-zoo-functions-rubric.git`.
+  * `git clone https://github.com/tryber/sd-010-a-project-zoo-functions.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-010-a-project-zoo-functions-rubric`
+    * `cd sd-010-a-project-zoo-functions`
 
 2. Instale as dependências
   * `npm install`
@@ -116,13 +116,13 @@ Você só deve alterar os arquivos indicados nos requisitos. **Os arquivos que n
   * Usando o exemplo anterior: `git push -u origin luiza-zoo-functions-project`
 
 7. Crie um novo `Pull Request` _(PR)_
-  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-010-a-project-zoo-functions-rubric/pulls)
+  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-010-a-project-zoo-functions/pulls)
   * Clique no botão verde _"New pull request"_
   * Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
   * Clique no botão verde _"Create pull request"_
   * Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
   * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-project-zoo-functions-rubric/pulls) e confira que o seu _Pull Request_ está criado.
+  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-project-zoo-functions/pulls) e confira que o seu _Pull Request_ está criado.
 
 ### DURANTE O DESENVOLVIMENTO
 
@@ -348,7 +348,7 @@ Use o material que você já viu sobre [Code Review](https://course.betrybe.com/
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/2OfLJPn)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/39qMu3s)
 
 ### ORDEM DOS REQUISITOS NO AVALIADOR AUTOMÁTICO
 
