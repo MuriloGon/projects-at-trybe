@@ -1,0 +1,56 @@
+{
+  "requirements": [
+    {
+      "description": "Implemente a função animalsByIds",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função animalsOlderThan",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função employeeByName",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função createEmployee",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função isManager",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função addEmployee",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função animalCount",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função entryCalculator",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função animalMap",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função schedule",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função oldestFromFirstSpecies",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função increasePrices",
+      "bonus": false
+    },
+    {
+      "description": "Implemente a função employeeCoverage",
+      "bonus": false
+    }
+  ]
+}
