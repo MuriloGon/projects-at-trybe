@@ -36,8 +36,11 @@ function employeeByName(employeeName) {
   );
 }
 
+// req04
 function createEmployee(personalInfo, associatedWith) {
-  // seu código aqui
+  const { id, firstName, lastName } = personalInfo;
+  const { managers, responsibleFor } = associatedWith;
+  return { id, firstName, lastName, managers, responsibleFor };
 }
 
 function isManager(id) {
