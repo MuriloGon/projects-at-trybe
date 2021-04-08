@@ -161,8 +161,15 @@ function schedule(dayName) {
   return ({ [day]: msg });
 }
 
-function oldestFromFirstSpecies(id) {
-  // seu código aqui
+// req11
+function oldestFromFirstSpecies(employeeId) {
+  const { animals, employees } = data;
+  const employee = employees.find(({ id }) => id === employeeId);
+  const firstEspecieId = employee.responsibleFor[0];
+  const animal = animals.find(({ id }) => id === firstEspecieId);
+  const { residents } = animal;
+  const { name, sex, age } = residents.sort((a, b) => -(a.age - b.age))[0];
+  return [name, sex, age];
 }
 
 function increasePrices(percentage) {
