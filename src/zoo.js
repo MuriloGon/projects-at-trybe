@@ -185,8 +185,27 @@ function increasePrices(percentage) {
   });
 }
 
+// req13
 function employeeCoverage(idOrName) {
-  // seu código aqui
+  const { animals, employees } = data;
+  const getEmployeeById = (...queries) => employees.find(
+    ({ firstName, lastName, id }) => queries.includes(firstName)
+      || queries.includes(lastName) || queries.includes(id),
+  );
+  const getAnimalNameById = (animalId) => animals.find(({ id }) => id === animalId).name;
+  if (!idOrName) {
+    const allEmpIds = employees.map(({ id }) => id);
+    let noParms = {};
+    allEmpIds.forEach((empId) => {
+      const { firstName, lastName, responsibleFor } = getEmployeeById(empId);
+      const animalsEspecies = responsibleFor.map((animalId) => getAnimalNameById(animalId));
+      noParms = { ...noParms, ...{ [`${firstName} ${lastName}`]: animalsEspecies } };
+    });
+    return noParms;
+  }
+  const { firstName, lastName, responsibleFor } = getEmployeeById(idOrName);
+  const animalsEspecies = responsibleFor.map((animalId) => getAnimalNameById(animalId));
+  return { [`${firstName} ${lastName}`]: animalsEspecies };
 }
 
 module.exports = {
