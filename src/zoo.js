@@ -32,7 +32,7 @@ function employeeByName(employeeName) {
 
   const { employees } = data;
   return employees.find(
-    ({ firstName, lastName }) => [firstName, lastName].includes(employeeName)
+    ({ firstName, lastName }) => [firstName, lastName].includes(employeeName),
   );
 }
 
@@ -49,8 +49,17 @@ function isManager(id) {
   return employees.some(({ managers }) => managers.includes(id));
 }
 
+// req06
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+  const employeeAdded = {
+    id,
+    firstName,
+    lastName,
+    managers: managers || [],
+    responsibleFor: responsibleFor || [],
+  };
+  const { employees } = data;
+  employees.push(employeeAdded);
 }
 
 function animalCount(species) {
