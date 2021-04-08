@@ -91,62 +91,74 @@ function entryCalculator(entrants) {
 
 // req 09
 const noOptions = (animals) => {
-  const locations = [...new Set((animals.map(({ location }) => location)))]
+  const locations = [...new Set((animals.map(({ location }) => location)))];
   const genericObj = locations.reduce((acc, location) => {
     acc[location] = [];
     return acc;
   }, {});
   const noParms = { ...genericObj };
-  animals.forEach(({ name, location }) => noParms[location].push(name))
+  animals.forEach(({ name, location }) => noParms[location].push(name));
   return noParms;
 };
 
 function animalMap(options) {
   const { animals } = data;
   if (!options) return noOptions(animals, options);
-  const hasIncludeNames =
-    Object.keys(options).includes('includeNames') && options['includeNames'];
-  const isOrdered =
-    Object.keys(options).includes('sorted') && options['sorted'];
-  const sex = options['sex'] ? options['sex'] : null;
+  const hasIncludeNames = Object.keys(options).includes('includeNames') && options.includeNames;
+  const isOrdered = Object.keys(options).includes('sorted') && options.sorted;
+  const sex = options.sex ? options.sex : null;
   const filterAnimalsByLocation = (loc) => animals.filter(({ location }) => location === loc);
-  let includeNames = {}
+  let includeNames = {};
   if (hasIncludeNames) {
-    const locations = [...new Set((animals.map(({ location }) => location)))]
-    locations.forEach(loc => {
+    const locations = [...new Set((animals.map(({ location }) => location)))];
+    locations.forEach((loc) => {
       const value = filterAnimalsByLocation(loc)
-        .map(x => ({ [x.name]: x.residents.map(x => x.name) }))
-      includeNames = { ...includeNames, ...{ [loc]: value } }
-    })
+        .map((x) => ({ [x.name]: x.residents.map((x) => x.name) }));
+      includeNames = { ...includeNames, ...{ [loc]: value } };
+    });
   } else return noOptions(animals);
   if (sex !== null && hasIncludeNames) {
     const keys = Object.keys(includeNames);
-    keys.forEach(key => {
-      includeNames[key].forEach(obj => {
+    keys.forEach((key) => {
+      includeNames[key].forEach((obj) => {
         const animalKey = Object.keys(obj)[0];
-        let out = animals.filter(({ name }) => name === animalKey).map(x => x.residents)[0];
-        let out2 = out.filter(x => x.sex === sex);
-        let out3 = out2.map(x => x.name);
+        const out = animals.filter(({ name }) => name === animalKey).map((x) => x.residents)[0];
+        const out2 = out.filter((x) => x.sex === sex);
+        const out3 = out2.map((x) => x.name);
         obj[animalKey] = out3;
-      })
-    })
+      });
+    });
   }
   if (isOrdered && hasIncludeNames) {
     const keys = Object.keys(includeNames);
-    keys.forEach(key => {
-      includeNames[key].forEach(obj => {
+    keys.forEach((key) => {
+      includeNames[key].forEach((obj) => {
         const objKeys = Object.keys(obj);
-        objKeys.forEach(objKey => {
+        objKeys.forEach((objKey) => {
           obj[objKey] = obj[objKey].sort();
-        })
-      })
-    })
+        });
+      });
+    });
   }
   return includeNames;
 }
 
+// req10
 function schedule(dayName) {
-  // seu código aqui
+  const { hours } = data;
+  const daysKeys = Object.keys(hours);
+  const noParms = daysKeys.reduce((acc, key) => {
+    const { open, close } = hours[key];
+    const outStr = open - close === 0
+      ? 'CLOSED'
+      : `Open from ${open}am until ${close - 12}pm`;
+    return { ...acc, ...{ [key]: outStr } };
+  }, {});
+  if (!dayName) {
+    return noParms;
+  }
+  const [day, msg] = Object.entries(noParms).find(([day, _msg]) => day == dayName);
+  return ({ [day]: msg });
 }
 
 function oldestFromFirstSpecies(id) {
