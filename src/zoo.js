@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /*
 eslint no-unused-vars: [
   "error",
@@ -9,17 +10,15 @@ eslint no-unused-vars: [
 ]
 */
 
-const data = require('./data');
+const { animals, employees, prices, hours } = require('./data');
 
 // req01
 function animalsByIds(...ids) {
-  const { animals } = data;
   return animals.filter(({ id }) => ids.includes(id));
 }
 
 // req02
 function animalsOlderThan(animalsName, animalsAge) {
-  const { animals } = data;
   return animals
     .find(({ name }) => name === animalsName)
     .residents
@@ -30,7 +29,6 @@ function animalsOlderThan(animalsName, animalsAge) {
 function employeeByName(employeeName) {
   if (!employeeName) return {};
 
-  const { employees } = data;
   return employees.find(
     ({ firstName, lastName }) => [firstName, lastName].includes(employeeName),
   );
@@ -45,7 +43,6 @@ function createEmployee(personalInfo, associatedWith) {
 
 // req05
 function isManager(id) {
-  const { employees } = data;
   return employees.some(({ managers }) => managers.includes(id));
 }
 
@@ -58,13 +55,11 @@ function addEmployee(id, firstName, lastName, managers, responsibleFor) {
     managers: managers || [],
     responsibleFor: responsibleFor || [],
   };
-  const { employees } = data;
   employees.push(employeeAdded);
 }
 
 // req07
 function animalCount(...species) {
-  const { animals } = data;
   if (species.length === 0) {
     return animals.reduce(
       (acc, { name, residents }) => {
@@ -82,7 +77,6 @@ function animalCount(...species) {
 // req08
 function entryCalculator(entrants) {
   if (!entrants || Object.entries(entrants).length === 0) return 0;
-  const { prices } = data;
   return Object
     .entries(entrants)
     .map(([key, value]) => value * prices[key])
@@ -90,7 +84,7 @@ function entryCalculator(entrants) {
 }
 
 // req 09
-const noOptions = (animals) => {
+const noOptions = () => {
   const locations = [...new Set((animals.map(({ location }) => location)))];
   const genericObj = locations.reduce((acc, location) => {
     acc[location] = [];
@@ -101,51 +95,60 @@ const noOptions = (animals) => {
   return noParms;
 };
 
-function animalMap(options) {
-  const { animals } = data;
-  if (!options) return noOptions(animals, options);
+function sexCondition(sex, hasIncludeNames, includeNames) {
+  if (sex !== null && hasIncludeNames) {
+    const keys = Object.keys(includeNames);
+    keys.forEach((key) => {
+      includeNames[key].forEach((obj) => {
+        const obj1 = obj;
+        const animalKey = Object.keys(obj)[0];
+        const out = animals.filter(({ name }) => name === animalKey).map((x) => x.residents)[0];
+        const out2 = out.filter((x) => x.sex === sex);
+        const out3 = out2.map((x) => x.name);
+        obj1[animalKey] = out3;
+      });
+    });
+  }
+}
+
+function orderCondition(isOrdered, hasIncludeNames, includeNames) {
+  if (isOrdered && hasIncludeNames) {
+    const keys = Object.keys(includeNames);
+    keys.forEach((key) => {
+      includeNames[key].forEach((obj) => {
+        const obj1 = obj;
+        const objKeys = Object.keys(obj);
+        objKeys.forEach((objKey) => {
+          obj1[objKey] = obj1[objKey].sort();
+        });
+      });
+    });
+  }
+}
+
+function animalMap(options = {}) {
   const hasIncludeNames = Object.keys(options).includes('includeNames') && options.includeNames;
   const isOrdered = Object.keys(options).includes('sorted') && options.sorted;
   const sex = options.sex ? options.sex : null;
   const filterAnimalsByLocation = (loc) => animals.filter(({ location }) => location === loc);
   let includeNames = {};
+
   if (hasIncludeNames) {
     const locations = [...new Set((animals.map(({ location }) => location)))];
     locations.forEach((loc) => {
       const value = filterAnimalsByLocation(loc)
-        .map((x) => ({ [x.name]: x.residents.map((x) => x.name) }));
+        .map((x1) => ({ [x1.name]: x1.residents.map((x2) => x2.name) }));
       includeNames = { ...includeNames, ...{ [loc]: value } };
     });
-  } else return noOptions(animals);
-  if (sex !== null && hasIncludeNames) {
-    const keys = Object.keys(includeNames);
-    keys.forEach((key) => {
-      includeNames[key].forEach((obj) => {
-        const animalKey = Object.keys(obj)[0];
-        const out = animals.filter(({ name }) => name === animalKey).map((x) => x.residents)[0];
-        const out2 = out.filter((x) => x.sex === sex);
-        const out3 = out2.map((x) => x.name);
-        obj[animalKey] = out3;
-      });
-    });
-  }
-  if (isOrdered && hasIncludeNames) {
-    const keys = Object.keys(includeNames);
-    keys.forEach((key) => {
-      includeNames[key].forEach((obj) => {
-        const objKeys = Object.keys(obj);
-        objKeys.forEach((objKey) => {
-          obj[objKey] = obj[objKey].sort();
-        });
-      });
-    });
-  }
+  } else return noOptions();
+  sexCondition(sex, hasIncludeNames, includeNames);
+  orderCondition(isOrdered, hasIncludeNames, includeNames);
+
   return includeNames;
 }
 
 // req10
 function schedule(dayName) {
-  const { hours } = data;
   const daysKeys = Object.keys(hours);
   const noParms = daysKeys.reduce((acc, key) => {
     const { open, close } = hours[key];
@@ -157,13 +160,12 @@ function schedule(dayName) {
   if (!dayName) {
     return noParms;
   }
-  const [day, msg] = Object.entries(noParms).find(([day, _msg]) => day == dayName);
+  const [day, msg] = Object.entries(noParms).find(([_day, _msg]) => _day === dayName);
   return ({ [day]: msg });
 }
 
 // req11
 function oldestFromFirstSpecies(employeeId) {
-  const { animals, employees } = data;
   const employee = employees.find(({ id }) => id === employeeId);
   const firstEspecieId = employee.responsibleFor[0];
   const animal = animals.find(({ id }) => id === firstEspecieId);
@@ -174,25 +176,25 @@ function oldestFromFirstSpecies(employeeId) {
 
 // req12
 function increasePrices(percentage) {
-  const { prices } = data;
   const perc = (100 + percentage) / 100;
   const keys = Object.keys(prices);
   keys.forEach((key) => {
     const num = parseFloat((prices[key] * perc).toFixed(3));
-    const int = parseInt(num, 4);
+    const int = Math.floor(num);
     const decimal = Math.ceil((num - int) * 100) / 100;
     prices[key] = int + decimal;
   });
 }
 
 // req13
+const getEmployeeById = (...queries) => employees.find(
+  ({ firstName, lastName, id }) => queries.includes(firstName)
+    || queries.includes(lastName) || queries.includes(id),
+);
+
+const getAnimalNameById = (animalId) => animals.find(({ id }) => id === animalId).name;
+
 function employeeCoverage(idOrName) {
-  const { animals, employees } = data;
-  const getEmployeeById = (...queries) => employees.find(
-    ({ firstName, lastName, id }) => queries.includes(firstName)
-      || queries.includes(lastName) || queries.includes(id),
-  );
-  const getAnimalNameById = (animalId) => animals.find(({ id }) => id === animalId).name;
   if (!idOrName) {
     const allEmpIds = employees.map(({ id }) => id);
     let noParms = {};
