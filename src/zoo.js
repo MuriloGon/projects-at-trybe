@@ -36,14 +36,13 @@ function employeeByName(employeeName) {
 
 // req04
 function createEmployee(personalInfo, associatedWith) {
-  const { id, firstName, lastName } = personalInfo;
-  const { managers, responsibleFor } = associatedWith;
-  return { id, firstName, lastName, managers, responsibleFor };
+  return { ...personalInfo, ...associatedWith };
 }
 
 // req05
-function isManager(id) {
-  return employees.some(({ managers }) => managers.includes(id));
+function isManager(idTest) {
+  const { managers: { length } } = employees.find(({ id }) => id === idTest);
+  return length === 0 || length === 1;
 }
 
 // req06
@@ -127,8 +126,8 @@ function orderCondition(isOrdered, hasIncludeNames, includeNames) {
 }
 
 function animalMap(options = {}) {
-  const hasIncludeNames = Object.keys(options).includes('includeNames') && options.includeNames;
-  const isOrdered = Object.keys(options).includes('sorted') && options.sorted;
+  const hasIncludeNames = !!options.includeNames;
+  const isOrdered = !!options.sorted;
   const sex = options.sex ? options.sex : null;
   const filterAnimalsByLocation = (loc) => animals.filter(({ location }) => location === loc);
   let includeNames = {};
@@ -149,19 +148,17 @@ function animalMap(options = {}) {
 
 // req10
 function schedule(dayName) {
-  const daysKeys = Object.keys(hours);
-  const noParms = daysKeys.reduce((acc, key) => {
+  const noParms = Object.keys(hours).reduce((acc, key) => {
     const { open, close } = hours[key];
-    const outStr = open - close === 0
-      ? 'CLOSED'
-      : `Open from ${open}am until ${close - 12}pm`;
-    return { ...acc, ...{ [key]: outStr } };
+    return {
+      ...acc,
+      [key]: (open - close === 0
+        ? 'CLOSED'
+        : `Open from ${open}am until ${close - 12}pm`),
+    };
   }, {});
-  if (!dayName) {
-    return noParms;
-  }
-  const [day, msg] = Object.entries(noParms).find(([_day, _msg]) => _day === dayName);
-  return ({ [day]: msg });
+  if (!dayName) return noParms;
+  return { [dayName]: noParms[dayName] };
 }
 
 // req11
@@ -177,8 +174,7 @@ function oldestFromFirstSpecies(employeeId) {
 // req12
 function increasePrices(percentage) {
   const perc = (100 + percentage) / 100;
-  const keys = Object.keys(prices);
-  keys.forEach((key) => {
+  Object.keys(prices).forEach((key) => {
     const num = parseFloat((prices[key] * perc).toFixed(3));
     const int = Math.floor(num);
     const decimal = Math.ceil((num - int) * 100) / 100;
@@ -187,7 +183,7 @@ function increasePrices(percentage) {
 }
 
 // req13
-const getEmployeeById = (...queries) => employees.find(
+const getEmployeeByIdOrName = (...queries) => employees.find(
   ({ firstName, lastName, id }) => queries.includes(firstName)
     || queries.includes(lastName) || queries.includes(id),
 );
@@ -199,13 +195,13 @@ function employeeCoverage(idOrName) {
     const allEmpIds = employees.map(({ id }) => id);
     let noParms = {};
     allEmpIds.forEach((empId) => {
-      const { firstName, lastName, responsibleFor } = getEmployeeById(empId);
+      const { firstName, lastName, responsibleFor } = getEmployeeByIdOrName(empId);
       const animalsEspecies = responsibleFor.map((animalId) => getAnimalNameById(animalId));
       noParms = { ...noParms, ...{ [`${firstName} ${lastName}`]: animalsEspecies } };
     });
     return noParms;
   }
-  const { firstName, lastName, responsibleFor } = getEmployeeById(idOrName);
+  const { firstName, lastName, responsibleFor } = getEmployeeByIdOrName(idOrName);
   const animalsEspecies = responsibleFor.map((animalId) => getAnimalNameById(animalId));
   return { [`${firstName} ${lastName}`]: animalsEspecies };
 }
