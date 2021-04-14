@@ -1,3 +1,4 @@
+const cartItemsStr = '.cart__items';
 /* #### LocalStorage #### */
 const fetchLocalStorageItems = () => {
   if (localStorage.getItem('cartItems')) {
@@ -115,10 +116,12 @@ async function fetchQueryProducts(QUERY) {
 }
 
 // Populate querie items on the page
-async function createListItems(itemsQuerySelector, productQuery) {
+async function createListItems(itemsQuerySelector, productQuery, loadingCallback) {
+  loadingCallback.loading();
   const { results } = await fetchQueryProducts(productQuery);
   const container = document.querySelector(itemsQuerySelector);
   container.innerHTML = '';
+  loadingCallback.loaded();
 
   results.forEach(({ id: sku, title: name, thumbnail: image, price }) => {
     container.appendChild(createProductItemElement({ sku, name, image, price }));
@@ -129,7 +132,7 @@ async function createListItems(itemsQuerySelector, productQuery) {
 async function addToCartEvt(querySelector) {
   const items = document.querySelector(querySelector);
   items.addEventListener('click', (evt) => {
-    const cartListEl = document.querySelector('.cart__items');
+    const cartListEl = document.querySelector(cartItemsStr);
     const { target } = evt;
 
     if (target.classList.contains('item__add')) {
@@ -144,7 +147,7 @@ async function addToCartEvt(querySelector) {
 
 function populateCartFromStorage() {
   const items = fetchLocalStorageItems();
-  const cartEl = document.querySelector('.cart__items');
+  const cartEl = document.querySelector(cartItemsStr);
   items.forEach((item) => {
     cartEl.appendChild(createCartItemElement(item));
     sumPrices();
@@ -154,7 +157,7 @@ function populateCartFromStorage() {
 // Clear Cart
 function clearCartItems() {
   const btnEmpty = document.querySelector('.empty-cart');
-  const olEl = document.querySelector('.cart__items');
+  const olEl = document.querySelector(cartItemsStr);
   btnEmpty.addEventListener('click', () => {
     olEl.innerHTML = '';
     updateLocalStorage();
@@ -162,9 +165,24 @@ function clearCartItems() {
   });
 }
 
+const loadObj = () => {
+  const itemEl = document.querySelector('.items');
+  const pEl = document.createElement('p');
+  itemEl.appendChild(pEl);
+  pEl.className = 'loading';
+  return {
+    loading: () => {
+      pEl.innerHTML = 'loading';
+    },
+    loaded: () => { 
+      pEl.remove();
+    },
+  };
+};
+
 window.onload = function onload() {
   populateCartFromStorage();
-  createListItems('.items', 'computador');
+  createListItems('.items', 'computador', loadObj());
   addToCartEvt('.items');
   clearCartItems();
 };
