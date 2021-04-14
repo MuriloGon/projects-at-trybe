@@ -34,7 +34,8 @@ function getParametersFromItem(item) {
 }
 
 function cartItemClickListener(event) {
-  // coloque seu código aqui
+    const { target } = event;
+    target.remove();
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
