@@ -1,3 +1,38 @@
+/* #### LocalStorage #### */
+const fetchLocalStorageItems = () => {
+  if (localStorage.getItem('cartItems')) {
+    return JSON.parse(localStorage.getItem('cartItems'));
+  }
+  return [];
+};
+
+const setLocalStorage = (cartItemsArray) => {
+  localStorage.setItem('cartItems', JSON.stringify(cartItemsArray));
+};
+
+// GetAllCurrentItems
+const getAllCartItems = () => {
+  const items = [...document.querySelectorAll('.cart__items .cart__item')];
+  const obj = items.map((cartItem) => {
+    const resultRegex = cartItem
+      .innerHTML
+      .match(/SKU: ([\S]+) \| NAME: ([\s\S]+) \| PRICE: \$([\s\S]+)/);
+    return {
+      sku: resultRegex[1],
+      name: resultRegex[2],
+      salePrice: resultRegex[3],
+    };
+  });
+  return obj;
+};
+
+function updateLocalStorage() {
+  const cartItems = getAllCartItems();
+  setLocalStorage(cartItems);
+  console.log(localStorage);
+}
+/* ###### */
+
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -34,8 +69,9 @@ function getParametersFromItem(item) {
 }
 
 function cartItemClickListener(event) {
-    const { target } = event;
-    target.remove();
+  const { target } = event;
+  target.remove();
+  updateLocalStorage();
 }
 
 function createCartItemElement({ sku, name, salePrice }) {
@@ -58,7 +94,6 @@ async function fetchQueryProducts(QUERY) {
 // Populate querie items on the page
 async function createListItems(itemsQuerySelector, productQuery) {
   const { results } = await fetchQueryProducts(productQuery);
-  console.log(results);
   const container = document.querySelector(itemsQuerySelector);
   container.innerHTML = '';
 
@@ -78,11 +113,21 @@ async function addToCartEvt(querySelector) {
       const { parentElement } = target;
       const parms = getParametersFromItem(parentElement);
       cartListEl.appendChild(createCartItemElement(parms));
+      updateLocalStorage();
     }
   });
 }
 
+function populateCartFromStorage() {
+  const items = fetchLocalStorageItems();
+  const cartEl = document.querySelector('.cart__items');
+  items.forEach((item) => {
+    cartEl.appendChild(createCartItemElement(item));
+  });
+}
+
 window.onload = function onload() {
+  populateCartFromStorage();
   createListItems('.items', 'computador');
   addToCartEvt('.items');
 };
