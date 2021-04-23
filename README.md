@@ -69,7 +69,7 @@ Lembre-se também de **não modificar** os describes dos tests na pasta `test`. 
 
   - Serão dois dias de projeto.
 
-  - Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+  - Data de entrega para avaliação final do projeto: `30/04/2021 - 14:00h`.
 
 ---
 
@@ -237,7 +237,7 @@ Use o conteúdo sobre [Code Review](https://app.betrybe.com/course/real-life-eng
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/2OfLJPn)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/39qMu3s)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
 
