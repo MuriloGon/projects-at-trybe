@@ -20,20 +20,37 @@ ATENÇÃO!!! Edite apenas este arquivo. Não altere os arquivos da pasta 'src'.
 */
 
 describe('quem sobreviveu?', () => {
-  // Adicione seu código aqui
+  adventure.randomAttack = jest.fn()
+    .mockImplementation(() => adventure.specialists.pop());
+
+  beforeEach(() => {
+    adventure.randomAttack();
+  });
+
+  afterEach(() => {
+    console.log('Remaining adventures: ', adventure.specialists.map(({ nome }) => nome));
+  });
+
+  afterAll(() => {
+    console.log('Congrats: ', adventure.specialists.map(({ nome }) => nome));
+  });
 
   test('depois da primeira aventura', () => {
     expect(adventure.specialists.length).toBe(5);
   });
+
   test('depois da segunda aventura', () => {
     expect(adventure.specialists.length).toBe(4);
   });
+
   test('depois da terceira aventura', () => {
     expect(adventure.specialists.length).toBe(3);
   });
+
   test('depois da quarta aventura', () => {
     expect(adventure.specialists.length).toBe(2);
   });
+
   test('depois da quinta aventura', () => {
     expect(adventure.specialists.length).toBe(1);
   });
