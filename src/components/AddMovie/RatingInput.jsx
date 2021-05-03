@@ -15,8 +15,12 @@ const RatingInput = ({ rating, setRating }) => (
 );
 
 RatingInput.propTypes = {
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setRating: PropTypes.func.isRequired,
+};
+
+RatingInput.defaultProps = {
+  rating: 0,
 };
 
 export { RatingInput as default };

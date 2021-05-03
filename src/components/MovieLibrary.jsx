@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import SearchBar from './SearchBar';
 import MovieList from './MovieList';
+import AddMovie from './AddMovie';
 
 const filteredMovies = (movies, text, isFavorite, selectedGenre) => {
   let filtered = [...movies];
@@ -25,10 +26,14 @@ const MovieLibrary = ({ movies: moviesProps }) => {
   const [searchText, setSearchText] = useState('');
   const [bookmarkedOnly, setBookmarkedOnly] = useState(false);
   const [selectedGenre, setSelectedGenre] = useState('');
-  const movies = filteredMovies(moviesProps, searchText, bookmarkedOnly, selectedGenre);
+  const [movies, setMovies] = useState(moviesProps);
+  const filteredmovies = filteredMovies(
+    movies, searchText, bookmarkedOnly, selectedGenre,
+  );
 
   return (
     <>
+      <AddMovie onClick={ (movie) => setMovies([...movies, movie]) } />
       <SearchBar
         searchText={ searchText }
         onSearchTextChange={ setSearchText }
@@ -37,7 +42,7 @@ const MovieLibrary = ({ movies: moviesProps }) => {
         selectedGenre={ selectedGenre }
         onSelectedGenreChange={ setSelectedGenre }
       />
-      <MovieList movies={ movies } />
+      <MovieList movies={ filteredmovies } />
     </>
   );
 };
