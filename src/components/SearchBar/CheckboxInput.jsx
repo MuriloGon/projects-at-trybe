@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({ bookmarkedOnly, onBookmarkedChange }) => (
+const CheckboxInput = ({ bookmarkedOnly, onBookmarkedChange }) => (
   <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
     Mostrar somente favoritos
     <input
@@ -14,9 +14,9 @@ const Checkbox = ({ bookmarkedOnly, onBookmarkedChange }) => (
   </label>
 );
 
-Checkbox.propTypes = {
+CheckboxInput.propTypes = {
   bookmarkedOnly: PropTypes.bool.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
 };
 
-export { Checkbox as default };
+export { CheckboxInput as default };
