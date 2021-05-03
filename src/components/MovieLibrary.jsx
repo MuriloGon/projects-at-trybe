@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import SearchBar from './SearchBar';
+import MovieList from './MovieList';
+
 const MovieLibrary = ({ movies: moviesProps }) => {
   const [searchText, setSearchText] = useState('');
   const [bookmarkedOnly, setBookmarkedOnly] = useState(false);
@@ -8,7 +11,17 @@ const MovieLibrary = ({ movies: moviesProps }) => {
   const [movies] = useState(moviesProps);
 
   return (
-    <h1>MovieLibrary</h1>
+    <>
+      <SearchBar
+        searchText={ searchText }
+        onSearchTextChange={ setSearchText }
+        bookmarkedOnly={ bookmarkedOnly }
+        onBookmarkedChange={ setBookmarkedOnly }
+        selectedGenre={ selectedGenre }
+        onSelectedGenreChange={ setSelectedGenre }
+      />
+      <MovieList movies={ movies } />
+    </>
   );
 };
 

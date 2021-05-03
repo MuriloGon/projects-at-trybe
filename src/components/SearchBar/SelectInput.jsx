@@ -15,7 +15,7 @@ const SelectInput = ({ selectedGenre, onSelectedGenreChange }) => (
       id="select-input"
       data-testid="select-input"
       value={ selectedGenre }
-      onChange={ onSelectedGenreChange }
+      onChange={ ({ target: { value } }) => onSelectedGenreChange(value) }
     >
       {
         Object.entries(options).map(

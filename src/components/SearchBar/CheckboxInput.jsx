@@ -9,7 +9,7 @@ const CheckboxInput = ({ bookmarkedOnly, onBookmarkedChange }) => (
       type="checkbox"
       data-testid="checkbox-input"
       checked={ bookmarkedOnly }
-      onChange={ onBookmarkedChange }
+      onChange={ ({ target: { checked } }) => onBookmarkedChange(checked) }
     />
   </label>
 );

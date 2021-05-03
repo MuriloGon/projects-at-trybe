@@ -9,7 +9,7 @@ const TextInput = ({ searchText, onSearchTextChange }) => (
       type="text"
       data-testid="text-input"
       value={ searchText }
-      onChange={ onSearchTextChange }
+      onChange={ ({ target: { value } }) => onSearchTextChange(value) }
     />
   </label>
 );
