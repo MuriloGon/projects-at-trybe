@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const RatingInput = ({ rating, setRating }) => (
-  <label data-testid="rating-input-label" htmlFor="rating-input">
+  <label className="label" data-testid="rating-input-label" htmlFor="rating-input">
     Avaliação
     <input
+      className="input"
       id="rating-input"
       type="number"
       value={ rating }

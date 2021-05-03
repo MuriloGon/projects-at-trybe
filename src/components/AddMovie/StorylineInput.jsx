@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StorylineInput = ({ storyline, setStoryline }) => (
-  <label data-testid="storyline-input-label" htmlFor="storyline-input">
+  <label className="label" data-testid="storyline-input-label" htmlFor="storyline-input">
     Sinopse
     <input
+      className="input"
       id="storyline-input"
       type="text"
       value={ storyline }

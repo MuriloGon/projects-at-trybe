@@ -5,6 +5,8 @@ import SearchBar from './SearchBar';
 import MovieList from './MovieList';
 import AddMovie from './AddMovie';
 
+import './MovieLibrary.css';
+
 const filteredMovies = (movies, text, isFavorite, selectedGenre) => {
   let filtered = [...movies];
 
@@ -32,18 +34,25 @@ const MovieLibrary = ({ movies: moviesProps }) => {
   );
 
   return (
-    <>
-      <AddMovie onClick={ (movie) => setMovies([...movies, movie]) } />
-      <SearchBar
-        searchText={ searchText }
-        onSearchTextChange={ setSearchText }
-        bookmarkedOnly={ bookmarkedOnly }
-        onBookmarkedChange={ setBookmarkedOnly }
-        selectedGenre={ selectedGenre }
-        onSelectedGenreChange={ setSelectedGenre }
-      />
+    <div className="MovieLibrary container is-fullhd">
+      <div className="left-side card">
+        <div className="left-wrapper">
+          <h4 className="title is-4">Filtrar Filmes</h4>
+          <SearchBar
+            searchText={ searchText }
+            onSearchTextChange={ setSearchText }
+            bookmarkedOnly={ bookmarkedOnly }
+            onBookmarkedChange={ setBookmarkedOnly }
+            selectedGenre={ selectedGenre }
+            onSelectedGenreChange={ setSelectedGenre }
+          />
+          <h4 className="title is-4">Adicionar Filme</h4>
+          <AddMovie onClick={ (movie) => setMovies([...movies, movie]) } />
+
+        </div>
+      </div>
       <MovieList movies={ filteredmovies } />
-    </>
+    </div>
   );
 };
 

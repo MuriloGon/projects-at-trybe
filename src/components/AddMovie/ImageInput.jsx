@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ImageInput = ({ imagePath, setImagePath }) => (
-  <label data-testid="image-input-label" htmlFor="image-input">
+  <label className="label" data-testid="image-input-label" htmlFor="image-input">
     Imagem
     <input
+      className="input"
       id="image-input"
       type="text"
       value={ imagePath }

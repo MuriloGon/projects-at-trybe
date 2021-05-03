@@ -8,9 +8,10 @@ const options = [
 ];
 
 const GenreInput = ({ genre, setGenre }) => (
-  <label data-testid="genre-input-label" htmlFor="genre-input">
+  <label className="label" data-testid="genre-input-label" htmlFor="genre-input">
     Gênero
     <select
+      className="select"
       id="genre-input"
       data-testid="genre-input"
       onChange={ ({ target: { value } }) => setGenre(value) }

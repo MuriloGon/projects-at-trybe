@@ -53,7 +53,9 @@ const AddMovie = ({ onClick }) => {
       <StorylineInput { ...{ storyline, setStoryline } } />
       <RatingInput { ...{ rating, setRating } } />
       <GenreInput { ...{ genre, setGenre } } />
-      <button data-testid="send-button" type="submit">Adicionar filme</button>
+      <button className="button is-primary" data-testid="send-button" type="submit">
+        Adicionar filme
+      </button>
     </form>
   );
 };

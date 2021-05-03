@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SubtitleInput = ({ subtitle, setSubtitle }) => (
-  <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
+  <label className="label" data-testid="subtitle-input-label" htmlFor="subtitle-input">
     Subtítulo
     <input
+      className="input"
       id="subtitle-input"
       type="text"
       value={ subtitle }
