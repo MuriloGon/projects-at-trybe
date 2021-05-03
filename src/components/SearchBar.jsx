@@ -1,5 +1,7 @@
 import React from 'react';
 
-const SearchBar = () => (<h1>SearchBar</h1>);
+const SearchBar = () => (
+  <form data-testid="search-bar-form" />
+);
 
 export default SearchBar;
