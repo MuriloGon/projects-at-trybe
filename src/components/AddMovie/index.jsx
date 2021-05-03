@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AddMovie = () => (
-  0
+  <form data-testid="add-movie-form" />
 );
 
 export { AddMovie as default };
