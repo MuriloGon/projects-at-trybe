@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { MovieList, MovieDetails, NewMovie, EditMovie, NotFound } from './pages';
 
-function App() {
+function Routes() {
   return (
     <BrowserRouter>
       <Switch>
@@ -30,4 +30,4 @@ function App() {
   );
 }
 
-export default App;
+export default Routes;
