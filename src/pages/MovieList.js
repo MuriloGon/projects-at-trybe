@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Loading } from '../components';
 import MovieCard from '../components/MovieCard';
 
 import * as movieAPI from '../services/movieAPI';
 
-class MovieList extends Component {
-  constructor() {
-    super();
+const fetchMovies = async (currentMovies, setLoading, setMovies) => {
+  setLoading(true);
+  setMovies([...currentMovies, ...(await movieAPI.getMovies())]);
+  setLoading(false);
+};
 
-    this.state = {
-      movies: [],
-    };
-  }
+const MovieList = () => {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  render() {
-    const { movies } = this.state;
+  useEffect(() => {
+    (() => { fetchMovies(movies, setLoading, setMovies); })();
+  }, []);
 
-    // Render Loading here if the request is still happening
-
-    return (
-      <div data-testid="movie-list">
-        {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="movie-list" data-testid="movie-list">
+      {loading ? <Loading />
+        : movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
+    </div>
+  );
+};
 
 export default MovieList;
