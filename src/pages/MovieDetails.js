@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useRouteMatch } from 'react-router-dom';
+import { Link, Redirect, useParams, useRouteMatch } from 'react-router-dom';
 
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
@@ -10,8 +10,14 @@ const fetchMovie = async (id, setLoading, setMovie) => {
   setMovie(movie);
 };
 
+const deleteMovie = (id, setRedirect) => {
+  movieAPI.deleteMovie(id);
+  setRedirect(true);
+};
+
 const MovieDetails = () => {
   const [loading, setLoading] = useState(true);
+  const [redirect, setRedirect] = useState(false);
   const [movie, setMovie] = useState({});
   const { id } = useParams();
   const { url } = useRouteMatch();
@@ -23,6 +29,8 @@ const MovieDetails = () => {
     fetchMovie(id, setLoading, setMovie);
   }, [id]);
 
+  if (redirect) return <Redirect />;
+
   return loading ? <Loading /> : (
     <div data-testid="movie-details">
       <img alt="Movie Cover" src={ `../${imagePath}` } />
@@ -33,7 +41,9 @@ const MovieDetails = () => {
       <p>{ `Rating: ${rating}` }</p>
 
       <Link to={ `${url}/edit` }>EDITAR</Link>
-      <Link to="/">DELETAR</Link>
+      <Link to="/" onClick={ () => deleteMovie(id, setRedirect) }>
+        DELETAR
+      </Link>
       <Link to="/">VOLTAR</Link>
     </div>
   );

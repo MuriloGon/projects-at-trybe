@@ -4,9 +4,10 @@ import MovieCard from '../components/MovieCard';
 
 import * as movieAPI from '../services/movieAPI';
 
-const fetchMovies = async (currentMovies, setLoading, setMovies) => {
+const fetchMovies = async (setLoading, setMovies) => {
   setLoading(true);
-  setMovies([...currentMovies, ...(await movieAPI.getMovies())]);
+  const movieFetched = await movieAPI.getMovies();
+  setMovies((previousState) => [...previousState, ...movieFetched]);
   setLoading(false);
 };
 
@@ -14,9 +15,7 @@ const MovieList = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    (() => { fetchMovies(movies, setLoading, setMovies); })();
-  }, []);
+  useEffect(() => { fetchMovies(setLoading, setMovies); }, []);
 
   return (
     <div className="movie-list" data-testid="movie-list">
