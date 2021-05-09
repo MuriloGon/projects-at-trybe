@@ -1,10 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const defaultState = {
+  title: '',
+  subtitle: '',
+  imagePath: '',
+  storyLine: '',
+  genre: '',
+  rating: 0,
+};
 class MovieForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { ...props.movie };
+    this.state = {
+      ...(props.movie ? props.movie : defaultState),
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -163,5 +173,23 @@ class MovieForm extends React.Component {
     );
   }
 }
+
+MovieForm.defaultProps = {
+  movie: defaultState,
+};
+
+MovieForm.propTypes = {
+  movie: PropTypes.shape(
+    {
+      title: PropTypes.string,
+      subtitle: PropTypes.string,
+      imagePath: PropTypes.string,
+      storyLine: PropTypes.string,
+      genre: PropTypes.string,
+      rating: PropTypes.number,
+    },
+  ),
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default MovieForm;

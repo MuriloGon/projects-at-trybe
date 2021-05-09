@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Navbar from './components/NavBar';
 import { MovieList, MovieDetails, NewMovie, EditMovie, NotFound } from './pages';
 
 function App() {
@@ -7,6 +9,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
+          <Navbar />
           <MovieList />
         </Route>
 
