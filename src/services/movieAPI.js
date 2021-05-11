@@ -68,3 +68,18 @@ export const deleteMovie = (movieId) => {
     simulateRequest({ status: SUCCESS_STATUS })(resolve);
   });
 };
+
+export const updateBookmark = (ID) => (
+  new Promise((resolve) => {
+    const movies = readMovies().map((movie) => {
+      if (movie.id === ID) {
+        const movieCopy = { ...movie };
+        movieCopy.bookmarked = !movieCopy.bookmarked;
+        return { ...movie, ...movieCopy };
+      }
+      return movie;
+    });
+    saveMovies(movies);
+    simulateRequest(SUCCESS_STATUS)(resolve);
+  })
+);

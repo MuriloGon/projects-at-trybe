@@ -1,0 +1,26 @@
+<svg width="33.073mm" height="26.458mm" version="1.1" viewBox="0 0 33.073 26.458" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <filter id="a" x="-.00012" y="-.00012" width="1.0002" height="1.0002" style="color-interpolation-filters:sRGB">
+   <feGaussianBlur stdDeviation="0.00031657751"/>
+  </filter>
+ </defs>
+ <g transform="translate(-75.701 -129.99)">
+  <g transform="translate(-.32418)" style="opacity:.999">
+   <rect x="76.025" y="143.22" width="33.073" height="13.229" style="fill:#ececec"/>
+   <rect transform="scale(-1)" x="-109.1" y="-143.22" width="33.073" height="13.229" style="fill:#4d4d4d"/>
+  </g>
+  <path d="m94.176 140.75a4.7718 4.7883 62.087 0 0 1.7606-6.5258 4.7718 4.7883 62.087 0 0-6.5335-1.7386 4.7718 4.7883 62.087 0 0-1.5022 1.3605 4.443 5.0819 60.054 0 1 5.6515 1.7542 4.443 5.0819 60.054 0 1-1.3062 5.7698 4.7718 4.7883 62.087 0 0 1.9298-0.62008z" style="fill:#ffff85"/>
+  <g transform="matrix(.88364 0 0 .88364 10.732 17.434)" style="stroke-width:.89827">
+   <rect x="91.995" y="143.75" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+   <rect x="91.995" y="143.75" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+   <rect transform="rotate(90)" x="149.59" y="-98.323" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+   <rect transform="scale(-1)" x="-92.48" y="-155.92" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+   <rect transform="rotate(-90)" x="-150.08" y="86.152" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+   <rect transform="rotate(-45)" x="-40.969" y="165.08" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+   <rect transform="rotate(45)" x="170.93" y="34.641" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+   <rect transform="rotate(135)" x="40.484" y="-177.26" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+   <rect transform="rotate(225)" x="-171.41" y="-46.812" width=".48503" height="2.1342" rx=".2164" ry=".40227" style="paint-order:stroke fill markers"/>
+  </g>
+  <circle transform="matrix(-.88364 0 0 -.88364 10.732 17.434)" cx="-92.237" cy="-149.83" r="3.1658" style="fill:#ffe500;filter:url(#a);opacity:.999"/>
+ </g>
+</svg>
