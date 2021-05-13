@@ -7,7 +7,7 @@ import { MovieList, MovieDetails, NewMovie, EditMovie, NotFound } from './pages'
 import { themes } from './styles/variables';
 
 function App() {
-  const [currentTheme, setTheme] = useState('light');
+  const [currentTheme, setTheme] = useState('dark');
 
   useEffect(() => {
     document.body.style.backgroundColor = themes[currentTheme].background;

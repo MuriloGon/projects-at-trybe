@@ -6,6 +6,7 @@ import MovieCard from '../components/MovieCard';
 import * as movieAPI from '../services/movieAPI';
 
 const MList = styled.div`display: block;
+  overflow: hidden;
 `;
 
 MList.Content = styled.div`display: flex;
@@ -34,7 +35,7 @@ const MovieList = () => {
   if (loading) return <Loading />;
 
   return (
-    <MList className="movie-list" data-testid="movie-list">
+    <MList data-testid="movie-list">
       <MList.Content>
         {movies.map((movie) => <MovieCard key={ movie.title } movie={ movie } />)}
       </MList.Content>

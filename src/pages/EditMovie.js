@@ -3,6 +3,7 @@ import { Redirect, useParams } from 'react-router';
 
 import { Loading, MovieForm } from '../components';
 import * as movieAPI from '../services/movieAPI';
+import { PopAnimation } from '../styles/utility';
 
 const fetchMovieData = async (id, setMovie, setStatus) => {
   setStatus('loading');
@@ -28,9 +29,11 @@ const EditMovie = () => {
   if (status === 'loading') return <Loading />;
 
   return (
-    <div data-testid="edit-movie">
-      <MovieForm movie={ movie } onSubmit={ handleSubmit } />
-    </div>
+    <PopAnimation>
+      <div data-testid="edit-movie" className="anim">
+        <MovieForm movie={ movie } onSubmit={ handleSubmit } />
+      </div>
+    </PopAnimation>
   );
 };
 

@@ -23,12 +23,12 @@ const Div = styled.div`border-radius: 50%;
     user-select: none;
   }
 
-  .light {
+  .dark {
     overflow: hidden;
     transform: translate(-30%, -50%) rotateZ(180deg);
   }
 
-  .dark {
+  .light {
     overflow: hidden;
     transform: translate(-30%, -50%) rotateZ(0deg);
   }

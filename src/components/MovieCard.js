@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled, { ThemeContext } from 'styled-components';
 
 import Bookmarked from './Bookmarked';
+import { PopAnimation } from '../styles/utility';
 
 const MCard = styled.div`background-color: ${({ primary }) => primary};
   border-radius: 10px;
@@ -63,30 +64,39 @@ MCard.Text = styled.div`background-position: center;
 `;
 
 MCard.Footer = styled.div`padding: 1rem;
+
+  a:hover { color: ${({ primary }) => primary}; }
 `;
 
 const MovieCard = ({ movie: { id, title, subtitle, storyline,
   imagePath, bookmarked } }) => {
   const theme = useContext(ThemeContext);
+
+  const imageCard = () => (
+    <MCard.Content>
+      <MCard.ImgContainer>
+        <Link to={ `movies/${id}` }>
+          <MCard.Img src={ imagePath } />
+        </Link>
+        <Bookmarked bookmarked={ bookmarked } id={ id } className="bookmarked" />
+      </MCard.ImgContainer>
+      <MCard.Text { ...theme }>
+        <h2>{title}</h2>
+        <h3>{subtitle}</h3>
+        <p>{storyline}</p>
+      </MCard.Text>
+    </MCard.Content>
+  );
+
   return (
-    <MCard data-testid="movie-card" { ...theme }>
-      <MCard.Content>
-        <MCard.ImgContainer>
-          <Link to={ `movies/${id}` }>
-            <MCard.Img src={ imagePath } />
-          </Link>
-          <Bookmarked bookmarked={ bookmarked } id={ id } className="bookmarked" />
-        </MCard.ImgContainer>
-        <MCard.Text { ...theme }>
-          <h2>{title}</h2>
-          <h3>{subtitle}</h3>
-          <p>{storyline}</p>
-        </MCard.Text>
-      </MCard.Content>
-      <MCard.Footer>
-        <Link to={ `movies/${id}` }>VER DETALHES</Link>
-      </MCard.Footer>
-    </MCard>
+    <PopAnimation>
+      <MCard data-testid="movie-card" { ...theme }>
+        { imageCard() }
+        <MCard.Footer>
+          <Link to={ `movies/${id}` }>VER DETALHES</Link>
+        </MCard.Footer>
+      </MCard>
+    </PopAnimation>
   );
 };
 

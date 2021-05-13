@@ -20,10 +20,10 @@ const Loading = () => {
     <Container>
       <SubContainer { ...theme }>
         <img
-          src={ theme.theme === 'dark' ? darkImage : lightImage }
+          src={ theme.theme === 'dark' ? lightImage : darkImage }
           alt="loading"
         />
-        <div className="loading-message">Carregando...</div>
+        <h2 className="loading-message">Carregando...</h2>
       </SubContainer>
     </Container>
   );

@@ -62,7 +62,7 @@ const Form = styled.form`background-color: ${({ primary }) => primary};
 
   .form-btn-submit {
     background-color: ${({ accent }) => accent};
-    color: ${({ primary }) => primary};
+    color: ${({ secondary }) => secondary};
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 600;
@@ -174,9 +174,9 @@ const renderRatingInput = ({ rating }, updateMovie) => (
 const renderSubmitButton = (stateForm, handleSubmit) => (
   <div className="form-input">
     <button
-      type="button"
+      type="submit"
       className="form-btn-submit"
-      onClick={ () => { handleSubmit(stateForm); } }
+      onClick={ (e) => { handleSubmit(stateForm); e.preventDefault(); } }
     >
       Submit
     </button>
@@ -203,7 +203,7 @@ const MovieForm = ({ onSubmit, movie }) => {
 
   return (
     <Container style={ { height: '100%' } }>
-      <Form { ...theme }>
+      <Form { ...theme } onSubmit={ () => { onSubmit(formState); } }>
         <h1>Adicionar Cartão</h1>
         <div className="form-row">
           <div className="form-col">

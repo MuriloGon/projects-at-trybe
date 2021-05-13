@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 
 import MovieForm from '../components/MovieForm';
 import * as movieAPI from '../services/movieAPI';
+import { PopAnimation } from '../styles/utility';
 
 const NewMovie = () => {
   const [redirect, setRedirect] = useState(false);
@@ -15,9 +16,11 @@ const NewMovie = () => {
   if (redirect) return <Redirect to="/" />;
 
   return (
-    <div data-testid="new-movie">
-      <MovieForm onSubmit={ handleSubmit } />
-    </div>
+    <PopAnimation>
+      <div data-testid="new-movie">
+        <MovieForm onSubmit={ handleSubmit } />
+      </div>
+    </PopAnimation>
   );
 };
 export default NewMovie;

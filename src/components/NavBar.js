@@ -43,9 +43,7 @@ Nav.Content = styled.ul`align-items: stretch;
     text-decoration: none;
   }
 
-  a:hover {
-    color: ${({ accent }) => accent};
-  }
+  a:hover { color: ${({ accent }) => accent}; }
 `;
 
 const Navbar = ({ toggleTheme, theme: currentTheme }) => {
@@ -55,10 +53,10 @@ const Navbar = ({ toggleTheme, theme: currentTheme }) => {
     <Nav { ...theme }>
       <Nav.Content { ...theme }>
         <li><Link to="/">MOVIE CARDS LIBRARY</Link></li>
-        <li><Link to="/movies/new">ADICIONAR CARTÃO</Link></li>
         <li>
           <ToggleTheme currentTheme={ currentTheme } onClick={ toggleTheme } />
         </li>
+        <li><Link to="/movies/new">ADICIONAR CARTÃO</Link></li>
       </Nav.Content>
     </Nav>
   );
