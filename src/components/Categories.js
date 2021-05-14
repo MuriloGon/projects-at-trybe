@@ -13,7 +13,7 @@ class Categories extends Component {
 
   componentDidMount() {
     getCategories().then((data) => {
-      this.setState({ categorias: data });
+      this.setState({ categories: data });
     });
   }
 
