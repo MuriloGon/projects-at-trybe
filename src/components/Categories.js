@@ -6,7 +6,7 @@ class Categories extends Component {
     super();
 
     this.state = {
-      categorias: [],
+      categories: [],
 
     };
   }
