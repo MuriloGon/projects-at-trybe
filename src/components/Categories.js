@@ -18,13 +18,13 @@ class Categories extends Component {
   }
 
   render() {
-    const { categorias } = this.state;
+    const { categories } = this.state;
     return (
       <div>
         <h3>Categorias:</h3>
         <ul>
-          {categorias.map((categoria) => (
-            <li key={ categoria.id } data-testid="category">{ categoria.name}</li>)) }
+          {categories.map((category) => (
+            <li key={ category.id } data-testid="category">{ category.name}</li>)) }
         </ul>
       </div>
     );
