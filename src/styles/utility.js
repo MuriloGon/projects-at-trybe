@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { maxWidth } from './variables';
 
@@ -16,7 +16,7 @@ const PopAnimation = ({ children }) => {
     const time = setTimeout(() => {
       setActive(true);
     }, timeout);
-    return () => { clearTimeout(time); console.log('oi') };
+    return () => { clearTimeout(time); };
   }, []);
 
   return (
@@ -31,8 +31,11 @@ const PopAnimation = ({ children }) => {
   );
 };
 
-PopAnimation.defaultProps = {
-  children: [],
+PopAnimation.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export { Container, PopAnimation };
