@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Loading } from '../components';
 import MovieCard from '../components/MovieCard';
+import { isLoaded, isLoading } from '../redux/actions';
 
 import * as movieAPI from '../services/movieAPI';
 
@@ -17,22 +19,23 @@ MList.Content = styled.div`display: flex;
   max-width: 1200px;
 `;
 
-const fetchMovies = (setLoading, setMovies) => {
-  setLoading(true);
+const fetchMovies = (setMovies, dispatch) => {
+  dispatch(isLoading());
   movieAPI.getMovies()
     .then((movieFetched) => {
       setMovies(movieFetched);
-      setLoading(false);
+      dispatch(isLoaded());
     });
 };
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const status = useSelector(({ loading }) => loading);
+  const reduxDispatch = useDispatch();
 
-  useEffect(() => { fetchMovies(setLoading, setMovies); }, []);
+  useEffect(() => { fetchMovies(setMovies, reduxDispatch); }, []);
 
-  if (loading) return <Loading />;
+  if (status) return <Loading />;
 
   return (
     <MList data-testid="movie-list">

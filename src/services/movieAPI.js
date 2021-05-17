@@ -15,9 +15,9 @@ const SUCCESS_STATUS = 'OK';
 // não se preocupe, estudaremos isso mais futuramente
 // --------------------------------------------------------------------
 
-const simulateRequest = (response) => (callback) => {
+const simulateRequest = (response, movieData) => (callback) => {
   setTimeout(() => {
-    callback(response);
+    callback(response, movieData);
   }, TIMEOUT);
 };
 

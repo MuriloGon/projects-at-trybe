@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router';
-import * as movieAPI from '../services/movieAPI';
+import { useSelector } from 'react-redux';
 
 const Span = styled.span`background: ${({ background }) => background};
   border-bottom-left-radius: 25%;
@@ -15,19 +14,19 @@ const Span = styled.span`background: ${({ background }) => background};
   user-select: none;
 `;
 
-const Bookmarked = ({ bookmarked, id }) => {
+const Bookmarked = ({ id }) => {
   const theme = useContext(ThemeContext);
-  const [redirect, setRedirect] = useState(false);
+  const movie = useSelector(
+    ({ movies }) => movies.find(({ id: sId }) => id === sId),
+  );
 
   const toggle = () => {
-    movieAPI.updateBookmark(id);
-    setRedirect(true);
   };
 
-  if (redirect) return <Redirect to="/" />;
+  if (movie === undefined) return null;
 
   return (
-    bookmarked
+    movie.bookmarked
       ? <Span className="name" onClick={ toggle } { ...theme }>★</Span>
       : <Span onClick={ toggle } { ...theme }>☆</Span>
   );

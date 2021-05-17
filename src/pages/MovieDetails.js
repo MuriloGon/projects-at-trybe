@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, Redirect, useParams, useRouteMatch } from 'react-router-dom';
 
 import styled, { ThemeContext } from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 import * as movieAPI from '../services/movieAPI';
 import { Loading } from '../components';
 import { Container, PopAnimation } from '../styles/utility';
+import { isLoaded, isLoading } from '../redux/actions';
 
 const Panel = styled.div`background-color: ${({ primary }) => primary};
   border-radius: 8px;
@@ -87,9 +89,10 @@ const Panel = styled.div`background-color: ${({ primary }) => primary};
   }
 `;
 
-const fetchMovie = async (id, setLoading, setMovie) => {
+const fetchMovie = async (id, dipatch, setMovie) => {
+  dipatch(isLoading());
   const movie = await movieAPI.getMovie(id);
-  setLoading(false);
+  dipatch(isLoaded());
   setMovie(movie);
 };
 
@@ -99,19 +102,25 @@ const deleteMovie = (id, setRedirect) => {
 };
 
 const MovieDetails = () => {
-  const [loading, setLoading] = useState(true);
   const [redirect, setRedirect] = useState(false);
   const [movie, setMovie] = useState({});
+
   const { id } = useParams();
   const { url } = useRouteMatch();
+
+  const reduxDispatch = useDispatch();
+  const loading = useSelector(({ loading: load }) => load);
+
   const theme = useContext(ThemeContext);
+
+  console.log(loading);
 
   const { title, storyline, imagePath,
     genre, rating, subtitle } = movie;
 
   useEffect(() => {
-    fetchMovie(id, setLoading, setMovie);
-  }, [id]);
+    fetchMovie(id, reduxDispatch, setMovie);
+  }, [id, reduxDispatch]);
 
   if (redirect) return <Redirect />;
   if (loading) return <Loading />;

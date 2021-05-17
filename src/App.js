@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 import Navbar from './components/NavBar';
 import { MovieList, MovieDetails, NewMovie, EditMovie, NotFound } from './pages';
 import { themes } from './styles/variables';
 
+import { initialState } from './redux/actions';
+
 function App() {
   const [currentTheme, setTheme] = useState('dark');
+  const reduxDispatch = useDispatch();
+
+  useEffect(() => { reduxDispatch(initialState()); }, [reduxDispatch]);
 
   useEffect(() => {
     document.body.style.backgroundColor = themes[currentTheme].background;

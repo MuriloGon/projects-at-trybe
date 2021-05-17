@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import MovieForm from '../components/MovieForm';
-import * as movieAPI from '../services/movieAPI';
+import { addMovie } from '../redux/actions';
 import { PopAnimation } from '../styles/utility';
 
 const NewMovie = () => {
   const [redirect, setRedirect] = useState(false);
+  const reduxDispatch = useDispatch();
 
   const handleSubmit = (newMovie) => {
-    movieAPI.createMovie(newMovie);
+    reduxDispatch(addMovie(newMovie));
     setRedirect(true);
   };
 
