@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Categories from '../components/Categories';
 import ProductList from '../components/ProductList';
 import SearchBar from '../components/SearchBar';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import * as api from '../services/api';
 
 import './Home.css';
 
@@ -23,12 +23,16 @@ class Home extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     const { searchValue, filters } = this.state;
-    const data = await getProductsFromCategoryAndQuery(filters, searchValue);
+    const data = await api.getProductsFromCategoryAndQuery(filters, searchValue);
     this.setState({ data });
   };
 
   handleCategory = (category) => {
-    this.setState({ filters: category });
+    const { searchValue } = this.state;
+    api.getProductsFromCategoryAndQuery(category, searchValue)
+      .then((data) => {
+        this.setState({ filters: category, data });
+      });
   }
 
   render() {
@@ -44,7 +48,6 @@ class Home extends Component {
             onChange={ this.handleSearch }
             onSubmit={ this.handleSubmit }
           />
-
           <ProductList products={ results } />
         </div>
       </main>
