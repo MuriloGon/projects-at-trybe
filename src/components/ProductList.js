@@ -4,7 +4,7 @@ import Product from './Product';
 
 class ProductList extends Component {
   render() {
-    const { products } = this.props;
+    const { products, addToCart } = this.props;
 
     if (products === undefined) {
       return (
@@ -18,7 +18,7 @@ class ProductList extends Component {
     return (
       <section>
         {products.map((obj) => (
-          <Product key={ obj.id } { ...obj } />
+          <Product key={ obj.id } { ...obj } addToCart={ addToCart } />
         ))}
       </section>
     );
@@ -26,5 +26,6 @@ class ProductList extends Component {
 }
 ProductList.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 export default ProductList;
