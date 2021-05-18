@@ -194,7 +194,7 @@ Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://
 
 ## Instruções para testar suas queries
 
-Para executar localmente os testes, é preciso escrever o seguinte no seu terminal:
+Para executar localmente os testes, é preciso instalar as depedências com `npm i` e escrever o seguinte no seu terminal:
 ```sh
 MYSQL_USER=<SEU_NOME_DE_PESSOA_USUARIA> MYSQL_PASSWORD=<SUA SENHA> HOSTNAME=<NOME_DO_HOST> npm test
 ```
