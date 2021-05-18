@@ -38,7 +38,10 @@ class App extends Component {
             <Cart cartItems={ cartItems } />
           </Route>
           <Route
-            render={ (routeProps) => <ProductDetail { ...routeProps } /> }
+            render={ (routeProps) => (<ProductDetail
+              { ...routeProps }
+              addToCart={ this.addToCart }
+            />) }
             path="/productdetail/:id"
           />
         </Switch>

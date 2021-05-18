@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ProductDetail extends Component {
@@ -26,13 +27,29 @@ class ProductDetail extends Component {
   }
 
   render() {
-    const { loading, product: { title, thumbnail, price } } = this.state;
+    const { loading, product: { title, thumbnail, price, id } } = this.state;
+    const { addToCart } = this.props;
     if (loading) return <h1>Loading...</h1>;
     return (
       <section>
         <h3 data-testid="product-detail-name">{ title }</h3>
         <img src={ thumbnail } alt={ title } />
         <span>{ price }</span>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => { addToCart({ id, title, thumbnail, price }); } }
+        >
+          Adicionar ao carrinho
+        </button>
+        <button type="button">
+          <Link
+            to="/cart"
+            data-testid="shopping-cart-button"
+          >
+            Carrinho de compras
+          </Link>
+        </button>
       </section>
     );
   }
