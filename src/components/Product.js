@@ -12,7 +12,8 @@ class Product extends Component {
         <span>{ price }</span>
         <button
           type="button"
-          onClick={ () => { addToCart({ id, title, thumbnail, priceP }); } }
+          data-testid="product-add-to-cart"
+          onClick={ () => { addToCart({ id, title, thumbnail, price }); } }
         >
           Adicionar ao carrinho
         </button>

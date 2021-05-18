@@ -1,0 +1,20 @@
+.cart ul {
+  align-items: center;
+  display: flex;
+  flex-flow: nowrap column;
+  justify-content: center;
+  list-style: none;
+}
+
+.cart-item {
+  border: 1px solid black;
+  border-radius: 4px;
+  display: flex;
+  list-style-type: none;
+  width: 100%;
+}
+
+.cart-content {
+
+  /* flex: 1; */
+}

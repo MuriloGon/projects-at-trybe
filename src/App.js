@@ -14,7 +14,17 @@ class App extends Component {
     };
   }
 
-  addCartItem = (obj) => { this.setState({ cartItems: [...cartItems, obj] }); };
+  addToCart = (obj) => {
+    const { cartItems } = this.state;
+    if (cartItems.some(({ id }) => id === obj.id)) {
+      const existingProduct = cartItems.find(({ id }) => id === obj.id);
+      const filteredProducts = cartItems.filter(({ id }) => id !== obj.id);
+      existingProduct.quantity += 1;
+      this.setState({ cartItems: [...filteredProducts, existingProduct] });
+    } else {
+      this.setState((st) => ({ cartItems: [...st.cartItems, { ...obj, quantity: 1 }] }));
+    }
+  };
 
   render() {
     const { cartItems } = this.state;
@@ -22,7 +32,7 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Home addCart={ this.addCartItem } />
+            <Home addToCart={ this.addToCart } />
           </Route>
           <Route path="/cart">
             <Cart cartItems={ cartItems } />

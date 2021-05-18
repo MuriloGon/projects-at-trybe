@@ -6,7 +6,7 @@ class ProductList extends Component {
   render() {
     const { products, addToCart } = this.props;
 
-    if (products === undefined) {
+    if (products === null) {
       return (
         <h2 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
@@ -18,14 +18,26 @@ class ProductList extends Component {
     return (
       <section>
         {products.map((obj) => (
-          <Product key={ obj.id } { ...obj } addToCart={ addToCart } />
+          <Product
+            key={ obj.id }
+            { ...obj }
+            addToCart={ addToCart }
+          />
         ))}
       </section>
     );
   }
 }
+
 ProductList.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.object).isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  })),
   addToCart: PropTypes.func.isRequired,
 };
+
+ProductList.defaultProps = {
+  products: null,
+};
+
 export default ProductList;

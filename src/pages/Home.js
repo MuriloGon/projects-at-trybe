@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Categories from '../components/Categories';
 import ProductList from '../components/ProductList';
 import SearchBar from '../components/SearchBar';
@@ -37,6 +39,7 @@ class Home extends Component {
 
   render() {
     const { searchValue, data: { results } } = this.state;
+    const { addToCart } = this.props;
     return (
       <main className="main-content">
         <div className="sidebar">
@@ -48,11 +51,15 @@ class Home extends Component {
             onChange={ this.handleSearch }
             onSubmit={ this.handleSubmit }
           />
-          <ProductList products={ results } />
+          <ProductList products={ results } addToCart={ addToCart } />
         </div>
       </main>
     );
   }
 }
+
+Home.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};
 
 export default Home;
