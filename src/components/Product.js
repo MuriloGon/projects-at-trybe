@@ -4,26 +4,31 @@ import { Link } from 'react-router-dom';
 
 class Product extends Component {
   render() {
-    const { title, thumbnail, price, id } = this.props;
-    const test = {
-      pathname: `/productdetail/${id}`,
-      state: { title, thumbnail, price },
-    };
-
+    const { title, thumbnail, price, id, addToCart } = this.props;
     return (
       <section data-testid="product">
         <h3>{ title }</h3>
         <img src={ thumbnail } alt={ title } />
         <span>{ price }</span>
-        <Link to={ test } data-testid="product-detail-link"> Mais Informações </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => { addToCart({ id, title, thumbnail, price }); } }
+        >
+          Adicionar ao carrinho
+        </button>
+        <Link to={ `/productdetail/${id}` } data-testid="product-detail-link">
+          Mais Informações
+        </Link>
       </section>
     );
   }
 }
 Product.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  id: PropTypes.number.isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 export default Product;
