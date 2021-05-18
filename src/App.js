@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       cartItems: [],
+      productRatings: [],
     };
   }
 
@@ -34,8 +35,15 @@ class App extends Component {
     this.setState({ cartItems: copy });
   }
 
+  getRatingById = (propRoutes) => {
+    const { match: { params: { id: routeId } } } = propRoutes;
+    const { productRatings } = this.state;
+    const ratings = productRatings.find(({ id }) => id === routeId);
+    console.log(ratings);
+  }
+
   render() {
-    const { cartItems } = this.state;
+    const { cartItems, ratings } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -52,6 +60,7 @@ class App extends Component {
             render={ (routeProps) => (<ProductDetail
               { ...routeProps }
               addToCart={ this.addToCart }
+              rating=""
             />) }
             path="/productdetail/:id"
           />

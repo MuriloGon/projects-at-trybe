@@ -1,8 +1,9 @@
 import React from 'react';
-import Rating from './Rating';
 
-const Main = () => (
-  <Rating />
-);
+class Rating extends React.Component {
+  render() {
+    return (<h1>Rating</h1>);
+  }
+}
 
-export default Main;
+export default Rating;
