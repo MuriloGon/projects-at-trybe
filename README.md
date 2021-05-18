@@ -208,6 +208,10 @@ Usando o exemplo anterior de base, suponha que você não tenha setado uma senha
 ```sh
 MYSQL_USER=root MYSQL_PASSWORD= HOSTNAME=localhost npm test
   ```
+Ainda usando o exemplo anterior de base, se você quiser rodar apenas os desafios iniciais você pode colocar `initial` ao final do comando anterior para executar apenas os testes da pasta `sd-09-mysql-all-for-one/tests/initialChallenges.spec.js`, `filter` para `sd-09-mysql-all-for-one/tests/filteringChallenges.spec.js` e assim por diante. No primeiro caso, você executaria:
+```sh
+MYSQL_USER=root MYSQL_PASSWORD= HOSTNAME=localhost npm test initial
+```
 ---
 
 # Requisitos do projeto
