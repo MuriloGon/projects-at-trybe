@@ -6,12 +6,38 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import ProductDetail from './pages/ProductDetail';
 
+const data = [
+  {
+    id: 'MLB1832642322',
+    ratings: [{
+      name: 'name1',
+      email: 'email1',
+      comment: 'comment1',
+      stars: 1 }],
+  },
+  {
+    id: 'MLB1358417492',
+    ratings: [{
+      name: 'name2',
+      email: 'email1',
+      comment: 'comment2',
+      stars: 2 }],
+  },
+  {
+    id: 'MLB1362946742',
+    ratings: [{
+      name: 'name3',
+      email: 'email3',
+      comment: 'comment3',
+      stars: 3 }] },
+];
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cartItems: [],
-      productRatings: [],
+      productRatings: data,
     };
   }
 
@@ -39,11 +65,15 @@ class App extends Component {
     const { match: { params: { id: routeId } } } = propRoutes;
     const { productRatings } = this.state;
     const ratings = productRatings.find(({ id }) => id === routeId);
-    console.log(ratings);
+    return ratings === undefined ? [] : ratings;
+  }
+
+  addRating = (rating) => {
+    console.log('rating', rating);
   }
 
   render() {
-    const { cartItems, ratings } = this.state;
+    const { cartItems } = this.state;
     return (
       <BrowserRouter>
         <Switch>
@@ -60,7 +90,8 @@ class App extends Component {
             render={ (routeProps) => (<ProductDetail
               { ...routeProps }
               addToCart={ this.addToCart }
-              rating=""
+              rating={ this.getRatingById(routeProps) }
+              addRating={ this.addRating }
             />) }
             path="/productdetail/:id"
           />
