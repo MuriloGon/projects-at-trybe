@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Product extends Component {
   render() {
-    const { title, thumbnail, price, addToCart, id } = this.props;
-
+    const { title, thumbnail, price, id, addToCart } = this.props;
     return (
       <section data-testid="product">
         <h3>{ title }</h3>
@@ -16,6 +16,9 @@ class Product extends Component {
         >
           Adicionar ao carrinho
         </button>
+        <Link to={ `/productdetail/${id}` } data-testid="product-detail-link">
+          Mais Informações
+        </Link>
       </section>
     );
   }

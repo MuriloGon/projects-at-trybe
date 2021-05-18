@@ -24,9 +24,10 @@ class Categories extends Component {
         <h3>Categorias:</h3>
         <ul>
           {categories.map(({ id, name }) => (
-            <li key={ id } data-testid="category">
+            <li key={ id }>
               <label htmlFor={ id }>
                 <input
+                  data-testid="category"
                   id={ id }
                   name="category"
                   value={ id }

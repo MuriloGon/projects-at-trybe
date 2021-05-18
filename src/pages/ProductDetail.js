@@ -1,0 +1,49 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+class ProductDetail extends Component {
+  constructor() {
+    super();
+    this.state = {
+      product: {},
+      loading: true,
+    };
+  }
+
+  componentDidMount() {
+    this.fetchProductById();
+  }
+
+  fetchProductById = async () => {
+    const { match: { params: { id } } } = this.props;
+    const api = `https://api.mercadolibre.com/items/${id}`;
+    const result = await fetch(api);
+    const data = await result.json();
+    this.setState({
+      product: data,
+      loading: false,
+    });
+  }
+
+  render() {
+    const { loading, product: { title, thumbnail, price } } = this.state;
+    if (loading) return <h1>Loading...</h1>;
+    return (
+      <section>
+        <h3 data-testid="product-detail-name">{ title }</h3>
+        <img src={ thumbnail } alt={ title } />
+        <span>{ price }</span>
+      </section>
+    );
+  }
+}
+
+ProductDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }),
+}.isRequired;
+
+export default ProductDetail;

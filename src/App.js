@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import ProductDetail from './pages/ProductDetail';
 
 class App extends Component {
   constructor(props) {
@@ -21,15 +22,18 @@ class App extends Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Home addCart={ addCart } />
+            <Home addCart={ this.addCartItem } />
           </Route>
           <Route path="/cart">
             <Cart cartItems={ cartItems } />
           </Route>
+          <Route
+            render={ (routeProps) => <ProductDetail { ...routeProps } /> }
+            path="/productdetail/:id"
+          />
         </Switch>
       </BrowserRouter>
     );
   }
 }
-
 export default App;
