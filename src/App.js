@@ -26,6 +26,14 @@ class App extends Component {
     }
   };
 
+  updateQuantity = (identifier, quantity) => {
+    const { cartItems } = this.state;
+    const copy = [...cartItems];
+    const index = copy.findIndex(({ id }) => id === identifier);
+    copy[index].quantity = quantity;
+    this.setState({ cartItems: copy });
+  }
+
   render() {
     const { cartItems } = this.state;
     return (
@@ -35,7 +43,10 @@ class App extends Component {
             <Home addToCart={ this.addToCart } />
           </Route>
           <Route path="/cart">
-            <Cart cartItems={ cartItems } />
+            <Cart
+              cartItems={ cartItems }
+              updateQuantity={ this.updateQuantity }
+            />
           </Route>
           <Route
             render={ (routeProps) => (<ProductDetail

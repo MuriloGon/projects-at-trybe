@@ -9,7 +9,7 @@ const renderImage = (title, thumbnail) => (
   </div>
 );
 
-const renderContent = (title, id, quantity) => (
+const renderContent = (title, id, quantity, updateQuantity) => (
   <div className="cart-content">
     <h3 data-testid="shopping-cart-product-name">{title}</h3>
     <p>
@@ -20,11 +20,26 @@ const renderContent = (title, id, quantity) => (
       Quantidade:
       <span data-testid="shopping-cart-product-quantity">{quantity}</span>
     </p>
+    <button
+      type="button"
+      onClick={ () => updateQuantity(id, quantity + 1) }
+      data-testid="product-increase-quantity"
+    >
+      ➕
+    </button>
+    <button
+      type="button"
+      onClick={ () => updateQuantity(id, (quantity === 1) ? quantity : quantity - 1) }
+      data-testid="product-decrease-quantity"
+    >
+      ➖
+    </button>
+
   </div>
 );
 class Cart extends Component {
   render() {
-    const { cartItems } = this.props;
+    const { cartItems, updateQuantity } = this.props;
 
     if (cartItems.length === 0) {
       return (
@@ -38,7 +53,7 @@ class Cart extends Component {
             <li key={ id }>
               <div className="cart-item">
                 { renderImage(title, thumbnail) }
-                { renderContent(title, id, quantity) }
+                { renderContent(title, id, quantity, updateQuantity) }
               </div>
             </li>
           ))}
