@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import ProductDetail from './pages/ProductDetail';
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
         <Route path="/cart">
           <Cart />
         </Route>
+        <Route
+          render={ (routeProps) => <ProductDetail { ...routeProps } /> }
+          path="/productdetail/:id"
+        />
       </Switch>
     </BrowserRouter>
   );
