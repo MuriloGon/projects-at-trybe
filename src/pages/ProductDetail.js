@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Rating from '../components/Rating';
 
 class ProductDetail extends Component {
   constructor() {
@@ -28,28 +29,34 @@ class ProductDetail extends Component {
 
   render() {
     const { loading, product: { title, thumbnail, price, id } } = this.state;
-    const { addToCart } = this.props;
+    const { addToCart, rating = [], addRating } = this.props;
+
     if (loading) return <h1>Loading...</h1>;
     return (
       <section>
-        <h3 data-testid="product-detail-name">{ title }</h3>
-        <img src={ thumbnail } alt={ title } />
-        <span>{ price }</span>
-        <button
-          type="button"
-          data-testid="product-detail-add-to-cart"
-          onClick={ () => { addToCart({ id, title, thumbnail, price }); } }
-        >
-          Adicionar ao carrinho
-        </button>
-        <button type="button">
-          <Link
-            to="/cart"
-            data-testid="shopping-cart-button"
+        <div>
+          <h3 data-testid="product-detail-name">{ title }</h3>
+          <img src={ thumbnail } alt={ title } />
+          <span>{ price }</span>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => { addToCart({ id, title, thumbnail, price }); } }
           >
-            Carrinho de compras
-          </Link>
-        </button>
+            Adicionar ao carrinho
+          </button>
+          <button type="button">
+            <Link
+              to="/cart"
+              data-testid="shopping-cart-button"
+            >
+              Carrinho de compras
+            </Link>
+          </button>
+        </div>
+        <div>
+          <Rating rating={ rating } addRating={ addRating } id={ id } />
+        </div>
       </section>
     );
   }
@@ -60,7 +67,10 @@ ProductDetail.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
-  }),
-}.isRequired;
+  }).isRequired,
+  addRating: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  rating: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ProductDetail;
