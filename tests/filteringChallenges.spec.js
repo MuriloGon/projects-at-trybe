@@ -14,9 +14,7 @@ describe('Desafios sobre filtragem de dados', () => {
 
     importer.disconnect();
 
-    sequelize = new Sequelize(
-      `mysql://${process.env.MYSQL_USER}:${process.env.MYSQL_PASSWORD}@${process.env.HOSTNAME}:3306/northwind`
-    );
+    sequelize = new Sequelize('northwind', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {host:process.env.HOSTNAME, dialect: 'mysql'})
   });
 
   afterAll(async () => {
