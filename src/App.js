@@ -4,40 +4,15 @@ import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import FinishPurchase from './pages/FinishPurchase';
 import ProductDetail from './pages/ProductDetail';
-
-const data = [
-  {
-    id: 'MLB1832642322',
-    ratings: [{
-      name: 'name1',
-      email: 'email1',
-      comment: 'comment1',
-      stars: 1 }],
-  },
-  {
-    id: 'MLB1358417492',
-    ratings: [{
-      name: 'name2',
-      email: 'email1',
-      comment: 'comment2',
-      stars: 2 }],
-  },
-  {
-    id: 'MLB1362946742',
-    ratings: [{
-      name: 'name3',
-      email: 'email3',
-      comment: 'comment3',
-      stars: 3 }] },
-];
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cartItems: [],
-      ratings: data,
+      ratings: [],
     };
   }
 
@@ -101,14 +76,17 @@ class App extends Component {
             />
           </Route>
           <Route
+            path="/productdetail/:id"
             render={ (routeProps) => (<ProductDetail
               { ...routeProps }
               addToCart={ this.addToCart }
               rating={ this.getRatingById(routeProps) }
               addRating={ this.addRating }
             />) }
-            path="/productdetail/:id"
           />
+          <Route path="/checkout">
+            <FinishPurchase cartItems={ cartItems } />
+          </Route>
         </Switch>
       </BrowserRouter>
     );

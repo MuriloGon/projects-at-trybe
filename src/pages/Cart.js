@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import './Cart.css';
+import { Link } from 'react-router-dom';
 
 const renderImage = (title, thumbnail) => (
   <div className="cart-image">
@@ -48,6 +49,9 @@ class Cart extends Component {
 
     return (
       <section className="cart">
+        <Link to="/checkout" data-testid="checkout-products">
+          <h1>Prosseguir com a compra</h1>
+        </Link>
         <ul>
           { cartItems.map(({ id, title, thumbnail, quantity }) => (
             <li key={ id }>
