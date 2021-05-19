@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ReviewProducts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartItems: [],
-    };
-  }
-
   displayProductImage = (title, thumbnail) => (
     <div>
       <img alt={ title } src={ thumbnail } />
@@ -44,7 +38,7 @@ class ReviewProducts extends Component {
   );
 
   render() {
-    const { cartItems } = this.state;
+    const { cartItems } = this.props;
     return (
       <section>
         <ul>
@@ -64,5 +58,9 @@ class ReviewProducts extends Component {
     );
   }
 }
+
+ReviewProducts.propTypes = {
+  cartItems: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
 
 export default ReviewProducts;

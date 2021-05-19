@@ -18,6 +18,7 @@ function BuyerInfo(props) {
   return (
     <div>
       <input
+        data-testid="checkout-fullname"
         type="text"
         name="fullName"
         value={ fullName }
@@ -25,6 +26,7 @@ function BuyerInfo(props) {
         placeholder="Nome Completo"
       />
       <input
+        data-testid="checkout-cpf"
         type="text"
         name="cpf"
         value={ cpf }
@@ -32,6 +34,7 @@ function BuyerInfo(props) {
         placeholder="CPF"
       />
       <input
+        data-testid="checkout-email"
         type="text"
         name="email"
         value={ email }
@@ -39,6 +42,7 @@ function BuyerInfo(props) {
         placeholder="Email"
       />
       <input
+        data-testid="checkout-phone"
         type="text"
         name="telephone"
         value={ telephone }
@@ -46,6 +50,7 @@ function BuyerInfo(props) {
         placeholder="Telefone"
       />
       <input
+        data-testid="checkout-cep"
         type="text"
         name="cep"
         value={ cep }
@@ -53,6 +58,7 @@ function BuyerInfo(props) {
         placeholder="CEP"
       />
       <input
+        data-testid="checkout-address"
         type="text"
         name="address"
         value={ address }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BuyerInfo from './BuyerInfo';
+import PaymentMethod from './PaymentMethod';
 
 const initialState = {
   fullName: '',
@@ -12,6 +13,7 @@ const initialState = {
   number: '',
   city: '',
   state: '',
+  payment: '',
 };
 
 class PurchaseForm extends Component {
@@ -41,6 +43,7 @@ class PurchaseForm extends Component {
     return (
       <form>
         <BuyerInfo { ...this.state } handleChange={ this.handleChange } />
+        <PaymentMethod handleChange={ this.handleChange } />
         <button type="submit" onClick={ this.handleClick }>Comprar</button>
       </form>
     );
