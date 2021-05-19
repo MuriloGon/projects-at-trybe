@@ -37,7 +37,7 @@ class App extends Component {
     super(props);
     this.state = {
       cartItems: [],
-      productRatings: data,
+      ratings: data,
     };
   }
 
@@ -63,13 +63,27 @@ class App extends Component {
 
   getRatingById = (propRoutes) => {
     const { match: { params: { id: routeId } } } = propRoutes;
-    const { productRatings } = this.state;
-    const ratings = productRatings.find(({ id }) => id === routeId);
-    return ratings === undefined ? [] : ratings;
+    const { ratings } = this.state;
+    const out = ratings.find(({ id }) => id === routeId);
+    return out === undefined ? [] : out;
   }
 
-  addRating = (rating) => {
-    console.log('rating', rating);
+  addRating = (productId, rating) => {
+    const { ratings } = this.state;
+    const condition1 = (item) => item.id === productId;
+    const condition2 = (item) => item.id !== productId;
+    const isStored = ratings.some(condition1);
+    if (isStored) {
+      const updatedRating = ratings.find(condition1);
+      const leftRatings = ratings.filter(condition2);
+      updatedRating.ratings.push(rating);
+      const output = [...leftRatings, updatedRating];
+      this.setState({ ratings: output });
+    } else {
+      this.setState((st) => (
+        { ratings: [...st.ratings, { id: productId, ratings: [rating] }] }
+      ));
+    }
   }
 
   render() {

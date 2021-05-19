@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class RatingForm extends Component {
   constructor() {
@@ -19,9 +20,9 @@ class RatingForm extends Component {
 
   handleClick = (event) => {
     event.preventDefault();
-    // const obj = this.state;
-    // const { addRating } = this.props;
-    // addRating(obj);
+    const obj = this.state;
+    const { addRating, id } = this.props;
+    addRating(id, obj);
     this.setState({
       email: '',
       comment: '',
@@ -41,6 +42,7 @@ class RatingForm extends Component {
           onChange={ this.handleChange }
         />
         <textarea
+          data-testid="product-detail-evaluation"
           name="comment"
           type="text"
           placeholder="Mensagem"
@@ -60,5 +62,10 @@ class RatingForm extends Component {
     );
   }
 }
+
+RatingForm.propTypes = {
+  addRating: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+};
 
 export default RatingForm;

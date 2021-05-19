@@ -55,7 +55,7 @@ class ProductDetail extends Component {
           </button>
         </div>
         <div>
-          <Rating rating={ rating } addRating={ addRating } />
+          <Rating rating={ rating } addRating={ addRating } id={ id } />
         </div>
       </section>
     );
@@ -67,7 +67,10 @@ ProductDetail.propTypes = {
     params: PropTypes.shape({
       id: PropTypes.string,
     }),
-  }),
-}.isRequired;
+  }).isRequired,
+  addRating: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  rating: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ProductDetail;
