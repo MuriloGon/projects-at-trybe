@@ -39,7 +39,7 @@ class Home extends Component {
 
   render() {
     const { searchValue, data: { results } } = this.state;
-    const { addToCart } = this.props;
+    const { addToCart, itemsCount } = this.props;
     return (
       <main className="main-content">
         <div className="sidebar">
@@ -50,6 +50,7 @@ class Home extends Component {
             value={ searchValue }
             onChange={ this.handleSearch }
             onSubmit={ this.handleSubmit }
+            itemsCount={ itemsCount }
           />
           <ProductList products={ results } addToCart={ addToCart } />
         </div>
@@ -60,6 +61,7 @@ class Home extends Component {
 
 Home.propTypes = {
   addToCart: PropTypes.func.isRequired,
+  itemsCount: PropTypes.number.isRequired,
 };
 
 export default Home;

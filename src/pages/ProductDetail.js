@@ -1,37 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Rating from '../components/Rating';
+import CartButton from '../components/CartButton';
 
 class ProductDetail extends Component {
-  constructor() {
-    super();
-    this.state = {
-      product: {},
-      loading: true,
-    };
-  }
-
-  componentDidMount() {
-    this.fetchProductById();
-  }
-
-  fetchProductById = async () => {
-    const { match: { params: { id } } } = this.props;
-    const api = `https://api.mercadolibre.com/items/${id}`;
-    const result = await fetch(api);
-    const data = await result.json();
-    this.setState({
-      product: data,
-      loading: false,
-    });
-  }
-
   render() {
-    const { loading, product: { title, thumbnail, price, id } } = this.state;
-    const { addToCart, rating = [], addRating } = this.props;
-
-    if (loading) return <h1>Loading...</h1>;
+    const { addToCart, rating = [], addRating, itemsCount } = this.props;
+    const { location: { state: { title, thumbnail, price, id } } } = this.props;
     return (
       <section>
         <div>
@@ -45,14 +20,7 @@ class ProductDetail extends Component {
           >
             Adicionar ao carrinho
           </button>
-          <button type="button">
-            <Link
-              to="/cart"
-              data-testid="shopping-cart-button"
-            >
-              Carrinho de compras
-            </Link>
-          </button>
+          <CartButton itemsCount={ itemsCount } />
         </div>
         <div>
           <Rating rating={ rating } addRating={ addRating } id={ id } />
@@ -68,9 +36,18 @@ ProductDetail.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   addRating: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired,
   rating: PropTypes.arrayOf(PropTypes.object).isRequired,
+  itemsCount: PropTypes.number.isRequired,
 };
 
 export default ProductDetail;

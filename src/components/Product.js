@@ -17,7 +17,12 @@ class Product extends Component {
         >
           Adicionar ao carrinho
         </button>
-        <Link to={ `/productdetail/${id}` } data-testid="product-detail-link">
+        <Link
+          to={ { pathname: `/productdetail/${id}`,
+            state:
+          { title, thumbnail, price, id } } }
+          data-testid="product-detail-link"
+        >
           Mais Informações
         </Link>
       </section>

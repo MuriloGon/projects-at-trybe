@@ -1,0 +1,21 @@
+.cart-button {
+  display: inline-block;
+  position: relative;
+}
+
+.cart-count {
+
+  --diameter: 15px;
+  align-items: center;
+  background-color: chocolate;
+  border-radius: 100%;
+  color: white;
+  display: flex;
+  height: var(--diameter);
+  justify-content: center;
+  padding: 0.25rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: var(--diameter);
+}

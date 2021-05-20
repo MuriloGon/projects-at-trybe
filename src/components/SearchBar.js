@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import CartButton from './CartButton';
 
 class SearchBar extends Component {
   render() {
-    const { value, onChange, onSubmit } = this.props;
+    const { value, onChange, onSubmit, itemsCount } = this.props;
     return (
       <form onSubmit={ onSubmit }>
         <input
@@ -19,14 +19,7 @@ class SearchBar extends Component {
         >
           Buscar
         </button>
-        <button type="submit">
-          <Link
-            to="/cart"
-            data-testid="shopping-cart-button"
-          >
-            Carrinho de compras
-          </Link>
-        </button>
+        <CartButton itemsCount={ itemsCount } />
       </form>
     );
   }
