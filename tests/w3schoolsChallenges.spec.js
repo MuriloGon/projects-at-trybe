@@ -27,6 +27,11 @@ describe('Desafios iniciais', () => {
     await sequelize.query('DROP DATABASE w3schools;', { type: 'RAW' });
 
     sequelize.close();
+    const importer = new Importer(
+      { user: process.env.MYSQL_USER, password: process.env.MYSQL_PASSWORD, host: process.env.HOSTNAME }
+    );
+    await importer.import('./w3schools.sql');
+    await importer.disconnect();
   });
 
   describe('8 - Exibe todas as **pessoas consumidoras** cujos pedidos já foram enviados pelas empresas `Speedy Express` ou `United Package`', () => {
