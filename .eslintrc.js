@@ -13,4 +13,17 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
+  rules: {
+    'import/no-extraneous-dependencies': [
+      'error', 
+      {'devDependencies': false, 'optionalDependencies': false, 'peerDependencies': false}
+    ],
+    'no-param-reassign': ['error', {
+      props: true,
+      ignorePropertyModificationsFor: [
+        'state',
+      ]
+    }],
+    "no-console": "off",
+  }
 };
