@@ -242,6 +242,11 @@ Usando o exemplo anterior de base, suponha que você não tenha setado uma senha
 ```sh
 MYSQL_USER=root MYSQL_PASSWORD= HOSTNAME=localhost npm test
 ```
+
+Ainda usando o exemplo anterior de base, se você quiser rodar apenas uma suíte de teste basta adicionar ao final do comando as palavras `w3schools` ou `hr`. Exemplo: para executar somente os testes do `w3schools` utilizamos
+```sh
+MYSQL_USER=root MYSQL_PASSWORD= HOSTNAME=localhost npm test initial w3schools
+```
 ---
 
 # Requisitos do projeto

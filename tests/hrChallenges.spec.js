@@ -27,6 +27,12 @@ describe('Desafios iniciais', () => {
     await sequelize.query('DROP DATABASE hr;', { type: 'RAW' });
 
     sequelize.close();
+
+    const importer = new Importer(
+      { user: process.env.MYSQL_USER, password: process.env.MYSQL_PASSWORD, host: process.env.HOSTNAME }
+    );
+    await importer.import('./hr.sql');
+    await importer.disconnect();
   });
 
   describe('1 - Exiba os países e indicando se cada um deles se encontra ou não na região formada pela Europa', () => {
