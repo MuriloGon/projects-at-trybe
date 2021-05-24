@@ -140,9 +140,9 @@ Qualquer dúvida, procure a monitoria. Lembre-se que você pode consultar nosso 
 ### ANTES DE COMEÇAR A DESENVOLVER:
 
 1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-0x-mysql-vocabulary-booster.git`
+  * `git clone https://github.com/tryber/sd-09-mysql-vocabulary-booster.git`
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-0x-mysql-vocabulary-booster`
+    * `cd sd-09-mysql-vocabulary-booster`
 
 2. Instale as dependências
   * `npm i` ou `npm install`
