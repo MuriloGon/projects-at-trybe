@@ -8,7 +8,7 @@ import {
 function App(): JSX.Element {
   return (
     <>
-      <Navbar routes={['/', '/search', '/cart', '/checkout']} />
+      <Navbar />
       <Switch>
         <Route exact path="/">
           <Home />
