@@ -70,7 +70,7 @@ its snores or the rumblings of its hungry belly.`,
 body, the weather will begin to change instantly.`,
 }];
 
-describe('5. Teste o componente <Pokedex.js />', () => {
+describe('05. Teste o componente <Pokedex.js />', () => {
   test('01 - Teste se página contém um heading h2 com o '
   + 'texto Encountered pokémons', () => {
     const { getByRole } = renderWithRouter(<App />);

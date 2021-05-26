@@ -37,7 +37,7 @@ const pokemon = {
 
 const pokemonRoute = '/pokemons/4';
 
-describe('6. Teste o componente <Pokemon.js />', () => {
+describe('06. Teste o componente <Pokemon.js />', () => {
   test('01 - Teste se é renderizado um card com as informações de'
   + ' determinado pokémon.', () => {
     const { getByTestId, getByAltText } = renderWithRouter(<Pokemon

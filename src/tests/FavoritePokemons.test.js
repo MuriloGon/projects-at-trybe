@@ -33,7 +33,6 @@ describe('03. Teste o componente <FavoritePokemons.js />', () => {
   test(`03 - Teste se nenhum card de pokémon é exibido, se ele ${
     +' não estiver favoritado.'}`, () => {
     const { getByText, history } = renderWithRouter(<App />);
-    console.log(localStorage);
     history.push('/favorites');
     expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
   });
