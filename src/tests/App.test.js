@@ -8,8 +8,8 @@ import App from '../App';
 const linkCb = (_cont, el, text, classname) => el.classList.contains(classname)
 && el.innerHTML.includes(text);
 
-describe('00 - Teste o componente <App.js />', () => {
-  test('renders a reading with the text `Pokédex`', () => {
+describe('01. Teste o componente <App.js />', () => {
+  test('00 - renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
@@ -19,7 +19,7 @@ describe('00 - Teste o componente <App.js />', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test('01- Teste se a página principal da Pokédex é renderizada ao carregar a'
+  test('02 - Teste se a página principal da Pokédex é renderizada ao carregar a'
       + ' aplicação no caminho de URL /', () => {
     const { history } = renderWithRouter((
       <App />));
@@ -28,7 +28,7 @@ describe('00 - Teste o componente <App.js />', () => {
     expect(history.location.pathname).not.toBe('/404');
   });
 
-  test('02 - Teste se o topo da aplicação contém um conjunto fixo'
+  test('03 - Teste se o topo da aplicação contém um conjunto fixo'
 + ' de links de navegação.', () => {
     const { getByText } = renderWithRouter(<App />);
     const linkText = [/Home/, /About/, /Favorite Pokémons/];
@@ -40,7 +40,7 @@ describe('00 - Teste o componente <App.js />', () => {
     });
   });
 
-  test('03 - Teste se a aplicação é redirecionada para a página inicial,'
+  test('04 - Teste se a aplicação é redirecionada para a página inicial,'
 + ' na URL / ao clicar no link Home da barra de navegação.', () => {
     const { getByText, history } = renderWithRouter(<App />);
     const homeEl = getByText((cont, el) => linkCb(cont, el, 'Home', 'link'));
@@ -56,7 +56,7 @@ describe('00 - Teste o componente <App.js />', () => {
     expect(history.location.pathname).toBe('/');
   });
 
-  test(`04 - Teste se a aplicação é redirecionada para a página de About, ${
+  test(`05 - Teste se a aplicação é redirecionada para a página de About, ${
     +'na URL /about, ao clicar no link About da barra de navegação'}`, () => {
     const { getByText, history } = renderWithRouter(
       <App />,
@@ -71,7 +71,7 @@ describe('00 - Teste o componente <App.js />', () => {
     expect(history.location.pathname).toBe('/about');
   });
 
-  test('05 - Teste se a aplicação é redirecionada para a página de Pokémons Favoritados, '
+  test('06 - Teste se a aplicação é redirecionada para a página de Pokémons Favoritados, '
   + 'na URL /favorites, ao clicar no link Favorite Pokémons da'
   + ' barra de navegação.', () => {
     const { getByText, history } = renderWithRouter(
@@ -87,7 +87,7 @@ describe('00 - Teste o componente <App.js />', () => {
     expect(history.location.pathname).toBe('/favorites');
   });
 
-  test('06 - Teste se a aplicação é redirecionada para a página'
+  test('07 - Teste se a aplicação é redirecionada para a página'
 + ' Not Found ao entrar em uma URL desconhecida.', () => {
     const { getByText, history } = renderWithRouter(<App />);
 

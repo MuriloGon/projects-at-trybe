@@ -2,8 +2,8 @@ import React from 'react';
 import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
-describe('01. Teste o componente <About.js />', () => {
-  test('Teste se a página contém as informações sobre a Pokédex.', () => {
+describe('02. Teste o componente <About.js />', () => {
+  test('01 - Teste se a página contém as informações sobre a Pokédex.', () => {
     const { getByText } = renderWithRouter(<About />);
     const titleEl = getByText(/About Pokédex/i);
     const pg1 = getByText(/This application simulates a Pokédex/i);
@@ -20,7 +20,7 @@ describe('01. Teste o componente <About.js />', () => {
     expect(titleEl).toBeInTheDocument();
   });
 
-  test('03 - Teste se a página contém dois parágrafos com teontent.startsWith('Hello')xto sobre a Pokédex.', () => {
+  test('03 - Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
     const { getAllByText } = renderWithRouter(<About />);
     const titleEl = getAllByText((_container, element) => element.tagName === 'P'
     && element.innerHTML.toLowerCase().includes('pokémon'));

@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
-describe('Teste o componente <NotFound.js />', () => {
+describe('04. Teste o componente <NotFound.js />', () => {
   test('01 - Teste se página contém um heading h2 com o'
     + ' texto Page requested not found 😭;', () => {
     const { getByText, history } = renderWithRouter(<App />);
@@ -10,7 +10,7 @@ describe('Teste o componente <NotFound.js />', () => {
     const h2Element = getByText(/Page requested not found/i);
     expect(h2Element).toBeInTheDocument();
   });
-  test('este se página mostra a imagem '
+  test('02 - este se página mostra a imagem '
   + ' https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     history.push('/random page');

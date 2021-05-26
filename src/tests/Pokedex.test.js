@@ -123,7 +123,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     });
   });
 
-  test('06 - Teste se a Pokédex contém um botão para resetar o filtro', () => {
+  test('05 - Teste se a Pokédex contém um botão para resetar o filtro', () => {
     const { getByTestId, getByRole } = renderWithRouter(<App />);
     const nextBtn = getByTestId(nextPokemonBtnId);
     const clearFilter = getByRole('button', { name: /All/i });
@@ -146,7 +146,7 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     allButton();
   });
 
-  test('07 - Teste se é criado, dinamicamente, um botão de'
+  test('06 - Teste se é criado, dinamicamente, um botão de'
   + 'filtro para cada tipo de Pokémon.', () => {
     const render0 = renderWithRouter(
       <Pokedex pokemons={ data1 } isPokemonFavoriteById={ { 143: false } } />,
@@ -164,5 +164,17 @@ describe('5. Teste o componente <Pokedex.js />', () => {
     expect(btns1.map((btn) => btn.textContent)).toContain('Normal');
     expect(btns1.map((btn) => btn.textContent)).toContain('Dragon');
     render1.unmount();
+  });
+
+  test('07 - O botão de Próximo pokémon deve ser desabilitado '
+  + 'quando a lista filtrada de Pokémons tiver um só pokémon.', () => {
+    const { getByTestId, getByRole } = renderWithRouter(
+      <Pokedex pokemons={ data1 } isPokemonFavoriteById={ { 143: false } } />,
+    );
+    const normalBtn = getByRole('button', { name: 'Normal' });
+    const nxtBtn = getByTestId('next-pokemon');
+    userEvent.click(normalBtn);
+    userEvent.click(nxtBtn);
+    expect(nxtBtn.disabled).toBe(true);
   });
 });
