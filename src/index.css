@@ -14,7 +14,7 @@ code {
 
 body {
   overflow-y: scroll;
-  background: hsl(120deg 100% 98.5%);
+  background: hsl(0, 0%, 93%);
 }
 
 *::-webkit-scrollbar {

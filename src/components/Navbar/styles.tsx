@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { common } from '../../styles/globalStyles';
+import styles, { common } from '../../styles/globalStyles';
 import searchIcon from '../../assets/search-icon.svg';
 
 const NavContainer = styled.header`
   width: 100%;
-  background: hsl(110deg, 50%, 75%);
+  background: ${styles.default.primary};
   display: flex;
 `;
 

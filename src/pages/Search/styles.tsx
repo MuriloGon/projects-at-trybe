@@ -1,15 +1,45 @@
 import styled from 'styled-components';
 import { Main as GenericMain } from '../../styles/Container';
+import styles from '../../styles/globalStyles';
 
 /* Main Container */
 export const Main = styled(GenericMain)`
   display: flex;
+  margin-top: 2rem;
 `;
 
 /* Sidebar */
 export const SideBar = styled.aside`
   min-width: 300px;
-  height: 500px;
+  display: flex;
+  justify-content: center;
+
+.radio-btn {
+  background-color: ${styles.default.primaryLight};
+  min-width: 250px;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+}
+
+.radio-selected {
+  background-color: ${styles.default.primary};
+  color: white;
+  transition: background 150ms ease-in-out;
+  font-weight: 600;
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(-25%, -50%);
+  height: 80%;
+  width: auto;
+}
 `;
 
 export const Categorylist = styled.ul`

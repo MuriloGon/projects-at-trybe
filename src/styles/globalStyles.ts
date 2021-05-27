@@ -6,11 +6,16 @@ const common = {
 
 const themes = {
   default: {
-    primary: 'red',
-    primaryLight: 'red',
+    primary: 'hsl(190deg, 50%, 50%)',
+    primaryLight: 'hsl(190deg 50% 75%)',
     primaryLighter: 'red',
     primaryDark: 'red',
     primaryDarker: 'red',
+    secondary: 'hsl(190deg, 50%, 50%)',
+    secondaryLight: 'red',
+    secondaryLighter: 'red',
+    secondaryDark: 'red',
+    secondaryDarker: 'red',
   },
 };
 
