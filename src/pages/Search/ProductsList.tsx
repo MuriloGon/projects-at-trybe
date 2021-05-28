@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ProductQuery } from '../../helpers/mlInterfaces';
 import {
   ProdList, Product, ProductContent, ProductImage,
@@ -28,9 +28,9 @@ const listLoadingSel = (state: RootState) => state.productsList.loading;
 const ProductsList: FC<Props> = ({ query }) => {
   const loading = useSelector(listLoadingSel);
 
-  if (query === null) return null;
+  if (loading) return <ProdList>{Array(12).fill(<ProdCardPlaceholder />)}</ProdList>;
 
-  if (query?.results.length === 0) {
+  if (query === null) {
     return (
       <h2 style={{ textAlign: 'center' }}>
         Digite algum termo de pesquisa ou escolha uma categoria.
@@ -38,16 +38,22 @@ const ProductsList: FC<Props> = ({ query }) => {
     );
   }
 
+  if (query.results.length === 0) {
+    return (
+      <h2 style={{ textAlign: 'center' }}>
+        Nenhum produto encontrado.
+      </h2>
+    );
+  }
+
   return (
     <ProdList>
-      { loading
-        ? Array(12).fill(<ProdCardPlaceholder />)
-        : query?.results.map((product) => (
-          <ProductCard
-            product={product}
-            key={product.id}
-          />
-        ))}
+      { query.results.map((product) => (
+        <ProductCard
+          product={product}
+          key={product.id}
+        />
+      ))}
     </ProdList>
   );
 };

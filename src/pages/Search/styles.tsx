@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Main as GenericMain } from '../../styles/Container';
 import styles from '../../styles/globalStyles';
+import searchIcon from '../../assets/search-icon.svg';
 
 /* Main Container */
 export const Main = styled(GenericMain)`
   display: flex;
-  margin-top: 2rem;
 `;
 
 /* Sidebar */
@@ -202,5 +202,47 @@ export const ProductContent = styled.div`
     flex-flow: nowrap column;
     justify-content: flex-start;
     line-height: 1.35;
+  }
+`;
+
+/* Search form */
+export const Form = styled.form`
+  display: block;
+  margin: auto;
+  position: relative;
+  box-sizing: border-box;
+  width: 95%;
+  border-radius: 12px;
+  overflow: hidden;
+
+  input {
+    font-size: 1.25rem;
+    width: 100%;
+    padding: 0.75rem 45px 0.75rem 0.75rem;
+    box-sizing: border-box;
+    border: unset;
+    :focus {
+      outline: none;
+    }
+  }
+
+  #search-btn {
+    background: url(${searchIcon});
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 5px;
+    top: 7px;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: none;
+    transition: filter 0.15s ease;
+
+    :hover {
+      cursor: pointer;
+      transform-origin: center center;
+      filter: drop-shadow(0px 2px 1.25px hsl(0deg, 0%, 0%, 30%));
+    }
   }
 `;

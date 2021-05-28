@@ -18,7 +18,9 @@ const SearchForm: FC = () => {
   const update = (e: React.MouseEvent<Element, MouseEvent>) => {
     e.preventDefault();
     dispatch(updateLastQuery(search));
-    if (location.pathname !== '/search') history.push('/search');
+    if (location.pathname !== '/search') {
+      history.push('/search');
+    }
   };
 
   return (
@@ -27,7 +29,7 @@ const SearchForm: FC = () => {
         value={search}
         onChange={({ target: { value } }) => { setSearch(value); }}
         type="text"
-        placeholder="Procure por um produto sssss"
+        placeholder="Procure por um produto"
       />
       <button id="search-btn" type="submit" value="" onClick={update} />
     </Form>

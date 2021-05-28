@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   NavContainer, NavContent, NavList, NavItem,
 } from './styles';
-import SearchForm from './SearchForm';
 
 const Navbar: FC = () => (
   <NavContainer>
@@ -12,9 +11,9 @@ const Navbar: FC = () => (
         <Link to="/">
           <NavItem>Home</NavItem>
         </Link>
-        <NavItem id="search-item">
-          <SearchForm />
-        </NavItem>
+        <Link to="/search">
+          <NavItem>Search</NavItem>
+        </Link>
         <Link to="/cart">
           <NavItem>Cart</NavItem>
         </Link>

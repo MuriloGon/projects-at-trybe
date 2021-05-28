@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Category } from '../../helpers/mlInterfaces';
 import { getAllCategories } from '../../services/api';
-import { Categorylist, CategorylistItem } from './styles';
 import { RootState } from '../../store';
 import { isLoaded, isLoading, saveCategories } from '../../slices/categoriesSlice';
 import { updateLastSelectedCategory } from '../../slices/searchParams';
@@ -56,22 +55,6 @@ const CategoriesBar: FC<Props> = ({ onSelect }) => {
       .catch(() => {});
   }, [dispatch]);
 
-  // return (
-  //   <Categorylist>
-  //     {loading ? <h1>Loading</h1> : categories.map(({ id, name }) => (
-  //       <CategorylistItem key={id}>
-  //         <input
-  //           id={id}
-  //           name="category"
-  //           defaultChecked={id === selCategory}
-  //           type="radio"
-  //           onClick={() => { setSelCategory(id); }}
-  //         />
-  //         <label htmlFor={id}>{name}</label>
-  //       </CategorylistItem>
-  //     ))}
-  //   </Categorylist>
-  // );
   return (
     <RadioGroup className="catContainer" value={selCategory} onChange={setSelCategory}>
       {loading ? <h1>Loading</h1>

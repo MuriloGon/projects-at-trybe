@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import styles, { common } from '../../styles/globalStyles';
-import searchIcon from '../../assets/search-icon.svg';
 
 const NavContainer = styled.header`
   width: 100%;
@@ -15,6 +14,16 @@ const NavContent = styled.nav`
   flex-flow: nowrap column;
   align-items: center;
   flex: 1;
+
+  a, a:hover, a:focus, a:active {
+     text-decoration: none;
+     color: white;
+     font-weight: 600;
+     font-size: 1.25rem;
+  }
+  a:hover {
+    color: pink;
+  }
 `;
 
 const NavList = styled.ul`
@@ -48,44 +57,3 @@ const NavItem = styled.li`
 export {
   NavContainer, NavContent, NavList, NavItem,
 };
-
-/* Search form */
-export const Form = styled.form`
-  display: inline-block;
-  position: relative;
-  box-sizing: border-box;
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-
-  input {
-    font-size: 1.25rem;
-    width: 100%;
-    padding: 0.75rem 45px 0.75rem 0.75rem;
-    box-sizing: border-box;
-    border: unset;
-    :focus {
-      outline: none;
-    }
-  }
-
-  #search-btn {
-    background: url(${searchIcon});
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    right: 5px;
-    top: 7px;
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    border: none;
-    transition: filter 0.15s ease;
-
-    :hover {
-      cursor: pointer;
-      transform-origin: center center;
-      filter: drop-shadow(0px 2px 1.25px hsl(0deg, 0%, 0%, 30%));
-    }
-  }
-`;
