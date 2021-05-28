@@ -83,6 +83,37 @@ export const Product = styled.div`
     box-shadow: 0px 32px 24px 2px rgb(0 0 0 / 20%);
     z-index: 10;
   }
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+  .animated-background {
+    animation-duration: 1.25s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: darkgray;
+    background: linear-gradient(to right, #eeeeee 10%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    position: relative;
+  }
+
+  .ph-price {
+    height: 40px;
+  }
+
+  .ph-description {
+    margin-top: 20px;
+    height: 100px;
+  }
+
 `;
 
 export const ProductImage = styled.div`
