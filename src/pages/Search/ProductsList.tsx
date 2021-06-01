@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ProductQuery } from '../../helpers/mlInterfaces';
 import {
   ProdList, Product, ProductContent, ProductImage,
@@ -49,10 +50,7 @@ const ProductsList: FC<Props> = ({ query }) => {
   return (
     <ProdList>
       { query.results.map((product) => (
-        <ProductCard
-          product={product}
-          key={product.id}
-        />
+        <ProductCard key={product.id} product={product} />
       ))}
     </ProdList>
   );

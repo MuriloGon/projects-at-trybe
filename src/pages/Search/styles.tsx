@@ -66,6 +66,11 @@ export const ProdList = styled.div`
   flex-flow: wrap row;
   justify-content: center;
   gap: 10px;
+
+  a, a:hover, a:focus, a:active {
+     text-decoration: none;
+     color: inherit;
+ }
 `;
 
 /* Product Card */
@@ -141,58 +146,10 @@ export const ProductContent = styled.div`
   flex-flow: nowrap column;
   background: hsl(0deg 0% 98%);
 
-  .stylizedPrice {
-    font-size: var(--font-size);
-    .decimalPrice {
-      font-size: calc(var(--font-size) * 0.5);
-      display: inline-block;
-      transform: translateY(-50%)
-    }
-  }
-
-  .discount {
-    font-size: calc(var(--font-size) * 0.55);
-    color: hsl(100deg, 60%, 40%);
-    font-weight: 500;
-    margin-left: 0.5em
-  }
-
   .oldPrice, .oldPrice > * {
     --font-size: 0.9em;
     text-decoration: line-through;
     color: #818181;
-  }
-
-  .installments {
-    font-size: 0.95em;
-    margin: 0 0 0.5rem 0;
-    display: flex;
-    .installments-styled {
-      margin: 0 0.15em 0 0.15em ;
-      font-size: 1em;
-      color: hsl(100deg, 60%, 40%);
-    }
-    .installments-no-styled {
-      margin: 0 0.15em 0 0.15em ;
-      font-size: 1em;
-    }
-  }
-
-  .discount-warn {
-    background-color: #d9e7fa;
-    color: #3483fa;
-    display: inline-block;
-    margin: 0.5em 0;
-    padding: 0.4em;
-    border-radius: 0.25em;
-    font-weight: 600;
-    align-self: baseline;
-  }
-
-  .free-shipping {
-    color: hsl(100deg, 60%, 40%);
-    padding: 0.4em 0;
-    font-weight: 400;
   }
 
   .product-title {
