@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { ProductQuery } from '../../helpers/mlInterfaces';
 import {
   ProdList, Product, ProductContent, ProductImage,
@@ -29,7 +28,16 @@ const listLoadingSel = (state: RootState) => state.productsList.loading;
 const ProductsList: FC<Props> = ({ query }) => {
   const loading = useSelector(listLoadingSel);
 
-  if (loading) return <ProdList>{Array(12).fill(<ProdCardPlaceholder />)}</ProdList>;
+  if (loading) {
+    return (
+      <ProdList>
+        {Array(12).fill(null).map((_item, i) => {
+          const key = i * 2;
+          return <ProdCardPlaceholder key={key} />;
+        })}
+      </ProdList>
+    );
+  }
 
   if (query === null) {
     return (
@@ -50,7 +58,7 @@ const ProductsList: FC<Props> = ({ query }) => {
   return (
     <ProdList>
       { query.results.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id + product.price.toString()} product={product} />
       ))}
     </ProdList>
   );

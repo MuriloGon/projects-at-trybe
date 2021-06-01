@@ -86,16 +86,20 @@ export const Product = styled.div`
   
   &:hover {
     box-shadow: 0px 32px 24px 2px rgb(0 0 0 / 20%);
-    z-index: 10;
+    z-index: 100;
   }
 
-@keyframes placeHolderShimmer{
-    0%{
-        background-position: -468px 0
-    }
-    100%{
-        background-position: 468px 0
-    }
+  & > *:nth-child(1) {
+    flex: 1;
+  }
+
+  @keyframes placeHolderShimmer {
+  0%{
+      background-position: -468px 0
+  }
+  100%{
+      background-position: 468px 0
+  }
 }
 
   .animated-background {
@@ -160,6 +164,10 @@ export const ProductContent = styled.div`
     justify-content: flex-start;
     line-height: 1.35;
   }
+`;
+
+export const ProductFooter = styled.div`
+
 `;
 
 /* Search form */

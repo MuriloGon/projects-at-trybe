@@ -1,8 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
 import { Main as GenericMain } from '../../styles/Container';
-import { common } from '../../styles/globalStyles';
 
 export const Main = styled(GenericMain)`
   display: grid;

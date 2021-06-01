@@ -36,14 +36,19 @@ interface Props {
 const ToUpButton: FC<Props> = (props) => {
   const btnRef = useRef<HTMLDivElement>(null);
 
+  const setVisibility = () => {
+    const perc = window.scrollY;
+    if (perc <= 200) {
+      btnRef.current?.classList.add('hide-btn');
+    } else {
+      btnRef.current?.classList.remove('hide-btn');
+    }
+  };
+
   useEffect(() => {
+    setVisibility();
     window.addEventListener('scroll', () => {
-      const perc = window.scrollY;
-      if (perc < window.screenY) {
-        btnRef.current?.classList.add('hide-btn');
-      } else {
-        btnRef.current?.classList.remove('hide-btn');
-      }
+      setVisibility();
     });
     return () => {
       window.removeEventListener('scroll', () => {});
