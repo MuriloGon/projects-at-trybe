@@ -19,9 +19,23 @@ const shopCart = createSlice({
         state.items.push(action.payload);
       }
     },
+    addItemByAmount: (
+      state,
+      action: { type: string, payload: { item: CartData, qty: number } },
+    ) => {
+      const { id: itemId } = action.payload.item;
+      const { qty } = action.payload;
+      const isDuplicate = state.items.some(({ id }) => id === itemId);
+      if (isDuplicate) {
+        const index = state.items.findIndex(({ id }) => id === itemId);
+        state.items[index].quantity += qty;
+      } else {
+        state.items.push(action.payload.item);
+      }
+    },
     removeItem: (state, action: { type: string, payload: string }) => {
       const { payload: payloadId } = action;
-      state.items.filter(({ id }) => id !== payloadId);
+      state.items = state.items.filter(({ id }) => id !== payloadId);
     },
     minusOneQty: (state, action: { type: string, payload: string }) => {
       const { payload: payloadId } = action;
@@ -37,6 +51,6 @@ const shopCart = createSlice({
 });
 
 export const {
-  addItem, removeItem, minusOneQty, plusOneQty,
+  addItem, removeItem, minusOneQty, plusOneQty, addItemByAmount,
 } = shopCart.actions;
 export default shopCart.reducer;

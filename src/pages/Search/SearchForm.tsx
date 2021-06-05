@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Form } from './styles';
 import { RootState } from '../../store';
@@ -8,7 +9,7 @@ import { updateLastQuery } from '../../slices/searchParams';
 
 const selecQuery = ({ searchParams: { lastQuery } }: RootState) => lastQuery;
 
-const SearchForm: FC = () => {
+const SearchForm: FC<{ className: string | undefined }> = ({ className = '' }) => {
   const lastQuery = useSelector(selecQuery);
   const [search, setSearch] = useState(lastQuery !== '' ? lastQuery : '');
   const history = useHistory();
@@ -24,7 +25,7 @@ const SearchForm: FC = () => {
   };
 
   return (
-    <Form>
+    <Form className={className}>
       <input
         value={search}
         onChange={({ target: { value } }) => { setSearch(value); }}
@@ -34,6 +35,14 @@ const SearchForm: FC = () => {
       <button id="search-btn" type="submit" value="" onClick={update} />
     </Form>
   );
+};
+
+SearchForm.propTypes = {
+  className: PropTypes.string,
+};
+
+SearchForm.defaultProps = {
+  className: '',
 };
 
 export default SearchForm;

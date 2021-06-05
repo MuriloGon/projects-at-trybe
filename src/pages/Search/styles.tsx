@@ -94,13 +94,13 @@ export const Product = styled.div`
   }
 
   @keyframes placeHolderShimmer {
-  0%{
-      background-position: -468px 0
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
   }
-  100%{
-      background-position: 468px 0
-  }
-}
 
   .animated-background {
     animation-duration: 1.25s;
@@ -121,6 +121,12 @@ export const Product = styled.div`
   .ph-description {
     margin-top: 20px;
     height: 100px;
+  }
+
+  @media screen and (max-width: 900) {
+    & {
+      width: 100%;
+    }
   }
 
 `;

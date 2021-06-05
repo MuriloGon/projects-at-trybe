@@ -24,15 +24,22 @@ const Main = styled(MainGeneric)`
     ". searchform searchform searchform"
     "sidebar content content content";
 
-  > *:nth-child(1) {
+  .searchform {
     grid-area: searchform;
     margin-block: 1rem;
   }
-  > *:nth-child(2) {
+  .sidebar {
     grid-area: sidebar;
   }
-  > *:nth-child(3) {
+  .content {
     grid-area: content;
+  }
+
+  @media screen and (max-width: 900px) {
+    grid-template-areas: 
+      "sidebar sidebar"
+      "searchform searchform"
+      "content content";
   }
 `;
 
@@ -57,11 +64,11 @@ const Search = (): JSX.Element => {
 
   return (
     <Main ref={containerRef}>
-      <SearchForm />
-      <SideBar>
+      <SearchForm className="searchform" />
+      <SideBar className="sidebar">
         <CategoriesBar onSelect={setCategory} />
       </SideBar>
-      <Content>
+      <Content className="content">
         <ProductsList query={query} />
       </Content>
       <ToUpButton containerRef={containerRef.current} />

@@ -5,6 +5,10 @@ const NavContainer = styled.header`
   width: 100%;
   background: ${styles.default.primary};
   display: flex;
+  height: 50px;
+  position: sticky;
+  top:0;
+  z-index: 1000;
 `;
 
 const NavContent = styled.nav`
@@ -49,6 +53,26 @@ const NavList = styled.ul`
     flex: 1;
   }
 
+  .cart-items-link {
+    position: relative;
+
+    & .qty-indicator {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      right: -45%;
+      top: 0%;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.05rem;
+      background-color: hsl(60deg 100% 60%);
+      color: hsl(0deg 0% 20%);
+      padding: 0.25rem;
+    }
+  }
 `;
 
 const NavItem = styled.li`

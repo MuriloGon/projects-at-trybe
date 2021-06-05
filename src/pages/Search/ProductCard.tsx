@@ -2,7 +2,7 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import AddToCartBtn from '../../components/AddToCartBtn';
+import AddToCartBtn from '../../components/CartButtonWrapper';
 import { CartData } from '../../helpers/cart';
 import { Result } from '../../helpers/mercadolibre/ProductQuery';
 import {
@@ -24,12 +24,13 @@ const ProductCard: FC<{ product: Result }> = ({ product }) => {
     image: product.thumbnail,
     quantity: 1,
     title: product.title,
+    price: product.price,
   };
-
-  const outline = ids.includes(product.id) ? '3px solid hsl(190deg,50%,50%)' : '';
+  const selected = ids.includes(product.id);
+  const outline = ids.includes(product.id) ? '4px dashed hsl(190deg,50%,50%)' : '';
 
   return (
-    <AddToCartBtn productData={data}>
+    <AddToCartBtn selected={selected} productData={data}>
       <Link to={`/${product.id}-${safeTitle}`}>
         <Product style={{ outline }}>
           <ProductImage>

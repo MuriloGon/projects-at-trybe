@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/forbid-prop-types */
 import React, { FC, useEffect, useRef } from 'react';
+import { IoArrowUp } from 'react-icons/io5';
 import styled from 'styled-components';
 
 const Div = styled.div`
@@ -68,7 +69,7 @@ const ToUpButton: FC<Props> = (props) => {
       onClick={handleClick}
       ref={btnRef}
     >
-      ⬆
+      <IoArrowUp />
     </Div>
   );
 };

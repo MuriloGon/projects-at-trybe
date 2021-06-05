@@ -25,6 +25,8 @@ const ProductDetails: FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (product === null || Object.entries(product).length <= 0) return <h1>Carregando...</h1>;
+
   return (
     <Main className="page-details">
       <ImgContainer>

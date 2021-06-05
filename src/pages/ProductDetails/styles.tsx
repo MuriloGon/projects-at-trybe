@@ -101,6 +101,74 @@ export const Main = styled(GenericMain)`
         }
       }
     }
+
+    .add-to-cart {
+      margin-top: 1rem;
+      user-select: none;
+
+      .item-price {
+        display: flex;
+        justify-content: flex-start;
+        flex-flow: wrap row;
+        align-items: center;
+        font-size: 1.5rem;
+
+        &> * {
+          margin-block: 0.25rem;
+        }
+
+        & .action-button {
+          --side: 30px;
+          margin-inline: 1rem;
+          box-sizing: border-box;
+          padding: 0.15rem;
+          width: var(--side);
+          height: var(--side);
+          border-radius: 50%;
+          background-color: hsl(190deg, 50%, 50%);
+          color: white;
+          cursor: pointer;
+
+          &:hover {
+            background-color: hsl(190deg, 50%, 30%);
+          }
+        }
+
+        & .add-cart-btn {
+          height: 30px;
+          border: none;
+          cursor: pointer;
+          box-sizing: border-box;
+          background: hsl(120, 60%, 40%);
+          color: white;font-weight: 700;
+          font-size: 1.05rem;
+          border-radius: 8px;
+
+          &:hover {
+            background: hsl(120, 60%, 30%);
+          }
+        }
+      }
+    }
+    .item-on-cart {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.15rem;
+
+      & .remove-item-btn {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background-color: hsl(0, 80%, 50%);
+        color: white;
+
+        &:hover {
+          background-color: hsl(0, 80%, 30%);
+          cursor: pointer;
+        }
+      }
+    }
   }
 
 `;
@@ -147,7 +215,7 @@ export const PriceContainer = styled.div`
     min-width: 200px;
     background: white;
     position: sticky;
-    top: 0;
+    top: 50px;
   }
 `;
 
