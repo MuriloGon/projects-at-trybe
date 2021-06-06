@@ -13,33 +13,76 @@ export const SideBar = styled.aside`
   min-width: 300px;
   display: flex;
   justify-content: center;
+  font-weight: 400;
 
-.radio-btn {
-  background-color: ${styles.default.primaryLight};
-  min-width: 250px;
-  padding: 0.5rem;
-  margin: 0.25rem 0;
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-  cursor: pointer;
-  position: relative;
-}
+  .radio-btn {
+    background-color: ${styles.default.primaryLight};
+    min-width: 250px;
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+  }
 
-.radio-selected {
-  background-color: ${styles.default.primary};
-  color: white;
-  transition: background 150ms ease-in-out;
-  font-weight: 600;
-}
+  .radio-selected {
+    background-color: ${styles.default.primary};
+    color: white;
+    transition: background 150ms ease-in-out;
+    font-weight: 600;
+  }
 
-.icon {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translate(-25%, -50%);
-  height: 80%;
-  width: auto;
-}
+  .icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-25%, -50%);
+    height: 80%;
+    width: auto;
+  }
+
+  .close-menu {
+    display: block;
+    position: sticky;
+    width: 60px;
+    height: 60px;
+    color: white;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+    z-index: 2000;
+  }
+
+  @media screen and (max-width: 900px) {
+    & {
+      z-index: 10000;
+      background: hsl(180deg 0% 10% / 10%);
+      backdrop-filter: blur(8px) saturate(2);
+      width: 50vw;
+      height: calc(100vh - 50px);
+      width: 100vw;
+      overflow: auto;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      position: fixed;
+      margin: 50px 0 0 0;
+      transform: translateX(-100%);
+    }
+
+    &.menu-open {
+      transform: translateX(0%);
+    }
+  }
+
+  @media screen and (max-width: 898px) {
+    & {
+      transition: transform 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+  }
+
+
 `;
 
 export const Categorylist = styled.ul`

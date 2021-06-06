@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { IoArrowBack, IoArrowForward, IoClose } from 'react-icons/io5';
+import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import { CartData } from '../../helpers/cart';
 import { minusOneQty, plusOneQty } from '../../slices/shopCart';
@@ -106,11 +106,12 @@ const CartItem: FC<CartData> = ({
   id, quantity, image, title, price,
 }) => {
   const dispatch = useDispatch();
+  const safeTitle = title.replaceAll('%', '-').replaceAll(' ', '_').replaceAll('/', '-');
 
   return (
     <ItemCard>
       <CardImage>
-        <Link to={`/${id}-${title}`}>
+        <Link to={`/${id}-${safeTitle}`}>
           <img src={image} alt={title} />
         </Link>
       </CardImage>

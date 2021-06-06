@@ -22,7 +22,7 @@ const NavContent = styled.nav`
   a, a:hover, a:focus, a:active {
      text-decoration: none;
      color: white;
-     font-weight: 600;
+     font-weight: 500;
      font-size: 1.25rem;
   }
   a:hover {

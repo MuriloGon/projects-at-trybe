@@ -15,6 +15,9 @@ import { SideBar, Main as MainGeneric, Content } from './styles';
 import { listLoaded, listLoading } from '../../slices/productsListSlice';
 import SearchForm from './SearchForm';
 import ToUpButton from './ToUpButton';
+import ShowCategoriesButton from './ShowCategoriesButton';
+import CartMenu from './CartMenu';
+import CartBtn from './CartBtn';
 
 const Main = styled(MainGeneric)`
   display: grid;
@@ -46,8 +49,11 @@ const Main = styled(MainGeneric)`
 const Search = (): JSX.Element => {
   const [query, setQuery] = useState<ProductQuery|null>(null);
   const [category, setCategory] = useState('');
+  const [cartMenu, setCartMenu] = useState(false);
+
   const lastSearch = useSelector(({ searchParams: { lastQuery } }:RootState) => lastQuery);
   const containerRef = useRef<HTMLElement>(null);
+  const sidemenuRef = useRef<HTMLElement>(null);
   const dispatch = useDispatch();
 
   const getProducts = async (product: string) => {
@@ -59,18 +65,32 @@ const Search = (): JSX.Element => {
 
   useEffect(() => {
     getProducts(lastSearch).then(() => {}).catch(() => {});
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category, lastSearch]);
+
+  const handleOpenMenuCategory = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'ASIDE') {
+      sidemenuRef.current?.classList.toggle('menu-open');
+    }
+  };
 
   return (
     <Main ref={containerRef}>
       <SearchForm className="searchform" />
-      <SideBar className="sidebar">
+      <SideBar
+        className="sidebar"
+        ref={sidemenuRef}
+        onClick={(e) => { handleOpenMenuCategory(e); }}
+      >
         <CategoriesBar onSelect={setCategory} />
       </SideBar>
       <Content className="content">
         <ProductsList query={query} />
       </Content>
+      <ShowCategoriesButton categoriesRef={sidemenuRef.current} />
+      <CartMenu menuState={cartMenu} onClick={setCartMenu} />
+      <CartBtn onClick={() => { setCartMenu(!cartMenu); }} />
       <ToUpButton containerRef={containerRef.current} />
     </Main>
   );

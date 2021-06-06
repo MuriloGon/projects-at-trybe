@@ -10,6 +10,7 @@ import { RootState } from '../../store';
 import { Main as GenericMain } from '../../styles/Container';
 import CartItem from './CartItem';
 import { removeItem } from '../../slices/shopCart';
+import EmptyCart from '../../components/EmptyCart';
 
 const Main = styled(GenericMain)`
   padding: 0 1rem;
@@ -119,6 +120,10 @@ const Summary = styled.section`
   @media screen and (max-width: 800px) {
     &{ margin: 0; }
   }
+
+  .cart-empty-message {
+    color: black;
+  }
 `;
 
 const Cart: FC = () => {
@@ -132,7 +137,9 @@ const Cart: FC = () => {
     return (
       <Main>
         <h2 className="cart-title">Carrinho de compras</h2>
-        <p>Seu carrinho de compras está vazio</p>
+        <div className="cart-empty-message">
+          <EmptyCart color="black" />
+        </div>
       </Main>
     );
   }
