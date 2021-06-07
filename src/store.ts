@@ -11,8 +11,15 @@ const root = combineReducers({
   categories, cart, searchParams, productsList, comments,
 });
 
+const previousStateStr = localStorage.getItem('previousState');
+let preloadedState;
+if (previousStateStr !== null) {
+  preloadedState = JSON.parse(previousStateStr) as RootState;
+}
+
 const store = configureStore({
   reducer: root,
+  preloadedState,
 });
 
 export type RootState = ReturnType<typeof root>;
