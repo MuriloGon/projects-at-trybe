@@ -2,6 +2,7 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReactStarts from 'react-stars';
 import AddToCartBtn from '../../components/CartButtonWrapper';
 import { CartData } from '../../helpers/cart';
 import { Result } from '../../helpers/mercadolibre/ProductQuery';
@@ -18,6 +19,14 @@ const ProductCard: FC<{ product: Result }> = ({ product }) => {
   const discount = discountParse(product.original_price, product.price);
   const safeTitle = product.title.replaceAll('%', '-').replaceAll(' ', '_').replaceAll('/', '-');
   const ids = useSelector((state: RootState) => state.cart.items).map(({ id }) => id);
+  const avgRating = useSelector((st: RootState) => st.comments.comments)
+    .find(({ id }) => id === product?.id)?.comments
+    .reduce((acc, { rating }, index, arr) => {
+      if (index === (arr.length - 1)) {
+        return (acc + rating) / arr.length;
+      }
+      return acc + rating;
+    }, 0);
 
   const data: CartData = {
     id: product.id,
@@ -37,6 +46,7 @@ const ProductCard: FC<{ product: Result }> = ({ product }) => {
             <img src={`https://http2.mlstatic.com/D_NQ_NP_${product.thumbnail_id}-V.webp`} alt={product.title} />
           </ProductImage>
           <ProductContent>
+            <ReactStarts size={25} value={avgRating} edit={false} className="stars" />
             {stylizedPrice(product.original_price, 'R$', 'oldPrice')}
             {stylizedPrice(product.price, 'R$', '', discount)}
             {installments(product)}

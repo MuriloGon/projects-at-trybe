@@ -175,7 +175,7 @@ export const Product = styled.div`
 `;
 
 export const ProductImage = styled.div`
-  height: 50%;
+  height: 30%;
   width: auto;
   display: flex;
   align-items: center;
@@ -184,6 +184,7 @@ export const ProductImage = styled.div`
   box-sizing: border-box;
   border-bottom: solid 1px #e4e3e3;
   overflow: hidden;
+  position: relative;
 
   & img{
     width: auto;
@@ -212,6 +213,10 @@ export const ProductContent = styled.div`
     flex-flow: nowrap column;
     justify-content: flex-start;
     line-height: 1.35;
+  }
+
+  .stars {
+    margin-bottom: 0.5rem;
   }
 `;
 

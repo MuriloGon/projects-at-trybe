@@ -14,6 +14,7 @@ export const Main = styled(GenericMain)`
   @media screen and (max-width: 1024px) {
     & {
       display: block;
+      padding: 0.5rem;
     }
   }
 
@@ -253,4 +254,7 @@ export const Button = styled.button`
 export const Comments = styled.section`
   grid-area: comment; 
   margin: 1rem 0 0 0;
+  h2 {
+    margin: 1rem 0;
+  }
 `;

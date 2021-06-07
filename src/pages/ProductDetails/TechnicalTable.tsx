@@ -2,10 +2,9 @@
 import React, { FC } from 'react';
 import { Product } from '../../helpers/mercadolibre/product';
 
-const TechnicalTable: FC<{ product: Product | null }> = ({ product }) => {
-  console.log('oi');
-  return (
-    <table>
+const TechnicalTable: FC<{ product: Product | null }> = ({ product }) => (
+  <table>
+    <tbody>
       {product?.attributes.map(
         ({ id, name, value_name }) => (
           <tr key={id}>
@@ -14,8 +13,8 @@ const TechnicalTable: FC<{ product: Product | null }> = ({ product }) => {
           </tr>
         ),
       )}
-    </table>
-  );
-};
+    </tbody>
+  </table>
+);
 
 export default TechnicalTable;

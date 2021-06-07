@@ -12,6 +12,7 @@ import { getItemById } from '../../services/api';
 import { Product } from '../../helpers/mercadolibre/product';
 import TechnicalTable from './TechnicalTable';
 import Price from './Price';
+import Ratings from './Ratings';
 
 const ProductDetails: FC = () => {
   const [product, setProduct] = useState<Product|null>(null);
@@ -41,6 +42,7 @@ const ProductDetails: FC = () => {
       </TechnicalSummary>
       <Comments>
         <h2>Avaliações</h2>
+        <Ratings id={product.id} />
       </Comments>
     </Main>
   );

@@ -193,11 +193,11 @@ const Cart: FC = () => {
 };
 
 Cart.propTypes = {
-  id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  id: PropTypes.string,
+};
+
+Cart.defaultProps = {
+  id: '',
 };
 
 export default Cart;

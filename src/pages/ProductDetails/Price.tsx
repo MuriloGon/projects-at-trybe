@@ -2,6 +2,7 @@
 import React, { FC, useState } from 'react';
 import { IoArrowBack, IoArrowForward, IoClose } from 'react-icons/io5';
 import { useDispatch, useSelector } from 'react-redux';
+import ReactStarts from 'react-stars';
 import { CartData } from '../../helpers/cart';
 import { Product } from '../../helpers/mercadolibre/product';
 import {
@@ -41,6 +42,14 @@ const Price: FC<{ product: Product | null }> = ({ product }) => {
   const discount = discountParse(
     product?.original_price, product !== null ? product.price : null,
   );
+  const avgRating = useSelector((st: RootState) => st.comments.comments)
+    .find(({ id }) => id === product?.id)?.comments
+    .reduce((acc, { rating }, index, arr) => {
+      if (index === (arr.length - 1)) {
+        return (acc + rating) / arr.length;
+      }
+      return acc + rating;
+    }, 0);
 
   const freeShip = product?.shipping !== undefined ? product.shipping.free_shipping : null;
 
@@ -55,6 +64,7 @@ const Price: FC<{ product: Product | null }> = ({ product }) => {
   return (
     <section className="prices">
       <div className="product-id">{product?.id}</div>
+      <ReactStarts size={25} value={avgRating} edit={false} />
       <p className="product-title">
         {product?.title}
       </p>
