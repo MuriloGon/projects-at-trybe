@@ -7,7 +7,9 @@ class ProductDetail extends Component {
   render() {
     const { addToCart, rating = [], addRating, itemsCount } = this.props;
     const { location: { state: {
-      title, thumbnail, price, id, available_quantity } } } = this.props;
+      title,
+      thumbnail,
+      price, id, available_quantity: aq, freeShipping = false } } } = this.props;
     return (
       <section>
         <div>
@@ -18,13 +20,21 @@ class ProductDetail extends Component {
             type="button"
             data-testid="product-detail-add-to-cart"
             onClick={ () => {
-              addToCart({ id, title, thumbnail, price, available_quantity });
+              addToCart({
+                id,
+                title,
+                thumbnail,
+                price,
+                available_quantity: aq,
+                freeShipping,
+              });
             } }
           >
             Adicionar ao carrinho
           </button>
           <CartButton itemsCount={ itemsCount } />
         </div>
+        {freeShipping && <p data-testid="free-shipping">Frete Grátis</p>}
         <div>
           <Rating rating={ rating } addRating={ addRating } id={ id } />
         </div>
@@ -46,6 +56,7 @@ ProductDetail.propTypes = {
       price: PropTypes.number.isRequired,
       thumbnail: PropTypes.string.isRequired,
       available_quantity: PropTypes.number.isRequired,
+      freeShipping: PropTypes.bool.isRequired,
     }).isRequired,
   }).isRequired,
   addRating: PropTypes.func.isRequired,

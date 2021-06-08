@@ -6,18 +6,26 @@ class Product extends Component {
   render() {
     const {
       title,
-      thumbnail, price, id, addToCart, available_quantity: aq, quantity } = this.props;
+      thumbnail, price, id, addToCart, available_quantity: aq, quantity,
+      shipping: { free_shipping: freeShipping } } = this.props;
     return (
       <section data-testid="product">
         <h3>{ title }</h3>
         <img src={ thumbnail } alt={ title } />
         <span>{ price }</span>
+        {freeShipping && <p data-testid="free-shipping">Frete Grátis</p>}
         <button
           type="button"
           data-testid="product-add-to-cart"
           onClick={ () => {
             if (quantity < aq || quantity === undefined) {
-              addToCart({ id, title, thumbnail, price, available_quantity: aq });
+              addToCart({
+                id,
+                title,
+                thumbnail,
+                price,
+                available_quantity: aq,
+                freeShipping });
             }
           } }
         >
@@ -26,7 +34,7 @@ class Product extends Component {
         <Link
           to={ { pathname: `/productdetail/${id}`,
             state:
-          { title, thumbnail, price, id, aq } } }
+          { title, thumbnail, price, id, aq, freeShipping } } }
           data-testid="product-detail-link"
         >
           Mais Informações
@@ -43,6 +51,9 @@ Product.propTypes = {
   price: PropTypes.number.isRequired,
   addToCart: PropTypes.func.isRequired,
   available_quantity: PropTypes.number.isRequired,
+  shipping: PropTypes.shape({
+    free_shipping: PropTypes.bool.isRequired,
+  }).isRequired,
   quantity: PropTypes.number,
 };
 
