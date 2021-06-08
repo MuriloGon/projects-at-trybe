@@ -6,7 +6,8 @@ import CartButton from '../components/CartButton';
 class ProductDetail extends Component {
   render() {
     const { addToCart, rating = [], addRating, itemsCount } = this.props;
-    const { location: { state: { title, thumbnail, price, id } } } = this.props;
+    const { location: { state: {
+      title, thumbnail, price, id, available_quantity } } } = this.props;
     return (
       <section>
         <div>
@@ -16,7 +17,9 @@ class ProductDetail extends Component {
           <button
             type="button"
             data-testid="product-detail-add-to-cart"
-            onClick={ () => { addToCart({ id, title, thumbnail, price }); } }
+            onClick={ () => {
+              addToCart({ id, title, thumbnail, price, available_quantity });
+            } }
           >
             Adicionar ao carrinho
           </button>
@@ -42,6 +45,7 @@ ProductDetail.propTypes = {
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       thumbnail: PropTypes.string.isRequired,
+      available_quantity: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
   addRating: PropTypes.func.isRequired,
