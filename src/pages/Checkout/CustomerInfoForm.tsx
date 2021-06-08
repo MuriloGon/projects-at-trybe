@@ -6,6 +6,7 @@ import boletoIcon from '../../assets/boleto-icon.png';
 import visaIcon from '../../assets/visa-icon.png';
 import mastercardIcon from '../../assets/mastercard-icon.png';
 import eloIcon from '../../assets/elo-icon.png';
+import pixIcon from '../../assets/pix-icon.png';
 
 const CustomerContainer = styled.section`
 
@@ -223,6 +224,17 @@ const CustomerInfoForm: FC = () => {
                 type="radio"
                 name="method"
                 value="Elo"
+                onChange={({ target: { value } }) => { setPaymethod(value); }}
+              />
+            </label>
+            <label htmlFor="radio5">
+              <span>Pix</span>
+              <img src={pixIcon} alt="pix" />
+              <input
+                id="radio5"
+                type="radio"
+                name="method"
+                value="Pix"
                 onChange={({ target: { value } }) => { setPaymethod(value); }}
               />
             </label>

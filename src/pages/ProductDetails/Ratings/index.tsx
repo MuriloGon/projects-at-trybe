@@ -51,6 +51,7 @@ const Ratings: FC<{ id: string }> = ({ id }) => {
             date, email, rating, description,
           }) => (
             <RatingCard
+              key={date}
               date={date}
               email={email}
               rating={rating}

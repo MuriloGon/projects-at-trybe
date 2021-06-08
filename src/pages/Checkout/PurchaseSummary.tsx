@@ -16,6 +16,10 @@ const FormContainer = styled.section`
     width: 100%;
   }
 
+  img {
+    width: 100%;
+  }
+
   .customer-item {
     text-align: left;
     th {
@@ -30,6 +34,11 @@ const FormContainer = styled.section`
     padding-right: 2rem;
     font-size: 1.3rem;
     background: hsl(0, 0%, 95%);
+  }
+
+  .img-container {
+    width: 150px;
+    height: 150px;
   }
 `;
 
@@ -46,7 +55,9 @@ const PurchaseSummary: FC = () => {
           }) => (
             <tr key={id} className="customer-item">
               <th>
-                <img src={image} alt={title} />
+                <div className="img-container">
+                  <img src={image} alt={title} />
+                </div>
               </th>
               <th>{title}</th>
               <th>
