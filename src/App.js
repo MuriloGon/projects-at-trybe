@@ -11,9 +11,22 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartItems: [],
+      cartItems: this.getFromStorage(),
       ratings: [],
     };
+  }
+
+  componentDidUpdate() {
+    const { cartItems } = this.state;
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }
+
+  getFromStorage = () => {
+    if (localStorage.getItem('cartItems') !== null) {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+      return cartItems;
+    }
+    return [];
   }
 
   addToCart = (obj) => {
@@ -61,13 +74,19 @@ class App extends Component {
     }
   }
 
+  totalCartItems = () => {
+    const { cartItems } = this.state;
+    if (cartItems.length === 0) return 0;
+    return cartItems.reduce((acc, { quantity }) => acc + quantity, 0);
+  }
+
   render() {
     const { cartItems } = this.state;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Home addToCart={ this.addToCart } />
+            <Home addToCart={ this.addToCart } itemsCount={ this.totalCartItems() } />
           </Route>
           <Route path="/cart">
             <Cart
@@ -82,6 +101,7 @@ class App extends Component {
               addToCart={ this.addToCart }
               rating={ this.getRatingById(routeProps) }
               addRating={ this.addRating }
+              itemsCount={ this.totalCartItems() }
             />) }
           />
           <Route path="/checkout">

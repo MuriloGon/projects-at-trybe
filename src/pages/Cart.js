@@ -10,7 +10,9 @@ const renderImage = (title, thumbnail) => (
   </div>
 );
 
-const renderContent = (title, id, quantity, updateQuantity) => (
+const renderContent = (
+  title, id, { quantity, available_quantity: aq }, updateQuantity,
+) => (
   <div className="cart-content">
     <h3 data-testid="shopping-cart-product-name">{title}</h3>
     <p>
@@ -23,14 +25,20 @@ const renderContent = (title, id, quantity, updateQuantity) => (
     </p>
     <button
       type="button"
-      onClick={ () => updateQuantity(id, quantity + 1) }
+      onClick={ () => {
+        if (quantity < aq) {
+          updateQuantity(id, quantity + 1);
+        }
+      } }
       data-testid="product-increase-quantity"
     >
       ➕
     </button>
     <button
       type="button"
-      onClick={ () => updateQuantity(id, (quantity === 1) ? quantity : quantity - 1) }
+      onClick={ () => {
+        updateQuantity(id, (quantity === 1) ? quantity : quantity - 1);
+      } }
       data-testid="product-decrease-quantity"
     >
       ➖
@@ -46,21 +54,23 @@ class Cart extends Component {
       return (
         <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>);
     }
-
     return (
       <section className="cart">
         <Link to="/checkout" data-testid="checkout-products">
           <h1>Prosseguir com a compra</h1>
         </Link>
         <ul>
-          { cartItems.map(({ id, title, thumbnail, quantity }) => (
-            <li key={ id }>
-              <div className="cart-item">
-                { renderImage(title, thumbnail) }
-                { renderContent(title, id, quantity, updateQuantity) }
-              </div>
-            </li>
-          ))}
+          { cartItems.map(
+            ({ id, title, thumbnail, quantity, available_quantity: aq }) => (
+              <li key={ id }>
+                <div className="cart-item">
+                  { renderImage(title, thumbnail) }
+                  { renderContent(title, id, {
+                    quantity, available_quantity: aq }, updateQuantity) }
+                </div>
+              </li>
+            ),
+          )}
         </ul>
       </section>
     );
