@@ -8,4 +8,4 @@ fi
 
 export DBNAME=commerce
 
-scripts/generate_result.sh "$PWD/challenges" "$PWD/.trybe" "$PWD/assets/produtos"
+scripts/generate_result.sh "$PWD/challenges" "$PWD/.trybe" "$PWD/assets/produtos" $1

@@ -243,6 +243,12 @@ Para executar localmente os testes, é preciso escrever o seguinte no seu termin
 
 Esse script passará por **todos os desafios** e imprimirá um relatório indicando se passou ou não para cada desafio. Como a execução do script **envolve restauração da base de dados `commerce`** de um teste para outro, recomenda-se esperar pela sua execução completa.
 
+Para executar somente o teste de um desafio, execute o comando abaixo, substituindo N pelo númedo do desafio
+
+```sh
+./scripts/evaluate.sh desafioN
+```
+
 ⚠️ Como na avaliação o banco de dados `commerce` é restaurado de um teste para outro, **se atente a fazer uso do banco restaurado na hora de fazer um desafio**. ⚠️
 
 ---

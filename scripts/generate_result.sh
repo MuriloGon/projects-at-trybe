@@ -16,6 +16,8 @@ if [[ -z "$3" ]]; then
 fi
 DB_RESTORE_DIR=$3
 
+UNIT_FILE=$4
+
 RESULTS_DIR="/tmp/trybe-results"
 rm -rf "$RESULTS_DIR"
 mkdir "$RESULTS_DIR"
@@ -30,31 +32,35 @@ print_results() {
 # Print tests evaluation
 for entry in "$TRYBE_DIR/expected-results"/*
 do
-  scripts/resetdb.sh "$DB_RESTORE_DIR"
-  # Get challenge name
   chName=$(echo "$(basename $entry)" | sed -e "s/.js//g")
-  # Build path to results dir
-  resultPath="$RESULTS_DIR/$chName"
-  touch "$resultPath"
-  # Check if challenge MQL file exists
-  mqlFile="$CHALLENGES_DIR/$chName".js
-  if [ ! -f $mqlFile ]; then
-    printf "\n%s: \e[1;31mfailed \e[0m" "$chName" >> "$RESULTS_DIR/evaluation.out"
+
+  if [[ -z "$UNIT_FILE" ]] || [ $chName == $UNIT_FILE ]; then
+    scripts/resetdb.sh "$DB_RESTORE_DIR"
+    # Get challenge name
+    
+    # Build path to results dir
+    resultPath="$RESULTS_DIR/$chName"
+    touch "$resultPath"
+    # Check if challenge MQL file exists
+    mqlFile="$CHALLENGES_DIR/$chName".js
+    if [ ! -f $mqlFile ]; then
+      printf "\n%s: \e[1;31mfailed \e[0m" "$chName" >> "$RESULTS_DIR/evaluation.out"
+      print_results
+      continue
+    fi
+    # Exec mongo query
+    mql=$(cat "$mqlFile")
+    scripts/exec.sh "$mql" &> "$resultPath"
+    # Check result with the expected
+    diff=$(diff "$resultPath" "$TRYBE_DIR/expected-results/$chName")
+    if [[ ! -z "$diff" ]]; then
+      printf "\n%s: \e[1;31mfailed \e[0m" "$chName" >> "$RESULTS_DIR/evaluation.out"
+      print_results
+      continue
+    fi
+    printf "\n%s: \e[1;42mpassed \e[0m" "$chName" >> "$RESULTS_DIR/evaluation.out"
     print_results
-    continue
   fi
-  # Exec mongo query
-  mql=$(cat "$mqlFile")
-  scripts/exec.sh "$mql" &> "$resultPath"
-  # Check result with the expected
-  diff=$(diff "$resultPath" "$TRYBE_DIR/expected-results/$chName")
-  if [[ ! -z "$diff" ]]; then
-    printf "\n%s: \e[1;31mfailed \e[0m" "$chName" >> "$RESULTS_DIR/evaluation.out"
-    print_results
-    continue
-  fi
-  printf "\n%s: \e[1;42mpassed \e[0m" "$chName" >> "$RESULTS_DIR/evaluation.out"
-  print_results
 done
 
 scripts/resetdb.sh "$DB_RESTORE_DIR"
