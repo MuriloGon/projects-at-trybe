@@ -150,9 +150,9 @@ Qualquer dúvida, procure a monitoria. Lembre-se que você pode consultar nosso 
 
 1. Clone o repositório
 
-- `git clone git@github.com:tryber/sd-0x-mongodb-commerce.git`.
+- `git clone git@github.com:tryber/sd-09-mongodb-commerce.git`.
 - Entre na pasta do repositório que você acabou de clonar:
-  - `cd sd-0x-mongodb-commerce`
+  - `cd sd-09-mongodb-commerce`
 
 2. Crie uma branch a partir da branch `master`
 
