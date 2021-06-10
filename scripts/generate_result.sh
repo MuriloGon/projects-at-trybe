@@ -17,9 +17,6 @@ fi
 DB_RESTORE_DIR=$3
 
 UNIT_FILE=$4
-if [[ -z "$4" ]]; then
-UNIT_FILE="."
-fi
 
 RESULTS_DIR="/tmp/trybe-results"
 rm -rf "$RESULTS_DIR"
@@ -37,7 +34,7 @@ for entry in "$TRYBE_DIR/expected-results"/*
 do
   chName=$(echo "$(basename $entry)" | sed -e "s/.js//g")
 
-  if [ $UNIT_FILE == "." ] || [ $chName == $UNIT_FILE ]; then
+  if [[ -z "$UNIT_FILE" ]] || [ $chName == $UNIT_FILE ]; then
     scripts/resetdb.sh "$DB_RESTORE_DIR"
     # Get challenge name
     
