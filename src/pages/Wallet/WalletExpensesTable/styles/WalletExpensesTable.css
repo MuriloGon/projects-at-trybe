@@ -1,0 +1,36 @@
+.expenses-table {
+  border-spacing: 0;
+  margin-inline: auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.expenses-header th , .expenses-body td {
+  padding: 20px 10px;
+  text-align: left;
+  word-wrap: normal;
+}
+
+.expenses-body-header {
+  display: flex;
+  flex-flow: wrap column;
+  justify-content: space-evenly;
+}
+
+.expenses-header {
+  align-items: center;
+  background: hsl(0deg 0% 35%);
+  color: hsl(0, 0%, 95%);
+  padding: 20px;
+  width: 100%;
+}
+
+.expenses-body {
+  align-items: center;
+  color: black;
+  padding: 20px;
+}
+
+.table-value {
+  background-color: red;
+}
