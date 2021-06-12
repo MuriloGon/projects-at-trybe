@@ -1,0 +1,63 @@
+.wallet-exps {
+  align-items: center;
+  background-color: hsl(0, 0%, 25%);
+  display: flex;
+  padding-block: 1rem;
+}
+
+.wallet-exps-content select , .wallet-exps-content input {
+  box-sizing: border-box;
+  height: 40px;
+}
+
+.wallet-exps-content {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-flow: wrap row;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.wallet-exps-label {
+  color: white;
+  margin-right: 0.25rem;
+}
+
+.value-input {
+  width: 75px;
+}
+
+.submit-form-btn {
+  background-color: hsl(120, 50%, 40%);
+  border: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  height: 40px;
+}
+
+.submit-form-btn:hover {
+  background-color: hsl(120, 50%, 35%);
+  cursor: pointer;
+}
+
+.submit-form-btn:active {
+  background-color: hsl(120, 50%, 45%);
+}
+
+
+.test[ type = 'text' ]:focus {
+  outline: 2px solid rgb(136, 191, 255);
+}
+
+input[ type = 'number' ]:focus {
+  outline: 2px solid rgb(136, 191, 255);
+}
+
+select:focus , .submit-form-btn:focus {
+  outline: 2px solid rgb(136, 191, 255);
+}
