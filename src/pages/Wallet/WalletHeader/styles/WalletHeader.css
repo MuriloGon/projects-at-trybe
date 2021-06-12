@@ -1,0 +1,78 @@
+.wallet-header ul {
+  padding: 0;
+}
+
+.wallet-header {
+  align-items: center;
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  height: 50px;
+}
+
+.wallet-header-content > * {
+  margin-inline: 1rem;
+}
+
+.wallet-header-content li {
+  list-style: none;
+}
+
+.wallet-header-content {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  position: relative;
+}
+
+.wallet-header-info > * {
+  margin-inline: 0.5rem;
+}
+
+.wallet-header-info {
+  display: flex;
+}
+
+.lds-ripple {
+
+  --radius: 30px;
+  display: inline-block;
+  height: var(--radius);
+  left: 99%;
+  position: absolute;
+  top: -50%;
+  width: var(--radius);
+}
+
+.lds-ripple div {
+  animation: lds-ripple 0.25s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  border: 4px solid rgb(47, 173, 30);
+  border-radius: 50%;
+  opacity: 1;
+  position: absolute;
+}
+
+.lds-ripple div:nth-child( 2 ) {
+  animation-delay: -0.125;
+}
+
+@keyframes lds-ripple {
+
+  0% {
+    height: 0;
+    left: calc(var(--radius) * 0.45);
+    opacity: 1;
+    top: calc(var(--radius) * 0.45);
+    width: 0;
+  }
+
+  100% {
+    height: calc(var(--radius) * 0.9);
+    left: 0;
+    opacity: 0;
+    top: 0;
+    width: calc(var(--radius) * 0.9);
+  }
+}
