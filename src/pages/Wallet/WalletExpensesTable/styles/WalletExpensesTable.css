@@ -34,3 +34,32 @@
 .table-value {
   background-color: red;
 }
+
+.action-btns {
+  display: flex;
+}
+
+.action-btn {
+  border-radius: 50%;
+  cursor: pointer;
+  height: 30px;
+  padding: 5px;
+  user-select: none;
+  width: 30px;
+}
+
+.action-btn:hover {
+  background: rgba(0, 0, 0, 0.144);
+}
+
+.action-btn:active {
+  background: rgba(0, 119, 255, 0.144);
+}
+
+.edit-btn {
+  color: blue;
+}
+
+.delete-btn {
+  color: red;
+}

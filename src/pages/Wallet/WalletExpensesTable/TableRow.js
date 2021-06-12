@@ -1,9 +1,14 @@
 import React from 'react';
+import { BiPencil, BiX } from 'react-icons/bi';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { deleteExpense } from '../../../actions';
 
 const TableRow = ({ item }) => {
-  const { description, tag, method, value, currency, exchangeRates } = item;
+  const { description, tag, method, value, currency, exchangeRates, id } = item;
   const { name: currencyName, ask } = exchangeRates[currency];
+  const dispatch = useDispatch();
+
   return (
     <tr>
       <td>{description}</td>
@@ -14,8 +19,13 @@ const TableRow = ({ item }) => {
       <td>{parseFloat(ask).toFixed(2)}</td>
       <td>{((parseFloat(value) * parseFloat(ask))).toFixed(2)}</td>
       <td>Real</td>
-      <td>
-        -
+      <td className="action-btns">
+        <BiPencil className="action-btn edit-btn" />
+        <BiX
+          className="action-btn delete-btn"
+          data-testid="delete-btn"
+          onClick={ () => { dispatch(deleteExpense(id)); } }
+        />
       </td>
     </tr>
   );

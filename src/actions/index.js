@@ -7,6 +7,7 @@ export const WALLET_REQUESTING = 'wallet/requesting';
 export const WALLET_REQUEST_FINISHED = 'wallet/requested';
 export const WALLET_REQUEST_ERROR = 'wallet/resquest-error';
 export const WALLET_SAVE_EXPENSE = 'wallet/save-expense';
+export const WALLET_DELETE_ITEM = 'wallet/delete-expense';
 
 export const login = () => ({ type: AUTH_LOGIN });
 export const logout = () => ({ type: AUTH_LOGOUT });
@@ -19,6 +20,11 @@ export const saveEmail = (email) => ({
 export const saveExpense = (expenseData) => ({
   type: WALLET_SAVE_EXPENSE,
   payload: expenseData,
+});
+
+export const deleteExpense = (id) => ({
+  type: WALLET_DELETE_ITEM,
+  payload: id,
 });
 
 export const walletFetching = () => ({

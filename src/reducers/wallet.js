@@ -1,5 +1,5 @@
 import { WALLET_SAVE_EXPENSE,
-  WALLET_REQUESTING, WALLET_REQUEST_FINISHED } from '../actions';
+  WALLET_REQUESTING, WALLET_REQUEST_FINISHED, WALLET_DELETE_ITEM } from '../actions';
 
 const DEFAULT_WALLET = {
   currencies: [],
@@ -22,6 +22,12 @@ const wallet = (state = DEFAULT_WALLET, action) => {
 
   case WALLET_REQUEST_FINISHED:
     return { ...state, isFetching: false };
+
+  case WALLET_DELETE_ITEM:
+    return { ...state,
+      expenses: state.expenses.filter(
+        ({ id }) => id !== action.payload,
+      ) };
 
   default:
     return state;
