@@ -29,8 +29,8 @@
   width: 75px;
 }
 
-.submit-form-btn {
-  background-color: hsl(120, 50%, 40%);
+.edit-btn-submit {
+  background-color: hsl(39, 78%, 57%);
   border: none;
   border-radius: 8px;
   box-sizing: border-box;
@@ -40,12 +40,12 @@
   height: 40px;
 }
 
-.submit-form-btn:hover {
+.edit-btn-submit:hover {
   background-color: hsl(120, 50%, 35%);
   cursor: pointer;
 }
 
-.submit-form-btn:active {
+.edit-btn-submit:active {
   background-color: hsl(120, 50%, 45%);
 }
 
@@ -55,7 +55,7 @@
 }
 
 [ type = 'number' ]:focus {
-  outline: 2px solid rgb(233, 255, 136);
+  outline: 2px solid rgb(136, 191, 255);
 }
 
 select:focus , .submit-form-btn:focus {

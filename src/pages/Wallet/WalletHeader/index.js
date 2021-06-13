@@ -12,8 +12,10 @@ const WalletHeader = ({ email, expenses, isLoading }) => {
   if (expenses.length > 0) {
     expenses.forEach(({ value, exchangeRates, currency: apiCurrency }) => {
       const higherCurrency = exchangeRates[apiCurrency];
-      sum += (Number.isNaN(parseFloat(value)) ? 0 : parseFloat(value))
+      if (higherCurrency !== undefined) {
+        sum += (Number.isNaN(parseFloat(value)) ? 0 : parseFloat(value))
         * parseFloat(higherCurrency.ask);
+      }
     });
   }
   return (

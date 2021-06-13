@@ -5,10 +5,10 @@ import TableRow from './TableRow';
 
 const TableBody = ({ wallet }) => {
   const { expenses } = wallet;
-
   return (
     <tbody className="expenses-body">
-      {expenses.map((item, i) => <TableRow key={ i } item={ item } />)}
+      {expenses.length > 0
+      && expenses.map((item, i) => <TableRow key={ i } item={ item } />)}
     </tbody>
   );
 };
