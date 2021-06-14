@@ -72,7 +72,7 @@ Então vamos lá aplicar seu conhecimento nesses cenários muito legais! 😉
 ## Data de Entrega
 
   - Serão `2` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `22/06/2021 - 14:00h`.
+  - Data de entrega para avaliação final do projeto: `23/06/2021 - 14:00h`.
 
 ---
 
