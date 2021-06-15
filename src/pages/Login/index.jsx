@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router';
+import { fetchTokenThunk } from '../../slices/gameSlice';
 import { Button, Input, LoginContainer, MainContainer } from './styles';
 
 const loginValidation = (email, name) => {
@@ -8,10 +11,23 @@ const loginValidation = (email, name) => {
   return false;
 };
 
+// eslint-disable-next-line max-lines-per-function
 const Login = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [redirectSettings, setRedirectSettings] = useState(false);
+  const dispatch = useDispatch();
+  const allowRedirect = useSelector((st) => st.game.allowRedirect);
+  const token = useSelector((st) => st.game.token);
 
+  useEffect(() => {
+    const tokenFromLS = localStorage.getItem('token');
+
+    if (tokenFromLS === '' || tokenFromLS === null) localStorage.setItem('token', token);
+  }, [token]);
+
+  if (allowRedirect) return <Redirect to="/game" />;
+  if (redirectSettings) return <Redirect to="/settings" />;
   return (
     <MainContainer>
       <LoginContainer>
@@ -36,12 +52,20 @@ const Login = () => {
             />
           </div>
           <div className="form-buttons">
-            <Button className="accent-btn" type="button">Config</Button>
+            <Button
+              data-testid="btn-settings"
+              className="accent-btn"
+              type="button"
+              onClick={ () => { setRedirectSettings(true); } }
+            >
+              Config
+            </Button>
             <Button
               data-testid="btn-play"
               className="primary-btn"
               type="button"
               disabled={ loginValidation(email, name) }
+              onClick={ () => { dispatch(fetchTokenThunk()); } }
             >
               Jogar
             </Button>

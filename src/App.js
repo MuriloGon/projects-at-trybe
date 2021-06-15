@@ -24,7 +24,7 @@ const App = () => (
       </Route>
 
       <Route exact path="/settings">
-        <h1>Settings</h1>
+        <h1 data-testid="settings-title">Settings</h1>
       </Route>
 
       <Route exact path="/ranking">
