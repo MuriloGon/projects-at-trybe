@@ -8,4 +8,4 @@ fi
 
 export DBNAME=aggregations
 
-scripts/generate_result.sh "$PWD/challenges" "$PWD/.trybe" "$PWD/assets"
+scripts/generate_result.sh "$PWD/challenges" "$PWD/.trybe" "$PWD/assets" $1
