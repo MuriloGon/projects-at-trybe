@@ -1,16 +1,36 @@
 import React from 'react';
-import logo from './trivia.png';
-import './App.css';
+import { Redirect, Route, Switch } from 'react-router';
 
-export default function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={ logo } className="App-logo" alt="logo" />
-        <p>
-          SUA VEZ
-        </p>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <Switch>
+    <Route exact path="/">
+      <Redirect to="/login" />
+    </Route>
+
+    <Route exact path="/login">
+      <h1>Login</h1>
+    </Route>
+
+    <Route exact path="/game">
+      <h1>Game</h1>
+    </Route>
+
+    <Route exact path="/feedback">
+      <h1>Feedback</h1>
+    </Route>
+
+    <Route exact path="/settings">
+      <h1>Settings</h1>
+    </Route>
+
+    <Route exact path="/ranking">
+      <h1>Ranking</h1>
+    </Route>
+
+    <Route exact path="*">
+      <h1>Not Found</h1>
+    </Route>
+  </Switch>
+);
+
+export default App;
