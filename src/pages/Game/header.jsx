@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react';
 import md5 from 'crypto-js/md5';
 import { useSelector } from 'react-redux';
 
@@ -10,9 +10,13 @@ export default function Header() {
   const newEmail = md5(email).toString();
   return (
     <>
-      <img src={`https://www.gravatar.com/avatar/${newEmail}`} data-testid="header-profile-picture"/>
+      <img
+        src={ `https://www.gravatar.com/avatar/${newEmail}` }
+        alt="avatar"
+        data-testid="header-profile-picture"
+      />
       <p data-testid="header-player-name">{name}</p>
-      <p data-testid="header-score">Score: {score}</p>
+      <p data-testid="header-score">{`Score: ${score}`}</p>
     </>
-  )
+  );
 }
