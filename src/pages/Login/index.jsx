@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
 import { fetchTokenThunk } from '../../slices/gameSlice';
+import { setUserEmail, setUserName } from '../../slices/loginSlice';
 import { Button, Input, LoginContainer, MainContainer } from './styles';
 
 const loginValidation = (email, name) => {
@@ -65,7 +66,11 @@ const Login = () => {
               className="primary-btn"
               type="button"
               disabled={ loginValidation(email, name) }
-              onClick={ () => { dispatch(fetchTokenThunk()); } }
+              onClick={ () => {
+                dispatch(fetchTokenThunk());
+                dispatch(setUserEmail(email));
+                dispatch(setUserName(name));
+              } }
             >
               Jogar
             </Button>
