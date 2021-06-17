@@ -94,10 +94,8 @@ export const RadioContainer = styled.div`/* Customize the label (the container) 
   /* Hide the browser's default radio button */
   & input {
     cursor: pointer;
-    height: 0;
     opacity: 0;
     position: absolute;
-    width: 0;
   }
 
   /* Create a custom radio button */

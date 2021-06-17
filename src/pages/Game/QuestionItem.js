@@ -5,14 +5,17 @@ import { RadioContainer } from './styles';
 const QuestionItem = ({ text, index, showAnswer, isCorrect, disabled, onClick }) => {
   const msg = isCorrect ? 'correct' : 'wrong';
   return (
-    <RadioContainer className={ showAnswer ? msg : '' }>
+    <RadioContainer
+      data-testid={ isCorrect ? 'correct-answer' : `wrong-answer-${index}` }
+      className={ showAnswer ? msg : '' }
+    >
       <input
         type="radio"
         name="question"
         id={ index }
         value={ isCorrect }
-        data-testid={ isCorrect ? 'correct-answer' : `wrong-answer-${index}` }
         onChange={ onClick }
+        onClick={ onClick }
         disabled={ !disabled }
       />
       <label htmlFor={ index }>{text}</label>
