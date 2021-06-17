@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import { ThemeProvider } from 'styled-components';
 import Login from './pages/Login';
 import themes from './styles';
+import Timer from './pages/Login/Game/Timer';
 
 const App = () => (
   <ThemeProvider theme={ themes.light }>
@@ -17,6 +18,7 @@ const App = () => (
 
       <Route exact path="/game">
         <h1>Game</h1>
+        <Timer time={ 50 } />
       </Route>
 
       <Route exact path="/feedback">
