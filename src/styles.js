@@ -8,6 +8,7 @@ const themes = {
     wronganswer: 'hsl(0deg, 100%, 50%, 100%)',
     accent: 'hsl(306deg, 70%, 61%, 100%)',
     accenthover: 'hsl(306deg, 70%, 61%, 90%)',
+    playagain: 'hsl(133deg, 80%, 32%, 100%)',
   },
 };
 
