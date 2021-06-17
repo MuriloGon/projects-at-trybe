@@ -1,32 +1,31 @@
 import styled from 'styled-components';
 
-export const H = styled.header`
+export const H = styled.header`background-color: ${({ theme: { primary } }) => primary};
+  color: white;
   display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  background-color: ${({ theme: { primary } }) => primary};
-  margin: 0px;
-  padding: 0px;
   font-size: 22px;
   font-weight: 600;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
   text-align: center;
-  color: white;
+  width: 100%;
 
   .avatar {
     border-radius: 30px;
   }
 `;
 
-export const PlayerDiv = styled.div`
-  display: flex;
-  padding: 2px;
+export const PlayerDiv = styled.div`display: flex;
   margin: 2px;
+  padding: 2px;
   text-align: center;
 
   .playerName {
     margin-left: 7px;
   }
- 
+`;
+
 export const Main = styled.main`margin: 0 auto;
   max-width: 1025px;
 `;

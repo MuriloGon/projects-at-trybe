@@ -1,5 +1,5 @@
 // Font: Stackoverflow
-// url: 
+// url:
 //  https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 //  https://github.com/coolaj86/knuth-shuffle
 export default function shuffle(array) {
