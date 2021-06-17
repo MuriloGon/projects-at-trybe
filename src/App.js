@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { ThemeProvider } from 'styled-components';
+import Game from './pages/Game';
 import Login from './pages/Login';
 import Feedback from './pages/Feedback';
 import themes from './styles';
@@ -19,7 +20,7 @@ const App = () => (
 
       <Route exact path="/game">
         <Header testId="header-score" />
-        <h1>Game</h1>
+        <Game />
       </Route>
 
       <Route exact path="/feedback">

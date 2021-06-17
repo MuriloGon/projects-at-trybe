@@ -6,6 +6,7 @@ const initialState = {
   score: 0,
   token: '',
   allowRedirect: false,
+  timer: false,
 };
 
 const gameSlice = createSlice({
@@ -17,6 +18,7 @@ const gameSlice = createSlice({
     setQuestions: (state, { payload }) => { state.questions = payload; },
     setToken: (state, { payload }) => { state.token = payload; },
     setRedirect: (state, { payload }) => { state.allowRedirect = payload; },
+    setTimer: (state, { payload }) => { state.timer = payload; },
   },
 });
 
@@ -29,5 +31,5 @@ export const fetchTokenThunk = () => async (dispatch) => {
 };
 
 export const { incrementAssertions, incrementScore,
-  setQuestions, setToken } = gameSlice.actions;
+  setQuestions, setToken, setTimer } = gameSlice.actions;
 export default gameSlice.reducer;
