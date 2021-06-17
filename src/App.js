@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { ThemeProvider } from 'styled-components';
+import Game from './pages/Game';
 import Login from './pages/Login';
 import themes from './styles';
 import Header from './pages/Game/header';
@@ -16,9 +17,9 @@ const App = () => (
         <Login />
       </Route>
 
-      <Route exact path="/game">
+      <Route exact path="/game"
         <Header />
-        <h1>Game</h1>
+        <Game />
       </Route>
 
       <Route exact path="/feedback">
