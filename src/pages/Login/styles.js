@@ -47,7 +47,8 @@ export const LoginContainer = styled.section`border-radius: 8px;
 
 `;
 
-export const Input = styled.input`border:3px solid ${({ theme: { primary } }) => primary};
+export const Input = styled.input`/* Input */
+  border: 3px solid ${({ theme: { primary } }) => primary};
   border-radius: 8px;
   box-sizing: border-box;
   color: ${({ theme: { primary } }) => primary};

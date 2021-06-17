@@ -1,8 +1,10 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import { ThemeProvider } from 'styled-components';
+import Game from './pages/Game';
 import Login from './pages/Login';
 import themes from './styles';
+import Header from './pages/Game/header';
 
 const App = () => (
   <ThemeProvider theme={ themes.light }>
@@ -15,8 +17,9 @@ const App = () => (
         <Login />
       </Route>
 
-      <Route exact path="/game">
-        <h1>Game</h1>
+      <Route exact path="/game"
+        <Header />
+        <Game />
       </Route>
 
       <Route exact path="/feedback">
