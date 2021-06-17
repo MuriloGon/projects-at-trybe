@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import { ThemeProvider } from 'styled-components';
 import Login from './pages/Login';
 import themes from './styles';
+import Header from './pages/Game/header';
 
 const App = () => (
   <ThemeProvider theme={ themes.light }>
@@ -16,6 +17,7 @@ const App = () => (
       </Route>
 
       <Route exact path="/game">
+        <Header />
         <h1>Game</h1>
       </Route>
 
