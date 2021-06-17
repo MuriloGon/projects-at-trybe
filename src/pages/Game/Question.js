@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import QuestionItem from './QuestionItem';
 import shuffle from '../../helpers/arrayFunctions';
-import { Question as QuestionContainer, QuestionForm, QuestionHead } from './styles';
+import { Question as QuestionContainer, QuestionHead, QuestionForm } from './styles';
 
 const questionsMap = (correctAnswer, incorrectAnswers) => {
   const correctAnsObj = { text: correctAnswer, isCorrect: true, index: -1 };

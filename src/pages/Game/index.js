@@ -6,7 +6,7 @@ import { Main } from './styles';
 
 const Game = () => {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestionIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [allowChoice, setAllowChoice] = useState(true);
   const token = useSelector((st) => st.game.token);
