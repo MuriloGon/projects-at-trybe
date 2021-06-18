@@ -18,7 +18,7 @@ export default function index() {
     <MainFeedbackContainer>
       <FeedbackContainer>
         <div>
-          <p className="feedback">
+          <p data-testid="feedback-text" className="feedback">
             Você acertou um total de
             <span data-testid="feedback-total-question">{` ${correctAnswers} `}</span>
             perguntas e fez
