@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Chart } from 'react-google-charts';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addPlayerScore } from '../../helpers/playerLocalStoreFunctions';
 import { Button, FeedbackContainer, MainFeedbackContainer } from './styles';
 
 const msg = (correctAnswers) => {
@@ -34,11 +35,18 @@ const renderButtons = () => (
 );
 
 export default function Game() {
-  const game = useSelector(({ game: g }) => g);
-  const { score } = game;
-  const correctAnswers = game.assertions;
-  const wrongAnswers = game.questions.length - correctAnswers;
-  console.log(wrongAnswers, correctAnswers);
+  const { game: { score, assertions, questions },
+    login: { userName: name, avatar: picture },
+  } = useSelector((st) => st);
+  const correctAnswers = assertions;
+  const wrongAnswers = questions.length - correctAnswers;
+  useEffect(() => {
+    const obj = {
+      name,
+      score,
+      picture };
+    addPlayerScore(obj);
+  }, []);
   return (
     <MainFeedbackContainer>
       <FeedbackContainer>

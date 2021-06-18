@@ -7,7 +7,7 @@ export default function Ranking() {
   return (
     <div>
       <h1 data-testid="ranking-title">Ranking</h1>
-      {/* <TopRanking />
+      <TopRanking />
       <LowerRanking />
       <Link to="/login">
         <input
@@ -15,7 +15,7 @@ export default function Ranking() {
           data-testid="btn-go-home"
           type="button"
         />
-      </Link> */}
+      </Link>
     </div>
   );
 }

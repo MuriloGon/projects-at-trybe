@@ -41,8 +41,9 @@ export function setLocalStorage(key, data) {
   localStorage.setItem(`${key}`, JSON.stringify(data));
 }
 
-export function getLocalStorage(data) {
-  return (
-    JSON.parse(localStorage.getItem(data))
-  );
+export function getLocalStorage(key) {
+  const localStoData = JSON.parse(localStorage.getItem(key));
+
+  if (localStoData === null) return [];
+  return localStoData;
 }

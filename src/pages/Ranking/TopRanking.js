@@ -1,10 +1,5 @@
 import React from 'react';
-import { userInfo, setLocalStorage, getLocalStorage } from '../../helpers/localStorage';
-
-function getScore() {
-  setLocalStorage('ranking', userInfo);
-}
-getScore();
+import { getLocalStorage } from '../../helpers/localStorage';
 
 function TopRanking() {
   const three = 3;
@@ -16,7 +11,7 @@ function TopRanking() {
       { newArrayPlayer.map((info, index) => (
         <li className="listRanking" key={ index }>
           <img src={ info.picture } alt="user" />
-          <p data-testid={ `player-score-${index}` }>{ info.name }</p>
+          <p data-testid={ `player-name-${index}` }>{ info.name }</p>
           <span data-testid={ `player-score-${index}` }>{ info.score }</span>
           { index }
         </li>

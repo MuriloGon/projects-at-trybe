@@ -1,11 +1,6 @@
 import React from 'react';
 
-import { userInfo, setLocalStorage, getLocalStorage } from '../../helpers/localStorage';
-
-function getScore() {
-  setLocalStorage('ranking', userInfo);
-}
-getScore();
+import { getLocalStorage } from '../../helpers/localStorage';
 
 function LowerRanking() {
   const three = 3;
