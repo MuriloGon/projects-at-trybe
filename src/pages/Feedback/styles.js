@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const MainFeedbackContainer = styled.main`
-  display: flex;
+export const MainFeedbackContainer = styled.main`display: flex;
   height: 100%;
   justify-content: center;
 `;
@@ -34,15 +33,19 @@ export const FeedbackContainer = styled.section`border-radius: 8px;
   }
 `;
 
-export const Button = styled.button`border: none;
-  border-radius: 8px;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-size: 20px;
+export const Button = styled.button`border: unset;
+  border-radius: 6px;
+  font-size: 17px;
   font-weight: 600;
-  height: 50px;
-  max-width: 200px;
-  transition: box-shadow 0.3s ease;
+  margin-top: 15px;
+  padding: 10px 20px;
+  transition: background 0.15s ease;
+  width: 150px;
+
+  &:hover {
+    background: ${({ theme: { playagainvariant } }) => playagainvariant};
+    cursor: pointer;
+  }
 
   &.playagain-btn {
     background-color: ${({ theme: { playagain } }) => playagain};
@@ -52,9 +55,5 @@ export const Button = styled.button`border: none;
   &.ranking-btn {
     background-color: ${({ theme: { accent } }) => accent};
     color: white;
-  }
-
-  &:hover {
-    box-shadow: 0 5px 12px 4px rgba(0, 0, 0, 0.2);
   }
 `;

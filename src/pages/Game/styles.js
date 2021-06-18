@@ -191,7 +191,7 @@ export const RadioContainer = styled.button`/* Customize the label (the containe
     color: ${({ theme: { primary } }) => primary};
     cursor: pointer;
     display: block;
-    font-weight: 500;
+    font-weight: 00;
     margin-left: 35px;
   }
 `;
@@ -199,9 +199,9 @@ export const RadioContainer = styled.button`/* Customize the label (the containe
 export const NextButton = styled.button`/* Next Button */
   align-self: center;
   background: ${({ theme: { playagain } }) => playagain};
+  color: ${({ theme: { background } }) => background};
   border: unset;
   border-radius: 6px;
-  color: ${({ theme: { background } }) => background};
   font-size: 17px;
   font-weight: 500;
   margin-top: 15px;
