@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { RadioContainer } from './styles';
 
 const QuestionItem = ({ text, index, showAnswer, isCorrect, disabled, onClick }) => {
   const msg = isCorrect ? 'correct' : 'wrong';
+  // const inputRef = useRef();
+
+  // useEffect(() => {
+  //   inputRef.current.setAttribute('disabled', false);
+  // }, []);
+
   return (
     <RadioContainer
       data-testid={ isCorrect ? 'correct-answer' : `wrong-answer-${index}` }
       className={ showAnswer ? msg : '' }
+      disabled={ !disabled }
+      type="button"
     >
       <input
         type="radio"
         name="question"
         id={ index }
         value={ isCorrect }
-        onChange={ onClick }
-        onClick={ onClick }
+        onClick={ () => {
+          onClick(isCorrect);
+        } }
         disabled={ !disabled }
       />
       <label htmlFor={ index }>{text}</label>

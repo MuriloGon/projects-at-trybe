@@ -43,6 +43,7 @@ export const QuestionHead = styled.header`background: ${({ theme }) => theme.pri
   flex-flow: nowrap column;
   font-size: 10px;
   padding: 25px;
+  position: relative;
 
   .separation-line { width: 75%;}
 
@@ -57,6 +58,20 @@ export const QuestionHead = styled.header`background: ${({ theme }) => theme.pri
     margin: 10px 0 0;
   }
 
+  .time-counter {
+    align-items: center;
+    border: 2px solid ${(theme) => theme.background};
+    border-radius: 50%;
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    height: 40px;
+    justify-content: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 40px;
+  }
 `;
 
 export const QuestionForm = styled.form`/* question form */
@@ -70,7 +85,8 @@ export const QuestionForm = styled.form`/* question form */
   }
 `;
 
-export const RadioContainer = styled.div`/* Customize the label (the container) */
+export const RadioContainer = styled.button`/* Customize the label (the container) */
+  border: 3px solid transparent;
   border-radius: 8px;
   box-sizing: border-box;
   cursor: pointer;
@@ -80,6 +96,7 @@ export const RadioContainer = styled.div`/* Customize the label (the container) 
   padding: 10px;
   position: relative;
   user-select: none;
+  width: 100%;
 
 
   &.wrong {

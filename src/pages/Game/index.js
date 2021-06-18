@@ -13,9 +13,10 @@ const Game = () => {
 
   useEffect(() => { fetchQuestions(token).then(setQuestions); }, []);
 
-  const handleClick = () => {
+  const handleClick = (answer, time) => {
     setShowAnswer(true);
     setAllowChoice(false);
+    console.log(answer, time);
   };
 
   if (questions.length <= 0) return null;
