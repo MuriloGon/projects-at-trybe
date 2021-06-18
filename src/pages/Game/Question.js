@@ -15,7 +15,7 @@ const questionsMap = (correctAnswer, incorrectAnswers) => {
   return [correctAnsObj, ...incorrenctAnsMap];
 };
 
-const MAX_TIME = 25;
+const MAX_TIME = 30;
 const TIME_TICK = 1000;
 
 const decrementUnit = (st) => st - 1;
