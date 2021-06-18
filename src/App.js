@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import Game from './pages/Game';
 import Login from './pages/Login';
 import Feedback from './pages/Feedback';
+import Ranking from './pages/Ranking';
 import themes from './styles';
 import Header from './pages/Game/header';
 
@@ -33,7 +34,7 @@ const App = () => (
       </Route>
 
       <Route exact path="/ranking">
-        <h1>Ranking</h1>
+        <Ranking />
       </Route>
 
       <Route exact path="*">
