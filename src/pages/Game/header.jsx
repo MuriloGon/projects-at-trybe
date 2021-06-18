@@ -8,7 +8,7 @@ export default function Header({ testId }) {
   const email = useSelector((st) => st.login.email);
   const name = useSelector((st) => st.login.userName);
   const score = useSelector((st) => st.game.score);
-
+  console.log(score);
   const newEmail = md5(email).toString();
 
   return (
