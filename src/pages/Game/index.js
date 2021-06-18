@@ -7,21 +7,22 @@ import { incrementAssertions, setScore } from '../../slices/gameSlice';
 import Question from './Question';
 import { Main } from './styles';
 
-const handleClick = (player, setShowAnswer, setAllowChoice, dispatch) => (
+const difficultyObj = {
+  hard: 3,
+  medium: 2,
+  easy: 1,
+};
+const BASE_SCORE = 10;
+
+const handleClick = (setShowAnswer, setAllowChoice, dispatch) => (
   answer, timer, difficulty,
 ) => {
   setShowAnswer(true);
   setAllowChoice(false);
-  savePlayer({
-    answer,
-    name: player.userName,
-    timer,
-    gravatarEmail: player.email,
-    difficulty,
-    callback: (score) => {
-      dispatch(setScore(score));
-      dispatch(incrementAssertions());
-    } });
+  if (answer) {
+    dispatch(setScore(BASE_SCORE + (timer * difficultyObj[difficulty])));
+    dispatch(incrementAssertions());
+  }
 };
 
 const Game = () => {
@@ -29,16 +30,18 @@ const Game = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showanswer, setShowAnswer] = useState(false);
   const [allowChoice, setAllowChoice] = useState(true);
-  const player = useSelector((st) => st.login);
-  const token = useSelector((st) => st.game.token);
+  const reduxSt = useSelector((st) => st);
   const dispatch = useDispatch();
   const [fireInstance, setFireInstance] = useState(false);
 
   useEffect(() => {
-    fetchQuestions(token).then(setQuestions);
-    resetPlayerState(player.userName, player.email);
+    fetchQuestions(reduxSt.game.token).then(setQuestions);
+    resetPlayerState(reduxSt.login.userName, reduxSt.login.email);
   }, []);
 
+  useEffect(() => {
+    savePlayer(reduxSt);
+  }, [reduxSt]);
   useEffect(() => { setFireInstance(true); }, [fireInstance]);
 
   if (questions.length <= 0) return null;
@@ -47,7 +50,7 @@ const Game = () => {
     <Question
       showAnswer={ showanswer }
       allowChoise={ allowChoice }
-      handleClick={ handleClick(player, setShowAnswer, setAllowChoice, dispatch) }
+      handleClick={ handleClick(setShowAnswer, setAllowChoice, dispatch) }
       question={ qt }
     />
   );

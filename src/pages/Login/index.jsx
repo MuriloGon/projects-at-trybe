@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router';
-import { fetchTokenThunk } from '../../slices/gameSlice';
+import { fetchTokenThunk, resetGameState } from '../../slices/gameSlice';
 import { setUserEmail, setUserName } from '../../slices/loginSlice';
 import { Button, Input, LoginContainer, MainContainer } from './styles';
 
@@ -68,6 +68,7 @@ const Login = () => {
   useEffect(() => {
     const tokenFromLS = localStorage.getItem('token');
     if (tokenFromLS === '' || tokenFromLS === null) localStorage.setItem('token', token);
+    dispatch(resetGameState());
   }, [token]);
   if (allowRedirect) return <Redirect to="/game" />;
   if (redirectSettings) return <Redirect to="/settings" />;
