@@ -6,7 +6,7 @@ import { resetPlayerState, savePlayer } from '../../helpers/playerLocalStoreFunc
 import { incrementAssertions, setScore,
   setQuestions as setQuestionsAction, setRedirect } from '../../slices/gameSlice';
 import Question from './Question';
-import { Main } from './styles';
+import { Main, NextButton } from './styles';
 
 const difficultyObj = {
   hard: 3,
@@ -25,6 +25,27 @@ const handleClick = (setShowAnswer, setAllowChoice, dispatch) => (
     dispatch(incrementAssertions());
   }
 };
+
+const renderButton = ({
+  showanswer, setCurrentQuestionIndex, currentQuestionIndex,
+  setShowAnswer, setAllowChoice, setFireInstance,
+}) => (
+  showanswer
+    ? (
+      <NextButton
+        data-testid="btn-next"
+        type="button"
+        onClick={ () => {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+          setShowAnswer(false);
+          setAllowChoice(true);
+          setFireInstance(false);
+        } }
+      >
+        Próxima
+      </NextButton>)
+    : null
+);
 
 const Game = () => {
   const [questions, setQuestions] = useState([]);
@@ -60,19 +81,13 @@ const Game = () => {
   return (
     <Main>
       {fireInstance && renderQuestion(question)}
-      <button
-        data-testid="btn-next"
-        type="button"
-        style={ { display: showanswer ? 'block' : 'none' } }
-        onClick={ () => {
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
-          setShowAnswer(false);
-          setAllowChoice(true);
-          setFireInstance(false);
-        } }
-      >
-        Próxima
-      </button>
+      {renderButton({
+        showanswer,
+        setCurrentQuestionIndex,
+        currentQuestionIndex,
+        setShowAnswer,
+        setAllowChoice,
+        setFireInstance })}
     </Main>
   );
 };

@@ -10,6 +10,7 @@ const themes = {
     primarylight: 'hsl(235deg, 79%, 95%, 100%)',
     wronganswer: 'hsl(0deg, 100%, 50%, 100%)',
     playagain: 'hsl(133deg, 80%, 32%, 100%)',
+    playagainvariant: 'hsl(133deg, 80%, 32%, 80%)',
   },
 };
 

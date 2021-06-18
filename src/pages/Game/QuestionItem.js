@@ -22,19 +22,23 @@ const QuestionItem = ({ text, index, showAnswer, isCorrect, disabled, onClick })
         } }
         disabled={ !disabled }
       />
-      <label htmlFor={ index }>{text}</label>
+      {React.createElement('label', {
+        dangerouslySetInnerHTML: { __html: text },
+        htmlFor: index,
+      })}
       <span className="checkmark" />
     </RadioContainer>
   );
 };
 
+// Implementação de proptypes graças ao lucas lara
 QuestionItem.propTypes = {
-  text: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-  showAnswer: PropTypes.bool.isRequired,
-  isCorrect: PropTypes.bool.isRequired,
-  disabled: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
-};
+  text: PropTypes.string,
+  index: PropTypes.number,
+  showAnswer: PropTypes.bool,
+  isCorrect: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+}.isRequired;
 
 export default QuestionItem;

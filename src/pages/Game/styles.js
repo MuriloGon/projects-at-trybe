@@ -1,23 +1,46 @@
 import styled from 'styled-components';
 
-export const H = styled.header`background-color: ${({ theme: { primary } }) => primary};
+export const HeaderContainer = styled.div`/* Header Container */
+  align-items: center;
+  background-color: ${({ theme: { primary } }) => primary};
+  display: flex;
+`;
+
+export const HeaderContent = styled.header`/* Header Content */
+  align-items: center;
   color: white;
   display: flex;
+  flex: 1;
   font-size: 22px;
   font-weight: 600;
-  justify-content: space-evenly;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  width: 100%;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1024px;
 
-  .avatar {
-    border-radius: 30px;
+  & > * {
+    margin-inline: 20px;
+  }
+
+  & .avatar {
+    align-items: center;
+    display: flex;
+
+    & img {
+      border-radius: 50%;
+      height: 90%;
+      width: auto;
+    }
+  }
+
+  .score-value {
+    display: inline-block;
+    min-width: 35px;
+    text-align: center;
   }
 `;
 
 export const PlayerDiv = styled.div`display: flex;
-  margin: 2px;
+  height: 100%;
   padding: 2px;
   text-align: center;
 
@@ -26,7 +49,11 @@ export const PlayerDiv = styled.div`display: flex;
   }
 `;
 
-export const Main = styled.main`margin: 0 auto;
+export const Main = styled.main`align-items: center;
+  align-items: stretch;
+  display: flex;
+  flex-flow: nowrap column;
+  margin: 0 auto;
   max-width: 1025px;
 `;
 
@@ -164,7 +191,26 @@ export const RadioContainer = styled.button`/* Customize the label (the containe
     color: ${({ theme: { primary } }) => primary};
     cursor: pointer;
     display: block;
-    font-weight: 500;
+    font-weight: 00;
     margin-left: 35px;
+  }
+`;
+
+export const NextButton = styled.button`/* Next Button */
+  align-self: center;
+  background: ${({ theme: { playagain } }) => playagain};
+  color: ${({ theme: { background } }) => background};
+  border: unset;
+  border-radius: 6px;
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 15px;
+  padding: 10px 20px;
+  transition: background 0.15s ease;
+  width: 150px;
+
+  &:hover {
+    background: ${({ theme: { playagainvariant } }) => playagainvariant};
+    cursor: pointer;
   }
 `;
