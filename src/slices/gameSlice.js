@@ -35,5 +35,6 @@ export const fetchTokenThunk = () => async (dispatch) => {
 };
 
 export const { incrementAssertions, setScore,
-  setQuestions, setToken, setTimer, resetGameState } = gameSlice.actions;
+  setQuestions, setToken, setTimer, resetGameState,
+  setRedirect } = gameSlice.actions;
 export default gameSlice.reducer;

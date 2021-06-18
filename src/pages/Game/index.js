@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { fetchQuestions } from '../../api/trivia';
 import { resetPlayerState, savePlayer } from '../../helpers/playerLocalStoreFunctions';
-import { incrementAssertions, setScore } from '../../slices/gameSlice';
+import { incrementAssertions, setScore,
+  setQuestions as setQuestionsAction, setRedirect } from '../../slices/gameSlice';
 import Question from './Question';
 import { Main } from './styles';
 
@@ -33,12 +34,13 @@ const Game = () => {
   const reduxSt = useSelector((st) => st);
   const dispatch = useDispatch();
   const [fireInstance, setFireInstance] = useState(false);
-
   useEffect(() => {
-    fetchQuestions(reduxSt.game.token).then(setQuestions);
+    fetchQuestions(reduxSt.game.token).then(
+      (qt) => { setQuestions(qt); dispatch(setQuestionsAction(qt)); },
+    );
     resetPlayerState(reduxSt.login.userName, reduxSt.login.email);
+    dispatch(setRedirect());
   }, []);
-
   useEffect(() => {
     savePlayer(reduxSt);
   }, [reduxSt]);
