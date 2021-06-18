@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -8,11 +7,27 @@ import { incrementAssertions, setScore } from '../../slices/gameSlice';
 import Question from './Question';
 import { Main } from './styles';
 
+const handleClick = (player, setShowAnswer, setAllowChoice, dispatch) => (
+  answer, timer, difficulty,
+) => {
+  setShowAnswer(true);
+  setAllowChoice(false);
+  savePlayer({
+    answer,
+    name: player.userName,
+    timer,
+    gravatarEmail: player.email,
+    difficulty,
+    callback: (score) => {
+      dispatch(setScore(score));
+      dispatch(incrementAssertions());
+    } });
+};
+
 const Game = () => {
   const [questions, setQuestions] = useState([]);
-  // eslint-disable-next-line no-unused-vars
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [showanswer, setShowAnswer] = useState(false);
   const [allowChoice, setAllowChoice] = useState(true);
   const player = useSelector((st) => st.login);
   const token = useSelector((st) => st.game.token);
@@ -24,35 +39,16 @@ const Game = () => {
     resetPlayerState(player.userName, player.email);
   }, []);
 
-  useEffect(() => {
-    setFireInstance(true);
-  }, [fireInstance]);
-
-  const handleClick = (answer, timer, difficulty) => {
-    setShowAnswer(true);
-    setAllowChoice(false);
-    savePlayer({
-      answer,
-      name: player.userName,
-      timer,
-      gravatarEmail: player.email,
-      difficulty,
-      callback: (score) => {
-        console.log(score);
-        dispatch(setScore(score));
-        dispatch(incrementAssertions());
-      } });
-  };
+  useEffect(() => { setFireInstance(true); }, [fireInstance]);
 
   if (questions.length <= 0) return null;
   const question = questions[currentQuestionIndex];
-  console.log(questions);
-  const renderQuestion = (question) => (
+  const renderQuestion = (qt) => (
     <Question
-      showAnswer={ showAnswer }
+      showAnswer={ showanswer }
       allowChoise={ allowChoice }
-      handleClick={ handleClick }
-      question={ question }
+      handleClick={ handleClick(player, setShowAnswer, setAllowChoice, dispatch) }
+      question={ qt }
     />
   );
   if (currentQuestionIndex >= questions.length) return <Redirect to="/feedback" />;
@@ -62,7 +58,7 @@ const Game = () => {
       <button
         data-testid="btn-next"
         type="button"
-        style={ { display: showAnswer ? 'block' : 'none' } }
+        style={ { display: showanswer ? 'block' : 'none' } }
         onClick={ () => {
           setCurrentQuestionIndex(currentQuestionIndex + 1);
           setShowAnswer(false);

@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import QuestionItem from './QuestionItem';
@@ -6,13 +5,31 @@ import Timer from './Timer';
 import shuffle from '../../helpers/arrayFunctions';
 import { Question as QuestionContainer, QuestionHead, QuestionForm } from './styles';
 
+const renderHead = (time, question) => (
+  <QuestionHead>
+    <span className="time-counter">{time}</span>
+    <h2
+      className="question-category"
+      data-testid="question-category"
+    >
+      {question.category}
+    </h2>
+    <hr className="separation-line" />
+    <p
+      className="question-txt"
+      data-testid="question-text"
+    >
+      {question.question}
+    </p>
+  </QuestionHead>
+);
+
 const questionsMap = (correctAnswer, incorrectAnswers) => {
   const correctAnsObj = { text: correctAnswer, isCorrect: true, index: -1 };
   const incorrenctAnsMap = incorrectAnswers.map(
     (text, index) => ({ text, isCorrect: false, index }),
   );
-  // return shuffle([correctAnsObj, ...incorrenctAnsMap]);
-  return [correctAnsObj, ...incorrenctAnsMap];
+  return shuffle([correctAnsObj, ...incorrenctAnsMap]);
 };
 
 const MAX_TIME = 30;
@@ -44,22 +61,7 @@ const Question = ({ question, showAnswer, allowChoise, handleClick }) => {
 
   return (
     <QuestionContainer>
-      <QuestionHead>
-        <span className="time-counter">{time}</span>
-        <h2
-          className="question-category"
-          data-testid="question-category"
-        >
-          {question.category}
-        </h2>
-        <hr className="separation-line" />
-        <p
-          className="question-txt"
-          data-testid="question-text"
-        >
-          {question.question}
-        </p>
-      </QuestionHead>
+      {renderHead(time, question)}
       <QuestionForm>
         {
           asserts.map((q, i) => (
@@ -80,7 +82,7 @@ const Question = ({ question, showAnswer, allowChoise, handleClick }) => {
 };
 
 Question.propTypes = {
-  question: PropTypes.object.isRequired,
+  question: PropTypes.objectOf({}).isRequired,
   showAnswer: PropTypes.bool.isRequired,
   allowChoise: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
