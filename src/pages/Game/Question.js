@@ -11,7 +11,8 @@ const questionsMap = (correctAnswer, incorrectAnswers) => {
   const incorrenctAnsMap = incorrectAnswers.map(
     (text, index) => ({ text, isCorrect: false, index }),
   );
-  return shuffle([correctAnsObj, ...incorrenctAnsMap]);
+  // return shuffle([correctAnsObj, ...incorrenctAnsMap]);
+  return [correctAnsObj, ...incorrenctAnsMap];
 };
 
 const MAX_TIME = 25;
@@ -67,7 +68,9 @@ const Question = ({ question, showAnswer, allowChoise, handleClick }) => {
               showAnswer={ showAnswer }
               disabled={ allowChoise }
               { ...q }
-              onClick={ (ans) => { handleClick(ans, time); } }
+              onClick={ (ans) => {
+                handleClick(ans, time, question.difficulty);
+              } }
             />))
         }
       </QuestionForm>

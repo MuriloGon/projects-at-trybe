@@ -38,7 +38,7 @@ const FEEDBACK_TOTAL_SCORE_SELECTOR = '[data-testid="feedback-total-score"]';
 const FEEDBACK_TOTAL_QUESTION_SELECTOR = '[data-testid="feedback-total-question"]';
 const BUTTON_PLAY_AGAIN_SELECTOR = '[data-testid="btn-play-again"]';
 
-
+/* 
 // login
 
 describe('1 - [TELA DE LOGIN] Crie a tela de login, onde a pessoa que joga deve preencher as informações para iniciar um jogo', () => {
@@ -261,6 +261,8 @@ describe('9 - [TELA DE JOGO] Crie o placar com as seguintes características:', 
     });
   });
 });
+
+*/
 
 describe('10 - [TELA DE JOGO] Crie um botão de \"Próxima\" que apareça após a resposta ser dada', () => {
   beforeEach(() => {

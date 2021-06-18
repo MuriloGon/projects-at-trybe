@@ -13,8 +13,8 @@ const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    incrementScore: (state) => { state.score += 1; },
-    incrementAssertions: (state, payload) => { state.assertions = payload; },
+    incrementAssertions: (state) => { state.assertions += 1; },
+    setScore: (state, { payload }) => { state.score = payload; },
     setQuestions: (state, { payload }) => { state.questions = payload; },
     setToken: (state, { payload }) => { state.token = payload; },
     setRedirect: (state, { payload }) => { state.allowRedirect = payload; },
@@ -30,6 +30,6 @@ export const fetchTokenThunk = () => async (dispatch) => {
   dispatch(gameSlice.actions.setRedirect(true));
 };
 
-export const { incrementAssertions, incrementScore,
+export const { incrementAssertions, setScore,
   setQuestions, setToken, setTimer } = gameSlice.actions;
 export default gameSlice.reducer;
