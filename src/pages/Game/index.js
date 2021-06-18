@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchQuestions } from '../../api/trivia';
@@ -8,7 +9,8 @@ import { Main } from './styles';
 
 const Game = () => {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestionIndex] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [allowChoice, setAllowChoice] = useState(true);
   const player = useSelector((st) => st.login);
@@ -38,6 +40,7 @@ const Game = () => {
 
   if (questions.length <= 0) return null;
   const question = questions[currentQuestionIndex];
+  console.log(questions);
   return (
     <Main>
       <Question
@@ -46,6 +49,13 @@ const Game = () => {
         handleClick={ handleClick }
         question={ question }
       />
+      <button
+        data-testid="btn-next"
+        type="button"
+        style={ { display: showAnswer ? 'block' : 'none' } }
+      >
+        Próxima
+      </button>
     </Main>
   );
 };
