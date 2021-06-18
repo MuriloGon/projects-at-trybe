@@ -49,7 +49,11 @@ export const PlayerDiv = styled.div`display: flex;
   }
 `;
 
-export const Main = styled.main`margin: 0 auto;
+export const Main = styled.main`align-items: center;
+  align-items: stretch;
+  display: flex;
+  flex-flow: nowrap column;
+  margin: 0 auto;
   max-width: 1025px;
 `;
 
@@ -189,5 +193,24 @@ export const RadioContainer = styled.button`/* Customize the label (the containe
     display: block;
     font-weight: 500;
     margin-left: 35px;
+  }
+`;
+
+export const NextButton = styled.button`/* Next Button */
+  align-self: center;
+  background: ${({ theme: { playagain } }) => playagain};
+  border: unset;
+  border-radius: 6px;
+  color: ${({ theme: { background } }) => background};
+  font-size: 17px;
+  font-weight: 500;
+  margin-top: 15px;
+  padding: 10px 20px;
+  transition: background 0.15s ease;
+  width: 150px;
+
+  &:hover {
+    background: ${({ theme: { playagainvariant } }) => playagainvariant};
+    cursor: pointer;
   }
 `;
