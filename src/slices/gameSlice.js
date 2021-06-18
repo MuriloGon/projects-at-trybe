@@ -14,11 +14,15 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     incrementAssertions: (state) => { state.assertions += 1; },
-    setScore: (state, { payload }) => { state.score = payload; },
+    setScore: (state, { payload }) => { state.score += payload; },
     setQuestions: (state, { payload }) => { state.questions = payload; },
     setToken: (state, { payload }) => { state.token = payload; },
     setRedirect: (state, { payload }) => { state.allowRedirect = payload; },
     setTimer: (state, { payload }) => { state.timer = payload; },
+    resetGameState: (state) => {
+      state.assertions = 0;
+      state.score = 0;
+    },
   },
 });
 
@@ -31,5 +35,6 @@ export const fetchTokenThunk = () => async (dispatch) => {
 };
 
 export const { incrementAssertions, setScore,
-  setQuestions, setToken, setTimer } = gameSlice.actions;
+  setQuestions, setToken, setTimer, resetGameState,
+  setRedirect } = gameSlice.actions;
 export default gameSlice.reducer;

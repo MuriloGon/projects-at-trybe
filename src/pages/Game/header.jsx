@@ -8,7 +8,6 @@ export default function Header({ testId }) {
   const email = useSelector((st) => st.login.email);
   const name = useSelector((st) => st.login.userName);
   const score = useSelector((st) => st.game.score);
-  console.log(score);
   const newEmail = md5(email).toString();
 
   return (
@@ -22,7 +21,10 @@ export default function Header({ testId }) {
         />
         <p className="playerName" data-testid="header-player-name">{name}</p>
       </PlayerDiv>
-      <p data-testid={ testId }>{`Score: ${score}`}</p>
+      <div>
+        Score:
+        <span data-testid={ testId }>{score}</span>
+      </div>
     </H>
   );
 }

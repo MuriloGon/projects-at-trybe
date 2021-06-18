@@ -262,8 +262,6 @@ describe('9 - [TELA DE JOGO] Crie o placar com as seguintes características:', 
   });
 });
 
-*/
-
 describe('10 - [TELA DE JOGO] Crie um botão de \"Próxima\" que apareça após a resposta ser dada', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
@@ -392,6 +390,8 @@ describe('12 - [TELA DE FEEDBACK] Desenvolva o header de _feedback_ que deve con
     });
   });
 });
+
+*/
 
 describe('13 - [TELA DE FEEDBACK] Crie a mensagem de _feedback_ para ser exibida a pessoa usuária', () => {
   beforeEach(() => {
