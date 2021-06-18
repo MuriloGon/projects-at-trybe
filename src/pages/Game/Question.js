@@ -11,16 +11,14 @@ const renderHead = (time, question) => (
     <h2
       className="question-category"
       data-testid="question-category"
-    >
-      {question.category}
-    </h2>
+      dangerouslySetInnerHTML={ { __html: question.category } }
+    />
     <hr className="separation-line" />
     <p
       className="question-txt"
       data-testid="question-text"
-    >
-      {question.question}
-    </p>
+      dangerouslySetInnerHTML={ { __html: question.question } }
+    />
   </QuestionHead>
 );
 
