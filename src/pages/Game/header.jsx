@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import md5 from 'crypto-js/md5';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { H, PlayerDiv } from './styles';
+import { setAvatar } from '../../slices/loginSlice';
 
 export default function Header({ testId }) {
   const email = useSelector((st) => st.login.email);
   const name = useSelector((st) => st.login.userName);
   const score = useSelector((st) => st.game.score);
+  const dispatch = useDispatch();
   const newEmail = md5(email).toString();
+
+  useEffect(() => {
+    dispatch(setAvatar(`https://www.gravatar.com/avatar/${newEmail}`));
+  }, []);
 
   return (
     <H>

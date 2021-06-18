@@ -14,7 +14,7 @@ const loginValidation = (email, name) => {
 
 const renderInput = ({ datatest, type,
   placeholder, value: vl, setValue }) => {
-  console.log('');
+  console.log();
   return (
     <Input
       data-testid={ datatest }

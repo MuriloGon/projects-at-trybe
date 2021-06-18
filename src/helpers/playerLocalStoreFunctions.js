@@ -24,3 +24,10 @@ export const resetPlayerState = (name, gravatarEmail) => {
       assertions: 0,
     } });
 };
+
+export const addPlayerScore = (playerScore) => {
+  let ranking = JSON.parse(localStorage.getItem('ranking'));
+  if (ranking === null) ranking = [];
+  ranking.push(playerScore);
+  localStorage.setItem('ranking', JSON.stringify(ranking));
+};
