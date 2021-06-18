@@ -1,14 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { RadioContainer } from './styles';
 
 const QuestionItem = ({ text, index, showAnswer, isCorrect, disabled, onClick }) => {
   const msg = isCorrect ? 'correct' : 'wrong';
-  // const inputRef = useRef();
-
-  // useEffect(() => {
-  //   inputRef.current.setAttribute('disabled', false);
-  // }, []);
 
   return (
     <RadioContainer
