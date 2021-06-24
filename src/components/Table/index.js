@@ -5,9 +5,9 @@ import TableRow from './TableRow';
 import apiDataStructure from './data';
 
 function Table() {
-  const { data } = useContext(StarWarsContext);
+  const { filteredResults } = useContext(StarWarsContext);
 
-  if (data === undefined) return <h1>Carregando</h1>;
+  if (filteredResults === undefined) return <h1>Carregando</h1>;
 
   return (
     <table>
@@ -22,7 +22,7 @@ function Table() {
       </thead>
       <tbody>
         {
-          data.results.map(
+          filteredResults.map(
             (datum) => (<TableRow key={ datum.name } data={ datum } />),
           )
         }
