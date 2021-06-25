@@ -17,9 +17,7 @@ function TableRow({ data }) {
 }
 
 TableRow.propTypes = {
-  data: PropTypes.shape({
-    key: PropTypes.string.isRequired,
-  }).isRequired,
+  data: PropTypes.shape({}).isRequired,
 };
 
 export default TableRow;
