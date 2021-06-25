@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Filters from './Filters';
 import StarWarsContext from '../../Contexts/StarWarsContext';
-import { allowedColumns } from './data';
+import Order from './Order';
 
 function Form() {
   const {
@@ -12,8 +12,6 @@ function Form() {
     e.preventDefault();
     resetNumberedFilters();
   };
-
-  const sortColumns = ['name', ...allowedColumns];
 
   return (
     <>
@@ -31,13 +29,7 @@ function Form() {
         </label>
         <button type="button" onClick={ handleReset }>Reset Filters</button>
       </form>
-      <select>
-        {
-          sortColumns.map((column) => (
-            <option key={ `sortcolumn-${column}` }>{column}</option>
-          ))
-        }
-      </select>
+      <Order />
       <Filters />
     </>
   );

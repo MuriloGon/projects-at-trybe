@@ -2,6 +2,31 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import StarWarsContext from './StarWarsContext';
 
+const MINUS_ONE = -1;
+
+const cb1 = (order) => (a, b) => {
+  if (a[order.column] > b[order.column]) return 1;
+  if (a[order.column] < b[order.column]) return MINUS_ONE;
+  return 0;
+};
+
+const cb2 = (order) => (a, b) => {
+  if (Number(a[order.column]) > Number(b[order.column])) return 1;
+  if (Number(a[order.column]) < Number(b[order.column])) return MINUS_ONE;
+  return 0;
+};
+
+const cb3 = (order) => (a, b) => {
+  if (a[order.column] > b[order.column]) return MINUS_ONE;
+  if (a[order.column] < b[order.column]) return 1;
+  return 0;
+};
+
+const cb4 = (order) => (a, b) => {
+  if (Number(a[order.column]) > Number(b[order.column])) return MINUS_ONE;
+  if (Number(a[order.column]) < Number(b[order.column])) return 1;
+  return 0;
+};
 function StarWarsProvider({ children }) {
   const [data, setData] = useState();
   const [filteredResults, setFilteredResults] = useState();
@@ -22,7 +47,7 @@ function StarWarsProvider({ children }) {
   useEffect(() => {
     if (data !== undefined) {
       const { results } = data;
-      const { filterByNumericValues } = filters;
+      const { filterByNumericValues, order } = filters;
       const { name: filterName } = filters.filterByName;
 
       let filtered = results.filter(
@@ -40,8 +65,22 @@ function StarWarsProvider({ children }) {
         });
       });
 
+      switch (order.sort) {
+      case 'ASC':
+        if (order.column === 'name') filtered = filtered.sort(cb1(order));
+        else filtered = filtered.sort(cb2(order));
+        break;
+      case 'DESC':
+        if (order.column === 'name') filtered = filtered.sort(cb3(order));
+        else filtered = filtered.sort(cb4(order));
+        break;
+      default:
+        break;
+      }
+
       setFilteredResults(filtered);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, filters]);
 
   const setFilterName = (name) => {
@@ -79,6 +118,10 @@ function StarWarsProvider({ children }) {
     setFilters((st) => ({ ...st, filterByNumericValues: [] }));
   };
 
+  const setOrderObj = (column, sort) => {
+    setFilters((st) => ({ ...st, order: { column, sort } }));
+  };
+
   const startWarsContext = {
     data,
     setData,
@@ -86,6 +129,7 @@ function StarWarsProvider({ children }) {
       ...filters,
       setFilterName,
       setNumericFilter,
+      setOrderObj,
       resetNumberedFilters,
       resetFilter,
     },

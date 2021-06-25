@@ -29,7 +29,6 @@ function Filters() {
   }, [filterByNumericValues, selectableFilters]);
 
   const disabled = selectableFilters.length <= 0;
-  const filterBtnsStyle = { display: 'flex', justifyContent: 'space-evenly' };
   return (
     <form>
       <select
@@ -71,23 +70,19 @@ function Filters() {
       >
         Filtrar
       </button>
-      <div style={ filterBtnsStyle }>
+      <div>
         {
-          currentFilters.map((filter) => {
-            console.log(filter);
-            return (
-              <div key={ `filter-${filter}` }>
-                {filter}
-                <button
-                  data-testid="filter"
-                  onClick={ () => { resetFilter(filter); } }
-                  type="button"
-                >
-                  X
-                </button>
-              </div>
-            );
-          })
+          currentFilters.map((filter) => (
+            <div key={ `filter-${filter}` } data-testid="filter">
+              {filter}
+              <button
+                onClick={ () => { resetFilter(filter); } }
+                type="button"
+              >
+                X
+              </button>
+            </div>
+          ))
         }
       </div>
     </form>

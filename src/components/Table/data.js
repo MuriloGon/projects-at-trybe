@@ -1,16 +1,16 @@
 const apiDataStructure = [
   { key: 'name', text: 'Nome' },
-  { key: 'population', text: 'População' },
-  { key: 'orbital_period', text: 'Período de órbita' },
   { key: 'rotation_period', text: 'Período de rotação' },
-  { key: 'surface_water', text: 'Superfície aquática' },
+  { key: 'orbital_period', text: 'Período de órbita' },
   { key: 'diameter', text: 'Diametro' },
   { key: 'climate', text: 'Clima' },
-  { key: 'edited', text: 'Editado Em' },
-  { key: 'created', text: 'Criado Em' },
-  { key: 'films', text: 'Filmes' },
   { key: 'gravity', text: 'Gravidade' },
   { key: 'terrain', text: 'Terreno' },
+  { key: 'surface_water', text: 'Superfície aquática' },
+  { key: 'population', text: 'População' },
+  { key: 'films', text: 'Filmes' },
+  { key: 'created', text: 'Criado Em' },
+  { key: 'edited', text: 'Editado Em' },
   { key: 'url', text: 'Url' },
 ];
 

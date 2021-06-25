@@ -7,7 +7,10 @@ function TableRow({ data }) {
     <tr>
       {
         apiDataStructure.map(({ key }, i) => (
-          <td key={ `${key}-${i}` }>
+          <td
+            key={ `${key}-${i}` }
+            data-testid={ key === 'name' ? 'planet-name' : null }
+          >
             {data[key]}
           </td>
         ))
