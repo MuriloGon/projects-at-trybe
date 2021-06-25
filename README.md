@@ -70,8 +70,8 @@ Você vai desenvolver uma API de um CRUD (**C**reate, **R**ead, **U**pdate e **D
 ## Desenvolvimento
 
 ### Data de Entrega
-
-O projeto tem até a seguinte data: `dd/mm/yyyy - 14:00h`. Para ser entregue a avaliação final.
+O projeto tem duração de: `2 dias`
+O projeto tem até a seguinte data: `05/07/2021 - 14:00h`. Para ser entregue a avaliação final.
 
 ---
 
