@@ -338,7 +338,7 @@ Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em exten
   }
   ```
 
-- A requisição deve ter o token de autenticação nos headers.
+- A requisição deve ter o token de autenticação nos headers, no campo `authorization`.
 
   - Caso o token não seja encontrado retorne um código de `status 401`, com o seguinte corpo:
 
@@ -457,7 +457,7 @@ Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em exten
   }
   ```
   
-- A requisição deve ter o token de autenticação nos headers.
+- A requisição deve ter o token de autenticação nos headers, no campo `authorization`.
 
   - Caso o token não seja encontrado retorne um código de `status 401`, com o seguinte corpo:
 
@@ -561,7 +561,7 @@ Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em exten
 
 #### Os seguintes pontos serão avaliados:
 
-- A requisição deve ter o token de autenticação nos headers.
+- A requisição deve ter o token de autenticação nos headers, no campo `authorization`.
 
   - Caso o token não seja encontrado retorne um código de `status 401`, com o seguinte corpo:
 
@@ -610,7 +610,7 @@ Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em exten
   ];
   ```
 
-- A requisição deve ter o token de autenticação nos headers.
+- A requisição deve ter o token de autenticação nos headers, no campo `authorization`.
 
   - Caso o token não seja encontrado retorne um código de `status 401`, com o seguinte corpo:
 
