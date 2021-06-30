@@ -2,7 +2,7 @@ const DRINK_CATEGORIES_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/l
 const DRINK_AREAS_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list';
 const DRINK_INGREDIENTS_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 
-export async function getMealCategories() {
+export async function getDrinksCategories() {
   try {
     const response = await fetch(DRINK_CATEGORIES_ENDPOINT);
     const data = await response.json();
@@ -12,7 +12,7 @@ export async function getMealCategories() {
   }
 }
 
-export async function getMealAreas() {
+export async function getDrinksAreas() {
   try {
     const response = await fetch(DRINK_AREAS_ENDPOINT);
     const data = await response.json();
@@ -22,7 +22,7 @@ export async function getMealAreas() {
   }
 }
 
-export async function getMealIngredients() {
+export async function getDrinksIngredients() {
   try {
     const response = await fetch(DRINK_INGREDIENTS_ENDPOINT);
     const data = await response.json();
