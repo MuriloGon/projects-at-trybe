@@ -1,12 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function MealsCard() {
-
+function MealsCard({ meal }) {
+  const { strMealThumb, strMeal } = meal;
   return (
-    <main>
-      
-    </main>
+    <div data-testid="meal-card" className="class-meal-card">
+      <img src={ strMealThumb } alt="meal" />
+      <h6 data-testid="meal-card-title">{ strMeal }</h6>
+    </div>
   );
 }
+
+MealsCard.propTypes = {
+  meal: PropTypes.shape({
+    strMealThumb: PropTypes.string,
+    strMeal: PropTypes.string,
+  }).isRequired,
+};
 
 export default MealsCard;

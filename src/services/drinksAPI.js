@@ -1,6 +1,7 @@
 const DRINK_CATEGORIES_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
 const DRINK_AREAS_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list';
 const DRINK_INGREDIENTS_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+const DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 export async function getDrinksCategories() {
   try {
@@ -34,4 +35,15 @@ export async function getDrinksIngredients() {
 
 export function drinkIngredientImg(drinkName) {
   return `https://www.thecocktaildb.com/images/ingredients/${drinkName}.png`;
+}
+
+export async function getDrinks() {
+  const doze = 12;
+  try {
+    const response = await fetch(DRINKS);
+    const data = await response.json();
+    return data.drinks.slice(0, doze);
+  } catch (erro) {
+    console.log('Erro on get drinks');
+  }
 }
