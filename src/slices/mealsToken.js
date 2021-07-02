@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getLocalStorage } from '../services/localStorage';
+import { getLocalStorage, saveLocalStorage } from '../services/localStorage';
 
 const initialState = null;
 
@@ -8,7 +8,10 @@ const mealsTokenSlice = createSlice({
   initialState,
   reducers: {
     loadMealsTokenStorage: () => getLocalStorage('mealsToken', initialState),
-    setMealsToken: (_, action) => action.payload,
+    setMealsToken: (_, action) => {
+      saveLocalStorage('mealsToken', action.payload);
+      return action.payload;
+    },
   },
 });
 

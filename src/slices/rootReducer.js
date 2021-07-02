@@ -6,6 +6,7 @@ import user from './user';
 import doneRecipes from './doneRecipes';
 import favoriteRecipes from './favoriteRecipes';
 import inProgressRecipes from './inProgressRecipes';
+import auth from './auth';
 
 const rootReducer = combineReducers({
   mealsToken,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   doneRecipes,
   favoriteRecipes,
   inProgressRecipes,
+  auth,
 });
 
 export default rootReducer;
