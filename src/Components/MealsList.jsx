@@ -7,10 +7,11 @@ import { setAllMeals } from '../slices/allMeals';
 function MealsList() {
   const dispatch = useDispatch();
   const mealsStore = useSelector((state) => state.allMeals.meals);
+  const doze = 12;
 
   useEffect(() => {
     const getAllMeals = async () => {
-      const meals = await fetchMealsOrDrinks('meals')().then((data) => data);
+      const meals = await fetchMealsOrDrinks('meals')(doze).then((data) => data);
       dispatch(setAllMeals(meals));
     };
 

@@ -7,10 +7,11 @@ import DrinksCard from './DrinksCard';
 function DrinksList() {
   const dispatch = useDispatch();
   const drinksStore = useSelector((state) => state.allDrinks.drinks);
+  const doze = 12;
 
   useEffect(() => {
     const getAllDrinks = async () => {
-      const drinks = await fetchMealsOrDrinks('drinks')()
+      const drinks = await fetchMealsOrDrinks('drinks')(doze)
         .then((data) => data);
       dispatch(setAllDrinks(drinks));
     };

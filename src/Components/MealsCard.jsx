@@ -6,7 +6,7 @@ function MealsCard({ meal }) {
   return (
     <div data-testid="meal-card" className="class-meal-card">
       <img src={ strMealThumb } alt="meal" />
-      <h6 data-testid="meal-card-title">{ strMeal }</h6>
+      <h2 data-testid="meal-card-title">{ strMeal }</h2>
     </div>
   );
 }

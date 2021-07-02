@@ -7,7 +7,7 @@ function DrinksCard({ drink }) {
   return (
     <div data-testid="drink-card" className="class-drink-card">
       <img src={ strDrinkThumb } alt="drink" />
-      <h6 data-testid="drink-card-title">{ strDrink }</h6>
+      <h2 data-testid="drink-card-title">{ strDrink }</h2>
     </div>
   );
 }
