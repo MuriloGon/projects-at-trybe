@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Header from './Header';
 import Footer from './Footer';
 
-const Main = ({ children, header = true, footer = true, search = true }) => (
+const Main = ({ children, name, header = false, footer = false, search = false }) => (
   <>
-    {header && <Header name="Início" renderSearchButton={ search } />}
-    <main>
+    {!header && <Header name={ name } search={ !search } />}
+    <main style={ { flex: 1 } }>
       {children}
     </main>
-    {footer && <Footer />}
+    {!footer && <Footer />}
   </>
 );
 

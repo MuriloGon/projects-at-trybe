@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html, body, #root {
+  height: 100%;
+}
+
+.rotas {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.rotas > * {
+  border: 1px solid black;
+  flex: 1;
+}
