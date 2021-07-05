@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Menu from './MenuList';
+import Menu from './Menu';
 import Explore from './Explore';
 
 function Application() {

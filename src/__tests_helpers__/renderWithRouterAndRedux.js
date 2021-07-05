@@ -8,9 +8,9 @@ import thunk from 'redux-thunk';
 import rootReducer from '../slices/rootReducer';
 
 const renderWithRouterAndRedux = (component,
-  initialState, store = createStore(rootReducer, initialState,
+  initialState, intitalPaths, store = createStore(rootReducer, initialState,
     applyMiddleware(thunk))) => {
-  const history = createMemoryHistory();
+  const history = createMemoryHistory({ initialEntries: intitalPaths });
   return ({
     ...render(
       <Router history={ history }>
