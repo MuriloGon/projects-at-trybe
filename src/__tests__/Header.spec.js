@@ -1,5 +1,5 @@
 import React from 'react';
-import renderWithRouter from './RenderWithRouter';
+import renderWithRouter from '../__tests_helpers__/renderWithRouter';
 import Header from '../Components/Header';
 
 describe('Header component', () => {
