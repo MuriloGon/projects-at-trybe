@@ -3,6 +3,7 @@ const MEAL_AREAS_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/list.php?a=
 const MEAL_INGREDIENTS_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/list.php?i=list';
 const MEALS = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const number = -1;
+const MEAL_RANDOM_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
 export async function getMealCategories() {
   try {
@@ -45,5 +46,16 @@ export async function getMeals(dataQty = number) {
     return data.meals.slice(0, dataQty);
   } catch (erro) {
     console.log('Erro in get all meats');
+  }
+}
+
+export async function getRandomMeal() {
+  try {
+    const response = await fetch(MEAL_RANDOM_ENDPOINT);
+    const data = await response.json();
+    const [out] = data.meals;
+    return out;
+  } catch (erro) {
+    console.log('Erro in getting random meal');
   }
 }

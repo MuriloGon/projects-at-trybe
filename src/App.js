@@ -7,7 +7,7 @@ import loadReduxInitialState from './slices/loadReduxInitialState';
 // import Application from './pages/Application';
 import useSetTitleWithRouteName from './hooks/useSetTitleWithRouteName';
 import MealsList from './Components/MealsList';
-// import DrinksList from './Components/DrinksList';
+import DrinksList from './Components/DrinksList';
 // import { loginUser, logoutUser } from './slices/auth';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -65,7 +65,7 @@ function App() {
   return (
     <main>
       <MealsList />
-      {/* <DrinksList /> */}
+      <DrinksList />
     </main>
   );
 

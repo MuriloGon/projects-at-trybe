@@ -3,6 +3,7 @@ const DRINK_AREAS_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.p
 const DRINK_INGREDIENTS_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
 const DRINKS = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const number = -1;
+const DRINK_RANDOM_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
 export async function getDrinksCategories() {
   try {
@@ -45,5 +46,16 @@ export async function getDrinks(dataQty = number) {
     return data.drinks.slice(0, dataQty);
   } catch (erro) {
     console.log('Erro on get drinks');
+  }
+}
+
+export async function getRandomDrink() {
+  try {
+    const response = await fetch(DRINK_RANDOM_ENDPOINT);
+    const data = await response.json();
+    const [out] = data.drinks;
+    return out;
+  } catch (erro) {
+    console.log('Erro in getting random drink');
   }
 }
