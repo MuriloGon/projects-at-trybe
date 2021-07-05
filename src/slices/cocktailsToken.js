@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getLocalStorage } from '../services/localStorage';
+import { getLocalStorage, saveLocalStorage } from '../services/localStorage';
 
 const initialState = null;
 
@@ -8,7 +8,10 @@ const cocktailsTokenSlice = createSlice({
   initialState,
   reducers: {
     loadCocktailsStorage: () => getLocalStorage('cocktailsToken', initialState),
-    setCocktailsToken: (_, action) => action.payload,
+    setCocktailsToken: (_, action) => {
+      saveLocalStorage('cocktailsToken', action.payload);
+      return action.payload;
+    },
   },
 });
 

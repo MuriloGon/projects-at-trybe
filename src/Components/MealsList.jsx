@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+// import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import MealsCard from './MealsCard';
 import { fetchMealsOrDrinks } from '../services/apisMaps';
@@ -26,5 +27,11 @@ function MealsList() {
     </section>
   );
 }
+
+// MealsList.propTypes = {
+//   mealsStore: PropTypes.arrayOf(
+//     PropTypes.object,
+//   ).isRequired,
+// };
 
 export default MealsList;

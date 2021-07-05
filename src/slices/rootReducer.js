@@ -8,6 +8,7 @@ import favoriteRecipes from './favoriteRecipes';
 import inProgressRecipes from './inProgressRecipes';
 import allMeals from './allMeals';
 import allDrinks from './allDrinks';
+import auth from './auth';
 
 const rootReducer = combineReducers({
   mealsToken,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   inProgressRecipes,
   allMeals,
   allDrinks,
+  auth,
 });
 
 export default rootReducer;

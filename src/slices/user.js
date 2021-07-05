@@ -1,16 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getLocalStorage } from '../services/localStorage';
+import { getLocalStorage, saveLocalStorage } from '../services/localStorage';
 
 const initialState = {
-  user: '',
+  email: '',
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loadUserStorage: () => getLocalStorage('user', initialState),
-    setUser: (state, action) => { state.user = action.payload; },
+    loadUserStorage: (state) => {
+      state.email = getLocalStorage('user', initialState);
+    },
+    setUser: (state, action) => {
+      saveLocalStorage('user', { email: action.payload });
+      state.email = action.payload;
+    },
   },
 });
 
