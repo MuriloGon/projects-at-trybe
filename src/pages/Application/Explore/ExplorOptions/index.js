@@ -6,7 +6,7 @@ import { fetchRandomMenu } from '../../../../services/apisMaps';
 
 const chooseIngredientByType = chooseOption({
   meals: '/explorar/comidas/ingredientes',
-  drinks: '/explore/bebidas/ingredientes',
+  drinks: '/explorar/bebidas/ingredientes',
 });
 
 const chooseAreaBy = chooseOption({

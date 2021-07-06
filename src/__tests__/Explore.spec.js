@@ -6,7 +6,7 @@ import Explore from '../pages/Application/Explore';
 import renderWithRouterAndRedux from '../__tests_helpers__/renderWithRouterAndRedux';
 import ExploreOptions from '../pages/Application/Explore/ExplorOptions';
 import ExploreIngredients from '../pages/Application/Explore/ExploreIngredients';
-import { mealsIngredients } from '../__mocks__/ingredientsData';
+import { drinksIngredients, mealsIngredients } from '../__mocks__/ingredientsData';
 
 const EXPLORE_SURPRISE_ID = 'explore-surprise';
 
@@ -156,18 +156,37 @@ describe('Explore Drinks or Meals Screen', () => {
   });
 });
 
+const mockedFetch = (data) => jest.fn(() => Promise.resolve({
+  json: () => Promise.resolve(data) }));
+
 describe('Explore by Indredients - "/{bebidas | comidas}/"', () => {
-  it('Must have ingredients on screen', () => {
-    jest.fn().mockResolvedValue({
-      json: jest.fn().mockResolvedValue(mealsIngredients),
-    });
+  it('Must have ingredients on screen - Meals', async () => {
+    global.fetch = mockedFetch(mealsIngredients);
+
     const {
-      findAllByTestId,
-    } = renderWithRouterAndRedux(<ExploreIngredients type="meals" />);
-    const cards = findAllByTestId(/[0-9]+-ingredient-card/);
-    const imgs = findAllByTestId(/[0-9]+-card-img/);
-    const names = findAllByTestId(/[0-9]+-card-name/);
+      findAllByTestId } = renderWithRouterAndRedux(<ExploreIngredients type="meals" />);
+
+    const cards = await findAllByTestId(/[0-9]+-ingredient-card/);
+    const imgs = await findAllByTestId(/[0-9]+-card-img/);
+    const names = await findAllByTestId(/[0-9]+-card-name/);
     const TWELVE_ITEMS = 12;
+
+    expect(cards).toHaveLength(TWELVE_ITEMS);
+    expect(imgs).toHaveLength(TWELVE_ITEMS);
+    expect(names).toHaveLength(TWELVE_ITEMS);
+  });
+
+  it('Must have ingredients on screen - Drinks', async () => {
+    global.fetch = mockedFetch(drinksIngredients);
+
+    const {
+      findAllByTestId } = renderWithRouterAndRedux(<ExploreIngredients type="drinks" />);
+
+    const cards = await findAllByTestId(/[0-9]+-ingredient-card/);
+    const imgs = await findAllByTestId(/[0-9]+-card-img/);
+    const names = await findAllByTestId(/[0-9]+-card-name/);
+    const TWELVE_ITEMS = 12;
+
     expect(cards).toHaveLength(TWELVE_ITEMS);
     expect(imgs).toHaveLength(TWELVE_ITEMS);
     expect(names).toHaveLength(TWELVE_ITEMS);
