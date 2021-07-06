@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import IngredientMeal from './IngredientMeal';
+import IngredientDrink from './IngredientDrink';
 
 function ExploreIngredients({ type }) {
-  return (
-    <h1>
-      Ingredients:
-      {type}
-    </h1>
-  );
+  return type === 'meals' ? <IngredientMeal /> : <IngredientDrink />;
 }
 
 ExploreIngredients.propTypes = {
