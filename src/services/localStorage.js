@@ -29,35 +29,18 @@ export function getLocalStorage(key, defaultValue = null) {
 const initialStorageState = {
   mealsToken: null,
   cocktailsToken: null,
-  user: { email: '' },
-  doneRecipes: [],
-  favoriteRecipes: [],
-  inProgressRecipes: {
-    cocktails: [],
-    meals: [],
-  },
+  user: { email: null },
+  doneRecipes: null,
+  favoriteRecipes: null,
+  inProgressRecipes: null,
 };
 
-export function beginInitialStorage() {
-  const mealsToken = getLocalStorage('mealsToken');
-  const cocktailsToken = getLocalStorage('cocktailsToken');
-  const doneRecipes = getLocalStorage('doneRecipes');
-  const favoriteRecipes = getLocalStorage('favoriteRecipes');
+export function clearLocalStorage() {
+  saveLocalStorage('mealsToken', initialStorageState.mealsToken);
+  saveLocalStorage('cocktailsToken', initialStorageState.cocktailsToken);
+  saveLocalStorage('doneRecipes', initialStorageState.doneRecipes);
 
-  if (mealsToken === null) {
-    saveLocalStorage('mealsToken', initialStorageState.mealsToken);
-  }
-
-  if (cocktailsToken === null) {
-    saveLocalStorage('cocktailsToken', initialStorageState.cocktailsToken);
-  }
-  if (doneRecipes === null || Array(doneRecipes).length === 0) {
-    saveLocalStorage('doneRecipes', initialStorageState.doneRecipes);
-  }
-
-  if (favoriteRecipes === null || Array(favoriteRecipes).length === 0) {
-    saveLocalStorage('favoriteRecipes', initialStorageState.favoriteRecipes);
-  }
+  saveLocalStorage('favoriteRecipes', initialStorageState.favoriteRecipes);
 
   saveLocalStorage('user', initialStorageState.user);
   saveLocalStorage('inProgressRecipes', initialStorageState.inProgressRecipes);
