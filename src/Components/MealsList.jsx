@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MealsCard from './MealsCard';
 
-function MealsList({ data, categories }) {
+function MealsList({ data, categories, getCategories }) {
   return (
     <main>
       <header>
@@ -11,6 +11,7 @@ function MealsList({ data, categories }) {
             type="button"
             key={ index }
             data-testid={ `${strCategory}-category-filter` }
+            onClick={ () => getCategories(strCategory) }
           >
             {strCategory}
           </button>
@@ -28,6 +29,7 @@ function MealsList({ data, categories }) {
 MealsList.propTypes = {
   data: PropTypes.object,
   categories: PropTypes.object,
+  getCategories: PropTypes.func,
 }.isRequired;
 
 export default MealsList;
