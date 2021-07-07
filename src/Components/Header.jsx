@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import SearchBar from './SearchBar';
 
 function Header({ name }) {
   const [handleSearch, sethandleSearch] = useState(false);
@@ -30,10 +31,7 @@ function Header({ name }) {
         />
       </div>
       <div>
-        { handleSearch && <input
-          type="text"
-          data-testid="search-input"
-        /> }
+        { handleSearch && <SearchBar /> }
       </div>
     </>
   );
