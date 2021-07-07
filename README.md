@@ -57,7 +57,7 @@ Nesse projeto, você será capaz de:
 
 - Entender o funcionamento da camada de Model;
 - Delegar responsabilidades específicas para essa camada;
-- Conectar sua aplicação com diferentes bancos de dados;
+- Conectar sua aplicação com diferentes `collections` do bancos de dados;
 - Estruturar uma aplicação em camadas;
 - Delegar responsabilidades específicas para cada parte do seu app;
 - Melhorar manutenibilidade e reusabilidade do seu código;
@@ -113,7 +113,7 @@ Você deve utilizar o banco MongoDB para a gestão de dados. Além disso, a API 
 ## Data de Entrega
 
   - Serão `3` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `19/07/2021 - 14:00h`.
+  - Data de entrega para avaliação final do projeto: `16/07/2021 - 14:00h`.
 
 ---
 
