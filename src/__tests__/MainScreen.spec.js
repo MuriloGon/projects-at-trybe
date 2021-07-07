@@ -9,15 +9,17 @@ import DrinksCard from '../Components/DrinksCard';
 import { meals } from '../__mocks__/mealsData';
 import { drinksAPI } from '../__mocks__/drinksData';
 
+const mockedFetch = (data) => jest.fn(() => Promise.resolve({
+  json: () => Promise.resolve(data),
+}));
+
 describe('MainScreen Tests', () => {
   describe('Requisito 25', () => {
     test('Testando se é renderizado 12 cards da tela de comidas', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        json: () => Promise.resolve({ meals }),
-      }));
+      global.fetch = mockedFetch(meals);
 
       renderWithRouterAndRedux(
-        <MealsList />,
+        <MealsList data={ meals } />,
       );
 
       const expectedLength = 12;
@@ -26,12 +28,10 @@ describe('MainScreen Tests', () => {
     });
 
     test('Testando se é renderizado 12 cards da tela de bebidas', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({
-        json: () => Promise.resolve(drinksAPI),
-      }));
+      global.fetch = console.log(mockedFetch(drinksAPI));
 
       renderWithRouterAndRedux(
-        <DrinksList />,
+        <DrinksList data={ drinksAPI } />,
       );
 
       const expectedLength = 12;

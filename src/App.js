@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Login from './pages/Login';
 // import Auth from './Components/Auth';
 import loadReduxInitialState from './slices/loadReduxInitialState';
 import Application from './pages/Application';
 import useSetTitleWithRouteName from './hooks/useSetTitleWithRouteName';
 import { loginUser, logoutUser } from './slices/auth';
+import './App.css';
 
 function renderLinksDev(logged, dispatch) {
   return (
@@ -49,7 +50,7 @@ const applicationRoutes = [
 
 function App() {
   const dispatch = useDispatch();
-  // const logged = useSelector((st) => st.auth.logged);
+  const logged = useSelector((st) => st.auth.logged);
 
   useSetTitleWithRouteName();
 

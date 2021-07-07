@@ -5,11 +5,11 @@ const MEALS = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const number = -1;
 const MEAL_RANDOM_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
-export async function getMealCategories() {
+export async function getMealCategories(dataQty = number) {
   try {
     const response = await fetch(MEAL_CATEGORIES_ENDPOINT);
     const data = await response.json();
-    return data.meals;
+    return data.meals.slice(0, dataQty);
   } catch (erro) {
     console.log('Erro in get meal categories');
   }
