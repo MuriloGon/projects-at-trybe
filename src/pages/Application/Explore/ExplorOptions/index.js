@@ -6,7 +6,7 @@ import { fetchRandomMenu } from '../../../../services/apisMaps';
 
 const chooseIngredientByType = chooseOption({
   meals: '/explorar/comidas/ingredientes',
-  drinks: '/explore/bebidas/ingredientes',
+  drinks: '/explorar/bebidas/ingredientes',
 });
 
 const chooseAreaBy = chooseOption({
@@ -19,11 +19,12 @@ function ExploreOptions({ type }) {
   useEffect(() => {
     const key = type === 'meals' ? 'idMeal' : 'idDrink';
     fetchRandomMenu(type)().then((data) => { setRandomMenu(data[key]); });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const chooseSurprise = chooseOption({
     meals: `/comidas/${randomMenu}`,
-    drinks: `/comidas/${randomMenu}`,
+    drinks: `/bebidas/${randomMenu}`,
   });
 
   return (
