@@ -1,33 +1,35 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMealsOrDrinks } from '../services/apisMaps';
-import { setAllDrinks } from '../slices/allDrinks';
+import React from 'react';
+import PropTypes from 'prop-types';
 import DrinksCard from './DrinksCard';
 
-function DrinksList() {
-  const dispatch = useDispatch();
-  const drinksStore = useSelector((state) => state.allDrinks.drinks);
-  const doze = 12;
-
-  useEffect(() => {
-    const getAllDrinks = async () => {
-      const drinks = await fetchMealsOrDrinks('drinks')(doze)
-        .then((data) => data);
-      dispatch(setAllDrinks(drinks));
-    };
-
-    getAllDrinks();
-  }, [dispatch]);
-
+function DrinksList({ data, categories }) {
   return (
-    <section>
-      <div data-testid="drinks-list" className="class-drinks-list">
-        {
-          drinksStore.map((drink, index) => <DrinksCard key={ index } drink={ drink } />)
-        }
-      </div>
-    </section>
+    <main>
+      <header>
+        { categories.map(({ strCategory }, index) => (
+          <button
+            type="button"
+            key={ index }
+            data-testid={ `${strCategory}-category-filter` }
+          >
+            {strCategory}
+          </button>
+        ))}
+      </header>
+      <section>
+        <div data-testid="drinks-list" className="class-drinks-list">
+          {
+            data.map((drink, index) => <DrinksCard key={ index } drink={ drink } />)
+          }
+        </div>
+      </section>
+    </main>
   );
 }
+
+DrinksList.propTypes = {
+  data: PropTypes.object,
+  categories: PropTypes.object,
+}.isRequired;
 
 export default DrinksList;

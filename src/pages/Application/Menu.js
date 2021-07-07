@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import useMenuType from '../../hooks/useMenuType';
+import MainScreen from '../../Components/MainScreen';
 
 function devPlaceholder(type, path, info) {
   return (
@@ -25,7 +26,7 @@ function Menu() {
   return (
     <Switch>
       <Route exact path={ path }>
-        {devPlaceholder(menuType, url, '/')}
+        <MainScreen type={ menuType } />
       </Route>
 
       <Route exact path={ `${path}/:id(\\d{1,})` }>

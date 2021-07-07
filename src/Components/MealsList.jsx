@@ -1,37 +1,33 @@
-import React, { useEffect } from 'react';
-// import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import PropTypes from 'prop-types';
 import MealsCard from './MealsCard';
-import { fetchMealsOrDrinks } from '../services/apisMaps';
-import { setAllMeals } from '../slices/allMeals';
 
-function MealsList() {
-  const dispatch = useDispatch();
-  const mealsStore = useSelector((state) => state.allMeals.meals);
-  const doze = 12;
-
-  useEffect(() => {
-    const getAllMeals = async () => {
-      const meals = await fetchMealsOrDrinks('meals')(doze).then((data) => data);
-      dispatch(setAllMeals(meals));
-    };
-
-    getAllMeals();
-  }, [dispatch]);
-
+function MealsList({ data, categories }) {
   return (
-    <section>
-      <div data-testid="meals-list" className="class-meals-list">
-        { mealsStore.map((meal, index) => <MealsCard key={ index } meal={ meal } />)}
-      </div>
-    </section>
+    <main>
+      <header>
+        { categories.map(({ strCategory }, index) => (
+          <button
+            type="button"
+            key={ index }
+            data-testid={ `${strCategory}-category-filter` }
+          >
+            {strCategory}
+          </button>
+        ))}
+      </header>
+      <section>
+        <div data-testid="meals-list" className="class-meals-list">
+          { data.map((meal, index) => <MealsCard key={ index } meal={ meal } />)}
+        </div>
+      </section>
+    </main>
   );
 }
 
-// MealsList.propTypes = {
-//   mealsStore: PropTypes.arrayOf(
-//     PropTypes.object,
-//   ).isRequired,
-// };
+MealsList.propTypes = {
+  data: PropTypes.object,
+  categories: PropTypes.object,
+}.isRequired;
 
 export default MealsList;
