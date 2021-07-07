@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   savedIngredient: {
-    category: null,
+    name: null,
     type: null,
   },
   savedArea: {
-    area: null,
+    name: null,
     type: 'meals',
   },
 };
@@ -16,18 +16,15 @@ const exploreSlice = createSlice({
   initialState,
   reducers: {
     saveIngredient: (state, { payload }) => {
-      state.savedIngredient.category = payload.category;
+      state.savedIngredient.name = payload.name;
       state.savedIngredient.type = payload.type;
     },
-    clearIngredient: (state) => {
-      state.savedIngredient.category = null;
-      state.savedIngredient.type = null;
+    saveArea: (state, { payload }) => {
+      state.savedArea = payload.name;
     },
-    clearArea: (state) => {
-      state.savedArea.area = null;
-    },
+    clearExplore: () => initialState,
   },
 });
 
-export const { saveIngredient, clearIngredient } = exploreSlice.actions;
+export const { saveIngredient, saveArea, clearExplore } = exploreSlice.actions;
 export default exploreSlice.reducer;

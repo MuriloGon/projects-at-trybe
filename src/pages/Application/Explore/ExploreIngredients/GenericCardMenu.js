@@ -10,8 +10,7 @@ function GenericCardMenu({ name, index, type }) {
   const pathname = type === 'meals' ? '/comidas/' : '/bebidas/';
 
   function handleRedirect() {
-    const category = name;
-    dispatch(saveIngredient({ category, type }));
+    dispatch(saveIngredient({ name, type }));
   }
 
   return (

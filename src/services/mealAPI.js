@@ -59,3 +59,16 @@ export async function getRandomMeal() {
     console.log('Erro in getting random meal');
   }
 }
+
+const MEALS_BY_INGREDIENT_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
+export async function getMealsByIngredient(qty, category) {
+  try {
+    const response = await fetch(MEALS_BY_INGREDIENT_ENDPOINT + category);
+    console.log(MEALS_BY_INGREDIENT_ENDPOINT + category);
+    const data = await response.json();
+    const out = data.meals.slice(0, qty);
+    return out;
+  } catch (erro) {
+    console.error('Erro in getting meals by category');
+  }
+}

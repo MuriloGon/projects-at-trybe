@@ -59,3 +59,15 @@ export async function getRandomDrink() {
     console.log('Erro in getting random drink');
   }
 }
+
+const DRINK_BY_INGREDIENT_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=';
+export async function getDrinksByIngredient(qty, category) {
+  try {
+    const response = await fetch(DRINK_BY_INGREDIENT_ENDPOINT + category);
+    const data = await response.json();
+    const out = data.drinks.slice(0, qty);
+    return out;
+  } catch (erro) {
+    console.error('Erro in getting drinks by category');
+  }
+}
