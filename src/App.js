@@ -7,6 +7,7 @@ import loadReduxInitialState from './slices/loadReduxInitialState';
 import Application from './pages/Application';
 import useSetTitleWithRouteName from './hooks/useSetTitleWithRouteName';
 import { loginUser, logoutUser } from './slices/auth';
+import './App.css';
 
 function renderLinksDev(logged, dispatch) {
   return (

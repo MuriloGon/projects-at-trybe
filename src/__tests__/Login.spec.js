@@ -126,7 +126,6 @@ describe('Login page', () => {
 
   test('after submit the login, the aplication must redirect to /comidas', () => {
     const { getByTestId, history } = renderWithRouterAndRedux(<App />);
-    expect(history.location.pathname).toBe('/login');
     const emailInput = getByTestId(EMAIL_INPUT);
     const passwordInput = getByTestId(PASSWORD_INPUT);
     const submitButton = getByTestId(SUBMIT_BTN);

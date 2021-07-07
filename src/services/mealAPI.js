@@ -5,11 +5,11 @@ const MEALS = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const number = -1;
 const MEAL_RANDOM_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
-export async function getMealCategories() {
+export async function getMealCategories(dataQty = number) {
   try {
     const response = await fetch(MEAL_CATEGORIES_ENDPOINT);
     const data = await response.json();
-    return data.meals;
+    return data.meals.slice(0, dataQty);
   } catch (erro) {
     console.log('Erro in get meal categories');
   }
@@ -36,7 +36,7 @@ export async function getMealIngredients() {
 }
 
 export function mealIngredientImg(ingredientName) {
-  return `https://www.themealdb.com/images/ingredients/${ingredientName}.png`;
+  return `https://www.themealdb.com/images/ingredients/${ingredientName}-Small.png`;
 }
 
 export async function getMeals(dataQty = number) {
@@ -57,5 +57,18 @@ export async function getRandomMeal() {
     return out;
   } catch (erro) {
     console.log('Erro in getting random meal');
+  }
+}
+
+const MEALS_BY_INGREDIENT_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
+export async function getMealsByIngredient(qty, category) {
+  try {
+    const response = await fetch(MEALS_BY_INGREDIENT_ENDPOINT + category);
+    console.log(MEALS_BY_INGREDIENT_ENDPOINT + category);
+    const data = await response.json();
+    const out = data.meals.slice(0, qty);
+    return out;
+  } catch (erro) {
+    console.error('Erro in getting meals by category');
   }
 }
