@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Menu from './Menu';
 import Explore from './Explore';
+import Perfil from './Perfil';
 
 function Application() {
   return (
@@ -15,7 +16,7 @@ function Application() {
       </Route>
 
       <Route path="/perfil">
-        <h1>perfil</h1>
+        <Perfil />
       </Route>
 
       <Route path="/receitas-feitas">

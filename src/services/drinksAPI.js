@@ -18,7 +18,7 @@ export async function getDrinksCategories(dataQty = number) {
 export async function getDrinksByCategories(dataQty = number, category) {
   try {
     const response = await
-    fetch(`www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
     const data = await response.json();
     return data.drinks.slice(0, dataQty);
   } catch (error) {
@@ -47,7 +47,7 @@ export async function getDrinksIngredients() {
 }
 
 export function drinkIngredientImg(drinkName) {
-  return `https://www.thecocktaildb.com/images/ingredients/${drinkName}.png`;
+  return `https://www.thecocktaildb.com/images/ingredients/${drinkName}-Small.png`;
 }
 
 export async function getDrinks(dataQty = number) {
@@ -68,5 +68,17 @@ export async function getRandomDrink() {
     return out;
   } catch (erro) {
     console.log('Erro in getting random drink');
+  }
+}
+
+const DRINK_BY_INGREDIENT_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=';
+export async function getDrinksByIngredient(qty, category) {
+  try {
+    const response = await fetch(DRINK_BY_INGREDIENT_ENDPOINT + category);
+    const data = await response.json();
+    const out = data.drinks.slice(0, qty);
+    return out;
+  } catch (erro) {
+    console.error('Erro in getting drinks by category');
   }
 }

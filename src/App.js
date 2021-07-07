@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
-import loadReduxInitialState from './slices/loadReduxInitialState';
-import Auth from './Components/Auth';
+import { useDispatch, useSelector } from 'react-redux';
 import Login from './pages/Login';
+// import Auth from './Components/Auth';
+import loadReduxInitialState from './slices/loadReduxInitialState';
 import Application from './pages/Application';
 import useSetTitleWithRouteName from './hooks/useSetTitleWithRouteName';
-// import MealsList from './Components/MealsList';
-// import DrinksList from './Components/DrinksList';
 import { loginUser, logoutUser } from './slices/auth';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function renderLinksDev(logged, dispatch) {
   return (
@@ -67,16 +64,17 @@ function App() {
       {renderLinksDev(logged, dispatch)}
       <Switch>
         <Route exact path="/">
-          <Redirect to="/login" />
-        </Route>
-
-        <Route path="/login">
-          <Auth auth={ logged } loggedPath="/comidas" />
+          {/* <Redirect to="/login" /> */}
           <Login />
         </Route>
 
+        {/* <Route path="/login">
+          <Auth auth={ logged } loggedPath="/comidas" />
+          <Login />
+        </Route> */}
+
         <Route path={ applicationRoutes }>
-          <Auth auth={ logged } notLoggedPath="/not-logged" />
+          {/* <Auth auth={ logged } notLoggedPath="/not-logged" /> */}
           <Application />
         </Route>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DrinksCard from './DrinksCard';
+import MenuCard from './MenuCard';
 
 function DrinksList({ data, categories, getCategories }) {
   return (
@@ -19,9 +19,17 @@ function DrinksList({ data, categories, getCategories }) {
       </header>
       <section>
         <div data-testid="drinks-list" className="class-drinks-list">
-          {
-            data.map((drink, index) => <DrinksCard key={ index } drink={ drink } />)
-          }
+          { data.map((drink, index) => (
+            <MenuCard
+              key={ `${drink.idDrink}-card` }
+              CardTestId={ `${index}-recipe-card` }
+              TitleTestId={ `${index}-card-name` }
+              imgTestId={ `${index}-card-img` }
+              alt={ drink.strDrink }
+              imgUrl={ drink.strDrinkThumb }
+              title={ drink.strDrink }
+            />
+          ))}
         </div>
       </section>
     </main>
