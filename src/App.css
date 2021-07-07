@@ -66,3 +66,49 @@
     transform: rotate(-10deg);
   }
 }
+
+.class-drinks-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.class-drink-card {
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  height: 172px;
+  left: 187px;
+  margin: 4px;
+  top: 347px;
+}
+
+.class-drink-card img {
+  height: 109px;
+  left: 12px;
+  top: 137px;
+  width: 161px;
+}
+
+.class-meals-list {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.class-meal-card {
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  height: 172px;
+  left: 187px;
+  margin: 4px;
+  top: 347px;
+}
+
+.class-meal-card img {
+  height: 109px;
+  left: 12px;
+  top: 137px;
+  width: 161px;
+}

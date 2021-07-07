@@ -6,6 +6,8 @@ import user from './user';
 import doneRecipes from './doneRecipes';
 import favoriteRecipes from './favoriteRecipes';
 import inProgressRecipes from './inProgressRecipes';
+import allMeals from './allMeals';
+import allDrinks from './allDrinks';
 import auth from './auth';
 import explore from './exploreSlice';
 
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
   doneRecipes,
   favoriteRecipes,
   inProgressRecipes,
+  allMeals,
+  allDrinks,
   auth,
   explore,
 });

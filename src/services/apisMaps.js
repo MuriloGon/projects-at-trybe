@@ -1,8 +1,8 @@
 import { drinkIngredientImg, getDrinksAreas, getDrinksCategories,
-  getDrinksIngredients,
-  getRandomDrink } from './drinksAPI';
+  getDrinksIngredients, getRandomDrink, getDrinks } from './drinksAPI';
+
 import { getMealAreas, getMealCategories, getMealIngredients,
-  getRandomMeal, mealIngredientImg } from './mealAPI';
+  getRandomMeal, mealIngredientImg, getMeals } from './mealAPI';
 
 const mapAPI = (mealsFunc, drinksFunc) => (type) => {
   switch (type) {
@@ -19,5 +19,7 @@ export const fetchIngredients = mapAPI(getMealIngredients, getDrinksIngredients)
 export const fetchAreas = mapAPI(getMealAreas, getDrinksAreas);
 
 export const formatImageSrc = mapAPI(mealIngredientImg, drinkIngredientImg);
+
+export const fetchMealsOrDrinks = mapAPI(getMeals, getDrinks);
 
 export const fetchRandomMenu = mapAPI(getRandomMeal, getRandomDrink);
