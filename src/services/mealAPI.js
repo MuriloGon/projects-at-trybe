@@ -34,7 +34,7 @@ export async function getMealIngredients() {
 }
 
 export function mealIngredientImg(ingredientName) {
-  return `https://www.themealdb.com/images/ingredients/${ingredientName}.png`;
+  return `https://www.themealdb.com/images/ingredients/${ingredientName}-Small.png`;
 }
 
 export async function getRandomMeal() {

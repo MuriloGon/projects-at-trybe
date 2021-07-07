@@ -18,6 +18,6 @@ export const fetchIngredients = mapAPI(getMealIngredients, getDrinksIngredients)
 
 export const fetchAreas = mapAPI(getMealAreas, getDrinksAreas);
 
-export const fetchImageSrc = mapAPI(mealIngredientImg, drinkIngredientImg);
+export const formatImageSrc = mapAPI(mealIngredientImg, drinkIngredientImg);
 
 export const fetchRandomMenu = mapAPI(getRandomMeal, getRandomDrink);

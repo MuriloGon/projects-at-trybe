@@ -18,8 +18,8 @@ function ExploreIngredients({ type }) {
   if (data === undefined) return <h1>Loading...</h1>;
 
   return type === 'meals'
-    ? <IngredientMeal data={ data } />
-    : <IngredientDrink data={ data } />;
+    ? <IngredientMeal data={ data } type={ type } />
+    : <IngredientDrink data={ data } type={ type } />;
 }
 
 ExploreIngredients.propTypes = {

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { drinkIngredientImg as imgSrc } from '../../../../services/drinksAPI';
+import GenericCardMenu from './GenericCardMenu';
 
-const mealCard = (name, index) => (
-  <div key={ `${name}-${index}` } data-testid={ `${index}-ingredient-card` }>
-    <h2 data-testid={ `${index}-card-name` }>{name}</h2>
-    <img data-testid={ `${index}-card-img` } src={ imgSrc(name) } alt={ name } />
-  </div>
-);
-
-function IngredientMeal({ data }) {
+function IngredientMeal({ data, type }) {
   return (
-    data.map((datum, index) => mealCard(datum.strIngredient, index))
+    data.map((datum, index) => (
+      <GenericCardMenu
+        key={ `card-${index}` }
+        name={ datum.strIngredient }
+        index={ index }
+        type={ type }
+      />
+    ))
   );
 }
 

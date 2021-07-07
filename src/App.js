@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Login from './pages/Login';
-import Auth from './Components/Auth';
+// import Auth from './Components/Auth';
 import loadReduxInitialState from './slices/loadReduxInitialState';
 import Application from './pages/Application';
 import useSetTitleWithRouteName from './hooks/useSetTitleWithRouteName';
@@ -49,7 +49,7 @@ const applicationRoutes = [
 
 function App() {
   const dispatch = useDispatch();
-  const logged = useSelector((st) => st.auth.logged);
+  // const logged = useSelector((st) => st.auth.logged);
 
   useSetTitleWithRouteName();
 
@@ -59,36 +59,34 @@ function App() {
   }, []);
 
   return (
-    <>
-      {renderLinksDev(logged, dispatch)}
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/login" />
-        </Route>
+    <Switch>
+      <Route exact path="/">
+        {/* <Redirect to="/login" /> */}
+        <Login />
+      </Route>
 
-        <Route path="/login">
+      {/* <Route path="/login">
           <Auth auth={ logged } loggedPath="/comidas" />
           <Login />
-        </Route>
+        </Route> */}
 
-        <Route path={ applicationRoutes }>
-          <Auth auth={ logged } notLoggedPath="/not-logged" />
-          <Application />
-        </Route>
+      <Route path={ applicationRoutes }>
+        {/* <Auth auth={ logged } notLoggedPath="/not-logged" /> */}
+        <Application />
+      </Route>
 
-        <Route path="/404">
-          <h1>Página não encontrada</h1>
-        </Route>
+      <Route path="/404">
+        <h1>Página não encontrada</h1>
+      </Route>
 
-        <Route path="/not-logged">
-          <h1>Você precisa estar Logado</h1>
-        </Route>
+      <Route path="/not-logged">
+        <h1>Você precisa estar Logado</h1>
+      </Route>
 
-        <Route path="*">
-          <Redirect to="/404" />
-        </Route>
-      </Switch>
-    </>
+      <Route path="*">
+        <Redirect to="/404" />
+      </Route>
+    </Switch>
   );
 }
 

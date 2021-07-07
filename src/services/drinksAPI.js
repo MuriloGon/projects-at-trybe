@@ -34,7 +34,7 @@ export async function getDrinksIngredients() {
 }
 
 export function drinkIngredientImg(drinkName) {
-  return `https://www.thecocktaildb.com/images/ingredients/${drinkName}.png`;
+  return `https://www.thecocktaildb.com/images/ingredients/${drinkName}-Small.png`;
 }
 
 export async function getRandomDrink() {

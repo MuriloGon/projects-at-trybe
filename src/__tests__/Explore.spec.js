@@ -7,6 +7,7 @@ import renderWithRouterAndRedux from '../__tests_helpers__/renderWithRouterAndRe
 import ExploreOptions from '../pages/Application/Explore/ExplorOptions';
 import ExploreIngredients from '../pages/Application/Explore/ExploreIngredients';
 import { drinksIngredients, mealsIngredients } from '../__mocks__/ingredientsData';
+import App from '../App';
 
 const EXPLORE_SURPRISE_ID = 'explore-surprise';
 
@@ -152,7 +153,7 @@ describe('Explore Drinks or Meals Screen', () => {
     const surpriseBtn = await findByTestId(EXPLORE_SURPRISE_ID);
     await act(async () => { userEvent.click(surpriseBtn); });
     expect(await findByTestId(EXPLORE_SURPRISE_ID))
-      .toHaveAttribute('href', `/comidas/${randomDrink.drinks[0].idDrink}`);
+      .toHaveAttribute('href', `/bebidas/${randomDrink.drinks[0].idDrink}`);
   });
 });
 
@@ -190,5 +191,19 @@ describe('Explore by Indredients - "/{bebidas | comidas}/"', () => {
     expect(cards).toHaveLength(TWELVE_ITEMS);
     expect(imgs).toHaveLength(TWELVE_ITEMS);
     expect(names).toHaveLength(TWELVE_ITEMS);
+  });
+
+  test('When click on an ingredient item, must redirect'
+  + ' to /comidas/ - meals', async () => {
+    global.fetch = mockedFetch(mealsIngredients);
+    const {
+      history, findAllByTestId,
+    } = renderWithRouterAndRedux(<App />);
+    history.push('/explorar/comidas/ingredientes');
+    const cards = await findAllByTestId(/[0-9]+-ingredient-card/);
+    act(() => {
+      userEvent.click(cards[0]);
+    });
+    expect(history.location.pathname).toBe('/comidas/');
   });
 });
