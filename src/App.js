@@ -79,7 +79,7 @@ function App() {
         </Route>
 
         <Route path="/404">
-          <h1>Página não encontrada</h1>
+          <h1>Not Found</h1>
         </Route>
 
         <Route path="/not-logged">

@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import MenuCard from './MenuCard';
 
 function DrinksList({ data, categories, getCategories }) {
+  if (!data[0].idDrink) return null;
   return (
     <main>
       <header>
         { categories.map(({ strCategory }, index) => (
           <button
             type="button"
-            key={ index }
+            key={ `${index}-drink` }
             data-testid={ `${strCategory}-category-filter` }
             onClick={ () => getCategories(strCategory) }
           >
@@ -21,7 +22,7 @@ function DrinksList({ data, categories, getCategories }) {
         <div data-testid="drinks-list" className="class-drinks-list">
           { data.map((drink, index) => (
             <MenuCard
-              key={ `${drink.idDrink}-card` }
+              key={ `${drink.idDrink}-drink-card` }
               CardTestId={ `${index}-recipe-card` }
               TitleTestId={ `${index}-card-name` }
               imgTestId={ `${index}-card-img` }

@@ -1,11 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Link, useRouteMatch } from 'react-router-dom';
 
-function MenuCard({ CardTestId, TitleTestId, imgTestId, title, imgUrl, alt, key }) {
-  const { path } = useRouteMatch();
+function MenuCard({ CardTestId, TitleTestId, imgTestId,
+  title, imgUrl, alt, type, itemId }) {
+  const toObj = {
+    drinks: `/bebidas/${itemId}`,
+    meals: `/comidas/${itemId}`,
+
+  };
   return (
-    <Link to={ `/${path}/${key}` }>
+    <Link to={ toObj[type] }>
       <div data-testid={ CardTestId } className="class-meal-card">
         <img data-testid={ imgTestId } src={ imgUrl } alt={ alt } />
         <h2 data-testid={ TitleTestId }>{ title }</h2>
@@ -21,7 +26,8 @@ MenuCard.propTypes = {
   title: PropTypes.string.isRequired,
   imgUrl: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  key: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  itemId: PropTypes.string.isRequired,
 };
 
 export default MenuCard;

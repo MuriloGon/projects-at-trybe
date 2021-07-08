@@ -4,37 +4,42 @@ import MenuCard from './MenuCard';
 
 function MealsList({ data, categories, getCategories }) {
   const all = 'All';
+  if (!data[0].idMeal) return null;
   return (
     <main>
-      <header>
-        <button
-          type="button"
-          onClick={ () => getCategories(all) }
-        >
-          All
-        </button>
-        { categories.map(({ strCategory }, index) => (
+      {categories && (
+        <header>
           <button
             type="button"
-            key={ index }
-            data-testid={ `${strCategory}-category-filter` }
-            onClick={ () => getCategories(strCategory) }
+            onClick={ () => getCategories(all) }
           >
-            {strCategory}
+            All
           </button>
-        ))}
-      </header>
+          { categories.map(({ strCategory }, index) => (
+            <button
+              type="button"
+              key={ `${index}-meal` }
+              data-testid={ `${strCategory}-category-filter` }
+              onClick={ () => getCategories(strCategory) }
+            >
+              {strCategory}
+            </button>
+          ))}
+        </header>
+      )}
       <section>
         <div data-testid="meals-list" className="class-meals-list">
           { data.map((meal, index) => (
             <MenuCard
-              key={ `${meal.idMeal}-card` }
+              key={ `${meal.idMeal}-meal-card` }
               CardTestId={ `${index}-recipe-card` }
               TitleTestId={ `${index}-card-name` }
               imgTestId={ `${index}-card-img` }
               alt={ meal.strMeal }
               imgUrl={ meal.strMealThumb }
               title={ meal.strMeal }
+              itemId={ meal.idMeal }
+              type="meals"
             />
           ))}
         </div>

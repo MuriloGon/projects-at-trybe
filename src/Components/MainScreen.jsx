@@ -46,24 +46,33 @@ function MainScreen({ type }) {
         });
     } else fetchMealsOrDrinks(type)(doze).then(setData);
     fetchCategories(type)(cinco).then(setCategories);
+
+    return () => { setData(); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
 
-  if (!(Boolean(data) && Boolean(categories))) return <h1>Loading ...</h1>;
+  if (data === undefined
+    || categories === undefined) return <h1>Loading ...</h1>;
 
-  return type === 'meals'
-    ? (
-      <MealsList
-        data={ data }
-        categories={ categories }
-        getCategories={ filterByCategories }
-      />)
-    : (
-      <DrinksList
-        data={ data }
-        categories={ categories }
-        getCategories={ filterByCategories }
-      />);
+  if (data.length === 0) return <h1>Nada Encontrado 🥺</h1>;
+
+  return (
+    <div>
+      {type === 'meals'
+        ? (
+          <MealsList
+            data={ data }
+            categories={ categories }
+            getCategories={ filterByCategories }
+          />)
+        : (
+          <DrinksList
+            data={ data }
+            categories={ categories }
+            getCategories={ filterByCategories }
+          />)}
+    </div>
+  );
 }
 
 MainScreen.propTypes = {
