@@ -15,11 +15,11 @@ export async function getDrinksCategories(dataQty = number) {
   }
 }
 
-export async function getDrinksAreas() {
+export async function getDrinksAreas(qty) {
   try {
     const response = await fetch(DRINK_AREAS_ENDPOINT);
     const data = await response.json();
-    return data.drinks;
+    return data.drinks.slice(qty);
   } catch (erro) {
     console.log('Erro on get drink areas');
   }
@@ -69,5 +69,17 @@ export async function getDrinksByIngredient(qty, category) {
     return out;
   } catch (erro) {
     console.error('Erro in getting drinks by category');
+  }
+}
+
+const DRINKS_BY_AREA_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=';
+export async function getDrinksByArea(qty, area) {
+  try {
+    const response = await fetch(DRINKS_BY_AREA_ENDPOINT + area);
+    const data = await response.json();
+    const out = data.drinks.slice(0, qty);
+    return out;
+  } catch (erro) {
+    console.error('Erro in getting drinks by area');
   }
 }

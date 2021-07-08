@@ -6,17 +6,19 @@ function MealsList({ data, categories }) {
   if (!data[0].idMeal) return null;
   return (
     <main>
-      <header>
-        { categories.map(({ strCategory }, index) => (
-          <button
-            type="button"
-            key={ `${index}-meal` }
-            data-testid={ `${strCategory}-category-filter` }
-          >
-            {strCategory}
-          </button>
-        ))}
-      </header>
+      {categories && (
+        <header>
+          { categories.map(({ strCategory }, index) => (
+            <button
+              type="button"
+              key={ `${index}-meal` }
+              data-testid={ `${strCategory}-category-filter` }
+            >
+              {strCategory}
+            </button>
+          ))}
+        </header>
+      )}
       <section>
         <div data-testid="meals-list" className="class-meals-list">
           { data.map((meal, index) => (
@@ -28,6 +30,8 @@ function MealsList({ data, categories }) {
               alt={ meal.strMeal }
               imgUrl={ meal.strMealThumb }
               title={ meal.strMeal }
+              itemId={ meal.idMeal }
+              type="meals"
             />
           ))}
         </div>

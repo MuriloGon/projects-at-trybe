@@ -15,11 +15,11 @@ export async function getMealCategories(dataQty = number) {
   }
 }
 
-export async function getMealAreas() {
+export async function getMealAreas(qty) {
   try {
     const response = await fetch(MEAL_AREAS_ENDPOINT);
     const data = await response.json();
-    return data.meals;
+    return data.meals.slice(0, qty);
   } catch (erro) {
     console.log('Erro in get meal areas');
   }
@@ -64,11 +64,22 @@ const MEALS_BY_INGREDIENT_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/fi
 export async function getMealsByIngredient(qty, category) {
   try {
     const response = await fetch(MEALS_BY_INGREDIENT_ENDPOINT + category);
-    console.log(MEALS_BY_INGREDIENT_ENDPOINT + category);
     const data = await response.json();
     const out = data.meals.slice(0, qty);
     return out;
   } catch (erro) {
     console.error('Erro in getting meals by category');
+  }
+}
+
+const MEALS_BY_AREA_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=';
+export async function getMealsByArea(qty, area) {
+  try {
+    const response = await fetch(MEALS_BY_AREA_ENDPOINT + area);
+    const data = await response.json();
+    const out = data.meals.slice(0, qty);
+    return out;
+  } catch (erro) {
+    console.error('Erro in getting meals by area');
   }
 }
