@@ -1,7 +1,8 @@
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
-import useMenuType from '../../hooks/useMenuType';
-import MainScreen from '../../Components/MainScreen';
+import useMenuType from '../../../hooks/useMenuType';
+import MainScreen from '../../../Components/MainScreen';
+import RecipeDetails from './RecipeDetails';
 
 function devPlaceholder(type, path, info) {
   return (
@@ -30,7 +31,7 @@ function Menu() {
       </Route>
 
       <Route exact path={ `${path}/:id(\\d{1,})` }>
-        {devPlaceholder(menuType, url, 'Com o id')}
+        <RecipeDetails type={ menuType } />
       </Route>
 
       <Route path={ `${path}/:id(\\d{1,})/in-progress` }>
