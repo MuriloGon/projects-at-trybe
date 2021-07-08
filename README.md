@@ -659,7 +659,7 @@ O retorno de uma venda cadastrada com sucesso deverá ser:
 
 - Será validado que é possível deletar uma venda com sucesso
 
-  - Se a venda foi deletada sucesso, o resultado retornado deverá ser conforme exibido abaixo, com status http `200` e será verificado depois que a venda não existe e deverar retornar http `404`:
+  - Se a venda foi deletada sucesso, o resultado retornado deverá ser conforme exibido abaixo, com status http `200` e será verificado depois que a venda não existe, com um GET nesse `id`, e este deverá retornar status http `404`:
 
 ![Deletar uma venda com sucesso](./public/deletarumavendacomsucesso.png)
 
