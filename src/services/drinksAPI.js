@@ -11,7 +11,7 @@ export async function getDrinksCategories(dataQty = number) {
     const data = await response.json();
     return data.drinks.slice(0, dataQty);
   } catch (erro) {
-    console.log('Erro on get drink categories');
+    console.log('Error on get drink categories');
   }
 }
 
@@ -21,7 +21,7 @@ export async function getDrinksAreas() {
     const data = await response.json();
     return data.drinks;
   } catch (erro) {
-    console.log('Erro on get drink areas');
+    console.log('Error on get drink areas');
   }
 }
 
@@ -31,7 +31,7 @@ export async function getDrinksIngredients() {
     const data = await response.json();
     return data.drinks;
   } catch (erro) {
-    console.log('Erro on get drink ingredients');
+    console.log('Error on get drink ingredients');
   }
 }
 
@@ -45,7 +45,7 @@ export async function getDrinks(dataQty = number) {
     const data = await response.json();
     return data.drinks.slice(0, dataQty);
   } catch (erro) {
-    console.log('Erro on get drinks');
+    console.log('Error on get drinks');
   }
 }
 
@@ -56,7 +56,7 @@ export async function getRandomDrink() {
     const [out] = data.drinks;
     return out;
   } catch (erro) {
-    console.log('Erro in getting random drink');
+    console.log('Error in getting random drink');
   }
 }
 
@@ -68,6 +68,39 @@ export async function getDrinksByIngredient(qty, category) {
     const out = data.drinks.slice(0, qty);
     return out;
   } catch (erro) {
-    console.error('Erro in getting drinks by category');
+    console.error('Error in getting drinks by category');
+  }
+}
+
+export async function getDrinkByIngredient(ingredient) {
+  try {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+    const data = await response.json();
+    return data.drinks;
+  } catch (erro) {
+    console.log('Error in get drink ingredient');
+    return null;
+  }
+}
+
+export async function getDrinkByName(name) {
+  try {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
+    const data = await response.json();
+    return data.drinks;
+  } catch (erro) {
+    console.log('Error in get drink by name');
+    return null;
+  }
+}
+
+export async function getDrinkByFirstLetter(firstLetter) {
+  try {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstLetter}`);
+    const data = await response.json();
+    return data.drinks;
+  } catch (erro) {
+    console.log('Error in get drink by first letter');
+    return null;
   }
 }
