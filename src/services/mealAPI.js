@@ -83,6 +83,38 @@ export async function getMealsByIngredient(qty, category) {
   }
 }
 
+export async function getMealByIngredient(ingredient) {
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+    const data = await response.json();
+    return data.meals;
+  } catch (erro) {
+    console.log('Erro in get meal ingredient');
+    return null;
+  }
+}
+
+export async function getMealByName(name) {
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`);
+    const data = await response.json();
+    return data.meals;
+  } catch (erro) {
+    console.log('Erro in get meal by name');
+    return null;
+  }
+}
+
+export async function getMealByFirstLetter(firstLetter) {
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${firstLetter}`);
+    const data = await response.json();
+    return data.meals;
+  } catch (erro) {
+    console.log('Erro in get meal by first letter');
+  }
+}
+
 const MEALS_BY_AREA_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=';
 export async function getMealsByArea(qty, area) {
   try {

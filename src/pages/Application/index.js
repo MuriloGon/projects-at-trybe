@@ -4,6 +4,7 @@ import MainContainer from '../../Components/MainContainer';
 import Menu from './Menu';
 import Explore from './Explore';
 import Perfil from './Perfil';
+import MainContainer from '../../Components/MainContainer';
 
 function Application() {
   return (

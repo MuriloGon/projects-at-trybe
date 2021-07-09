@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,7 +7,8 @@ import { fetchMealsOrDrinks, fetchCategories,
 import MealsList from './MealsList';
 import DrinksList from './DrinksList';
 import { clearExplore } from '../slices/exploreSlice';
-// import { condicionalToggle } from '../utils/toggleFunction';
+import { clearSearchData } from '../slices/searchbar';
+
 
 const doze = 12;
 const cinco = 5;
@@ -37,6 +39,7 @@ function MainScreen({ type }) {
   const [oldBtn, setOldBtn] = useState('');
 
   const explore = useSelector((st) => st.explore);
+  const searchbar = useSelector((st) => st.searchbar);
   const dispatch = useDispatch();
 
   const filterByCategories = (btnCategories) => {
@@ -79,16 +82,24 @@ function MainScreen({ type }) {
         .then((byCategoryData) => {
           setData(byCategoryData);
           dispatch(clearExplore());
-        }).then(test);
-    } else fetchMealsOrDrinks(type)(doze).then(setData).then(test);
-
+        });
+    } else fetchMealsOrDrinks(type)(doze).then(setData);
+    fetchCategories(type)(cinco).then(setCategories);
     return () => { setData(); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type]);
 
-  if (!data
-    || !categories) return <h1>Loading ...</h1>;
+  useEffect(() => {
+    console.log(searchbar);
+    if (searchbar.hasDataToRender) {
+      setData(searchbar.searchBarData);
+      dispatch(clearSearchData());
+    }
+  }, [searchbar]);
 
+  if (data === undefined
+    || categories === undefined) return <h1>Loading ...</h1>;
+
+  if (data === null) return <h1>Nada Encontrado 🥺</h1>;
   if (data.length === 0) return <h1>Nada Encontrado 🥺</h1>;
 
   return (
