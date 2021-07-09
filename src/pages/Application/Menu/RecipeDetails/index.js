@@ -46,6 +46,23 @@ const handleBtn = ({ progress, dispatch, id, type }) => () => {
   default: break;
   }
 };
+
+function inProgressHandle({ type, inProgressRecipes, inProgress, id, dispatch }) {
+  const inProgresskey = type === 'meals' ? 'meals' : 'cocktails';
+  const isInProgress = Object.keys(inProgressRecipes[inProgresskey])
+    .some((key) => key === id);
+  const progress = (() => {
+    if (inProgress && isInProgress) return 'finish';
+    if (!inProgress && isInProgress) return 'continue';
+    if (inProgress && !isInProgress) {
+      dispatch(startRecipe({ id, type }));
+      return 'finish';
+    }
+    return 'start';
+  })();
+  return { progress };
+}
+
 function RecipeDetails({ type, id, inProgress }) {
   const [data, setData] = useState(INITIAL_STATE);
   const dispatch = useDispatch();
@@ -71,19 +88,14 @@ function RecipeDetails({ type, id, inProgress }) {
     return <h1>Loading...</h1>;
   }
 
-  /* Handle in-progress case */
-  const inProgresskey = type === 'meals' ? 'meals' : 'cocktails';
-  const isInProgress = Object.keys(inProgressRecipes[inProgresskey])
-    .some((key) => key === id);
-  const progress = (() => {
-    if (inProgress && isInProgress) return 'finish';
-    if (!inProgress && isInProgress) return 'continue';
-    if (inProgress && !isInProgress) {
-      dispatch(startRecipe({ id, type }));
-      return 'finish';
-    }
-    return 'start';
-  })();
+  /* Handle in-progress behaviour */
+  const { progress } = inProgressHandle({
+    dispatch, id, inProgress, inProgressRecipes, type });
+
+  const BtnStyles = {
+    position: 'fixed',
+    bottom: 0,
+    left: '50%' };
 
   return (
     <>
@@ -103,7 +115,7 @@ function RecipeDetails({ type, id, inProgress }) {
         )}
 
       <Link
-        style={ { position: 'fixed', bottom: 0, left: '50%' } }
+        style={ BtnStyles }
         to={ floatingBtnStates(type, id)[progress].to }
       >
         <button

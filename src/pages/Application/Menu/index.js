@@ -4,23 +4,6 @@ import useMenuType from '../../../hooks/useMenuType';
 import MainScreen from '../../../Components/MainScreen';
 import RecipeDetails from './RecipeDetails';
 
-function devPlaceholder(type, path, info) {
-  return (
-    <div>
-      <h2>
-        {type.toUpperCase()}
-      </h2>
-      <h3>
-        {path}
-      </h3>
-      {info && (
-        <h3>
-          {info}
-        </h3>)}
-    </div>
-  );
-}
-
 function Menu() {
   const { path } = useRouteMatch();
   const menuType = useMenuType();
