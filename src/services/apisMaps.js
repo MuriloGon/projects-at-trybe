@@ -20,6 +20,8 @@ const mapAPI = (mealsFunc, drinksFunc) => (type) => {
 
 export const fetchCategories = mapAPI(getMealCategories, getDrinksCategories);
 
+export const fetchByCategories = mapAPI(getMealByCategories, getDrinksByCategories);
+
 export const fetchIngredients = mapAPI(getMealIngredients, getDrinksIngredients);
 
 export const fetchAreas = mapAPI(getMealAreas, getDrinksAreas);

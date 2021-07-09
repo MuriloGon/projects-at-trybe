@@ -15,6 +15,17 @@ export async function getMealCategories(dataQty = number) {
   }
 }
 
+export async function getMealByCategories(dataQty = number, categories) {
+  try {
+    const response = await
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categories}`);
+    const data = await response.json();
+    return data.meals.slice(0, dataQty);
+  } catch (error) {
+    console.log('Erro in get meal by categories');
+  }
+}
+
 export async function getMealAreas(qty) {
   try {
     const response = await fetch(MEAL_AREAS_ENDPOINT);

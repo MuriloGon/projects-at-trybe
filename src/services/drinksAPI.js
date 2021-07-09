@@ -15,6 +15,17 @@ export async function getDrinksCategories(dataQty = number) {
   }
 }
 
+export async function getDrinksByCategories(dataQty = number, category) {
+  try {
+    const response = await
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+    const data = await response.json();
+    return data.drinks.slice(0, dataQty);
+  } catch (error) {
+    console.log('Erro in get drink by categories');
+  }
+}
+
 export async function getDrinksAreas(qty) {
   try {
     const response = await fetch(DRINK_AREAS_ENDPOINT);
