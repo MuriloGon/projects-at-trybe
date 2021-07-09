@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveIngredientProgress } from '../../../../slices/inProgressRecipes';
@@ -55,7 +55,7 @@ const computeInitialListState = (ingredients, favorites) => () => {
   }));
 };
 
-function Ingredients({ ingredients, inProgress, id, type }) {
+function Ingredients({ ingredients, inProgress, id, type, allowFinish }) {
   const favorites = useSelector(favoritesByIdSelector(type, id));
   const dispatch = useDispatch();
   const [list, setList] = useState(computeInitialListState(ingredients, favorites));
@@ -70,6 +70,12 @@ function Ingredients({ ingredients, inProgress, id, type }) {
       .map(({ index }) => index);
     dispatch(saveIngredientProgress({ id, type, ingredientsList }));
   };
+
+  useEffect(() => {
+    if (favorites.length >= list.length) allowFinish(false);
+    else allowFinish(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [favorites]);
 
   return (
     <section>
@@ -91,6 +97,7 @@ Ingredients.propTypes = {
   id: PropTypes.string.isRequired,
   inProgress: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
+  allowFinish: PropTypes.func.isRequired,
 };
 
 export default Ingredients;

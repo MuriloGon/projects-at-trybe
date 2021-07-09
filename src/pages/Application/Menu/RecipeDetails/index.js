@@ -17,21 +17,24 @@ const INITIAL_STATE = {
 const inProgressLink = (type, id) => (
   type === 'meals' ? `/comidas/${id}/in-progress` : `/bebidas/${id}/in-progress`);
 
-const floatingBtnStates = (type, id) => ({
+const floatingBtnStates = (type, id, allowFinish) => ({
   start: {
     testid: 'start-recipe-btn',
     label: 'Iniciar Receita',
     to: inProgressLink(type, id),
+    disabled: false,
   },
   continue: {
     testid: 'start-recipe-btn',
     label: 'Continuar Receita',
     to: inProgressLink(type, id),
+    disabled: false,
   },
   finish: {
     testid: 'finish-recipe-btn',
     label: 'Finalizar Receita',
     to: '/receitas-feitas',
+    disabled: allowFinish,
   },
 });
 
@@ -46,6 +49,7 @@ const handleBtn = ({ progress, dispatch, id, type }) => () => {
 function RecipeDetails({ type, id, inProgress }) {
   const [data, setData] = useState(INITIAL_STATE);
   const dispatch = useDispatch();
+  const [allowFinish, setAllowFinish] = useState(true);
   const inProgressRecipes = useSelector((st) => st.inProgressRecipes);
   const inverseType = type === 'meals' ? 'drinks' : 'meals';
 
@@ -86,25 +90,30 @@ function RecipeDetails({ type, id, inProgress }) {
       {type === 'drinks'
         ? (
           <DrinkDetails
-            data={ data }
+            data={ { ...data, setAllowFinish } }
             inverseType={ inverseType }
             inProgress={ inProgress }
           />)
         : (
           <MealDetails
-            data={ data }
+            data={ { ...data, setAllowFinish } }
             inverseType={ inverseType }
             inProgress={ inProgress }
           />
         )}
 
       <Link
-        data-testid={ floatingBtnStates(type, id)[progress].testid }
         style={ { position: 'fixed', bottom: 0, left: '50%' } }
         to={ floatingBtnStates(type, id)[progress].to }
-        onClick={ handleBtn({ progress, dispatch, id, type }) }
       >
-        {floatingBtnStates(type, id)[progress].label}
+        <button
+          type="button"
+          disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
+          onClick={ handleBtn({ progress, dispatch, id, type }) }
+          data-testid={ floatingBtnStates(type, id)[progress].testid }
+        >
+          {floatingBtnStates(type, id)[progress].label}
+        </button>
       </Link>
     </>
   );

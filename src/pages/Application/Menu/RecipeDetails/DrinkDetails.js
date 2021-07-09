@@ -22,7 +22,7 @@ const mapFavoriteDrinkRecipe = (recipe) => ({
 });
 
 function DrinkDetails({ data, inverseType, inProgress }) {
-  const { recipeData, recommendation } = data;
+  const { recipeData, recommendation, setAllowFinish } = data;
   const { strDrink, strAlcoholic, strDrinkThumb,
     strInstructions, strVideo, idDrink } = recipeData;
 
@@ -42,6 +42,7 @@ function DrinkDetails({ data, inverseType, inProgress }) {
         id={ idDrink }
         inProgress={ inProgress }
         type="meals"
+        allowFinish={ setAllowFinish }
       />
 
       <Instructions instructions={ strInstructions } />
