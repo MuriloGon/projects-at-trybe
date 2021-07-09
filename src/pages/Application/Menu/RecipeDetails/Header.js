@@ -20,7 +20,8 @@ function Header({ imgSrc, category, title, favoriteData }) {
 
   const copyToClipBoard = () => {
     const url = window.location.href;
-    cp(url).then(() => { enqueueSnackbar('Link copiado!'); });
+    const regex = /[\s\S]+[comidas|bebidas]\/[\d]+/;
+    cp(url.match(regex)[0]).then(() => { enqueueSnackbar('Link copiado!'); });
   };
 
   const toggleFavorite = () => {

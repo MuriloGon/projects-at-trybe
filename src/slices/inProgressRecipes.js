@@ -13,20 +13,18 @@ const inProgressRecipesSlice = createSlice({
   reducers: {
     loadInProgressStorage: () => getLocalStorage('inProgressRecipes', initialState),
     startRecipe: (state, { payload: { id, type } }) => {
-      switch (type) {
-      case 'meals':
-        state.meals[id] = [];
-        break;
-      case 'drinks':
-        state.cocktails[id] = [];
-        break;
-      default:
-        saveInprogressLocalStorage(state);
-      }
+      const typeKey = type === 'meals' ? 'meals' : 'cocktails';
+      state[typeKey][id] = [];
+      saveInprogressLocalStorage(state);
+    },
+    saveIngredientProgress: (state, { payload: { id, type, ingredientsList } }) => {
+      const typeKey = type === 'meals' ? 'meals' : 'cocktails';
+      state[typeKey][id] = ingredientsList;
+      saveInprogressLocalStorage(state);
     },
   },
 });
 
 export const { loadInProgressStorage,
-  startRecipe } = inProgressRecipesSlice.actions;
+  startRecipe, saveIngredientProgress } = inProgressRecipesSlice.actions;
 export default inProgressRecipesSlice.reducer;

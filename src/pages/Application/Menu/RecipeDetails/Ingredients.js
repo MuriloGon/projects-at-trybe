@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveIngredientProgress } from '../../../../slices/inProgressRecipes';
 
 function renderNormalList({ list }) {
   return (
@@ -16,7 +17,7 @@ function renderNormalList({ list }) {
     </ul>
   );
 }
-function renderProgressList({ list, handleChange, valueByIndex }) {
+function renderProgressList({ list, handleChange }) {
   return (
     <ul>
       {list.map(({ ingredient, measure, index }, i) => (
@@ -25,7 +26,7 @@ function renderProgressList({ list, handleChange, valueByIndex }) {
           key={ `${index}-list-item` }
         >
           <input
-            value={ valueByIndex(index) }
+            checked={ list.find((item) => item.index === index).finished }
             name={ index }
             onChange={ handleChange }
             type="checkbox"
@@ -39,29 +40,42 @@ function renderProgressList({ list, handleChange, valueByIndex }) {
 
 const favoritesByIdSelector = (type, id) => ({ inProgressRecipes }) => {
   switch (type) {
-  case 'meals': return inProgressRecipes.meals[id];
-  case 'drinks': return inProgressRecipes.cocktails[id];
-  default: return null;
+  case 'meals': return inProgressRecipes.meals[id] || [];
+  case 'drinks': return inProgressRecipes.cocktails[id] || [];
+  default: return inProgressRecipes;
   }
 };
+
+const computeInitialListState = (ingredients, favorites) => () => {
+  console.log({ ingredients, favorites });
+  const out = [...ingredients];
+  return out.map((item) => ({
+    ...item,
+    finished: favorites.includes(item.index),
+  }));
+};
+
 function Ingredients({ ingredients, inProgress, id, type }) {
   const favorites = useSelector(favoritesByIdSelector(type, id));
-  const [list, setList] = useState(ingredients);
+  const dispatch = useDispatch();
+  const [list, setList] = useState(computeInitialListState(ingredients, favorites));
 
   const handleChange = ({ target: { name } }) => {
     const itemIndex = list.findIndex(({ index }) => index === Number(name));
     const copyState = [...list];
     copyState[itemIndex].finished = !copyState[itemIndex].finished;
     setList([...list]);
+    const ingredientsList = copyState
+      .filter(({ finished }) => finished)
+      .map(({ index }) => index);
+    dispatch(saveIngredientProgress({ id, type, ingredientsList }));
   };
 
-  const valueByIndex = (index) => list.find((item) => item.index === index).finished;
-  console.log(inProgress);
   return (
     <section>
       <h2>Ingredients</h2>
       {inProgress
-        ? renderProgressList({ list, handleChange, valueByIndex })
+        ? renderProgressList({ list, handleChange })
         : renderNormalList({ list })}
     </section>
   );
