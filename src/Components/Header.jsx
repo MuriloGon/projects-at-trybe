@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import SearchBar from './SearchBar';
+import profileIcon from '../images/profileIcon.svg';
+import searchIcon from '../images/searchIcon.svg';
 
 function Header({ name }) {
   const [handleSearch, sethandleSearch] = useState(false);
@@ -15,7 +18,7 @@ function Header({ name }) {
       <div>
         <Link to="/perfil">
           <img
-            src="src/images/profileIcon.svg"
+            src={ profileIcon }
             alt="Profile Icon"
             data-testid="profile-top-btn"
           />
@@ -23,18 +26,15 @@ function Header({ name }) {
         </Link>
         <input
           type="image"
-          src="src/images/searchIcon.svg"
+          src={ searchIcon }
           alt="Search Icon"
           data-testid="search-top-btn"
           onClick={ () => handleClick() }
         />
       </div>
-      <div>
-        { handleSearch && <input
-          type="text"
-          data-testid="search-input"
-        /> }
-      </div>
+
+      { handleSearch && <SearchBar /> }
+
     </>
   );
 }

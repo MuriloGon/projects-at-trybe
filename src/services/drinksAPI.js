@@ -69,7 +69,40 @@ export async function getDrinksByIngredient(qty, category) {
     const out = data.drinks.slice(0, qty);
     return out;
   } catch (erro) {
-    console.error('Erro in getting drinks by category');
+    console.error('Error in getting drinks by category');
+  }
+}
+
+export async function getDrinkByIngredient(ingredient) {
+  try {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+    const data = await response.json();
+    return data.drinks;
+  } catch (erro) {
+    console.log('Error in get drink ingredient');
+    return null;
+  }
+}
+
+export async function getDrinkByName(name) {
+  try {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`);
+    const data = await response.json();
+    return data.drinks;
+  } catch (erro) {
+    console.log('Error in get drink by name');
+    return null;
+  }
+}
+
+export async function getDrinkByFirstLetter(firstLetter) {
+  try {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${firstLetter}`);
+    const data = await response.json();
+    return data.drinks;
+  } catch (erro) {
+    console.log('Error in get drink by first letter');
+    return null;
   }
 }
 
