@@ -47,7 +47,6 @@ const favoritesByIdSelector = (type, id) => ({ inProgressRecipes }) => {
 };
 
 const computeInitialListState = (ingredients, favorites) => () => {
-  console.log({ ingredients, favorites });
   const out = [...ingredients];
   return out.map((item) => ({
     ...item,
