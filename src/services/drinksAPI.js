@@ -11,7 +11,7 @@ export async function getDrinksCategories(dataQty = number) {
     const data = await response.json();
     return data.drinks.slice(0, dataQty);
   } catch (erro) {
-    console.log('Erro on get drink categories');
+    console.error('Erro on get drink categories');
   }
 }
 
@@ -21,7 +21,7 @@ export async function getDrinksAreas() {
     const data = await response.json();
     return data.drinks;
   } catch (erro) {
-    console.log('Erro on get drink areas');
+    console.error('Erro on get drink areas');
   }
 }
 
@@ -31,7 +31,7 @@ export async function getDrinksIngredients() {
     const data = await response.json();
     return data.drinks;
   } catch (erro) {
-    console.log('Erro on get drink ingredients');
+    console.error('Erro on get drink ingredients');
   }
 }
 
@@ -45,7 +45,8 @@ export async function getDrinks(dataQty = number) {
     const data = await response.json();
     return data.drinks.slice(0, dataQty);
   } catch (erro) {
-    console.log('Erro on get drinks');
+    console.error('Erro on get drinks');
+    console.warn(erro);
   }
 }
 
@@ -56,7 +57,7 @@ export async function getRandomDrink() {
     const [out] = data.drinks;
     return out;
   } catch (erro) {
-    console.log('Erro in getting random drink');
+    console.error('Erro in getting random drink');
   }
 }
 
@@ -69,5 +70,17 @@ export async function getDrinksByIngredient(qty, category) {
     return out;
   } catch (erro) {
     console.error('Erro in getting drinks by category');
+  }
+}
+
+const DRINK_BY_ID_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
+export async function getDrinkById(id) {
+  try {
+    const response = await fetch(DRINK_BY_ID_ENDPOINT + id);
+    const data = await response.json();
+    const [out] = data.drinks;
+    return out;
+  } catch (erro) {
+    return null;
   }
 }

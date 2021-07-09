@@ -46,6 +46,7 @@ export const meals = [
   {
     strMeal: 'Kapsalon',
     strMealThumb: 'https://www.themealdb.com/images/media/meals/sxysrt1468240488.jpg',
-  }];
+  },
+];
 
 export default meals;

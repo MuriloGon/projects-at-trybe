@@ -31,7 +31,9 @@ function Menu() {
       </Route>
 
       <Route exact path={ `${path}/:id(\\d{1,})` }>
-        <RecipeDetails type={ menuType } />
+        {
+          ({ match: { params: { id } } }) => <RecipeDetails type={ menuType } id={ id } />
+        }
       </Route>
 
       <Route path={ `${path}/:id(\\d{1,})/in-progress` }>

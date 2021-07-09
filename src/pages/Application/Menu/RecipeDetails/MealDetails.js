@@ -1,0 +1,69 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import Ingredients from './Ingredients';
+import Instructions from './Instructions';
+import Video from './Video';
+import Recommendations from './Recommendations';
+import Header from './Header';
+import mapIngredients from '../../../../utils/mapIngredients';
+
+const mapDrinksRecommendations = (data) => data
+  .map(({ strAlcoholic: subtitle, strDrink: title,
+    idDrink: id, strDrinkThumb: imgUrl }) => ({ title, subtitle, imgUrl, id }));
+
+const mapFavoriteMealRecipe = (recipe) => ({
+  id: recipe.idMeal,
+  type: 'comida',
+  area: recipe.strArea,
+  category: recipe.strCategory,
+  alcoholicOrNot: '',
+  name: recipe.strMeal,
+  image: recipe.strMealThumb,
+});
+
+function MealDetails({ data, inverseType }) {
+  console.log('Meals', data);
+
+  const { recipeData, recommendation } = data;
+  const { strMeal, strCategory, strMealThumb,
+    strInstructions, strYoutube } = recipeData;
+
+  const ingredients = mapIngredients(recipeData);
+  const recommendations = mapDrinksRecommendations(recommendation);
+  return (
+    <div>
+      <Header
+        title={ strMeal }
+        category={ strCategory }
+        imgSrc={ strMealThumb }
+        favoriteData={ mapFavoriteMealRecipe(recipeData) }
+      />
+
+      <Ingredients ingredients={ ingredients } />
+
+      <Instructions instructions={ strInstructions } />
+
+      <Video urlVideo={ strYoutube } />
+
+      <Recommendations
+        recommendationsList={ recommendations }
+        inverseType={ inverseType }
+      />
+    </div>
+  );
+}
+
+const data = {
+  recipeData: PropTypes.shape({
+    strDrink: PropTypes.string,
+    strCategory: PropTypes.string,
+    strDrinkThumb: PropTypes.string,
+  }),
+};
+
+MealDetails.propTypes = {
+  data: PropTypes.shape(data).isRequired,
+  inverseType: PropTypes.string.isRequired,
+};
+
+export default MealDetails;

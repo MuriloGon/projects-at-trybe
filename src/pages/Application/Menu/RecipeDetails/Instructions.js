@@ -1,11 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Instructions() {
+function Instructions({ instructions }) {
   return (
     <section data-testid="instructions">
-      Intruções
+      <h2>Instructions</h2>
+      {instructions}
     </section>
   );
 }
+
+Instructions.propTypes = {
+  instructions: PropTypes.string.isRequired,
+};
 
 export default Instructions;

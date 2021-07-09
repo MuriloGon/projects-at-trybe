@@ -11,7 +11,7 @@ export async function getMealCategories(dataQty = number) {
     const data = await response.json();
     return data.meals.slice(0, dataQty);
   } catch (erro) {
-    console.log('Erro in get meal categories');
+    console.error('Erro in get meal categories');
   }
 }
 
@@ -21,7 +21,7 @@ export async function getMealAreas() {
     const data = await response.json();
     return data.meals;
   } catch (erro) {
-    console.log('Erro in get meal areas');
+    console.error('Erro in get meal areas');
   }
 }
 
@@ -31,7 +31,7 @@ export async function getMealIngredients() {
     const data = await response.json();
     return data.meals;
   } catch (erro) {
-    console.log('Erro in get meal ingredients');
+    console.error('Erro in get meal ingredients');
   }
 }
 
@@ -45,7 +45,7 @@ export async function getMeals(dataQty = number) {
     const data = await response.json();
     return data.meals.slice(0, dataQty);
   } catch (erro) {
-    console.log('Erro in get all meats');
+    console.error('Erro in get all meats');
   }
 }
 
@@ -56,7 +56,7 @@ export async function getRandomMeal() {
     const [out] = data.meals;
     return out;
   } catch (erro) {
-    console.log('Erro in getting random meal');
+    console.error('Erro in getting random meal');
   }
 }
 
@@ -64,11 +64,22 @@ const MEALS_BY_INGREDIENT_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/fi
 export async function getMealsByIngredient(qty, category) {
   try {
     const response = await fetch(MEALS_BY_INGREDIENT_ENDPOINT + category);
-    console.log(MEALS_BY_INGREDIENT_ENDPOINT + category);
     const data = await response.json();
     const out = data.meals.slice(0, qty);
     return out;
   } catch (erro) {
     console.error('Erro in getting meals by category');
+  }
+}
+
+const MEAL_BY_ID_ENDPOINT = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=';
+export async function getMealById(id) {
+  try {
+    const response = await fetch(MEAL_BY_ID_ENDPOINT + id);
+    const data = await response.json();
+    const [out] = data.meals;
+    return out;
+  } catch (erro) {
+    return null;
   }
 }
