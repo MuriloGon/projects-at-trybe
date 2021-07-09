@@ -1,41 +1,57 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { screen } from '@testing-library/react';
+import { screen, act } from '@testing-library/react';
 import renderWithRouterAndRedux from '../__tests_helpers__/renderWithRouterAndRedux';
-import MealsList from '../Components/MealsList';
-import DrinksList from '../Components/DrinksList';
+import MainScreen from '../Components/MainScreen';
+// import DrinksList from '../Components/DrinksList';
 import { meals } from '../__mocks__/mealsData';
-import { drinksAPI } from '../__mocks__/drinksData';
+import { categoriesMeals } from '../__mocks__/categoriesData';
+// import { categoriesMeals } from '../__mocks__/categoriesData';
+// import { drinksAPI } from '../__mocks__/drinksData';
 
-const mockedFetch = (data) => jest.fn(() => Promise.resolve({
+const mockedFetch = (data) => () => Promise.resolve({
   json: () => Promise.resolve(data),
-}));
+});
 
 describe('MainScreen Tests', () => {
   describe('Requisito 25', () => {
     test('Testando se é renderizado 12 cards da tela de comidas', async () => {
-      global.fetch = mockedFetch(meals);
+      global.fetch = jest.fn()
+        .mockImplementationOnce(mockedFetch({ meals }))
+        .mockImplementationOnce(mockedFetch(categoriesMeals));
 
-      renderWithRouterAndRedux(
-        <MealsList data={ meals } />,
-      );
+      // renderWithRouterAndRedux(
+      //   <MainScreen data={ { meals } } type="meals" />,
+      // );
+
+      act(() => {
+        renderWithRouterAndRedux(
+          <MainScreen type="meals" />,
+        );
+      });
 
       const expectedLength = 12;
-      const mealsCards = await screen.findAllByTestId(/[0-9]+-card-name/);
+      const mealsCards = await screen.findAllByTestId(/[0-9]+-recipe-card/);
       expect(mealsCards).toHaveLength(expectedLength);
+
+      // meals.forEach(() => {
+      //   const expectedLength = 12;
+      //   const mealsCards = screen.findAllByTestId('meals-list');
+      //   expect(mealsCards.length).toHaveLength(expectedLength);
+      // });
     });
 
-    test('Testando se é renderizado 12 cards da tela de bebidas', async () => {
-      global.fetch = console.log(mockedFetch(drinksAPI));
+    // test('Testando se é renderizado 12 cards da tela de bebidas', async () => {
+    //   global.fetch = console.log(mockedFetch(drinksAPI));
 
-      renderWithRouterAndRedux(
-        <DrinksList data={ drinksAPI } />,
-      );
+    //   renderWithRouterAndRedux(
+    //     <DrinksList data={ drinksAPI } />,
+    //   );
 
-      const expectedLength = 12;
-      const drinksCards = await screen.findAllByTestId('drink-card');
-      expect(drinksCards).toHaveLength(expectedLength);
-    });
+    //   const expectedLength = 12;
+    //   const drinksCards = await screen.findAllByTestId('drink-card');
+    //   expect(drinksCards).toHaveLength(expectedLength);
+    // });
   });
 
   // describe('Requisito 26', () => {

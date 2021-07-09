@@ -3,10 +3,18 @@ import PropTypes from 'prop-types';
 import MenuCard from './MenuCard';
 
 function DrinksList({ data, categories, getCategories }) {
+  const all = 'All';
   if (!data[0].idDrink) return null;
   return (
     <main>
       <header>
+        <button
+          data-testid="all-category-filter"
+          type="button"
+          onClick={ () => getCategories(all) }
+        >
+          All
+        </button>
         { categories.map(({ strCategory }, index) => (
           <button
             type="button"
