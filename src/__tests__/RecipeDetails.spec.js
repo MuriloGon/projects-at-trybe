@@ -1,11 +1,9 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
-import { act, screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import renderWithRouterAndRedux from '../__tests_helpers__/renderWithRouterAndRedux';
-import { drinksIngredients, mealsIngredients } from '../__mocks__/ingredientsData';
 import RecipeDetails from '../pages/Application/Menu/RecipeDetails';
-import { meal1, meals } from '../__mocks__/mealsRawData';
+import { meal1 } from '../__mocks__/mealsRawData';
 import { drink1 } from '../__mocks__/drinksRawData';
 import { drinksAPI } from '../__mocks__/drinksData';
 
