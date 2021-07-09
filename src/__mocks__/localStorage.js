@@ -1,4 +1,4 @@
-import { meals } from './rawData';
+import { meals } from './mealsData';
 
 export const doneRecipesMockData = [{
   id: meals.meal1.idMeal,
