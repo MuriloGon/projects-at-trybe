@@ -4,6 +4,7 @@ import ExploreHome from './ExploreHome';
 import ExploreIngredients from './ExploreIngredients';
 import ExploreOptions from './ExplorOptions';
 import ExploreArea from './ExploreArea';
+import Container from '../../../Components/MainContainer';
 
 const menuType = (pathname) => (/comidas/i.test(pathname) ? 'meals' : 'drinks');
 
@@ -14,23 +15,43 @@ function Explore() {
   const type = menuType(pathname);
   return (
     <Switch>
-      <Route exact path={ path } component={ ExploreHome } />
+      <Route exact path={ path }>
+        <Container name="Explorar" search>
+          <ExploreHome />
+        </Container>
+      </Route>
 
       <Route
         exact
         path={ [`${path}/bebidas`, `${path}/comidas`] }
       >
-        <ExploreOptions type={ type } />
+        <Container
+          name={ type === 'meals' ? 'Explorar Comidas' : 'Explorar Bebidas' }
+          search
+        >
+          <ExploreOptions type={ type } />
+        </Container>
       </Route>
 
       <Route
         exact
         path={ [`${path}/bebidas/ingredientes`, `${path}/comidas/ingredientes`] }
       >
-        <ExploreIngredients type={ type } />
+        <Container
+          name="Explorar Ingredientes"
+          search
+        >
+          <ExploreIngredients type={ type } />
+        </Container>
       </Route>
 
-      <Route exact path={ `${path}/comidas/area` } component={ ExploreArea } />
+      <Route exact path={ `${path}/comidas/area` }>
+        <Container
+          name="Explorar Origem"
+        >
+          <ExploreArea />
+        </Container>
+      </Route>
 
       <Route
         path={ `${path}/*` }

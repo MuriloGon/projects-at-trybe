@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
-function Header({ name }) {
+function Header({ name, search }) {
   const [handleSearch, sethandleSearch] = useState(false);
 
   const handleClick = () => {
@@ -24,13 +24,13 @@ function Header({ name }) {
           />
           <h1 data-testid="page-title">{name}</h1>
         </Link>
-        <input
+        {search && <input
           type="image"
           src={ searchIcon }
           alt="Search Icon"
           data-testid="search-top-btn"
           onClick={ () => handleClick() }
-        />
+        />}
       </div>
 
       { handleSearch && <SearchBar /> }
@@ -41,6 +41,7 @@ function Header({ name }) {
 
 Header.propTypes = {
   name: PropTypes.string.isRequired,
+  search: PropTypes.bool.isRequired,
 };
 
 export default Header;

@@ -3,6 +3,7 @@ import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import useMenuType from '../../../hooks/useMenuType';
 import MainScreen from '../../../Components/MainScreen';
 import RecipeDetails from './RecipeDetails';
+import Container from '../../../Components/MainContainer';
 
 function Menu() {
   const { path } = useRouteMatch();
@@ -10,7 +11,9 @@ function Menu() {
   return (
     <Switch>
       <Route exact path={ path }>
-        <MainScreen type={ menuType } />
+        <Container name={ menuType === 'meals' ? 'Comidas' : 'Bebidas' }>
+          <MainScreen type={ menuType } />
+        </Container>
       </Route>
 
       <Route exact path={ `${path}/:id(\\d{1,})` }>

@@ -1,35 +1,39 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import MainContainer from '../../Components/MainContainer';
 import Menu from './Menu';
 import Explore from './Explore';
 import Perfil from './Perfil';
+import Container from '../../Components/MainContainer';
 
 function Application() {
   return (
-    <MainContainer>
-      <Switch>
-        <Route path={ ['/comidas', '/bebidas'] }>
-          <Menu />
-        </Route>
+    <Switch>
+      <Route path={ ['/comidas', '/bebidas'] }>
+        <Menu />
+      </Route>
 
-        <Route path="/explorar">
-          <Explore />
-        </Route>
+      <Route path="/explorar">
+        <Explore />
+      </Route>
 
-        <Route path="/perfil">
+      <Route path="/perfil">
+        <Container name="Perfil" search>
           <Perfil />
-        </Route>
+        </Container>
+      </Route>
 
-        <Route path="/receitas-feitas">
+      <Route path="/receitas-feitas">
+        <Container name="Receitas Feitas" footer search>
           <h1>Receitas Feitas</h1>
-        </Route>
+        </Container>
+      </Route>
 
-        <Route path="/receitas-favoritas">
+      <Route path="/receitas-favoritas">
+        <Container name="Receitas Favoritas" footer search>
           <h1>Receitas Favoritadas</h1>
-        </Route>
-      </Switch>
-    </MainContainer>
+        </Container>
+      </Route>
+    </Switch>
   );
 }
 
