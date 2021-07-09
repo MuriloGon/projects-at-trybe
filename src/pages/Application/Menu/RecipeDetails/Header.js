@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useSnackbar } from 'notistack';
 import cp from 'clipboard-copy';
 import { useDispatch, useSelector } from 'react-redux';
 import shareBtn from '../../../../images/shareIcon.svg';
@@ -15,16 +16,19 @@ const isFavoriteTest = (idComponent) => (
 function Header({ imgSrc, category, title, favoriteData }) {
   const isFavorite = useSelector(isFavoriteTest(favoriteData.id));
   const dispatch = useDispatch();
-  const [alertCustom, sa] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+
   const copyToClipBoard = () => {
     const url = window.location.href;
-    cp(url).then(() => {
-      console.log(`%c${url}Copiado Com Sucesso!!!`, 'color: tomato; font-size: 25px;');
-      sa(true);
-    });
+    cp(url).then(() => { enqueueSnackbar('Link copiado!'); });
   };
 
   const toggleFavorite = () => {
+    if (isFavorite) {
+      enqueueSnackbar(`${title} - Receita desfavoritada`, { variant: 'error' });
+    } else {
+      enqueueSnackbar(`${title} - Receita favoritada`, { variant: 'success' });
+    }
     dispatch(toggleFavoriteAct(favoriteData));
   };
 
@@ -45,13 +49,12 @@ function Header({ imgSrc, category, title, favoriteData }) {
           <img src={ shareBtn } alt="share button" />
         </button>
 
-        <button type="button" data-testid="favorite-btn" onClick={ toggleFavorite }>
+        <button type="button" onClick={ toggleFavorite }>
           { isFavorite
-            ? <img src={ fillHeart } alt="favorite" />
-            : <img src={ outlineHeart } alt="favorite" />}
+            ? <img data-testid="favorite-btn" src={ fillHeart } alt="favorite" />
+            : <img data-testid="favorite-btn" src={ outlineHeart } alt="favorite" />}
         </button>
       </div>
-      {alertCustom && <div>Link copiado!</div>}
     </header>
   );
 }

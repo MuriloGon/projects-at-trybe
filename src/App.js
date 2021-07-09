@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { SnackbarProvider } from 'notistack';
 import Login from './pages/Login';
 // import Auth from './Components/Auth';
 import loadReduxInitialState from './slices/loadReduxInitialState';
@@ -48,6 +49,12 @@ const applicationRoutes = [
   '/receitas-favoritas',
 ];
 
+const alertOptions = {
+  anchorOrigin: { vertical: 'top', horizontal: 'center' },
+  autoHideDuration: 1500,
+  transitionDuration: { appear: 100, enter: 100, exit: 100 },
+};
+
 function App() {
   const dispatch = useDispatch();
   const logged = useSelector((st) => st.auth.logged);
@@ -75,7 +82,9 @@ function App() {
 
         <Route path={ applicationRoutes }>
           {/* <Auth auth={ logged } notLoggedPath="/not-logged" /> */}
-          <Application />
+          <SnackbarProvider { ...alertOptions }>
+            <Application />
+          </SnackbarProvider>
         </Route>
 
         <Route path="/404">
