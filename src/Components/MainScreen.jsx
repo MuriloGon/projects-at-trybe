@@ -9,7 +9,6 @@ import DrinksList from './DrinksList';
 import { clearExplore } from '../slices/exploreSlice';
 import { clearSearchData } from '../slices/searchbar';
 
-
 const doze = 12;
 const cinco = 5;
 
@@ -32,6 +31,33 @@ const condicionalToggle = ({ btnCategories, toggle, type,
   }
 };
 
+const condicionalCategories = ({ btnCategories, categoriesMeals,
+  categoriesDrinks, type, toggle, oldBtn, setOldBtn, setData, setToggle }) => {
+  if (btnCategories === 'All') {
+    fetchMealsOrDrinks(type)(doze).then(setData);
+  }
+
+  if (categoriesMeals.includes(btnCategories)) {
+    condicionalToggle({ btnCategories,
+      toggle,
+      type,
+      oldBtn,
+      setOldBtn,
+      setData,
+      setToggle });
+  }
+
+  if (categoriesDrinks.includes(btnCategories)) {
+    condicionalToggle({ btnCategories,
+      toggle,
+      type,
+      oldBtn,
+      setOldBtn,
+      setData,
+      setToggle });
+  }
+};
+
 function MainScreen({ type }) {
   const [data, setData] = useState();
   const [categories, setCategories] = useState();
@@ -47,35 +73,20 @@ function MainScreen({ type }) {
     const categoriesDrinks = ['Ordinary Drink', 'Cocktail', 'Milk / Float / Shake',
       'Other/Unknown', 'Cocoa'];
 
-    if (btnCategories === 'All') {
-      fetchMealsOrDrinks(type)(doze).then(setData);
-    }
-
-    if (categoriesMeals.includes(btnCategories)) {
-      condicionalToggle({ btnCategories,
-        toggle,
-        type,
-        oldBtn,
-        setOldBtn,
-        setData,
-        setToggle });
-    }
-
-    if (categoriesDrinks.includes(btnCategories)) {
-      condicionalToggle({ btnCategories,
-        toggle,
-        type,
-        oldBtn,
-        setOldBtn,
-        setData,
-        setToggle });
-    }
+    condicionalCategories({ btnCategories,
+      categoriesMeals,
+      categoriesDrinks,
+      type,
+      toggle,
+      oldBtn,
+      setOldBtn,
+      setData,
+      setToggle });
   };
 
   useEffect(() => {
     const { savedIngredient: si, savedArea: sa } = explore;
     const hasExploreName = Boolean(si.name) || Boolean(sa.name);
-    const test = () => fetchCategories(type)(cinco).then(setCategories);
 
     if (hasExploreName) {
       fetchItemsByIngredient(type)(doze, si.name)

@@ -1,11 +1,11 @@
 import { drinkIngredientImg, getDrinksAreas,
-  getDrinksCategories, getDrinksIngredients,
+  getDrinksCategories, getDrinksByCategories, getDrinksIngredients,
   getRandomDrink, getDrinks, getDrinksByIngredient,
   getDrinkByIngredient, getDrinkByName, getDrinkByFirstLetter,
   getDrinksByArea, getDrinkById,
 } from './drinksAPI';
 
-import { getMealAreas, getMealCategories, getMealIngredients,
+import { getMealAreas, getMealByCategories, getMealCategories, getMealIngredients,
   getRandomMeal, mealIngredientImg, getMeals, getMealsByIngredient,
   getMealByIngredient, getMealByName, getMealByFirstLetter,
   getMealsByArea, getMealById } from './mealAPI';
