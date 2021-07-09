@@ -30,6 +30,7 @@ function MealDetails({ data, inverseType, inProgress }) {
 
   const ingredients = mapIngredients(recipeData);
   const recommendations = mapDrinksRecommendations(recommendation);
+  // console.log({ meals: ingredients });
   return (
     <div>
       <Header

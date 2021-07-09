@@ -41,7 +41,7 @@ function DrinkDetails({ data, inverseType, inProgress }) {
         ingredients={ ingredients }
         id={ idDrink }
         inProgress={ inProgress }
-        type="meals"
+        type="drinks"
         allowFinish={ setAllowFinish }
       />
 

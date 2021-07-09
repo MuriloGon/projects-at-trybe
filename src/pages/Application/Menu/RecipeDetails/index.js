@@ -115,11 +115,11 @@ function RecipeDetails({ type, id, inProgress }) {
         )}
 
       <Link
-        style={ BtnStyles }
         to={ floatingBtnStates(type, id)[progress].to }
       >
         <button
           type="button"
+          style={ BtnStyles }
           disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
           onClick={ handleBtn({ progress, dispatch, id, type }) }
           data-testid={ floatingBtnStates(type, id)[progress].testid }
