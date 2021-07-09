@@ -8,6 +8,7 @@ import favoriteRecipes from './favoriteRecipes';
 import inProgressRecipes from './inProgressRecipes';
 import auth from './auth';
 import explore from './exploreSlice';
+import searchbar from './searchbar';
 
 const rootReducer = combineReducers({
   mealsToken,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   inProgressRecipes,
   auth,
   explore,
+  searchbar,
 });
 
 export default rootReducer;

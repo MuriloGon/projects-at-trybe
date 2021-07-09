@@ -1,60 +1,83 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
-// import { Redirect } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import { Redirect } from 'react-router-dom';
 import useMenuType from '../hooks/useMenuType';
-// import MenuCard from './MenuCard';
 import {
   fetchIngredient,
   fetchName,
   fetchFirstLetter,
 } from '../services/apisMaps';
+import { setSearchData } from '../slices/searchbar';
+
+const TWELVE_ITEMS = 12;
+
+const fetchSearch = ({ searchBar, type, searchName,
+  setData, enqueueSnackbar }) => async () => {
+  switch (searchBar) {
+  case 'ingredient': {
+    const data = await fetchIngredient(type)(searchName);
+    if (data === null) setData(null);
+    else setData(data.slice(0, TWELVE_ITEMS));
+    break;
+  }
+  case 'name': {
+    const data = await fetchName(type)(searchName);
+    if (data === null) setData(null);
+    else setData(data.slice(0, TWELVE_ITEMS));
+    break;
+  }
+  case 'first-letter': {
+    if (searchName.length > 1) {
+      alert('Sua busca deve conter somente 1 (um) caracter');
+      enqueueSnackbar(
+        'Sua busca deve conter somente 1 (um) caracter', { variant: 'error' },
+      );
+      break;
+    }
+    const data = await fetchFirstLetter(type)(searchName);
+    if (data === null) setData(null);
+    else setData(data.slice(0, TWELVE_ITEMS));
+    break;
+  }
+  default: break;
+  }
+};
+
+const MSG = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
 function SearchBar() {
   const [searchName, setSearchName] = useState('');
   const [searchBar, setSearchBar] = useState('ingredient');
   const [data, setData] = useState();
   const location = useLocation();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const dispatch = useDispatch();
   const type = useMenuType(location);
 
-  const fetchSearch = () => {
-    switch (searchBar) {
-    case 'ingredient':
-      fetchIngredient(type)(searchName).then(setData);
-      break;
-    case 'name':
-      fetchName(type)(searchName).then(setData);
-      break;
-    case 'first-letter':
-      if (searchName.length > 1) {
-        alert('Sua busca deve conter somente 1 (um) caracter');
-        break;
-      }
-      fetchFirstLetter(type)(searchName).then(setData);
-      break;
-    default: break;
-    }
-  };
-
   useEffect(() => {
-    fetchSearch();
-  }, []);
+    const status = true;
+    if (data !== undefined) dispatch(setSearchData({ status, data }));
+  }, [data]);
 
-  if (data === undefined) return <h1>Loading...</h1>;
-  // console.log(fetchSearch());
-  // const renderResults = () => {
-  //   if (data.length === 0) {
-  //     return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-  //   }
+  if (data === null) {
+    enqueueSnackbar(MSG, { variant: 'error' });
+    alert(MSG);
+  }
 
-  //   if (data.length === 1) return <Redirect to={ `/${type}/${data.idMeal}` } />;
+  if ((data !== null && data !== undefined) && data.length === 1) {
+    const obj = data[0];
+    const url = type === 'meals' ? `/comidas/${obj.idMeal}` : `/bebidas/${obj.idDrink}`;
+    return <Redirect to={ url } />;
+  }
 
-  //   return data.map((recipe) => MenuCard(recipe));
-  // };
+  console.log(data);
 
   return (
-    <>
+    <div>
       <div>
         <input
           type="text"
@@ -106,13 +129,12 @@ function SearchBar() {
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ () => fetchSearch() }
+          onClick={ fetchSearch({ searchBar, type, searchName, setData }) }
         >
           Buscar
         </button>
       </div>
-      {(data === null) && <h1>Dados não encontrados</h1> }
-    </>
+    </div>
   );
 }
 

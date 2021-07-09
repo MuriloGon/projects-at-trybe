@@ -32,9 +32,9 @@ function Header({ name }) {
           onClick={ () => handleClick() }
         />
       </div>
-      <div>
-        { handleSearch && <SearchBar /> }
-      </div>
+
+      { handleSearch && <SearchBar /> }
+
     </>
   );
 }
