@@ -2,11 +2,13 @@ import { drinkIngredientImg, getDrinksAreas,
   getDrinksCategories, getDrinksIngredients,
   getRandomDrink, getDrinks, getDrinksByIngredient,
   getDrinkByIngredient, getDrinkByName, getDrinkByFirstLetter,
+  getDrinksByArea, getDrinkById,
 } from './drinksAPI';
 
 import { getMealAreas, getMealCategories, getMealIngredients,
   getRandomMeal, mealIngredientImg, getMeals, getMealsByIngredient,
-  getMealByIngredient, getMealByName, getMealByFirstLetter } from './mealAPI';
+  getMealByIngredient, getMealByName, getMealByFirstLetter,
+  getMealsByArea, getMealById } from './mealAPI';
 
 const mapAPI = (mealsFunc, drinksFunc) => (type) => {
   switch (type) {
@@ -35,3 +37,7 @@ export const fetchIngredient = mapAPI(getMealByIngredient, getDrinkByIngredient)
 export const fetchName = mapAPI(getMealByName, getDrinkByName);
 
 export const fetchFirstLetter = mapAPI(getMealByFirstLetter, getDrinkByFirstLetter);
+
+export const fetchItemsByArea = mapAPI(getMealsByArea, getDrinksByArea);
+
+export const fetchItemById = mapAPI(getMealById, getDrinkById);

@@ -11,17 +11,17 @@ export async function getDrinksCategories(dataQty = number) {
     const data = await response.json();
     return data.drinks.slice(0, dataQty);
   } catch (erro) {
-    console.log('Error on get drink categories');
+    console.error('Erro on get drink categories');
   }
 }
 
-export async function getDrinksAreas() {
+export async function getDrinksAreas(qty) {
   try {
     const response = await fetch(DRINK_AREAS_ENDPOINT);
     const data = await response.json();
-    return data.drinks;
+    return data.drinks.slice(qty);
   } catch (erro) {
-    console.log('Error on get drink areas');
+    console.error('Erro on get drink areas');
   }
 }
 
@@ -31,7 +31,7 @@ export async function getDrinksIngredients() {
     const data = await response.json();
     return data.drinks;
   } catch (erro) {
-    console.log('Error on get drink ingredients');
+    console.error('Erro on get drink ingredients');
   }
 }
 
@@ -45,7 +45,8 @@ export async function getDrinks(dataQty = number) {
     const data = await response.json();
     return data.drinks.slice(0, dataQty);
   } catch (erro) {
-    console.log('Error on get drinks');
+    console.error('Erro on get drinks');
+    console.warn(erro);
   }
 }
 
@@ -56,7 +57,7 @@ export async function getRandomDrink() {
     const [out] = data.drinks;
     return out;
   } catch (erro) {
-    console.log('Error in getting random drink');
+    console.error('Erro in getting random drink');
   }
 }
 
@@ -101,6 +102,30 @@ export async function getDrinkByFirstLetter(firstLetter) {
     return data.drinks;
   } catch (erro) {
     console.log('Error in get drink by first letter');
+    return null;
+  }
+}
+
+const DRINKS_BY_AREA_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=';
+export async function getDrinksByArea(qty, area) {
+  try {
+    const response = await fetch(DRINKS_BY_AREA_ENDPOINT + area);
+    const data = await response.json();
+    const out = data.drinks.slice(0, qty);
+    return out;
+  } catch (erro) {
+    console.error('Erro in getting drinks by area');
+  }
+}
+
+const DRINK_BY_ID_ENDPOINT = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
+export async function getDrinkById(id) {
+  try {
+    const response = await fetch(DRINK_BY_ID_ENDPOINT + id);
+    const data = await response.json();
+    const [out] = data.drinks;
+    return out;
+  } catch (erro) {
     return null;
   }
 }
