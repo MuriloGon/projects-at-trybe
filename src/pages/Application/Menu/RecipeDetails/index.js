@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DrinkDetails from './DrinkDetails';
 import MealDetails from './MealDetails';
 import { fetchItemById, fetchMealsOrDrinks } from '../../../../services/apisMaps';
+import { startRecipe } from '../../../../slices/inProgressRecipes';
 
 const NUM_RECOMMENDATIONS = 6;
 const INITIAL_STATE = {
@@ -16,11 +17,37 @@ const INITIAL_STATE = {
 const inProgressLink = (type, id) => (
   type === 'meals' ? `/comidas/${id}/in-progress` : `/bebidas/${id}/in-progress`);
 
-function RecipeDetails({ type, id }) {
+const floatingBtnStates = (type, id) => ({
+  start: {
+    testid: 'start-recipe-btn',
+    label: 'Iniciar Receita',
+    to: inProgressLink(type, id),
+  },
+  continue: {
+    testid: 'start-recipe-btn',
+    label: 'Continuar Receita',
+    to: inProgressLink(type, id),
+  },
+  finish: {
+    testid: 'finish-recipe-btn',
+    label: 'Finalizar Receita',
+    to: '/receitas-feitas',
+  },
+});
+
+const handleBtn = ({ progress, dispatch, id, type }) => () => {
+  switch (progress) {
+  case 'continue': break;
+  case 'finish': break;
+  case 'start': { dispatch(startRecipe({ id, type })); break; }
+  default: break;
+  }
+};
+function RecipeDetails({ type, id, inProgress }) {
   const [data, setData] = useState(INITIAL_STATE);
+  const dispatch = useDispatch();
   const inProgressRecipes = useSelector((st) => st.inProgressRecipes);
   const inverseType = type === 'meals' ? 'drinks' : 'meals';
-  const url = inProgressLink(type, id);
 
   useEffect(() => {
     (async () => {
@@ -40,6 +67,20 @@ function RecipeDetails({ type, id }) {
     return <h1>Loading...</h1>;
   }
 
+  /* Handle in-progress case */
+  const inProgresskey = type === 'meals' ? 'meals' : 'cocktails';
+  const isInProgress = Object.keys(inProgressRecipes[inProgresskey])
+    .some((key) => key === id);
+  const progress = (() => {
+    if (inProgress && isInProgress) return 'finish';
+    if (!inProgress && isInProgress) return 'continue';
+    if (inProgress && !isInProgress) {
+      dispatch(startRecipe({ id, type }));
+      return 'finish';
+    }
+    return 'start';
+  })();
+
   return (
     <>
       {type === 'drinks'
@@ -47,20 +88,23 @@ function RecipeDetails({ type, id }) {
           <DrinkDetails
             data={ data }
             inverseType={ inverseType }
+            inProgress={ inProgress }
           />)
         : (
           <MealDetails
             data={ data }
             inverseType={ inverseType }
+            inProgress={ inProgress }
           />
         )}
 
       <Link
-        data-testid="start-recipe-btn"
+        data-testid={ floatingBtnStates(type, id)[progress].testid }
         style={ { position: 'fixed', bottom: 0, left: '50%' } }
-        to={ url }
+        to={ floatingBtnStates(type, id)[progress].to }
+        onClick={ handleBtn({ progress, dispatch, id, type }) }
       >
-        {inProgressRecipes.length === 0 ? 'Iniciar Receita' : 'Continuar Receita'}
+        {floatingBtnStates(type, id)[progress].label}
       </Link>
     </>
   );
@@ -69,6 +113,11 @@ function RecipeDetails({ type, id }) {
 RecipeDetails.propTypes = {
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  inProgress: PropTypes.bool,
+};
+
+RecipeDetails.defaultProps = {
+  inProgress: false,
 };
 
 export default RecipeDetails;

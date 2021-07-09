@@ -22,7 +22,7 @@ function devPlaceholder(type, path, info) {
 }
 
 function Menu() {
-  const { path, url } = useRouteMatch();
+  const { path } = useRouteMatch();
   const menuType = useMenuType();
   return (
     <Switch>
@@ -36,8 +36,15 @@ function Menu() {
         }
       </Route>
 
-      <Route path={ `${path}/:id(\\d{1,})/in-progress` }>
-        {devPlaceholder(menuType, url, 'Com o id - Em progresso')}
+      <Route exact path={ `${path}/:id(\\d{1,})/in-progress` }>
+        {
+          ({ match: { params: { id } } }) => (
+            <RecipeDetails
+              type={ menuType }
+              id={ id }
+              inProgress
+            />)
+        }
       </Route>
 
       <Route path={ `${path}/*` }>

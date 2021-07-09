@@ -1,15 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getLocalStorage } from '../services/localStorage';
+import { getLocalStorage, saveLocalStorage } from '../services/localStorage';
 
-const initialState = [];
+const saveInprogressLocalStorage = (data) => saveLocalStorage('inProgressRecipes', data);
 
+const initialState = {
+  cocktails: {},
+  meals: {},
+};
 const inProgressRecipesSlice = createSlice({
   name: 'inProgressRecipes',
   initialState,
   reducers: {
     loadInProgressStorage: () => getLocalStorage('inProgressRecipes', initialState),
+    startRecipe: (state, { payload: { id, type } }) => {
+      switch (type) {
+      case 'meals':
+        state.meals[id] = [];
+        break;
+      case 'drinks':
+        state.cocktails[id] = [];
+        break;
+      default:
+        saveInprogressLocalStorage(state);
+      }
+    },
   },
 });
 
-export const { loadInProgressStorage } = inProgressRecipesSlice.actions;
+export const { loadInProgressStorage,
+  startRecipe } = inProgressRecipesSlice.actions;
 export default inProgressRecipesSlice.reducer;

@@ -9,7 +9,9 @@ import mapIngredients from '../../../../utils/mapIngredients';
 
 const mapDrinksRecommendations = (data) => data
   .map(({ strAlcoholic: subtitle, strDrink: title,
-    idDrink: id, strDrinkThumb: imgUrl }) => ({ title, subtitle, imgUrl, id }));
+    idDrink: id, strDrinkThumb: imgUrl }) => (
+    { title, subtitle, imgUrl, id }
+  ));
 
 const mapFavoriteMealRecipe = (recipe) => ({
   id: recipe.idMeal,
@@ -21,12 +23,10 @@ const mapFavoriteMealRecipe = (recipe) => ({
   image: recipe.strMealThumb,
 });
 
-function MealDetails({ data, inverseType }) {
-  console.log('Meals', data);
-
+function MealDetails({ data, inverseType, inProgress }) {
   const { recipeData, recommendation } = data;
   const { strMeal, strCategory, strMealThumb,
-    strInstructions, strYoutube } = recipeData;
+    strInstructions, strYoutube, idMeal } = recipeData;
 
   const ingredients = mapIngredients(recipeData);
   const recommendations = mapDrinksRecommendations(recommendation);
@@ -39,16 +39,22 @@ function MealDetails({ data, inverseType }) {
         favoriteData={ mapFavoriteMealRecipe(recipeData) }
       />
 
-      <Ingredients ingredients={ ingredients } />
+      <Ingredients
+        ingredients={ ingredients }
+        id={ idMeal }
+        inProgress={ inProgress }
+        type="meals"
+      />
 
       <Instructions instructions={ strInstructions } />
 
-      <Video urlVideo={ strYoutube } />
+      {!inProgress && <Video urlVideo={ strYoutube } />}
 
-      <Recommendations
+      {!inProgress
+      && <Recommendations
         recommendationsList={ recommendations }
         inverseType={ inverseType }
-      />
+      />}
     </div>
   );
 }
@@ -64,6 +70,7 @@ const data = {
 MealDetails.propTypes = {
   data: PropTypes.shape(data).isRequired,
   inverseType: PropTypes.string.isRequired,
+  inProgress: PropTypes.bool.isRequired,
 };
 
 export default MealDetails;
