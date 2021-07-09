@@ -9,7 +9,7 @@ function DrinksList({ data, categories, getCategories }) {
     <main>
       <header>
         <button
-          data-testid="all-category-filter"
+          data-testid="All-category-filter"
           type="button"
           onClick={ () => getCategories(all) }
         >

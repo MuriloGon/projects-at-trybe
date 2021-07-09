@@ -10,7 +10,7 @@ function MealsList({ data, categories, getCategories }) {
       {categories && (
         <header>
           <button
-            data-testid="all-category-filter"
+            data-testid="All-category-filter"
             type="button"
             onClick={ () => getCategories(all) }
           >
