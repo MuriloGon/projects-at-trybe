@@ -37,6 +37,8 @@ function DrinksList({ data, categories, getCategories }) {
               alt={ drink.strDrink }
               imgUrl={ drink.strDrinkThumb }
               title={ drink.strDrink }
+              itemId={ drink.idDrink }
+              type="drinks"
             />
           ))}
         </div>
