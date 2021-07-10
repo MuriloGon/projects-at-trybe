@@ -5,9 +5,12 @@ import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 
+const footerSty = { position: 'fixed', bottom: 0 };
+
 function Footer() {
   return (
-    <FooterStl data-testid="footer">
+    <FooterStl>
+      <footer data-testid="footer" style={ footerSty } />
       <Link to="/bebidas">
         <img
           src={ drinkIcon }

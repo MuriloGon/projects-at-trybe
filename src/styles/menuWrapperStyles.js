@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const MenuWrapper = styled.div` /* Container */
-  display: flex;
-  flex-flow: nowrap column;
+  display: grid;
+  grid-template-rows: 1fr 10fr 1fr;
   height: 100vh;
   width: 100vw;
 `;
