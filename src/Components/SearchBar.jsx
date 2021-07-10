@@ -74,8 +74,6 @@ function SearchBar() {
     return <Redirect to={ url } />;
   }
 
-  console.log(data);
-
   return (
     <div>
       <div>

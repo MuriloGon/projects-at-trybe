@@ -2,16 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MenuCard from './MenuCard';
 
-function DrinksList({ data, categories }) {
+function DrinksList({ data, categories, getCategories }) {
+  const all = 'All';
   if (!data[0].idDrink) return null;
   return (
     <main>
       <header>
+        <button
+          data-testid="All-category-filter"
+          type="button"
+          onClick={ () => getCategories(all) }
+        >
+          All
+        </button>
         { categories.map(({ strCategory }, index) => (
           <button
             type="button"
             key={ `${index}-drink` }
             data-testid={ `${strCategory}-category-filter` }
+            onClick={ () => getCategories(strCategory) }
           >
             {strCategory}
           </button>
@@ -28,6 +37,8 @@ function DrinksList({ data, categories }) {
               alt={ drink.strDrink }
               imgUrl={ drink.strDrinkThumb }
               title={ drink.strDrink }
+              itemId={ drink.idDrink }
+              type="drinks"
             />
           ))}
         </div>
@@ -39,6 +50,7 @@ function DrinksList({ data, categories }) {
 DrinksList.propTypes = {
   data: PropTypes.object,
   categories: PropTypes.object,
+  getCategories: PropTypes.func,
 }.isRequired;
 
 export default DrinksList;
