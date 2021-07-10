@@ -33,7 +33,6 @@ function MainScreen({ type }) {
   }, [type]);
 
   useEffect(() => {
-    console.log(searchbar);
     if (searchbar.hasDataToRender) {
       setData(searchbar.searchBarData);
       dispatch(clearSearchData());

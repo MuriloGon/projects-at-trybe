@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MenuWrapper } from '../styles/menuWrapperStyles';
 import Header from './Header';
 import Footer from './Footer';
 
 const Main = ({ children, name, header = false, footer = false, search = false }) => (
-  <>
+  <MenuWrapper>
     {!header && <Header name={ name } search={ !search } />}
-    <main style={ { flex: 1 } }>
+    <MenuWrapper.Main>
       {children}
-    </main>
+    </MenuWrapper.Main>
     {!footer && <Footer />}
-  </>
+  </MenuWrapper>
 );
 
 Main.propTypes = {
