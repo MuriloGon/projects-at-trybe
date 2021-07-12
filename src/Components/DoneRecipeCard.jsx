@@ -8,7 +8,7 @@ const DoneRecipeCard = ({ data, index }) => {
     name, image, tags, doneDate } = data;
 
   const url = type === 'comida' ? `/comidas/${id}` : `/bebidas/${id}`;
-  const host = 'localhost:3000';
+  const host = location.hostname;
 
   return (
     <div>
@@ -44,13 +44,26 @@ const DoneRecipeCard = ({ data, index }) => {
             {doneDate}
           </p>
 
-          {!type ? null : <p>{tags}</p>}
+          {
+            tags.slice(0, 2).map((tag) => (
+              <span
+                data-testid={ `${index}-${tag}-horizontal-tag` }
+                key={ `${tag}-${index}` }
+              >
+                {tag}
+              </span>))
+          }
 
         </div>
       </Link>
       <div>
 
-        <ShareButton msg="Link copiado!" toCopy={ host + url } />
+        <ShareButton
+          msg="Link copiado!"
+          toCopy={ host + url }
+          testid={ `${index}-horizontal-share-btn` }
+        />
+
       </div>
     </div>
   );

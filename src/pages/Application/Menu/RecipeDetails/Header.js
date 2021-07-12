@@ -17,7 +17,7 @@ function Header({ imgSrc, category, title, favoriteData }) {
         <h1 data-testid="recipe-title">{ title }</h1>
         <h3 data-testid="recipe-category">{ category }</h3>
 
-        <ShareButton msg="Link copiado!" toCopy={ toCopy } />
+        <ShareButton msg="Link copiado!" toCopy={ toCopy } testid="share-btn" />
 
         <FavoriteRecipeButton
           favoriteData={ favoriteData }

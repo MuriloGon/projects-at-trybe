@@ -7,10 +7,10 @@ const userSlice = createSlice({
   name: 'doneRecipes',
   initialState,
   reducers: {
-    loadDoneRecipesStorage: () => getLocalStorage('doneRecipe', initialState),
+    loadDoneRecipesStorage: () => getLocalStorage('doneRecipes', initialState),
     finishRecipe: (state, { payload }) => {
       state.push({ ...payload, doneDate: new Date().toLocaleDateString('pt-Br') });
-      saveLocalStorage('doneRecipe', state);
+      saveLocalStorage('doneRecipes', state);
     },
   },
 });

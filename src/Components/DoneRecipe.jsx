@@ -30,7 +30,7 @@ function DoneRecipe() {
       </button>
 
       { doneRecipes.map((data, index) => (
-        <DoneRecipeCard data={ data } key={ index } />
+        <DoneRecipeCard data={ data } index={ index } key={ index } />
 
       )) }
 

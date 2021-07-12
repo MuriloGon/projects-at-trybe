@@ -4,7 +4,7 @@ import { useSnackbar } from 'notistack';
 import cp from 'clipboard-copy';
 import shareBtn from '../images/shareIcon.svg';
 
-function ShareButton({ msg, toCopy }) {
+function ShareButton({ msg, toCopy, testid }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const copyToClipBoard = () => {
@@ -14,7 +14,7 @@ function ShareButton({ msg, toCopy }) {
   return (
     <button
       type="button"
-      data-testid="share-btn"
+      data-testid={ testid }
       onClick={ copyToClipBoard }
     >
       <img src={ shareBtn } alt="share button" />
@@ -25,6 +25,7 @@ function ShareButton({ msg, toCopy }) {
 ShareButton.propTypes = {
   msg: PropTypes.string.isRequired,
   toCopy: PropTypes.string.isRequired,
+  testid: PropTypes.string.isRequired,
 };
 
 export default ShareButton;
