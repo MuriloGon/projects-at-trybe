@@ -4,6 +4,7 @@ import Menu from './Menu';
 import Explore from './Explore';
 import Perfil from './Perfil';
 import Container from '../../Components/MainContainer';
+import DoneRecipe from '../../Components/DoneRecipe';
 
 function Application() {
   return (
@@ -24,7 +25,7 @@ function Application() {
 
       <Route path="/receitas-feitas">
         <Container name="Receitas Feitas" footer search>
-          <h1>Receitas Feitas</h1>
+          <DoneRecipe />
         </Container>
       </Route>
 
