@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { CardContainer as Card } from '../styles/menuListStyles';
 
 function MenuCard({ CardTestId, TitleTestId, imgTestId,
   title, imgUrl, alt, type, itemId }) {
@@ -10,12 +11,23 @@ function MenuCard({ CardTestId, TitleTestId, imgTestId,
 
   };
   return (
-    <Link to={ toObj[type] }>
-      <div data-testid={ CardTestId } className="class-meal-card">
-        <img data-testid={ imgTestId } src={ imgUrl } alt={ alt } />
-        <h2 data-testid={ TitleTestId }>{ title }</h2>
-      </div>
-    </Link>
+    <Card data-testid={ CardTestId }>
+      <Link to={ toObj[type] }>
+        <Card.Image>
+          <img data-testid={ imgTestId } src={ imgUrl } alt={ alt } />
+        </Card.Image>
+        <Card.Title data-testid={ TitleTestId }>
+          { title }
+        </Card.Title>
+        <Card.Subtitle data-testid={ TitleTestId }>
+          { title }
+        </Card.Subtitle>
+        <Card.Tags>
+          Tags
+        </Card.Tags>
+      </Link>
+    </Card>
+
   );
 }
 

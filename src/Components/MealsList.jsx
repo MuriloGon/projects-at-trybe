@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MenuCard from './MenuCard';
+import { ListCardContainer } from '../styles/menuListStyles';
 
 function MealsList({ data, categories, getCategories }) {
   const all = 'All';
   if (!data[0].idMeal) return null;
   return (
-    <main>
+    <>
       {categories && (
         <header>
           <button
@@ -28,24 +29,22 @@ function MealsList({ data, categories, getCategories }) {
           ))}
         </header>
       )}
-      <section>
-        <div data-testid="meals-list" className="class-meals-list">
-          { data.map((meal, index) => (
-            <MenuCard
-              key={ `${meal.idMeal}-meal-card` }
-              CardTestId={ `${index}-recipe-card` }
-              TitleTestId={ `${index}-card-name` }
-              imgTestId={ `${index}-card-img` }
-              alt={ meal.strMeal }
-              imgUrl={ meal.strMealThumb }
-              title={ meal.strMeal }
-              itemId={ meal.idMeal }
-              type="meals"
-            />
-          ))}
-        </div>
-      </section>
-    </main>
+      <ListCardContainer>
+        { data.map((meal, index) => (
+          <MenuCard
+            key={ `${meal.idMeal}-meal-card` }
+            CardTestId={ `${index}-recipe-card` }
+            TitleTestId={ `${index}-card-name` }
+            imgTestId={ `${index}-card-img` }
+            alt={ meal.strMeal }
+            imgUrl={ meal.strMealThumb }
+            title={ meal.strMeal }
+            itemId={ meal.idMeal }
+            type="meals"
+          />
+        ))}
+      </ListCardContainer>
+    </>
   );
 }
 

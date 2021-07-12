@@ -75,7 +75,7 @@ function SearchBar() {
   }
 
   return (
-    <div>
+    <>
       <div>
         <input
           type="text"
@@ -132,7 +132,7 @@ function SearchBar() {
           Buscar
         </button>
       </div>
-    </div>
+    </>
   );
 }
 

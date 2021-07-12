@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
+const footerHeight = (theme) => theme['footer-heigth'];
+const headerHeight = (theme) => theme['header-heigth'];
+
 export const MenuWrapper = styled.div` /* Container */
   display: grid;
-  grid-template-rows: 1fr 10fr 1fr;
-  height: 100vh;
-  width: 100vw;
+  grid-template-rows: ${headerHeight} 10fr ${footerHeight};
+  height: 100%;
 `;
+
 MenuWrapper.Main = styled.main`/* Container main */
   flex: 1;
   overflow-y: scroll;

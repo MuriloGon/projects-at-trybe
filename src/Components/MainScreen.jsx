@@ -112,22 +112,19 @@ function MainScreen({ type }) {
   if (data === null) return <h1>Nada Encontrado 🥺</h1>;
   if (data.length === 0) return <h1>Nada Encontrado 🥺</h1>;
 
-  return (
-    <div>
-      {type === 'meals'
-        ? (
-          <MealsList
-            data={ data }
-            categories={ categories }
-            getCategories={ filterByCategories }
-          />)
-        : (
-          <DrinksList
-            data={ data }
-            categories={ categories }
-            getCategories={ filterByCategories }
-          />)}
-    </div>
+  return (type === 'meals'
+    ? (
+      <MealsList
+        data={ data }
+        categories={ categories }
+        getCategories={ filterByCategories }
+      />)
+    : (
+      <DrinksList
+        data={ data }
+        categories={ categories }
+        getCategories={ filterByCategories }
+      />)
   );
 }
 
