@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-
-const primary1 = ({ theme }) => theme.primary1;
-const primary2 = ({ theme }) => theme.primary2;
+import { primary1, primary2 } from './theme';
 
 export const CardContainer = styled.section`/* Card */
   background: white;

@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-
-const footerHeight = (theme) => theme['footer-heigth'];
-const headerHeight = (theme) => theme['header-heigth'];
+import { footerHeight, headerHeight } from './theme';
 
 export const MenuWrapper = styled.div` /* Container */
   display: grid;
