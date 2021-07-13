@@ -74,10 +74,8 @@ function SearchBar() {
     return <Redirect to={ url } />;
   }
 
-  console.log(data);
-
   return (
-    <div>
+    <>
       <div>
         <input
           type="text"
@@ -134,7 +132,7 @@ function SearchBar() {
           Buscar
         </button>
       </div>
-    </div>
+    </>
   );
 }
 

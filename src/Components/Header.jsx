@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Header as MainHeader } from '../styles/menuWrapperStyles';
 import SearchBar from './SearchBar';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
-function Header({ name }) {
+function Header({ name, search }) {
   const [handleSearch, sethandleSearch] = useState(false);
 
   const handleClick = () => {
@@ -15,32 +16,31 @@ function Header({ name }) {
 
   return (
     <>
-      <div>
+      <MainHeader>
         <Link to="/perfil">
           <img
             src={ profileIcon }
             alt="Profile Icon"
             data-testid="profile-top-btn"
           />
-          <h1 data-testid="page-title">{name}</h1>
         </Link>
-        <input
+        <h1 data-testid="page-title">{name}</h1>
+        {search && <input
           type="image"
           src={ searchIcon }
           alt="Search Icon"
           data-testid="search-top-btn"
           onClick={ () => handleClick() }
-        />
-      </div>
-
+        />}
+      </MainHeader>
       { handleSearch && <SearchBar /> }
-
     </>
   );
 }
 
 Header.propTypes = {
   name: PropTypes.string.isRequired,
+  search: PropTypes.bool.isRequired,
 };
 
 export default Header;
