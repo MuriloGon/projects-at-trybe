@@ -8,6 +8,7 @@ import MealDetails from './MealDetails';
 import { fetchItemById, fetchMealsOrDrinks } from '../../../../services/apisMaps';
 import { startRecipe } from '../../../../slices/inProgressRecipes';
 import { RecipeDetailContainer } from '../../../../styles/recipeDetails';
+import { finishRecipe } from '../../../../slices/doneRecipes';
 
 const NUM_RECOMMENDATIONS = 6;
 const INITIAL_STATE = {
@@ -39,10 +40,40 @@ const floatingBtnStates = (type, id, allowFinish) => ({
   },
 });
 
-const handleBtn = ({ progress, dispatch, id, type }) => () => {
+const formatData = (type, { recipeData }) => {
+  if (type === 'meals') {
+    return {
+      id: recipeData.idMeal,
+      type: 'comida',
+      area: recipeData.strArea,
+      category: recipeData.strCategory,
+      alcoholicOrNot: '',
+      name: recipeData.strMeal,
+      image: recipeData.strMealThumb,
+      tags: recipeData.strTags === null ? [] : recipeData.strTags.split(','),
+    };
+  }
+
+  return {
+    id: recipeData.idDrink,
+    type: 'bebida',
+    area: '',
+    category: recipeData.strCategory,
+    alcoholicOrNot: recipeData.strAlcoholic,
+    name: recipeData.strDrink,
+    image: recipeData.strDrinkThumb,
+    tags: [],
+  };
+};
+
+const handleBtn = ({ progress, dispatch, id, type, data }) => () => {
   switch (progress) {
   case 'continue': break;
-  case 'finish': break;
+  case 'finish': {
+    const formatedData = formatData(type, data);
+    dispatch(finishRecipe(formatedData));
+    break;
+  }
   case 'start': { dispatch(startRecipe({ id, type })); break; }
   default: break;
   }
@@ -122,7 +153,7 @@ function RecipeDetails({ type, id, inProgress }) {
           type="button"
           style={ BtnStyles }
           disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
-          onClick={ handleBtn({ progress, dispatch, id, type }) }
+          onClick={ handleBtn({ progress, dispatch, id, type, data }) }
           data-testid={ floatingBtnStates(type, id)[progress].testid }
         >
           {floatingBtnStates(type, id)[progress].label}
