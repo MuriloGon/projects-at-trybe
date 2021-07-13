@@ -14,6 +14,7 @@ function ShareButton({ msg, toCopy, testid }) {
   return (
     <button
       type="button"
+      src={ shareBtn }
       data-testid={ testid }
       onClick={ copyToClipBoard }
     >

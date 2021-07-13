@@ -8,59 +8,56 @@ const DoneRecipeCard = ({ data, index }) => {
     name, image, tags, doneDate } = data;
 
   const url = type === 'comida' ? `/comidas/${id}` : `/bebidas/${id}`;
-  const host = location.hostname;
+  const { origin } = window.location;
 
   return (
     <div>
-      <Link to={ url }>
-        <div>
+      <div>
+        <Link to={ url }>
           <img
+            width="100%"
             data-testid={ `${index}-horizontal-image` }
             src={ image }
             alt={ name }
           />
-
-          {type === 'comidas' ? <p>{area}</p> : null}
-
-          <h2
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            { category }
-          </h2>
-
-          {!alcoholicOrNot ? null : <p>{alcoholicOrNot}</p>}
-
+        </Link>
+        <h2
+          data-testid={ `${index}-horizontal-top-text` }
+        >
+          { `${type === 'comida' ? `${area} - ` : ''}${category}` }
+          {!alcoholicOrNot ? null : ` - ${alcoholicOrNot}`}
+        </h2>
+        <Link to={ url }>
           <h1
             data-testid={ `${index}-horizontal-name` }
           >
             { name }
           </h1>
+        </Link>
+        <p
+          data-testid={ `${index}-horizontal-done-date` }
+        >
+          Feita em:
+          {' '}
+          {doneDate}
+        </p>
 
-          <p
-            data-testid={ `${index}-horizontal-done-date` }
-          >
-            Feita em:
-            {' '}
-            {doneDate}
-          </p>
+        {
+          tags.slice(0, 2).map((tag) => (
+            <span
+              data-testid={ `${index}-${tag}-horizontal-tag` }
+              key={ `${tag}-${index}` }
+            >
+              {tag}
+            </span>))
+        }
 
-          {
-            tags.slice(0, 2).map((tag) => (
-              <span
-                data-testid={ `${index}-${tag}-horizontal-tag` }
-                key={ `${tag}-${index}` }
-              >
-                {tag}
-              </span>))
-          }
-
-        </div>
-      </Link>
+      </div>
       <div>
 
         <ShareButton
           msg="Link copiado!"
-          toCopy={ host + url }
+          toCopy={ origin + url }
           testid={ `${index}-horizontal-share-btn` }
         />
 
