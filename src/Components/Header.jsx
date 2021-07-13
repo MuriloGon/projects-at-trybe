@@ -20,28 +20,32 @@ function Header({ name, search }) {
   return (
     <>
       <HeaderContainer style={ { height: '50px' } }>
-        <Link to="/perfil">
-          <ProfileIcon
-            data-testid="profile-top-btn"
-            style={ style(profile) }
-            src={ profileSrc }
-          />
-        </Link>
+        <div className="blur-background" />
+        <HeaderContainer.Wrapper>
 
-        <HeaderContainer.Title
-          data-testid="page-title"
-        >
-          {name}
-        </HeaderContainer.Title>
+          <Link to="/perfil">
+            <ProfileIcon
+              data-testid="profile-top-btn"
+              style={ style(profile) }
+              src={ profileSrc }
+            />
+          </Link>
 
-        {search && (
-          <SearchIcon
-            src={ searchSrc }
-            style={ style(togleSearch) }
-            data-testid="search-top-btn"
-            onClick={ handleToggle }
-          />
-        )}
+          <HeaderContainer.Title
+            data-testid="page-title"
+          >
+            {name}
+          </HeaderContainer.Title>
+
+          {search && (
+            <SearchIcon
+              src={ searchSrc }
+              style={ style(togleSearch) }
+              data-testid="search-top-btn"
+              onClick={ handleToggle }
+            />
+          )}
+        </HeaderContainer.Wrapper>
       </HeaderContainer>
 
       { togleSearch && <SearchBar /> }
