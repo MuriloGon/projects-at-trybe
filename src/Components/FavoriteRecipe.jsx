@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import FavoriteRecipeCard from './FavoriteRecipeCard';
 
 function FavoriteRecipe() {
-  const [currBtn,, setCurrBtn] = useState('');
+  const [currBtn, setCurrBtn] = useState('');
   const favoriteRecipes = useSelector((store) => store.favoriteRecipes);
 
   const handleBtn = (str) => () => { setCurrBtn(str); };
