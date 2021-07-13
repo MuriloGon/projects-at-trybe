@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primary1 } from './theme';
+import { primary1, colorVariant } from './theme';
 
 export const Input = styled.input`/* Login Form */
   border: 2px solid ${primary1};
@@ -26,4 +26,18 @@ export const GradientButton = styled.button`/* button */
     background: linear-gradient(to right, hsl(117deg, 10%, 70%), hsl(194deg, 10%, 60%));
     color: hsl(0deg, 0%, 95%);
   }
+`;
+
+const variant1 = ({ variant, theme }) => (variant ? theme[`${variant}1`] : '');
+const variant2 = ({ variant, theme }) => (variant ? theme[`${variant}2`] : '');
+const borderSizeCb = ({ borderSize }) => (borderSize ? `${borderSize}px` : '2px');
+export const CategoryButton = styled.button`/* Button */
+  background: ${variant2};
+  border: ${borderSizeCb} solid ${variant1};
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: ${variant1};
+  font-weight: 600;
+  height: 38px;
+  padding: 8px;
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { footerHeight, headerHeight,
-  primary1 } from './theme';
+  primary1, categoryBarHeight } from './theme';
 
 export const MenuWrapper = styled.div` /* Container */
   height: 100%;
@@ -18,7 +18,7 @@ export const MenuWrapper = styled.div` /* Container */
 `;
 
 MenuWrapper.Main = styled.main`/* Container main */
-  padding-block: calc(calc(calc(${headerHeight} + ${footerHeight}) / 2) + 10px);
+  padding-block: calc(calc(${headerHeight} + ${categoryBarHeight}) + 10px);
 `;
 
 export const Header = styled.header`/* Header */

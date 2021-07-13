@@ -1,33 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import MenuCard from './MenuCard';
 import { ListCardContainer, CategoriesContainer } from '../styles/menuListStyles';
+import { CategoryButton } from '../styles/genericComps';
 
 function MealsList({ data, categories, getCategories }) {
-  const all = 'All';
+  const [currentBtn, setCurrentBtn] = useState('All');
+
   if (!data[0].idMeal) return null;
+
+  const handleCurrentSelected = (strCategory) => () => {
+    getCategories(strCategory);
+    if (strCategory === currentBtn) setCurrentBtn('All');
+    else setCurrentBtn(strCategory);
+  };
+
   return (
     <>
       {categories && (
         <CategoriesContainer>
           <div className="bg-blur-categories" />
           <CategoriesContainer.Wrapper>
-            <button
+            <CategoryButton
               data-testid="All-category-filter"
               type="button"
-              onClick={ () => getCategories(all) }
+              onClick={ handleCurrentSelected('All') }
+              variant={ currentBtn === 'All' ? 'accent' : 'secondary' }
             >
               All
-            </button>
+            </CategoryButton>
             { categories.map(({ strCategory }, index) => (
-              <button
+              <CategoryButton
                 type="button"
                 key={ `${index}-meal` }
                 data-testid={ `${strCategory}-category-filter` }
-                onClick={ () => getCategories(strCategory) }
+                onClick={ handleCurrentSelected(strCategory) }
+                variant={ currentBtn === strCategory ? 'accent' : 'secondary' }
               >
                 {strCategory}
-              </button>
+              </CategoryButton>
             ))}
           </CategoriesContainer.Wrapper>
         </CategoriesContainer>

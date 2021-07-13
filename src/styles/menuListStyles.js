@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primary1, primary2, headerHeight } from './theme';
+import { primary1, primary2, headerHeight, categoryBarHeight } from './theme';
 
 export const CardContainer = styled.section`/* Card */
   background: white;
@@ -43,14 +43,14 @@ export const ListCardContainer = styled.section`/* List Card Container */
 export const CategoriesContainer = styled.div`/* CategoriesContainer Btns  */
   align-items: center;
   display: flex;
-  height: 50px;
+  height: ${categoryBarHeight};
   position: fixed;
   top: ${headerHeight};
   width: 100%;
 
   & .bg-blur-categories {
-    backdrop-filter: blur(12px) saturate(4);
-    background: hsla(117deg, 51%, 60%, 25%);
+    backdrop-filter: blur(16px) saturate(4);
+    background: hsla(117deg, 51%, 60%, 15%);
     border-radius: 6px;
     bottom: 0;
     left: 0;
@@ -72,7 +72,6 @@ CategoriesContainer.Wrapper = styled.div`/* Catehories Wrapper */
   z-index: 2;
 
   & > * {
-    height: 30px;
     margin-left: 20px;
     min-width: fit-content;
   }
