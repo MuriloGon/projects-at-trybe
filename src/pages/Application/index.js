@@ -5,6 +5,7 @@ import Explore from './Explore';
 import Perfil from './Perfil';
 import Container from '../../Components/MainContainer';
 import DoneRecipe from '../../Components/DoneRecipe';
+import FavoriteRecipe from '../../Components/FavoriteRecipe';
 
 function Application() {
   return (
@@ -31,7 +32,7 @@ function Application() {
 
       <Route path="/receitas-favoritas">
         <Container name="Receitas Favoritas" footer search>
-          <h1>Receitas Favoritadas</h1>
+          <FavoriteRecipe />
         </Container>
       </Route>
     </Switch>
