@@ -83,11 +83,11 @@ function SearchBar() {
           type="text"
           data-testid="search-input"
           onChange={ (e) => setSearchName(e.target.value) }
+          placeholder="Buscar receita"
         />
 
-        <div>
+        <SearchBarContainer.Radios>
           <label htmlFor="ingredient">
-            Ingrediente
             <input
               type="radio"
               id="ingredient"
@@ -97,10 +97,10 @@ function SearchBar() {
               defaultChecked
               onClick={ (e) => setSearchBar(e.target.value) }
             />
+            Ingrediente
           </label>
 
           <label htmlFor="name">
-            Nome
             <input
               type="radio"
               id="name"
@@ -109,10 +109,10 @@ function SearchBar() {
               data-testid="name-search-radio"
               onClick={ (e) => setSearchBar(e.target.value) }
             />
+            Nome
           </label>
 
           <label htmlFor="first-letter">
-            Primeira Letra
             <input
               type="radio"
               id="first-letter"
@@ -121,8 +121,9 @@ function SearchBar() {
               data-testid="first-letter-search-radio"
               onClick={ (e) => setSearchBar(e.target.value) }
             />
+            Primeira Letra
           </label>
-        </div>
+        </SearchBarContainer.Radios>
 
         <GradientButton
           type="button"

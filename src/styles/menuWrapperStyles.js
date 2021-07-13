@@ -87,6 +87,7 @@ Footer.Wrapper = styled.div`/* Footer wrapper */
 
 export const SearchBarContainer = styled.div`/* Search Bar Container */
   background: ${background};
+  box-shadow: 0 5px 10px 0 hsl(0deg 0% 0% / 15%);
   display: flex;
   flex-flow: nowrap column;
   position: fixed;
@@ -104,4 +105,13 @@ SearchBarContainer.Wrapper = styled.div`/* Search Bar Wrapper */
   & > * {
     margin-top: 15px;
   }
+`;
+
+SearchBarContainer.Radios = styled.div`/* Radio buttons */
+  color: ${primary1};
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+
+  & input { margin-right: 5px; }
 `;
