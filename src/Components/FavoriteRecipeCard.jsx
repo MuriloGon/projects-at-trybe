@@ -44,7 +44,10 @@ function FavoriteRecipeCard({ data, index }) {
         />
       </div>
       <div>
-        <FavoriteRecipeButton favoriteData={ data } />
+        <FavoriteRecipeButton
+          favoriteData={ data }
+          testid={ `${index}-horizontal-favorite-btn` }
+        />
       </div>
     </section>
   );

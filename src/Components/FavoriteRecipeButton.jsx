@@ -12,7 +12,7 @@ const isFavoriteTest = (idComponent) => (
   )
 );
 
-function FavoriteRecipeButton({ favoriteData }) {
+function FavoriteRecipeButton({ favoriteData, testid }) {
   const isFavorite = useSelector(isFavoriteTest(favoriteData.id));
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -33,8 +33,8 @@ function FavoriteRecipeButton({ favoriteData }) {
   return (
     <button type="button" onClick={ toggleFav }>
       { isFavorite
-        ? <img data-testid="favorite-btn" src={ fillHeart } alt="favorite" />
-        : <img data-testid="favorite-btn" src={ outlineHeart } alt="favorite" />}
+        ? <img data-testid={ testid } src={ fillHeart } alt="favorite" />
+        : <img data-testid={ testid } src={ outlineHeart } alt="favorite" />}
     </button>
   );
 }
@@ -49,6 +49,7 @@ FavoriteRecipeButton.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
   }).isRequired,
+  testid: PropTypes.string.isRequired,
 };
 
 export default FavoriteRecipeButton;

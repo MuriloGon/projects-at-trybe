@@ -21,6 +21,7 @@ function Header({ imgSrc, category, title, favoriteData }) {
 
         <FavoriteRecipeButton
           favoriteData={ favoriteData }
+          testid="favorite-btn"
         />
 
       </div>
