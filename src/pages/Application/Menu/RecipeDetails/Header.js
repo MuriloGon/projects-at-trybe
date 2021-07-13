@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import shareBtn from '../../../../images/shareIcon.svg';
 import fillHeart from '../../../../images/blackHeartIcon.svg';
 import outlineHeart from '../../../../images/whiteHeartIcon.svg';
+import { RecipeHeaderContainer } from '../../../../styles/recipeDetails';
 import { toggleFavorite as toggleFavoriteAct } from '../../../../slices/favoriteRecipes';
 
 const isFavoriteTest = (idComponent) => (
@@ -34,11 +35,11 @@ function Header({ imgSrc, category, title, favoriteData }) {
   };
 
   return (
-    <header>
-      <div>
+    <RecipeHeaderContainer>
+      <RecipeHeaderContainer.Image>
         <img data-testid="recipe-photo" src={ imgSrc } alt={ title } />
-      </div>
-      <div>
+      </RecipeHeaderContainer.Image>
+      <RecipeHeaderContainer.Content>
         <h1 data-testid="recipe-title">{title}</h1>
         <h3 data-testid="recipe-category">{category}</h3>
 
@@ -55,8 +56,8 @@ function Header({ imgSrc, category, title, favoriteData }) {
             ? <img data-testid="favorite-btn" src={ fillHeart } alt="favorite" />
             : <img data-testid="favorite-btn" src={ outlineHeart } alt="favorite" />}
         </button>
-      </div>
-    </header>
+      </RecipeHeaderContainer.Content>
+    </RecipeHeaderContainer>
   );
 }
 

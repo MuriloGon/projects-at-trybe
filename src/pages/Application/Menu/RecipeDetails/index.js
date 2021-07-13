@@ -7,6 +7,7 @@ import DrinkDetails from './DrinkDetails';
 import MealDetails from './MealDetails';
 import { fetchItemById, fetchMealsOrDrinks } from '../../../../services/apisMaps';
 import { startRecipe } from '../../../../slices/inProgressRecipes';
+import { RecipeDetailContainer } from '../../../../styles/recipeDetails';
 
 const NUM_RECOMMENDATIONS = 6;
 const INITIAL_STATE = {
@@ -98,7 +99,7 @@ function RecipeDetails({ type, id, inProgress }) {
     left: '50%' };
 
   return (
-    <>
+    <RecipeDetailContainer>
       {type === 'drinks'
         ? (
           <DrinkDetails
@@ -127,7 +128,7 @@ function RecipeDetails({ type, id, inProgress }) {
           {floatingBtnStates(type, id)[progress].label}
         </button>
       </Link>
-    </>
+    </RecipeDetailContainer>
   );
 }
 
