@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { secondary1, secondary2 } from './theme';
 
 export default createGlobalStyle`/* Global Styles */
 
@@ -14,4 +15,21 @@ export default createGlobalStyle`/* Global Styles */
     color: inherit;
     text-decoration: none;
   }
+
+  /* width */
+  ::-webkit-scrollbar {
+
+    --handle-size: 4px;
+    height: var(--handle-size);
+    width: var(--handle-size);
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track { background: ${secondary2}; }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb { background: ${secondary1}; }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover { background: #555; }
 `;

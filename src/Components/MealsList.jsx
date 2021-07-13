@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MenuCard from './MenuCard';
-import { ListCardContainer } from '../styles/menuListStyles';
+import { ListCardContainer, CategoriesContainer } from '../styles/menuListStyles';
 
 function MealsList({ data, categories, getCategories }) {
   const all = 'All';
@@ -9,25 +9,28 @@ function MealsList({ data, categories, getCategories }) {
   return (
     <>
       {categories && (
-        <header>
-          <button
-            data-testid="All-category-filter"
-            type="button"
-            onClick={ () => getCategories(all) }
-          >
-            All
-          </button>
-          { categories.map(({ strCategory }, index) => (
+        <CategoriesContainer>
+          <div className="bg-blur-categories" />
+          <CategoriesContainer.Wrapper>
             <button
+              data-testid="All-category-filter"
               type="button"
-              key={ `${index}-meal` }
-              data-testid={ `${strCategory}-category-filter` }
-              onClick={ () => getCategories(strCategory) }
+              onClick={ () => getCategories(all) }
             >
-              {strCategory}
+              All
             </button>
-          ))}
-        </header>
+            { categories.map(({ strCategory }, index) => (
+              <button
+                type="button"
+                key={ `${index}-meal` }
+                data-testid={ `${strCategory}-category-filter` }
+                onClick={ () => getCategories(strCategory) }
+              >
+                {strCategory}
+              </button>
+            ))}
+          </CategoriesContainer.Wrapper>
+        </CategoriesContainer>
       )}
       <ListCardContainer>
         { data.map((meal, index) => (

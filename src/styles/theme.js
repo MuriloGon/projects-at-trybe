@@ -10,10 +10,12 @@ export default {
   accent2: 'hsla(295deg, 100%, 95%, 100%)',
 };
 
-export const background = ({ theme }) => theme.background;
-export const primary1 = ({ theme }) => theme.primary1;
-export const primary2 = ({ theme }) => theme.primary2;
-export const secondary1 = ({ theme }) => theme.secondary1;
-export const secondary2 = ({ theme }) => theme.secondary2;
-export const footerHeight = ({ theme }) => theme['footer-height'];
-export const headerHeight = ({ theme }) => theme['header-height'];
+const pickColor = (color) => ({ theme }) => theme[color];
+
+export const background = pickColor('background');
+export const primary1 = pickColor('primary1');
+export const primary2 = pickColor('primary2');
+export const secondary1 = pickColor('secondary1');
+export const secondary2 = pickColor('secondary2');
+export const footerHeight = pickColor('footer-height');
+export const headerHeight = pickColor('header-height');

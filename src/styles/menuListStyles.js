@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primary1, primary2 } from './theme';
+import { primary1, primary2, headerHeight } from './theme';
 
 export const CardContainer = styled.section`/* Card */
   background: white;
@@ -38,4 +38,42 @@ CardContainer.Tags = styled.div`/* Card Tags */
 export const ListCardContainer = styled.section`/* List Card Container */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+`;
+
+export const CategoriesContainer = styled.div`/* CategoriesContainer Btns  */
+  align-items: center;
+  display: flex;
+  height: 50px;
+  position: fixed;
+  top: ${headerHeight};
+  width: 100%;
+
+  & .bg-blur-categories {
+    backdrop-filter: blur(12px) saturate(4);
+    background: hsla(117deg, 51%, 60%, 25%);
+    border-radius: 6px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+`;
+
+CategoriesContainer.Wrapper = styled.div`/* Catehories Wrapper */
+  align-items: center;
+  display: flex;
+  height: 50px;
+  overflow-x: auto;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+
+  & > * {
+    height: 30px;
+    margin-left: 20px;
+    min-width: fit-content;
+  }
 `;
