@@ -1,39 +1,50 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Header as MainHeader } from '../styles/menuWrapperStyles';
+import { useTheme } from 'styled-components';
+import { useSelector } from 'react-redux';
+import { Header as HeaderContainer } from '../styles/menuWrapperStyles';
 import SearchBar from './SearchBar';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
+import profileSrc, { ReactComponent as ProfileIcon } from '../images/profileIcon.svg';
+import searchSrc, { ReactComponent as SearchIcon } from '../images/searchIcon.svg';
 
+const profileCb = ({ currentNavigation }) => currentNavigation.profile;
 function Header({ name, search }) {
-  const [handleSearch, sethandleSearch] = useState(false);
+  const [togleSearch, setToggleSearch] = useState(false);
+  const profile = useSelector(profileCb);
+  const { primary1, secondary1 } = useTheme();
 
-  const handleClick = () => {
-    if (handleSearch === false) return sethandleSearch(true);
-    if (handleSearch === true) return sethandleSearch(false);
-  };
+  const handleToggle = () => { setToggleSearch((st) => !st); };
+  const style = (bool) => ({ color: bool ? secondary1 : primary1 });
 
   return (
     <>
-      <MainHeader>
+      <HeaderContainer style={ { height: '50px' } }>
         <Link to="/perfil">
-          <img
-            src={ profileIcon }
-            alt="Profile Icon"
+          <ProfileIcon
             data-testid="profile-top-btn"
+            style={ style(profile) }
+            src={ profileSrc }
           />
         </Link>
-        <h1 data-testid="page-title">{name}</h1>
-        {search && <input
-          type="image"
-          src={ searchIcon }
-          alt="Search Icon"
-          data-testid="search-top-btn"
-          onClick={ () => handleClick() }
-        />}
-      </MainHeader>
-      { handleSearch && <SearchBar /> }
+
+        <HeaderContainer.Title
+          data-testid="page-title"
+        >
+          {name}
+        </HeaderContainer.Title>
+
+        {search && (
+          <SearchIcon
+            src={ searchSrc }
+            style={ style(togleSearch) }
+            data-testid="search-top-btn"
+            onClick={ handleToggle }
+          />
+        )}
+      </HeaderContainer>
+
+      { togleSearch && <SearchBar /> }
     </>
   );
 }
@@ -41,6 +52,11 @@ function Header({ name, search }) {
 Header.propTypes = {
   name: PropTypes.string.isRequired,
   search: PropTypes.bool.isRequired,
+  active: PropTypes.bool,
+};
+
+Header.defaultProps = {
+  active: false,
 };
 
 export default Header;

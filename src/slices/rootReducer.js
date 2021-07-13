@@ -9,6 +9,7 @@ import inProgressRecipes from './inProgressRecipes';
 import auth from './auth';
 import explore from './exploreSlice';
 import searchbar from './searchbar';
+import currentNavigation from './currentNavigation';
 
 const rootReducer = combineReducers({
   mealsToken,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   auth,
   explore,
   searchbar,
+  currentNavigation,
 });
 
 export default rootReducer;

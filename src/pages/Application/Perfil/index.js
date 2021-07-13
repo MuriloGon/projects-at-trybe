@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { clearLocalStorage } from '../../../services/localStorage';
+import { setCurrentNavigation } from '../../../slices/currentNavigation';
 
 function Perfil() {
   const email = localStorage.getItem('user');
+  const dispatch = useDispatch();
 
-  const resetLocalStorage = () => {
-    localStorage.clear();
-  };
+  useEffect(() => { dispatch(setCurrentNavigation('profile')); }, []);
+
+  const resetLocalStorage = () => { localStorage.clear(); };
   return (
     <>
       <div>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { footerHeight, headerHeight } from './theme';
+import { footerHeight, headerHeight,
+  primary1, background } from './theme';
 
 export const MenuWrapper = styled.div` /* Container */
   display: grid;
@@ -14,23 +15,39 @@ MenuWrapper.Main = styled.main`/* Container main */
 
 export const Header = styled.header`/* Header */
   align-items: center;
-  background: ${({ theme }) => theme.background};
-  color: ${({ theme }) => theme.color1};
+  background: ${background};
+  box-shadow: 0 0 10px 0 hsla(0deg 0% 0% / 15%);
+  color: ${primary1};
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
-  height: ${({ theme }) => theme['header-height']};
+  grid-template-columns: 1fr 3.5fr 1fr;
+  height: ${headerHeight};
+  place-content: center;
   width: 100%;
 
   & > * {
     margin: 0 auto;
   }
+
+  & svg {
+    width: 40px;
+  }
+
+  & a {
+    display: flex;
+    place-content: center;
+  }
+`;
+
+Header.Title = styled.h1`/* Header Title */
+  color: ${primary1};
+  font-size: 22px;
 `;
 
 export const Footer = styled.footer`/* Footer */
   align-items: center;
-  background: ${({ theme: { background } }) => background};
+  background: ${background};
   display: flex;
-  height: ${({ theme }) => theme['footer-height']};
+  height: ${footerHeight};
   justify-content: space-evenly;
   width: 100vw;
 `;
