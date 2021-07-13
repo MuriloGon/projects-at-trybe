@@ -1,14 +1,16 @@
 import styled from 'styled-components';
-import { primary1, colorVariant } from './theme';
+import { primary1 } from './theme';
 
 export const Input = styled.input`/* Login Form */
   border: 2px solid ${primary1};
   border-radius: 10px;
+  box-sizing: border-box;
   color: ${primary1};
   flex-flow: nowrap column;
   height: 40px;
   letter-spacing: calc(16px * 0.05);
   padding-inline: 10px;
+  width: 100%;
 `;
 
 export const GradientButton = styled.button`/* button */

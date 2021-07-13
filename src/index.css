@@ -25,3 +25,21 @@ html, body, #root {
   border: 1px solid black;
   flex: 1;
 }
+
+.categories-bar-enter {
+  transform: translateY(-200%);
+}
+
+.categories-bar-enter-active {
+  transform: translateY(0%);
+  transition: transform 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.categories-bar-exit {
+  transform: translateY(0%);
+}
+
+.categories-bar-exit-active {
+  transform: translateY(-200%);
+  transition: transform 200ms cubic-bezier(0.75, 0.82, 0.165, 1);
+}

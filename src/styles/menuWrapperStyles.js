@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { footerHeight, headerHeight,
-  primary1, categoryBarHeight } from './theme';
+  primary1, categoryBarHeight, background } from './theme';
 
 export const MenuWrapper = styled.div` /* Container */
   height: 100%;
@@ -27,6 +27,7 @@ export const Header = styled.header`/* Header */
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 9;
 
 
   & svg {
@@ -47,7 +48,7 @@ Header.Wrapper = styled.div` /* Header Wrapper */
   place-content: center;
   position: relative;
   width: 100%;
-  z-index: 2;
+  z-index: 10;
 
   & > * {
     margin: 0 auto;
@@ -76,9 +77,31 @@ export const Footer = styled.footer`/* Footer */
 
 Footer.Wrapper = styled.div`/* Footer wrapper */
   align-items: center;
+  color: ${primary1};
   display: flex;
   justify-content: space-evenly;
   position: relative;
   width: 100%;
   z-index: 2;
+`;
+
+export const SearchBarContainer = styled.div`/* Search Bar Container */
+  background: ${background};
+  display: flex;
+  flex-flow: nowrap column;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  z-index: 5;
+`;
+
+SearchBarContainer.Wrapper = styled.div`/* Search Bar Wrapper */
+  align-items: center;
+  display: flex;
+  flex-flow: nowrap column;
+  margin: 12px;
+
+  & > * {
+    margin-top: 15px;
+  }
 `;

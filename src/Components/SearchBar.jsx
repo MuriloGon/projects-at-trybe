@@ -11,6 +11,8 @@ import {
   fetchFirstLetter,
 } from '../services/apisMaps';
 import { setSearchData } from '../slices/searchbar';
+import { SearchBarContainer } from '../styles/menuWrapperStyles';
+import { Input, GradientButton } from '../styles/genericComps';
 
 const TWELVE_ITEMS = 12;
 
@@ -75,64 +77,63 @@ function SearchBar() {
   }
 
   return (
-    <>
-      <div>
-        <input
+    <SearchBarContainer>
+      <SearchBarContainer.Wrapper>
+        <Input
           type="text"
           data-testid="search-input"
           onChange={ (e) => setSearchName(e.target.value) }
         />
-      </div>
 
-      <div>
-        <label htmlFor="ingredient">
-          Ingrediente
-          <input
-            type="radio"
-            id="ingredient"
-            name="searchItem"
-            value="ingredient"
-            data-testid="ingredient-search-radio"
-            defaultChecked
-            onClick={ (e) => setSearchBar(e.target.value) }
-          />
-        </label>
+        <div>
+          <label htmlFor="ingredient">
+            Ingrediente
+            <input
+              type="radio"
+              id="ingredient"
+              name="searchItem"
+              value="ingredient"
+              data-testid="ingredient-search-radio"
+              defaultChecked
+              onClick={ (e) => setSearchBar(e.target.value) }
+            />
+          </label>
 
-        <label htmlFor="name">
-          Nome
-          <input
-            type="radio"
-            id="name"
-            name="searchItem"
-            value="name"
-            data-testid="name-search-radio"
-            onClick={ (e) => setSearchBar(e.target.value) }
-          />
-        </label>
+          <label htmlFor="name">
+            Nome
+            <input
+              type="radio"
+              id="name"
+              name="searchItem"
+              value="name"
+              data-testid="name-search-radio"
+              onClick={ (e) => setSearchBar(e.target.value) }
+            />
+          </label>
 
-        <label htmlFor="first-letter">
-          Primeira Letra
-          <input
-            type="radio"
-            id="first-letter"
-            name="searchItem"
-            value="first-letter"
-            data-testid="first-letter-search-radio"
-            onClick={ (e) => setSearchBar(e.target.value) }
-          />
-        </label>
-      </div>
+          <label htmlFor="first-letter">
+            Primeira Letra
+            <input
+              type="radio"
+              id="first-letter"
+              name="searchItem"
+              value="first-letter"
+              data-testid="first-letter-search-radio"
+              onClick={ (e) => setSearchBar(e.target.value) }
+            />
+          </label>
+        </div>
 
-      <div>
-        <button
+        <GradientButton
           type="button"
           data-testid="exec-search-btn"
           onClick={ fetchSearch({ searchBar, type, searchName, setData }) }
         >
           Buscar
-        </button>
-      </div>
-    </>
+        </GradientButton>
+      </SearchBarContainer.Wrapper>
+
+    </SearchBarContainer>
   );
 }
 

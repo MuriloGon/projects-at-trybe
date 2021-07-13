@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useTheme } from 'styled-components';
 import { useSelector } from 'react-redux';
+import { CSSTransition } from 'react-transition-group';
 import { Header as HeaderContainer } from '../styles/menuWrapperStyles';
 import SearchBar from './SearchBar';
 import profileSrc, { ReactComponent as ProfileIcon } from '../images/profileIcon.svg';
@@ -10,7 +11,7 @@ import searchSrc, { ReactComponent as SearchIcon } from '../images/searchIcon.sv
 
 const profileCb = ({ currentNavigation }) => currentNavigation.profile;
 function Header({ name, search }) {
-  const [togleSearch, setToggleSearch] = useState(false);
+  const [toggleSearch, setToggleSearch] = useState(false);
   const profile = useSelector(profileCb);
   const { primary1, secondary1 } = useTheme();
 
@@ -40,7 +41,7 @@ function Header({ name, search }) {
           {search && (
             <SearchIcon
               src={ searchSrc }
-              style={ style(togleSearch) }
+              style={ style(toggleSearch) }
               data-testid="search-top-btn"
               onClick={ handleToggle }
             />
@@ -48,7 +49,16 @@ function Header({ name, search }) {
         </HeaderContainer.Wrapper>
       </HeaderContainer>
 
-      { togleSearch && <SearchBar /> }
+      <CSSTransition
+        in={ toggleSearch }
+        timeout={ 300 }
+        classNames="categories-bar"
+        unmountOnExit
+        mountOnEnter
+      >
+        <SearchBar />
+      </CSSTransition>
+      )
     </>
   );
 }
@@ -56,11 +66,6 @@ function Header({ name, search }) {
 Header.propTypes = {
   name: PropTypes.string.isRequired,
   search: PropTypes.bool.isRequired,
-  active: PropTypes.bool,
-};
-
-Header.defaultProps = {
-  active: false,
 };
 
 export default Header;
