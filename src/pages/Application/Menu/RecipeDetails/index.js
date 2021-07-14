@@ -100,7 +100,10 @@ function RecipeDetails({ type, id, inProgress }) {
   const dispatch = useDispatch();
   const [allowFinish, setAllowFinish] = useState(true);
   const inProgressRecipes = useSelector((st) => st.inProgressRecipes);
+  const doneRecipes = useSelector((st) => st.doneRecipes);
   const inverseType = type === 'meals' ? 'drinks' : 'meals';
+
+  const isDone = doneRecipes.some(({ id: idStore }) => Number(idStore) === Number(id));
 
   useEffect(() => {
     (async () => {
@@ -149,16 +152,29 @@ function RecipeDetails({ type, id, inProgress }) {
       <Link
         to={ floatingBtnStates(type, id)[progress].to }
       >
-        <button
-          type="button"
-          style={ BtnStyles }
-          disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
-          onClick={ handleBtn({ progress, dispatch, id, type, data }) }
-          data-testid={ floatingBtnStates(type, id)[progress].testid }
-        >
-          {floatingBtnStates(type, id)[progress].label}
-        </button>
+        {isDone ? (
+          <button
+            style={ { display: 'none' } }
+            type="button"
+            className="botão"
+            disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
+            data-testid="start-recipe-btn"
+          >
+            {floatingBtnStates(type, id)[progress].label}
+          </button>)
+          : (
+            <button
+              style={ BtnStyles }
+              className="botão"
+              type="button"
+              disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
+              onClick={ handleBtn({ progress, dispatch, id, type, data }) }
+              data-testid={ floatingBtnStates(type, id)[progress].testid }
+            >
+              {floatingBtnStates(type, id)[progress].label}
+            </button>)}
       </Link>
+      )
     </RecipeDetailContainer>
   );
 }
