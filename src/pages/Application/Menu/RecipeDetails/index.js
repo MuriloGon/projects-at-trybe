@@ -9,6 +9,7 @@ import { fetchItemById, fetchMealsOrDrinks } from '../../../../services/apisMaps
 import { startRecipe } from '../../../../slices/inProgressRecipes';
 import { RecipeDetailContainer } from '../../../../styles/recipeDetails';
 import { finishRecipe } from '../../../../slices/doneRecipes';
+import { GradientButton } from '../../../../styles/genericComps';
 
 const NUM_RECOMMENDATIONS = 6;
 const INITIAL_STATE = {
@@ -130,7 +131,9 @@ function RecipeDetails({ type, id, inProgress }) {
   const BtnStyles = {
     position: 'fixed',
     bottom: 0,
-    left: '50%' };
+    left: '50%',
+    transform: 'translateX(-50%)',
+  };
 
   return (
     <RecipeDetailContainer>
@@ -149,32 +152,31 @@ function RecipeDetails({ type, id, inProgress }) {
           />
         )}
 
-      <Link
-        to={ floatingBtnStates(type, id)[progress].to }
-      >
-        {isDone ? (
-          <button
-            style={ { display: 'none' } }
-            type="button"
-            className="botão"
-            disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
-            data-testid="start-recipe-btn"
-          >
-            {floatingBtnStates(type, id)[progress].label}
-          </button>)
-          : (
-            <button
-              style={ BtnStyles }
-              className="botão"
+      <div className="floating-button">
+        <Link
+          to={ floatingBtnStates(type, id)[progress].to }
+        >
+          {isDone ? (
+            <GradientButton
+              style={ { display: 'none', ...BtnStyles } }
               type="button"
               disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
-              onClick={ handleBtn({ progress, dispatch, id, type, data }) }
-              data-testid={ floatingBtnStates(type, id)[progress].testid }
+              data-testid="start-recipe-btn"
             >
               {floatingBtnStates(type, id)[progress].label}
-            </button>)}
-      </Link>
-      )
+            </GradientButton>)
+            : (
+              <GradientButton
+                style={ BtnStyles }
+                type="button"
+                disabled={ floatingBtnStates(type, id, allowFinish)[progress].disabled }
+                onClick={ handleBtn({ progress, dispatch, id, type, data }) }
+                data-testid={ floatingBtnStates(type, id)[progress].testid }
+              >
+                {floatingBtnStates(type, id)[progress].label}
+              </GradientButton>)}
+        </Link>
+      </div>
     </RecipeDetailContainer>
   );
 }

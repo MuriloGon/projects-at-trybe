@@ -11,7 +11,7 @@ function Recommendations({ recommendationsList, inverseType }) {
       <h2>Recomendadas</h2>
       <Swiper
         spaceBetween={ 0 }
-        slidesPerView={ 2 }
+        slidesPerView={ 1 }
       >
         {recommendationsList.map(({ title, subtitle, imgUrl, id }, index) => (
           <SwiperSlide className="teste" key={ `recommanded-${id}` }>

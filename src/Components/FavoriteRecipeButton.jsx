@@ -33,8 +33,20 @@ function FavoriteRecipeButton({ favoriteData, testid }) {
   return (
     <button type="button" onClick={ toggleFav }>
       { isFavorite
-        ? <img data-testid={ testid } src={ fillHeart } alt="favorite" />
-        : <img data-testid={ testid } src={ outlineHeart } alt="favorite" />}
+        ? (
+          <img
+            width="30px"
+            data-testid={ testid }
+            src={ fillHeart }
+            alt="favorite"
+          />)
+        : (
+          <img
+            width="30px"
+            data-testid={ testid }
+            src={ outlineHeart }
+            alt="favorite"
+          />)}
     </button>
   );
 }

@@ -5,7 +5,9 @@ function Instructions({ instructions }) {
   return (
     <section data-testid="instructions">
       <h2>Instructions</h2>
-      {instructions}
+      <p>
+        {instructions}
+      </p>
     </section>
   );
 }

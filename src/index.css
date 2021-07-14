@@ -56,7 +56,3 @@ html, body, #root {
   position: relative;
   z-index: 1;
 }
-
-.botão {
-  z-index: 100;
-}

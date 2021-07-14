@@ -6,6 +6,7 @@ import Video from './Video';
 import Recommendations from './Recommendations';
 import Header from './Header';
 import mapIngredients from '../../../../utils/mapIngredients';
+import { RecipeDetailContainer } from '../../../../styles/recipeDetails';
 
 const mapDrinksRecommendations = (data) => data
   .map(({ strAlcoholic: subtitle, strDrink: title,
@@ -31,7 +32,7 @@ function MealDetails({ data, inverseType, inProgress }) {
   const ingredients = mapIngredients(recipeData);
   const recommendations = mapDrinksRecommendations(recommendation);
   return (
-    <div>
+    <RecipeDetailContainer.Content>
       <Header
         title={ strMeal }
         category={ strCategory }
@@ -56,7 +57,7 @@ function MealDetails({ data, inverseType, inProgress }) {
         recommendationsList={ recommendations }
         inverseType={ inverseType }
       />}
-    </div>
+    </RecipeDetailContainer.Content>
   );
 }
 

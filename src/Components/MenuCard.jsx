@@ -16,15 +16,11 @@ function MenuCard({ CardTestId, TitleTestId, imgTestId,
         <Card.Image>
           <img data-testid={ imgTestId } src={ imgUrl } alt={ alt } />
         </Card.Image>
-        <Card.Title data-testid={ TitleTestId }>
-          { title }
-        </Card.Title>
-        <Card.Subtitle data-testid={ TitleTestId }>
-          { title }
-        </Card.Subtitle>
-        <Card.Tags>
-          Tags
-        </Card.Tags>
+        <Card.Content>
+          <Card.Title data-testid={ TitleTestId }>
+            { title }
+          </Card.Title>
+        </Card.Content>
       </Link>
     </Card>
 

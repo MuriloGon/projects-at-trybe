@@ -15,14 +15,18 @@ function Header({ imgSrc, category, title, favoriteData }) {
         <img data-testid="recipe-photo" src={ imgSrc } alt={ title } />
       </RecipeHeaderContainer.Image>
       <RecipeHeaderContainer.Content>
-        <h1 data-testid="recipe-title">{title}</h1>
-        <h3 data-testid="recipe-category">{category}</h3>
-        <ShareButton msg="Link copiado!" toCopy={ toCopy } testid="share-btn" />
+        <div>
+          <h1 data-testid="recipe-title">{title}</h1>
+          <h3 data-testid="recipe-category">{category}</h3>
+        </div>
+        <div className="buttons">
+          <ShareButton msg="Link copiado!" toCopy={ toCopy } testid="share-btn" />
 
-        <FavoriteRecipeButton
-          favoriteData={ favoriteData }
-          testid="favorite-btn"
-        />
+          <FavoriteRecipeButton
+            favoriteData={ favoriteData }
+            testid="favorite-btn"
+          />
+        </div>
       </RecipeHeaderContainer.Content>
     </RecipeHeaderContainer>
   );
