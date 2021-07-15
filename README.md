@@ -138,9 +138,9 @@ Deverá ser possível adicionar uma imagem à uma receita, utilizando o upload d
 
 1. Clone o repositório
 
-- `git clone https://github.com/tryber/sd-0x-cookmaster.git`.
+- `git clone https://github.com/tryber/sd-09-cookmaster.git`.
 - Entre na pasta do repositório que você acabou de clonar:
-  - `cd sd-0x-cookmaster`
+  - `cd sd-09-cookmaster`
 
 2. Instale as dependências [**Caso existam**]
 
