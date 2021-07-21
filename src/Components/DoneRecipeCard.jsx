@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShareButton from './ShareButton';
+import { FavoriteRecipeCardStyle as DRC } from '../styles/favoriteRecipesStyles';
 
 const DoneRecipeCard = ({ data, index }) => {
   const { id, type, area, category, alcoholicOrNot,
@@ -11,8 +12,8 @@ const DoneRecipeCard = ({ data, index }) => {
   const { origin } = window.location;
 
   return (
-    <div>
-      <div>
+    <DRC>
+      <DRC.Image>
         <Link to={ url }>
           <img
             width="100%"
@@ -21,6 +22,8 @@ const DoneRecipeCard = ({ data, index }) => {
             alt={ name }
           />
         </Link>
+      </DRC.Image>
+      <DRC.Content>
         <h2
           data-testid={ `${index}-horizontal-top-text` }
         >
@@ -41,7 +44,6 @@ const DoneRecipeCard = ({ data, index }) => {
           {' '}
           {doneDate}
         </p>
-
         {
           tags.slice(0, 2).map((tag) => (
             <span
@@ -51,18 +53,15 @@ const DoneRecipeCard = ({ data, index }) => {
               {tag}
             </span>))
         }
-
-      </div>
-      <div>
-
-        <ShareButton
-          msg="Link copiado!"
-          toCopy={ origin + url }
-          testid={ `${index}-horizontal-share-btn` }
-        />
-
-      </div>
-    </div>
+        <div>
+          <ShareButton
+            msg="Link copiado!"
+            toCopy={ origin + url }
+            testid={ `${index}-horizontal-share-btn` }
+          />
+        </div>
+      </DRC.Content>
+    </DRC>
   );
 };
 

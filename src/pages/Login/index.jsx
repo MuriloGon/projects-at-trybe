@@ -46,7 +46,7 @@ function Login() {
     <LoginContainer>
       <LoginContainer.FormWrapper>
         <LoginContainer.Title>
-          Receitas
+          Try Be Delicious
         </LoginContainer.Title>
 
         <LoginContainer.Logo>

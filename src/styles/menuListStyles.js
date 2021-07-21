@@ -16,8 +16,8 @@ export const CardContainer = styled.section`/* Card */
 
 CardContainer.Content = styled.div`/* Content */
   background: #ffffff76;
-  padding: 10px;
   box-sizing: border-box;
+  padding: 10px;
   width: 100%;
 `;
 
@@ -63,8 +63,7 @@ export const CategoriesContainer = styled.div`/* CategoriesContainer Btns  */
   align-items: center;
   display: flex;
   height: ${categoryBarHeight};
-  position: fixed;
-  top: ${headerHeight};
+  position: relative;
   width: 100%;
 
   & .bg-blur-categories {
@@ -86,7 +85,7 @@ CategoriesContainer.Wrapper = styled.div`/* Catehories Wrapper */
   display: flex;
   height: 50px;
   overflow-x: auto;
-  position: fixed;
+  position: relative;
   width: 100%;
   z-index: 2;
 

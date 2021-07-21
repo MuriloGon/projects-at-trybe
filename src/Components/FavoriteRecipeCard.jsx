@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShareButton from './ShareButton';
 import FavoriteRecipeButton from './FavoriteRecipeButton';
+import { FavoriteRecipeCardStyle as FRC } from '../styles/favoriteRecipesStyles';
 
 function FavoriteRecipeCard({ data, index }) {
   const { id, type, area, category, alcoholicOrNot,
@@ -12,8 +13,8 @@ function FavoriteRecipeCard({ data, index }) {
   const { origin } = window.location;
 
   return (
-    <section>
-      <div>
+    <FRC>
+      <FRC.Image>
         <Link to={ url }>
           <img
             width="100%"
@@ -22,6 +23,8 @@ function FavoriteRecipeCard({ data, index }) {
             alt={ name }
           />
         </Link>
+      </FRC.Image>
+      <FRC.Content>
         <h2
           data-testid={ `${index}-horizontal-top-text` }
         >
@@ -35,21 +38,21 @@ function FavoriteRecipeCard({ data, index }) {
             { name }
           </h1>
         </Link>
-      </div>
-      <div>
-        <ShareButton
-          msg="Link copiado!"
-          toCopy={ origin + url }
-          testid={ `${index}-horizontal-share-btn` }
-        />
-      </div>
-      <div>
-        <FavoriteRecipeButton
-          favoriteData={ data }
-          testid={ `${index}-horizontal-favorite-btn` }
-        />
-      </div>
-    </section>
+        <div>
+          <ShareButton
+            msg="Link copiado!"
+            toCopy={ origin + url }
+            testid={ `${index}-horizontal-share-btn` }
+          />
+        </div>
+        <div>
+          <FavoriteRecipeButton
+            favoriteData={ data }
+            testid={ `${index}-horizontal-favorite-btn` }
+          />
+        </div>
+      </FRC.Content>
+    </FRC>
   );
 }
 

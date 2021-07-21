@@ -41,7 +41,7 @@ function Header({ name, search }) {
           {search && (
             <SearchIcon
               src={ searchSrc }
-              style={ style(toggleSearch) }
+              style={ { ...style(toggleSearch), cursor: 'pointer' } }
               data-testid="search-top-btn"
               onClick={ handleToggle }
             />

@@ -18,7 +18,9 @@ export const MenuWrapper = styled.div` /* Container */
 `;
 
 MenuWrapper.Main = styled.main`/* Container main */
-  padding-block: calc(calc(${headerHeight} + ${categoryBarHeight}) + 10px);
+
+  /* padding-block: calc(calc(${headerHeight} + ${categoryBarHeight}) + 10px); */
+  padding-block: 50px;
 `;
 
 export const Header = styled.header`/* Header */

@@ -26,11 +26,6 @@ export const RecipeDetailContainer = styled.div`/* RecipeDetailContainer */
 RecipeDetailContainer.Content = styled.div` /* RecipeDetailContainer.Content  */
   padding: 5px;
 
-  button {
-    background: unset;
-    border: unset;
-  }
-
   h2 {
     color: ${primary1};
     font-size: 20px;
@@ -70,7 +65,9 @@ RecipeHeaderContainer.Content = styled.div` /* Content */
   grid-template-columns: 4fr 1fr;
 
   .buttons {
+    align-items: center;
     display: flex;
+    justify-content: space-evenly;
   }
 
   h1 {

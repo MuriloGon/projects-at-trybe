@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import chooseOption from '../../../../utils/chooseOption';
 import { fetchRandomMenu } from '../../../../services/apisMaps';
+import { ExploreOptionsContainer, ExploreOption } from '../../../../styles/exploreStyles';
 
 const chooseIngredientByType = chooseOption({
   meals: '/explorar/comidas/ingredientes',
@@ -28,22 +29,34 @@ function ExploreOptions({ type }) {
   });
 
   return (
-    <>
+    <ExploreOptionsContainer>
       <Link data-testid="explore-by-ingredient" to={ chooseIngredientByType(type) }>
-        Por Ingredientes
+        <ExploreOption>
+          <ExploreOption.Label>
+            Por Ingredientes
+          </ExploreOption.Label>
+        </ExploreOption>
       </Link>
 
       { (type === 'meals')
         && (
           <Link data-testid="explore-by-area" to={ chooseAreaBy(type) }>
-            Por Local de Origem
+            <ExploreOption>
+              <ExploreOption.Label>
+                Por Local de Origem
+              </ExploreOption.Label>
+            </ExploreOption>
           </Link>
         )}
 
       <Link data-testid="explore-surprise" to={ chooseSurprise(type) }>
-        Me Surpreenda!
+        <ExploreOption>
+          <ExploreOption.Label>
+            Me Surpreenda!
+          </ExploreOption.Label>
+        </ExploreOption>
       </Link>
-    </>
+    </ExploreOptionsContainer>
   );
 }
 

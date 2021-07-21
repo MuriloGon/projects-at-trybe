@@ -8,6 +8,7 @@ import MealsList from './MealsList';
 import DrinksList from './DrinksList';
 import { clearExplore } from '../slices/exploreSlice';
 import { clearSearchData } from '../slices/searchbar';
+import Loading from './Loading';
 
 const doze = 12;
 const cinco = 5;
@@ -107,7 +108,7 @@ function MainScreen({ type }) {
   }, [searchbar]);
 
   if (data === undefined
-    || categories === undefined) return <h1>Loading ...</h1>;
+    || categories === undefined) return <Loading />;
 
   if (data === null) return <h1>Nada Encontrado 🥺</h1>;
   if (data.length === 0) return <h1>Nada Encontrado 🥺</h1>;

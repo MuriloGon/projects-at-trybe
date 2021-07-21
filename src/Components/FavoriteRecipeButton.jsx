@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import fillHeart from '../images/blackHeartIcon.svg';
 import outlineHeart from '../images/whiteHeartIcon.svg';
 import { toggleFavorite } from '../slices/favoriteRecipes';
+import FavoriteBtn from '../styles/actionButton';
 
 const isFavoriteTest = (idComponent) => (
   ({ favoriteRecipes }) => favoriteRecipes.some(
@@ -31,7 +32,7 @@ function FavoriteRecipeButton({ favoriteData, testid }) {
   };
 
   return (
-    <button type="button" onClick={ toggleFav }>
+    <FavoriteBtn type="button" onClick={ toggleFav }>
       { isFavorite
         ? (
           <img
@@ -47,7 +48,7 @@ function FavoriteRecipeButton({ favoriteData, testid }) {
             src={ outlineHeart }
             alt="favorite"
           />)}
-    </button>
+    </FavoriteBtn>
   );
 }
 

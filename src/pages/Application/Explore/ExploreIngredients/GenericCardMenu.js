@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { formatImageSrc } from '../../../../services/apisMaps';
 import { saveIngredient } from '../../../../slices/exploreSlice';
+import { CardContainer } from '../../../../styles/menuListStyles';
 
 function GenericCardMenu({ name, index, type }) {
   const dispatch = useDispatch();
@@ -15,21 +16,29 @@ function GenericCardMenu({ name, index, type }) {
 
   return (
     <Link to={ pathname } onClick={ handleRedirect }>
-      <div
+      <CardContainer
         key={ `${name}-${index}` }
         data-testid={ `${index}-ingredient-card` }
       >
-        <h2
-          data-testid={ `${index}-card-name` }
-        >
-          {name}
-        </h2>
-        <img
-          data-testid={ `${index}-card-img` }
-          src={ formatImageSrc(type)(name) }
-          alt={ name }
-        />
-      </div>
+        <CardContainer.Content>
+          <CardContainer.Title>
+
+            <h2
+              data-testid={ `${index}-card-name` }
+            >
+              {name}
+            </h2>
+          </CardContainer.Title>
+          <CardContainer.Image>
+
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ formatImageSrc(type)(name) }
+              alt={ name }
+            />
+          </CardContainer.Image>
+        </CardContainer.Content>
+      </CardContainer>
     </Link>
   );
 }

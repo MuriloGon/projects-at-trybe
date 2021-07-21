@@ -10,6 +10,7 @@ import { startRecipe } from '../../../../slices/inProgressRecipes';
 import { RecipeDetailContainer } from '../../../../styles/recipeDetails';
 import { finishRecipe } from '../../../../slices/doneRecipes';
 import { GradientButton } from '../../../../styles/genericComps';
+import Loading from '../../../../Components/Loading';
 
 const NUM_RECOMMENDATIONS = 6;
 const INITIAL_STATE = {
@@ -121,7 +122,7 @@ function RecipeDetails({ type, id, inProgress }) {
     || data === undefined
     || (type === 'meals' && data.recipeData.idMeal === undefined)
     || (type === 'drinks' && data.recipeData.idDrink === undefined)) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   /* Handle in-progress behaviour */

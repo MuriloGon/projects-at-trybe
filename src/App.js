@@ -29,10 +29,9 @@ function App() {
   const dispatch = useDispatch();
   // const logged = useSelector((st) => st.auth.logged);
 
-  useSetTitleWithRouteName();
-
   useEffect(() => {
     dispatch(loadReduxInitialState());
+    window.title = 'Try Be Delicious';
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

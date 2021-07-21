@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import FavoriteRecipeCard from './FavoriteRecipeCard';
+import { FavoriteRecipesContainer } from '../styles/favoriteRecipesStyles';
+import { CategoriesContainer } from '../styles/menuListStyles';
+import { CategoryButton } from '../styles/genericComps';
 
 function FavoriteRecipe() {
   const [currBtn, setCurrBtn] = useState('');
@@ -13,38 +16,44 @@ function FavoriteRecipe() {
   });
 
   return (
-    <>
-      <div>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ handleBtn('') }
-        >
-          All
-        </button>
+    <FavoriteRecipesContainer>
+      <CategoriesContainer>
+        <div className="bg-blur-categories" />
+        <CategoriesContainer.Wrapper>
+          <CategoryButton
+            type="button"
+            data-testid="filter-by-all-btn"
+            onClick={ handleBtn('') }
+            variant={ currBtn === '' ? 'accent' : 'secondary' }
+          >
+            All
+          </CategoryButton>
 
-        <button
-          type="button"
-          data-testid="filter-by-food-btn"
-          onClick={ handleBtn('comida') }
-        >
-          Food
-        </button>
+          <CategoryButton
+            type="button"
+            data-testid="filter-by-food-btn"
+            onClick={ handleBtn('comida') }
+            variant={ currBtn === 'comida' ? 'accent' : 'secondary' }
+          >
+            Food
+          </CategoryButton>
 
-        <button
-          type="button"
-          data-testid="filter-by-drink-btn"
-          onClick={ handleBtn('bebida') }
-        >
-          Drink
-        </button>
-      </div>
+          <CategoryButton
+            type="button"
+            data-testid="filter-by-drink-btn"
+            onClick={ handleBtn('bebida') }
+            variant={ currBtn === 'bebida' ? 'accent' : 'secondary' }
+          >
+            Drink
+          </CategoryButton>
+        </CategoriesContainer.Wrapper>
+      </CategoriesContainer>
       <div>
         { filteredFavorite.map((data, index) => (
           <FavoriteRecipeCard data={ data } index={ index } key={ index } />
         )) }
       </div>
-    </>
+    </FavoriteRecipesContainer>
   );
 }
 

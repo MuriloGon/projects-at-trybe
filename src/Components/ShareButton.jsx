@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSnackbar } from 'notistack';
 import cp from 'clipboard-copy';
 import shareBtn from '../images/shareIcon.svg';
+import ShareBtn from '../styles/actionButton';
 
 function ShareButton({ msg, toCopy, testid }) {
   const { enqueueSnackbar } = useSnackbar();
@@ -12,14 +13,14 @@ function ShareButton({ msg, toCopy, testid }) {
   };
 
   return (
-    <button
+    <ShareBtn
       type="button"
       src={ shareBtn }
       data-testid={ testid }
       onClick={ copyToClipBoard }
     >
       <img src={ shareBtn } alt="share button" />
-    </button>
+    </ShareBtn>
   );
 }
 

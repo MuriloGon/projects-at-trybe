@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import MealsList from '../../../Components/MealsList';
 import { fetchAreas, fetchItemsByArea,
   fetchMealsOrDrinks } from '../../../services/apisMaps';
+import { SelectByArea, ExploreByAreaContainer } from '../../../styles/exploreStyles';
+import Loading from '../../../Components/Loading';
 
 const TWELVE_ITEMS = 12;
 
@@ -31,12 +33,11 @@ function ExploreArea() {
   const { dropdownData, area } = data;
   if (
     listData === undefined
-    || dropdownData === undefined) return <h1>Loading...</h1>;
+    || dropdownData === undefined) return <Loading />;
 
   return (
-    <>
-      <h1>{area}</h1>
-      <select
+    <ExploreByAreaContainer>
+      <SelectByArea
         data-testid="explore-by-area-dropdown"
         value={ area }
         onChange={ ({ target: { value } }) => {
@@ -59,11 +60,11 @@ function ExploreArea() {
               {datum.strArea}
             </option>))
         }
-      </select>
+      </SelectByArea>
       <div>
         <MealsList data={ listData } />
       </div>
-    </>
+    </ExploreByAreaContainer>
   );
 }
 

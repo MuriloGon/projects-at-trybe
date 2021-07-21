@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import DoneRecipeCard from './DoneRecipeCard';
+import { FavoriteRecipesContainer } from '../styles/favoriteRecipesStyles';
+import { CategoriesContainer } from '../styles/menuListStyles';
+import { CategoryButton } from '../styles/genericComps';
 
 function DoneRecipe() {
   const [currBtn, setCurrBtn] = useState('');
@@ -15,35 +18,42 @@ function DoneRecipe() {
 
   return (
     <>
-      <div>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ handleBtn('') }
-        >
-          All
-        </button>
-      </div>
+      <CategoriesContainer>
+        <div className="bg-blur-categories" />
+        <CategoriesContainer.Wrapper>
+          <CategoryButton
+            type="button"
+            data-testid="filter-by-all-btn"
+            onClick={ handleBtn('') }
+            variant={ currBtn === '' ? 'accent' : 'secondary' }
+          >
+            All
+          </CategoryButton>
 
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ handleBtn('comida') }
-      >
-        Food
-      </button>
+          <CategoryButton
+            type="button"
+            data-testid="filter-by-food-btn"
+            onClick={ handleBtn('comida') }
+            variant={ currBtn === 'comida' ? 'accent' : 'secondary' }
+          >
+            Food
+          </CategoryButton>
 
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ handleBtn('bebida') }
-      >
-        Drink
-      </button>
-
-      { filteredRecipes.map((data, index) => (
-        <DoneRecipeCard data={ data } index={ index } key={ index } />
-      )) }
+          <CategoryButton
+            type="button"
+            data-testid="filter-by-drink-btn"
+            onClick={ handleBtn('bebida') }
+            variant={ currBtn === 'bebida' ? 'accent' : 'secondary' }
+          >
+            Drink
+          </CategoryButton>
+        </CategoriesContainer.Wrapper>
+      </CategoriesContainer>
+      <FavoriteRecipesContainer>
+        { filteredRecipes.map((data, index) => (
+          <DoneRecipeCard data={ data } index={ index } key={ index } />
+        )) }
+      </FavoriteRecipesContainer>
 
     </>
   );
