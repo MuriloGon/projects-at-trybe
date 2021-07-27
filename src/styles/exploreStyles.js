@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { background, primary1, secondary1 } from './theme';
+import { background, primary1 } from './theme';
 
 export const ExploreOptionsContainer = styled.div` /* ExploreOptionsContainer */
   display: grid;

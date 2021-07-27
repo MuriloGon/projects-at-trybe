@@ -9,7 +9,8 @@ import { ProfileContainer, ProfileTitle,
 import { GradientButton } from '../../../styles/genericComps';
 
 function Perfil() {
-  const { email } = getLocalStorage('user');
+  console.log('dentro de perfil', getLocalStorage('user'));
+  const email = getLocalStorage('user');
   const dispatch = useDispatch();
 
   useEffect(() => { dispatch(setCurrentNavigation('profile')); }, []);
@@ -23,7 +24,7 @@ function Perfil() {
         >
           User:
           {' '}
-          {email}
+          {email === null ? email : email.email}
         </ProfileTitle>
         <ProfileButtons>
           <Link to="/receitas-feitas">

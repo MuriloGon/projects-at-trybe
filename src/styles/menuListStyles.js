@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { primary1, primary2, headerHeight, categoryBarHeight } from './theme';
+import { primary1, primary2, categoryBarHeight } from './theme';
 
 export const CardContainer = styled.section`/* Card */
   background: white;

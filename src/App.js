@@ -6,7 +6,7 @@ import Login from './pages/Login';
 // import Auth from './Components/Auth';
 import loadReduxInitialState from './slices/loadReduxInitialState';
 import Application from './pages/Application';
-import useSetTitleWithRouteName from './hooks/useSetTitleWithRouteName';
+// import useSetTitleWithRouteName from './hooks/useSetTitleWithRouteName';
 // import { loginUser, logoutUser } from './slices/auth';
 import './App.css';
 
