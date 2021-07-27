@@ -132,7 +132,7 @@ Qualquer dúvida, procure a monitoria. Lembre-se que você pode consultar nosso 
 
   - Será um dia de projeto.
   
-  - Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+  - Data de entrega para avaliação final do projeto: `04/08/2021 - 14:00h`.
 
 ---
 
@@ -141,9 +141,9 @@ Qualquer dúvida, procure a monitoria. Lembre-se que você pode consultar nosso 
 ### ANTES DE COMEÇAR A DESENVOLVER:
 
 1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-0x-mysql-vocabulary-booster.git`
+  * `git clone https://github.com/tryber/sd-010-a-mysql-vocabulary-booster.git`
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-0x-mysql-vocabulary-booster`
+    * `cd sd-010-a-mysql-vocabulary-booster`
 
 2. Instale as dependências
   * `npm i` ou `npm install`
