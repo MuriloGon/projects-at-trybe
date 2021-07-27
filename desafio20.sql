@@ -8,8 +8,8 @@ BEGIN
   SET empid = (SELECT e.EMPLOYEE_ID FROM hr.employees e WHERE e.EMAIL=email);
   SELECT
     CONCAT(e.FIRST_NAME, ' ', e.LAST_NAME) "Nome completo",
-	d.DEPARTMENT_NAME "Departamento",
-	jbs.JOB_TITLE "Cargo"
+  d.DEPARTMENT_NAME "Departamento",
+  jbs.JOB_TITLE "Cargo"
   FROM hr.job_history jh
   INNER JOIN hr.employees e ON e.EMPLOYEE_ID = jh.EMPLOYEE_ID
   INNER JOIN hr.departments d ON d.DEPARTMENT_ID = jh.DEPARTMENT_ID
