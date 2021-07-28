@@ -8,13 +8,13 @@ BEGIN
   SELECT 
     jh.QTY
   FROM
-      hr.employees e
-          INNER JOIN
-      (SELECT 
-          EMPLOYEE_ID, COUNT(EMPLOYEE_ID) QTY
-      FROM
-          hr.job_history
-      GROUP BY EMPLOYEE_ID) jh ON jh.EMPLOYEE_ID = e.EMPLOYEE_ID
+    hr.employees e
+        INNER JOIN
+    (SELECT 
+        EMPLOYEE_ID, COUNT(EMPLOYEE_ID) QTY
+    FROM
+        hr.job_history
+    GROUP BY EMPLOYEE_ID) jh ON jh.EMPLOYEE_ID = e.EMPLOYEE_ID
   WHERE e.EMAIL = email
   INTO output;
   RETURN output;
