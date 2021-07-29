@@ -38,12 +38,12 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
     - [6 - Sua aplicação deve ter o endpoint GET `/categories`](#6---sua-aplicação-deve-ter-o-endpoint-get-categories)
     - [7 - Sua aplicação deve ter o endpoint POST `/post`](#7---sua-aplicação-deve-ter-o-endpoint-post-post)
     - [8 - Sua aplicação deve ter o endpoint GET `/post`](#8---sua-aplicação-deve-ter-o-endpoint-get-post)
-    - [9 - Sua aplicação deve ter o endpoint GET `post/:id`](#9---sua-aplicação-deve-ter-o-endpoint-get-postid)
+    - [9 - Sua aplicação deve ter o endpoint GET `/post/:id`](#9---sua-aplicação-deve-ter-o-endpoint-get-postid)
     - [10 - Sua aplicação deve ter o endpoint PUT `/post/:id`](#10---sua-aplicação-deve-ter-o-endpoint-put-postid)
     - [Requisitos Bônus](#requisitos-bônus)
-    - [11 - Sua aplicação deve ter o endpoint DELETE `post/:id`](#11---sua-aplicação-deve-ter-o-endpoint-delete-postid)
+    - [11 - Sua aplicação deve ter o endpoint DELETE `/post/:id`](#11---sua-aplicação-deve-ter-o-endpoint-delete-postid)
     - [12 - Sua aplicação deve ter o endpoint DELETE `/user/me`](#12---sua-aplicação-deve-ter-o-endpoint-delete-userme)
-    - [13 - Sua aplicação deve ter o endpoint GET `post/search?q=:searchTerm`](#13---sua-aplicação-deve-ter-o-endpoint-get-postsearchqsearchterm)
+    - [13 - Sua aplicação deve ter o endpoint GET `/post/search?q=searchTerm`](#13---sua-aplicação-deve-ter-o-endpoint-get-postsearchqsearchterm)
 - [Avisos Finais](#avisos-finais)
 
 # Habilidades 
