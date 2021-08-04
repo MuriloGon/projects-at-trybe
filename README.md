@@ -11,7 +11,9 @@ Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora
 Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir desse repositório, utilizando uma branch específica e um Pull Request para colocar seus códigos.
 
 ---
+# Normalização do banco de dados
 
+- [Resposta da Normalização do banco de dados](#resolucao)
 # SUMÁRIO
 
 - [Habilidades](#habilidades)
@@ -42,6 +44,11 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
 - [Avisos Finais](#avisos-finais)
 
 ---
+
+# Resolucao
+A seguir, o resultado da normalização do banco de dados do problema inicial apresentado. A normalização projetada de forma a respeitar as `Formas Normais` 1, 2 e 3.
+
+  ![Banco de dados normalizado](./images/normalization.png)
 
 # Habilidades
 Neste projeto, verificamos se voce é capaz de:
