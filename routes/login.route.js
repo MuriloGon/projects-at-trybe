@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const loginPost = require('../controllers/login.controller');
-const validateEmail = require('../middlewares/validateEmail');
-const validatePassword = require('../middlewares/validatePassword');
+const { validateEmail, validatePassword } = require('../middlewares/loginValidators');
 
 const route = Router();
 
