@@ -20,4 +20,10 @@ async function talkerGetById({ params: { id } }, res) {
   }
 }
 
-module.exports = { talkerGetAll, talkerGetById };
+async function talkerPost(req, res) {
+  const { name, age, talk } = req.body;
+  const newTalker = await Talker.addTalker(name, age, talk);
+  res.status(201).json(newTalker);
+}
+
+module.exports = { talkerGetAll, talkerGetById, talkerPost };
