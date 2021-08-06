@@ -1,5 +1,8 @@
 const { Router } = require('express');
+const { talkerGetAll } = require('../controllers/talker.controller');
 
-const router = Router();
+const route = Router();
 
-module.exports = router;
+route.get('/', talkerGetAll);
+
+module.exports = route;
