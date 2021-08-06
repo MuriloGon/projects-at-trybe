@@ -6,9 +6,13 @@ class Talker {
   }
 
   async getAllData() {
-    const rawData = await fs.readFile('./talker.json', { encoding: 'utf-8' }); 
-    const data = JSON.parse(rawData);
-    return data;
+    try {
+      const rawData = await fs.readFile('./talker.json', { encoding: 'utf-8' }); 
+      const data = JSON.parse(rawData);
+      return data;
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
