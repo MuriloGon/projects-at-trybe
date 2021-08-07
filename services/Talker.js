@@ -52,6 +52,13 @@ class Talker {
     await fs.writeFile('./talker.json', JSON.stringify(data), 'utf-8');
     return 1; 
   }
+
+  static async getByQuery(query) {
+    const data = await Talker.getAllData();
+    const reg = new RegExp(query, 'i');
+    const output = data.filter((item) => reg.test(item.name));
+    return output;
+  }
 }
 
 module.exports = Talker;

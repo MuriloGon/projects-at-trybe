@@ -47,10 +47,21 @@ async function talkerDeleteById(req, res) {
   res.status(200).json({ message: 'Pessoa palestrante deletada com sucesso' });
 }
 
+async function talkerQuerySeach(req, res) {
+  const { q } = req.query;
+  if (q === undefined) {
+    const data = Talker.getAllData();
+    return res.status(200).json(data);
+  }
+  const data = await Talker.getByQuery(q);
+  res.status(200).json(data);
+}
+
 module.exports = { 
   talkerGetAll, 
   talkerGetById,
   talkerPost,
   talkerPutById, 
   talkerDeleteById,
+  talkerQuerySeach,
 };
