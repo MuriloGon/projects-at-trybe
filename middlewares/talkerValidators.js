@@ -68,4 +68,7 @@ function talkValidation(req, res, next) {
   next();
 }
 
-module.exports = [tokenValidation, nameValidation, ageValidation, talkValidation];
+module.exports = {
+  tokenValidation,
+  talkerPostValidation: [nameValidation, ageValidation, talkValidation],
+};
