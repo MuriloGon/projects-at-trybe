@@ -26,4 +26,21 @@ async function talkerPost(req, res) {
   res.status(201).json(newTalker);
 }
 
-module.exports = { talkerGetAll, talkerGetById, talkerPost };
+async function talkerPutById(req, res) {
+  const { id } = req.params;
+  const { name, age, talk } = req.body;
+  const talker = new Talker(id);
+  const newTalker = await talker.replaceById(name, age, talk);
+  if (newTalker === null) {
+    const message = 'id não encontrado';
+    return res.status(404).json({ message });
+  }
+  res.status(200).json(newTalker);
+}
+
+module.exports = { 
+  talkerGetAll, 
+  talkerGetById,
+  talkerPost,
+  talkerPutById, 
+};

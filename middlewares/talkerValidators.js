@@ -1,6 +1,5 @@
 const tokenEval = (token) => {
   const validFormat = /[0-9]/.test(token) && /[a-zA-Z]/.test(token);
-  console.log(token.length);
   return !validFormat || token.length !== 16;
 };
 
@@ -47,16 +46,22 @@ function ageValidation(req, res, next) {
   next();
 }
 
-// eslint-disable-next-line complexity
+const talkExistence = (talk) => (talk === undefined 
+|| talk.watchedAt === undefined 
+|| talk.watchedAt === '' 
+|| talk.rate === undefined
+|| talk.rate === '');
+
+const dataFormating = (talk) => !(/^\d{2}\/\d{2}\/\d{4}$/.test(talk.watchedAt));
+
 function talkValidation(req, res, next) {
   const { talk } = req.body;
-  if (!talk || !talk.watchedAt || !talk.rate || talk.watchedAt === '' || talk.rate === '') {
+  if (talkExistence(talk)) {
     const message = 'O campo "talk" é obrigatório e "watchedAt" e "rate" não podem ser vazios';
     return res.status(400).json({ message });
   }
 
-  const dateFormat = /^\d{2}\/\d{2}\/\d{4}$/;
-  if (!dateFormat.test(talk.watchedAt)) {
+  if (dataFormating(talk)) {
     const message = 'O campo "watchedAt" deve ter o formato "dd/mm/aaaa"';
     return res.status(400).json({ message });
   }

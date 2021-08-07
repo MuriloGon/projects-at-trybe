@@ -30,6 +30,18 @@ class Talker {
     await fs.writeFile('./talker.json', stringData, 'utf-8');
     return out;
   }
+
+  async replaceById(name, age, talk) {
+    const { id } = this;
+    const data = await Talker.getAllData();
+    const indexTarget = data.findIndex((item) => Number(item.id) === Number(id));
+    if (indexTarget < 0) return null;
+    data[indexTarget].name = name;
+    data[indexTarget].age = age;
+    data[indexTarget].talk = talk;
+    await fs.writeFile('./talker.json', JSON.stringify(data), 'utf-8');
+    return data[indexTarget];
+  }
 }
 
 module.exports = Talker;
