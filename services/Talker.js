@@ -42,6 +42,16 @@ class Talker {
     await fs.writeFile('./talker.json', JSON.stringify(data), 'utf-8');
     return data[indexTarget];
   }
+
+  async deleteById() {
+    const { id } = this;
+    const data = await Talker.getAllData();
+    const indexTarget = data.findIndex((item) => Number(item.id) === Number(id));
+    if (indexTarget < 0) return -1;
+    delete data[indexTarget];
+    await fs.writeFile('./talker.json', JSON.stringify(data), 'utf-8');
+    return 1; 
+  }
 }
 
 module.exports = Talker;

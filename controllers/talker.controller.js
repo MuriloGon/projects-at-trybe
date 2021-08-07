@@ -38,9 +38,19 @@ async function talkerPutById(req, res) {
   res.status(200).json(newTalker);
 }
 
+async function talkerDeleteById(req, res) {
+  const { id } = req.params;
+  const talker = new Talker(id);
+  const code = await talker.deleteById();
+  console.log(code);
+  if (code < 0) return res.status(200).json({ message: 'Id não encontrado' });
+  res.status(200).json({ message: 'Pessoa palestrante deletada com sucesso' });
+}
+
 module.exports = { 
   talkerGetAll, 
   talkerGetById,
   talkerPost,
   talkerPutById, 
+  talkerDeleteById,
 };
