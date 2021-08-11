@@ -82,7 +82,7 @@ Nesse projeto você vai elaborar _queries_ em `mongo` para:
 
   - Projeto individual.
   - Será um dia de projeto.
-  - Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+  - Data de entrega para avaliação final do projeto: `18/08/2021 - 14:00h`.
 
 ---
 
