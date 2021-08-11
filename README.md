@@ -413,9 +413,9 @@ Se o usuário não tiver campo "email" o resultado retornado deverá ser conform
 ![Email obrigatório](./public/emailobrigatorio.png)
 (As contrabarras `\` estão escapando as aspas de dentro da string)
 
-**[Será validado que não é possível cadastrar usuário com o campo `password` menor que 6 caracteres]**
+**[Será validado que não é possível cadastrar usuário com o campo `password` diferente de 6 caracteres]**
 
-Se o usuário tiver o campo "password" menor que 6 caracteres o resultado retornado deverá ser conforme exibido abaixo, com um status http `400`:
+Se o usuário tiver o campo "password" menor ou maior que 6 caracteres o resultado retornado deverá ser conforme exibido abaixo, com um status http `400`:
 
 ![Senha menor que 6](./public/senhamenorque6.png)
 (As contrabarras `\` estão escapando as aspas de dentro da string)
