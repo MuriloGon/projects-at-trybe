@@ -29,10 +29,12 @@
     "faker": "^4.1.0",
     "frisby": "^2.1.2",
     "jest": "^26.4.1",
+    "joi": "^17.4.2",
     "mongodb": "^3.5.9",
     "nodemon": "^2.0.4"
   },
   "devDependencies": {
+    "@types/mongodb": "^3.6.20",
     "chai": "^4.3.4",
     "eslint": "^7.3.1",
     "eslint-config-airbnb": "^18.2.0",
