@@ -21,12 +21,12 @@ class ProductsModel {
     return {_id, name, quantity};
   }
 
-  async getProducts()  {
-    const db = await connection();
-    const products = await db.collection('products');
-    const data = await products.find({}).toArray();
-    return data;
-  }
+  // async getProducts()  {
+  //   const db = await connection();
+  //   const products = await db.collection('products');
+  //   const data = await products.find({}).toArray();
+  //   return data;
+  // }
 
 };
 

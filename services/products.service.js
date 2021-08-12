@@ -10,7 +10,6 @@ class Products {
     const isUniqueName = await this.model.isUniqueName(name);
     if(isUniqueName) {
       const data = await this.model.saveProduct(name, quantity);
-      console.log(data);
       return {status:201, data};
     } else {
       return apiError('Product already exists', error.invalidData);
