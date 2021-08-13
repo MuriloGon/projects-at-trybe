@@ -1,13 +1,7 @@
+/// <reference path="../utils/types.js" />
+
 const connection = require('./connection');
 const { ObjectID } = require('mongodb');
-
-/**
-   * Represent a product from the database
-   * @typedef  {Object} Product
-   * @property {string} _id - unique id from database for a given document
-   * @property {string} name - product name
-   * @property {number} quantity - product quantity
-   */
 
 class ProductsModel {
   constructor(MongoDBConnection = connection) {
@@ -24,7 +18,6 @@ class ProductsModel {
     if (qty === NOTHING) return true;
     return false;
   }
-
 
   /**
    * @param {string} name

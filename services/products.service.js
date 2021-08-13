@@ -1,19 +1,49 @@
+/// <reference path="../utils/types.js" />
 
 const ProductModel = require('../models/ProductsModel');
-const {apiError, error} = require('../utils/Errors');
+const { apiError, error } = require('../utils/Errors');
 
 class Products {
   constructor(Model = ProductModel) {
     this.model = new Model();
   }
+  /**
+   * Save a product in database
+   * @param {string} name
+   * @param {number} quantity
+   * @returns {Promise<ErrorObj> | Promise<OkObj>}
+   */
   async postProduct(name, quantity) {
     const isUniqueName = await this.model.isUniqueName(name);
-    if(isUniqueName) {
+    if (isUniqueName) {
       const data = await this.model.saveProduct(name, quantity);
-      return {status:201, data};
+      return { status: 201, data };
     } else {
       return apiError('Product already exists', error.invalidData);
     }
+  }
+
+  /**
+   * Get a product looking for and id match
+   * @param {string} id
+   * @returns {Promise<ErrorObj> | Promise<OkObj>}
+   */
+  async getProductById(id) {
+    let data;
+    try { data = await this.model.getProductById(id); }
+    catch (err) {
+      return apiError('Wrong id format', error.invalidData);
+    }
+    return { status: 200, data };
+  }
+
+  /**
+   * Get all
+   * @returns {Promise<OkObj>}
+   */
+  async getAllProducts() {
+    const data = await this.model.getProducts();
+    return { status: 200, data };
   }
 }
 

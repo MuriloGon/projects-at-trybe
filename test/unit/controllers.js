@@ -29,7 +29,7 @@ afterEach(() => {
   sinon.reset();
 })
 
-describe('Requirement 01 - Controller - ', async () => {
+describe('Requirement 01 - Controller - Post product', async () => {
   it('returns the registered product and the code 201', async () => {
     sinon.stub(ProductsService.prototype, 'postProduct').resolves(successfullResponse);
     const res = mockResponse();
