@@ -1,12 +1,21 @@
 const connection = require('./connection');
 const { ObjectID } = require('mongodb');
 
+/**
+   * Represent a product from the database
+   * @typedef  {Object} Product
+   * @property {string} _id - unique id from database for a given document
+   * @property {string} name - product name
+   * @property {number} quantity - product quantity
+   */
+
 class ProductsModel {
   constructor(MongoDBConnection = connection) {
     this.conn = MongoDBConnection;
     this.collectionName = 'products';
   }
 
+  /** @param {string} name */
   async isUniqueName(name) {
     const db = await this.conn();
     const products = await db.collection(this.collectionName);
@@ -16,13 +25,23 @@ class ProductsModel {
     return false;
   }
 
+
+  /**
+   * @param {string} name
+   * @param {number} quantity
+   * @return {Promise<Product>}
+   */
   async saveProduct(name, quantity) {
     const db = await this.conn();
     const products = await db.collection(this.collectionName);
-    const { insertedId: _id } = await products.insertOne({ name, quantity });
+    let { insertedId: _id } = await products.insertOne({ name, quantity });
+    _id = _id.toString();
     return { _id, name, quantity };
   }
 
+  /**
+   * @return {Promise<Product[]>}
+   */
   async getProducts() {
     const db = await this.conn();
     const products = await db.collection(this.collectionName);
@@ -30,6 +49,10 @@ class ProductsModel {
     return data;
   }
 
+  /**
+   * @param {string} _id - an id for a product document
+   * @returns {Promise<null> | Promise<Product>} resolved value
+   */
   async getProductById(_id) {
     const db = await this.conn();
     const products = await db.collection(this.collectionName);
