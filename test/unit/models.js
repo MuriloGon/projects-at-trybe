@@ -78,4 +78,11 @@ describe('Requirement 02 - Model - accessing products', () => {
     expect(product.quantity).to.be.eql(1);
   })
 
+  it('return null if the product doesn\'t exist', async () => {
+    const model = new ProductsModel(connection);
+    const id = 'abcd1234abcd'
+    const product = await model.getProductById(id);
+    expect(product).to.be.null;
+  })
+
 })
