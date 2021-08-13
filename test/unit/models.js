@@ -71,7 +71,7 @@ describe('Requirement 02 - Model - accessing products', () => {
     const db = await connection();
     const {ops: dataInserted} = await db.collection('products').insertMany(mockData);
     const [item] = dataInserted;
-    const {_id} = item;
+    const _id = item._id.toString();
 
     const product = await model.getProductById(_id);
     expect(product.name).to.be.eql('name1');
