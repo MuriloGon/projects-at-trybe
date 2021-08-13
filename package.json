@@ -41,6 +41,7 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-sonarjs": "^0.5.0",
     "mocha": "^8.4.0",
+    "mongodb-memory-server": "^7.3.6",
     "nyc": "^15.1.0",
     "sinon": "^11.1.1"
   }
