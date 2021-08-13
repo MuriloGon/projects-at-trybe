@@ -1,7 +1,8 @@
 const { MongoClient } = require('mongodb')
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const ProductsModel = require('../../models/ProductsModel');
 const { expect } = require('chai');
+const ProductsModel = require('../../models/ProductsModel');
+const defaultConn = require('../../models/connection');
 
 let db = null;
 let mongod = null;
@@ -13,6 +14,14 @@ async function connection() {
   db = conn.db('testdb');
   return db;
 }
+
+describe('Main Db - Default connection', () => {
+  it('the connect goes correctly', async () => {
+    const conn = await defaultConn();
+    const receivedDbName = conn.databaseName;
+    expect(receivedDbName).to.be.eq('StoreManager');
+  });
+})
 
 describe('Requirement 01 - Model - registering a new product', async () => {
   before(async () => { mongod = await MongoMemoryServer.create(); });
@@ -69,7 +78,7 @@ describe('Requirement 02 - Model - accessing products', () => {
       { name: 'name3', quantity: 3 }
     ]
     const db = await connection();
-    const {ops: dataInserted} = await db.collection('products').insertMany(mockData);
+    const { ops: dataInserted } = await db.collection('products').insertMany(mockData);
     const [item] = dataInserted;
     const _id = item._id.toString();
 
