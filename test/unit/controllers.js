@@ -83,3 +83,34 @@ describe('Requirement 02 - Controller - get all products / get by id', async () 
     expect(res.status.args[0][0]).to.be.eqls(422);
   });
 })
+
+describe('Requirement 03 - Controller - get all products / get by id', async () => {
+  const mockedData = {
+    _id: 'validId',
+    name: 'newValue',
+    quantity: 999
+  };
+  const successfullUpdate = { status: 200, data: mockedData };
+  const unsuccUpdate = {
+    status: 422,
+    err: { code: 'invalid_data', message: 'Wrong id format' }
+  };
+
+  it('updates product by id status 200 and returns de product updated', async () => {
+    sinon.stub(ProductsService.prototype, 'getProductById').resolves(successfullUpdate);
+    const res = mockResponse();
+    const req = { params: { id: mockedData._id }, body: { ...mockedData } };
+    await ProductsController.putProduct(req, res);
+    expect(res.status.calledOnceWith(200)).to.be.true;
+    expect(res.json.calledOnceWith(successfullUpdate)).to.be.true;
+  });
+
+  it('must not update and return status 422 and return error obj', async () => {
+    sinon.stub(ProductsService.prototype, 'getProductById').resolves(unsuccUpdate);
+    const res = mockResponse();
+    const req = { params: { id: 'invalidId' }, body: { ...mockedData } };
+    await ProductsController.putProduct(req, res);
+    expect(res.status.calledOnceWith(422)).to.be.true;
+    expect(res.json.calledOnceWith(unsuccUpdate)).to.be.true;
+  });
+});

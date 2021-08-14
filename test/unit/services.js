@@ -90,7 +90,7 @@ describe('Requirement 02 - Service - return products', () => {
   });
 })
 
-describe('Requirement 02 - Service - update product', () => {
+describe('Requirement 03 - Service - update product', () => {
   it('return the product updated in obj format { status, data }', async () => {
     const mockData = { _id: '61173f34fbefd461ca00c788', name: 'murilo', quantity: 10 };
     const expected = { status: 200, data: mockData };
