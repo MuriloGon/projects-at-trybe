@@ -92,6 +92,24 @@ describe('Requirement 02 - Model - accessing products', () => {
     const id = 'abcd1234abcd'
     const product = await model.getProductById(id);
     expect(product).to.be.null;
-  })
+  });
+})
 
+describe.only('Requirement 03 - Model - update product', () => {
+  before(async () => { mongod = await MongoMemoryServer.create(); });
+  after(async () => { await mongod.stop(); });
+
+  it('update product (name and quantity) and returns the updated document', async () => {
+    const model = new ProductsModel(connection);
+    const savedProductData = { name: 'murilo', quantity: 50 }
+
+    const updateMockData = { name: 'updatedName', quantity: 666 };
+
+    const savedProduct = await model.saveProduct(savedProductData.name, savedProductData.quantity);
+    const updatedProduct = await model.updateProductById(updateData.name, updateData.quantity);
+
+    expect(updatedProduct.name).to.be.eql(updateMockData.name);
+    expect(updatedProduct.quantity).to.be.eql(updateMockData.quantity);
+    expect(updatedProduct._id).to.be.eql(savedProduct._id);
+  })
 })
