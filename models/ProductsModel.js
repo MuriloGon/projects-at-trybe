@@ -9,7 +9,11 @@ class ProductsModel {
     this.collectionName = 'products';
   }
 
-  /** @param {string} name */
+  /**
+   * verify the product's name uniqueness
+   * @param {string} name
+   * @return {boolean} true -> is unique, false -> is not unique
+  */
   async isUniqueName(name) {
     const db = await this.conn();
     const products = await db.collection(this.collectionName);
@@ -20,6 +24,7 @@ class ProductsModel {
   }
 
   /**
+   * Save a new product
    * @param {string} name
    * @param {number} quantity
    * @return {Promise<Product>}
@@ -33,6 +38,7 @@ class ProductsModel {
   }
 
   /**
+   * Get all products
    * @return {Promise<Product[]>}
    */
   async getProducts() {
@@ -43,6 +49,7 @@ class ProductsModel {
   }
 
   /**
+   * Get a product by document _id
    * @param {string} _id - an id for a product document
    * @returns {Promise<null> | Promise<Product>} resolved value
    */
@@ -69,7 +76,6 @@ class ProductsModel {
     );
 
     if (!modifiedCount) return null;
-
     return { _id, name, quantity };
   }
 
