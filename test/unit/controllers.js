@@ -116,3 +116,35 @@ describe('Requirement 03 - Controller - get all products / get by id', async () 
     sinon.assert.calledOnceWithExactly(res.json, expectedErrObj);
   });
 });
+
+describe('Requirement 04 - Controller - delete product by id', async () => {
+  const mockedData = {
+    _id: 'validId',
+    name: 'deletedValue',
+    quantity: 333
+  };
+  const successfullDelete = { status: 200, data: mockedData };
+  const unsuccDelete = {
+    status: 422,
+    err: { code: 'invalid_data', message: 'Wrong id format' }
+  };
+
+  it('must return status 200 and the deleted document', () => {
+    sinon.stub(ProductsService.prototype, 'deleteProduct').resolves(successfullDelete);
+    const res = mockResponse();
+    const req = { params: { id: mockedData._id } };
+    await ProductsController.deleteProduct(req, res);
+    sinon.assert.calledOnceWithExactly(res.status, 200);
+    sinon.assert.calledOnceWithExactly(res.json, successfullDelete.data);
+  });
+
+  it('must return status 422 and the ErrorObj when cannot delete', () => {
+    sinon.stub(ProductsService.prototype, 'deleteProduct').resolves(unsuccDelete);
+    const res = mockResponse();
+    const req = { params: { id: mockedData._id } };
+    await ProductsController.deleteProduct(req, res);
+    sinon.assert.calledOnceWithExactly(res.status, 422);
+    const err = unsuccDelete.err;
+    sinon.assert.calledOnceWithExactly(res.json, { err });
+  });
+});
