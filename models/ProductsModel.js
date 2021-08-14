@@ -1,7 +1,7 @@
 /// <reference path="../utils/types.js" />
 
 const connection = require('./connection');
-const { ObjectID } = require('mongodb');
+const { ObjectID, ObjectId } = require('mongodb');
 
 class ProductsModel {
   constructor(MongoDBConnection = connection) {
@@ -51,6 +51,19 @@ class ProductsModel {
     const products = await db.collection(this.collectionName);
     const data = await products.findOne({ _id: ObjectID(_id) });
     return data;
+  }
+
+  async updateProductById(_id, name, quantity) {
+    const db = await this.conn();
+    const products = await db.collection(this.collectionName);
+    const updateOperation = { $set: { name, quantity } };
+    const { modifiedCount } = await products.updateOne(
+      { _id: ObjectId(_id) }, updateOperation
+    );
+
+    if (!modifiedCount) return {};
+
+    return { _id, name, quantity };
   }
 };
 

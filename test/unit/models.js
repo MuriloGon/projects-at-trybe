@@ -95,7 +95,7 @@ describe('Requirement 02 - Model - accessing products', () => {
   });
 })
 
-describe.only('Requirement 03 - Model - update product', () => {
+describe('Requirement 03 - Model - update product', () => {
   before(async () => { mongod = await MongoMemoryServer.create(); });
   after(async () => { await mongod.stop(); });
 
@@ -106,7 +106,11 @@ describe.only('Requirement 03 - Model - update product', () => {
     const updateMockData = { name: 'updatedName', quantity: 666 };
 
     const savedProduct = await model.saveProduct(savedProductData.name, savedProductData.quantity);
-    const updatedProduct = await model.updateProductById(updateData.name, updateData.quantity);
+    const updatedProduct = await model.updateProductById(
+      savedProduct._id,
+      updateMockData.name,
+      updateMockData.quantity
+    );
 
     expect(updatedProduct.name).to.be.eql(updateMockData.name);
     expect(updatedProduct.quantity).to.be.eql(updateMockData.quantity);
