@@ -133,3 +133,34 @@ describe('Requirement 03 - Model - update product', () => {
     expect(updatedProduct).to.be.null;
   })
 })
+
+descrive('Requirement 04 - Model - delete product', () => {
+  before(async () => { mongod = await MongoMemoryServer.create(); });
+  after(async () => { await mongod.stop(); });
+  it('delete product by id and return the object deleted', () => {
+    const model = new ProductsModel(connection);
+    const savedMockData = { name: 'murilo', quantity: 50 }
+
+    const savedProduct = await model.saveProduct(savedMockData.name, savedMockData.quantity);
+
+    const deletedProduct = await model.deleteProduct(productSaved['_id']);
+
+    expect(deletedProduct).to.be.eql(savedProduct);
+    expect(deletedProduct.name).to.be.eql(savedMockData.name);
+    expect(deletedProduct.quantity).to.be.eql(savedMockData.quantity);
+  });
+
+  it('returns null if the id is invalid', async () => {
+    const model = new ProductsModel(connection);
+    const invalidID = 'helloworld';
+    const deletedProduct = await model.deleteProduct(invalidID);
+    expect(deletedProduct).to.be.null;
+  });
+
+  it('returns null if the id not exist', async () => {
+    const model = new ProductsModel(connection);
+    const validId = '1234abcd1234';
+    const deletedProduct = await model.deleteProduct(validId);
+    expect(deletedProduct).to.be.null;
+  });
+});
