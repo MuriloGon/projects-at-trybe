@@ -108,11 +108,13 @@ describe('Requirement 03 - Service - update product', () => {
 
   it('return the err obj format { status, err } when de id is invalid', async () => {
     const mockData = { _id: '61173f34fbefd461ca00c788', name: 'murilo', quantity: 10 };
-    const expected = { status: 422, err: {
-      code: 'invalid_data',
-      message: 'Wrong id format',
-      data: undefined
-    } };
+    const expected = {
+      status: 422, err: {
+        code: 'invalid_data',
+        message: 'Wrong id format',
+        data: undefined
+      }
+    };
     sinon.stub(ProductsModel.prototype, 'updateProductById').resolves(null);
     const service = new ProductsService();
 
@@ -124,4 +126,33 @@ describe('Requirement 03 - Service - update product', () => {
     expect(status).to.be.eql(expected.status);
     expect(data).to.be.eql(expected.data);
   });
+});
+
+
+describe('Requirement 04 - Service - delete product', () => {
+  it('must return the OkObj with with status 200 and the deleted data', async () => {
+    const mockData = { _id: '61173f34fbefd461ca00c788', name: 'murilo', quantity: 10 };
+    const expected = { status: 200, data: mockData };
+    sinon.stub(ProductsModel.prototype, 'deleteProduct').resolves(mockData);
+    const service = new ProductsService();
+    const { status, data } = await service.deleteProduct(mockData._id);
+    expect(status).to.be.eql(expected.status);
+    expect(data).to.be.eql(expected.data);
+  })
+
+  it('must return the ErrorObj', async () => {
+    const expected = {
+      status: 422, err: {
+        code: 'invalid_data',
+        message: 'Wrong id format',
+        data: undefined
+      }
+    };
+    sinon.stub(ProductsModel.prototype, 'deleteProduct').resolves(null);
+    const invalidId = 'invalid:)'
+    const service = new ProductsService();
+    const { status, err } = await service.deleteProduct(invalidId);
+    expect(status).to.be.eql(expected.status);
+    expect(err).to.be.eql(expected.err);
+  })
 });

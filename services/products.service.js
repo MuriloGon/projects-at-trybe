@@ -59,6 +59,12 @@ class Products {
     if (!servRes) return apiError('Wrong id format', error.invalidData);
     return { status: 200, data: servRes };
   }
+
+  async deleteProduct(id) {
+    const servRes = await this.model.deleteProduct(id);
+    if (!servRes) return apiError('Wrong id format', error.invalidData);
+    return { status: 200, data: servRes };
+  }
 }
 
 module.exports = Products;
