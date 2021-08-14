@@ -34,6 +34,7 @@ class Products {
     catch (err) {
       return apiError('Wrong id format', error.invalidData);
     }
+    if (data === null) return apiError('Wrong id format', error.invalidData);
     return { status: 200, data };
   }
 

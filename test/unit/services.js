@@ -63,20 +63,20 @@ describe('Requirement 02 - Service - return products', () => {
     expect(serviceResponse).to.be.eql(expected);
   });
 
-  // it('return object response {status, err} obj, if there\'s not a match for _id', async () => {
-  //   const id = '6116822a9a095071f982d4c2';
-  //   sinon.stub(ProductsModel.prototype, 'getProductById').resolves(null);
-  //   const expected = {
-  //     status: 422, err: {
-  //       code: "invalid_data",
-  //       message: "Wrong id format",
-  //       data: undefined
-  //     }
-  //   };
-  //   const service = new ProductsService();
-  //   const serviceResponse = await service.getProductById(id);
-  //   expect(serviceResponse).to.be.eql(expected);
-  // });
+  it('return object response {status, err} obj, if there\'s not a match for _id', async () => {
+    const id = '6116822a9a095071f982d4c2';
+    sinon.stub(ProductsModel.prototype, 'getProductById').resolves(null);
+    const expected = {
+      status: 422, err: {
+        code: "invalid_data",
+        message: "Wrong id format",
+        data: undefined
+      }
+    };
+    const service = new ProductsService();
+    const serviceResponse = await service.getProductById(id);
+    expect(serviceResponse).to.be.eql(expected);
+  });
 
   it('return object response {status, err} obj, if _id is not valid', async () => {
     const id = 'invalidId';

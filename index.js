@@ -1,6 +1,6 @@
 const express = require('express');
 const productsMiddlewares = require('./middlewares/products.middleware');
-const productsControllers = require('./controllers/products.controller');
+const productsControllers = require('./controllers/productsController');
 
 const app = express();
 app.use(express.json());
@@ -10,11 +10,23 @@ app.get('/', async (_request, response) => {
   response.send();
 });
 
+app.get(
+  '/products/',
+  productsControllers.getAllProducts
+);
+
+app.get(
+  '/products/:id',
+  productsMiddlewares.validateGetProductParams,
+  productsControllers.getProductById
+);
+
 app.post(
   '/products',
   productsMiddlewares.validatePostProduct,
   productsControllers.postProduct
 );
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
