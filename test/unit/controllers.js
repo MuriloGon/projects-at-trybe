@@ -97,20 +97,22 @@ describe('Requirement 03 - Controller - get all products / get by id', async () 
   };
 
   it('updates product by id status 200 and returns de product updated', async () => {
-    sinon.stub(ProductsService.prototype, 'getProductById').resolves(successfullUpdate);
+    sinon.stub(ProductsService.prototype, 'updateProductById').resolves(successfullUpdate);
     const res = mockResponse();
     const req = { params: { id: mockedData._id }, body: { ...mockedData } };
     await ProductsController.putProduct(req, res);
-    expect(res.status.calledOnceWith(200)).to.be.true;
-    expect(res.json.calledOnceWith(successfullUpdate)).to.be.true;
+    sinon.assert.calledOnceWithExactly(res.status, 200);
+    sinon.assert.calledOnceWithExactly(res.json, successfullUpdate.data);
   });
 
   it('must not update and return status 422 and return error obj', async () => {
-    sinon.stub(ProductsService.prototype, 'getProductById').resolves(unsuccUpdate);
+    sinon.stub(ProductsService.prototype, 'updateProductById').resolves(unsuccUpdate);
     const res = mockResponse();
     const req = { params: { id: 'invalidId' }, body: { ...mockedData } };
+    const expectedErrObj = { err: unsuccUpdate.err };
+
     await ProductsController.putProduct(req, res);
-    expect(res.status.calledOnceWith(422)).to.be.true;
-    expect(res.json.calledOnceWith(unsuccUpdate)).to.be.true;
+    sinon.assert.calledOnceWithExactly(res.status, 422);
+    sinon.assert.calledOnceWithExactly(res.json, expectedErrObj);
   });
 });
