@@ -116,4 +116,20 @@ describe('Requirement 03 - Model - update product', () => {
     expect(updatedProduct.quantity).to.be.eql(updateMockData.quantity);
     expect(updatedProduct._id).to.be.eql(savedProduct._id);
   })
+
+  it('return null when any document was updated', async () => {
+    const model = new ProductsModel(connection);
+    const savedProductData = { name: 'murilo', quantity: 50 }
+
+    const updateMockData = { name: 'updatedName', quantity: 666 };
+
+    const savedProduct = await model.saveProduct(savedProductData.name, savedProductData.quantity);
+    const updatedProduct = await model.updateProductById(
+      666,
+      updateMockData.name,
+      updateMockData.quantity
+    );
+
+    expect(updatedProduct).to.be.null;
+  })
 })

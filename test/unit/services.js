@@ -89,3 +89,39 @@ describe('Requirement 02 - Service - return products', () => {
     expect(serviceResponse).to.be.eql(expected);
   });
 })
+
+describe('Requirement 02 - Service - update product', () => {
+  it('return the product updated in obj format { status, data }', async () => {
+    const mockData = { _id: '61173f34fbefd461ca00c788', name: 'murilo', quantity: 10 };
+    const expected = { status: 200, data: mockData };
+    sinon.stub(ProductsModel.prototype, 'updateProductById').resolves(mockData);
+    const service = new ProductsService();
+
+    const { status, data } = await service.updateProductById(
+      mockData._id,
+      mockData.name,
+      mockData.quantity
+    );
+    expect(status).to.be.eql(expected.status);
+    expect(data).to.be.eql(expected.data);
+  });
+
+  it('return the err obj format { status, err } when de id is invalid', async () => {
+    const mockData = { _id: '61173f34fbefd461ca00c788', name: 'murilo', quantity: 10 };
+    const expected = { status: 422, err: {
+      code: 'invalid_data',
+      message: 'Wrong id format',
+      data: undefined
+    } };
+    sinon.stub(ProductsModel.prototype, 'updateProductById').resolves(null);
+    const service = new ProductsService();
+
+    const { status, data } = await service.updateProductById(
+      mockData._id,
+      mockData.name,
+      mockData.quantity
+    );
+    expect(status).to.be.eql(expected.status);
+    expect(data).to.be.eql(expected.data);
+  });
+});

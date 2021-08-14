@@ -19,14 +19,14 @@
  */
 
 /**
- * An object returned when the post was successfull
+ * An object returned when the action was successfull
  * @typedef {Object} OkObj
  * @property {number} status
  * @property {Array<Product>} data
  */
 
 /**
- * An object returned when the post was successfull
+ * An object returned when the action was unsuccessfull
  * @typedef {Object} ErrorObj
  * @property {number} status
  * @property {ApiError} err

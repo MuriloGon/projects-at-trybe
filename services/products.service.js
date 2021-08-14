@@ -46,6 +46,19 @@ class Products {
     const data = await this.model.getProducts();
     return { status: 200, data };
   }
+
+  /**
+   * Update product using by the product ID
+   * @param {string} id
+   * @param {string} name
+   * @param {number} quantity
+   * @returns {Promise<ErrorObj> | Promise<OkObj>}
+   */
+  async updateProductById(id, name, quantity) {
+    const servRes = await this.model.updateProductById(id, name, quantity);
+    if (!servRes) return apiError('Wrong id format', error.invalidData);
+    return { status: 200, data: servRes };
+  }
 }
 
 module.exports = Products;

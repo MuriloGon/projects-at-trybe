@@ -53,6 +53,13 @@ class ProductsModel {
     return data;
   }
 
+  /**
+   * update product by its id
+   * @param {string} _id - mongodb_id (string 24hex characters)
+   * @param {string} name - new name
+   * @param {number} quantity - new quanqity
+   * @returns {Promise<Product> | Promise<null>} may return null or the product updated
+   */
   async updateProductById(_id, name, quantity) {
     const db = await this.conn();
     const products = await db.collection(this.collectionName);
@@ -61,7 +68,7 @@ class ProductsModel {
       { _id: ObjectId(_id) }, updateOperation
     );
 
-    if (!modifiedCount) return {};
+    if (!modifiedCount) return null;
 
     return { _id, name, quantity };
   }
