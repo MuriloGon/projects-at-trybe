@@ -1,7 +1,7 @@
 /// <reference path="../utils/types.js" />
 
 const connection = require('./connection');
-const { ObjectID, ObjectId } = require('mongodb');
+const { ObjectId } = require('mongodb');
 
 class ProductsModel {
   constructor(MongoDBConnection = connection) {
@@ -49,7 +49,7 @@ class ProductsModel {
   async getProductById(_id) {
     const db = await this.conn();
     const products = await db.collection(this.collectionName);
-    const data = await products.findOne({ _id: ObjectID(_id) });
+    const data = await products.findOne({ _id: ObjectId(_id) });
     return data;
   }
 
@@ -71,6 +71,23 @@ class ProductsModel {
     if (!modifiedCount) return null;
 
     return { _id, name, quantity };
+  }
+
+  /**
+   * Delete a product by the product id
+   * @param {string} id - Product id
+   * @return {Promise<Product> | Promise<null>}
+   */
+  async deleteProduct(id) {
+    if (!ObjectId.isValid(id)) return null;
+    const productById = await this.getProductById(id);
+    if (!productById) return null;
+
+    const db = await this.conn();
+    const products = await db.collection(this.collectionName);
+    const { deletedCount } = await products.deleteOne({ _id: ObjectId(id) });
+    if (!deletedCount) return null;
+    return { ...productById, _id: id };
   }
 };
 

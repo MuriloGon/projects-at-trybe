@@ -134,17 +134,14 @@ describe('Requirement 03 - Model - update product', () => {
   })
 })
 
-descrive('Requirement 04 - Model - delete product', () => {
+describe('Requirement 04 - Model - delete product', () => {
   before(async () => { mongod = await MongoMemoryServer.create(); });
   after(async () => { await mongod.stop(); });
-  it('delete product by id and return the object deleted', () => {
+  it('delete product by id and return the object deleted', async () => {
     const model = new ProductsModel(connection);
     const savedMockData = { name: 'murilo', quantity: 50 }
-
     const savedProduct = await model.saveProduct(savedMockData.name, savedMockData.quantity);
-
-    const deletedProduct = await model.deleteProduct(productSaved['_id']);
-
+    const deletedProduct = await model.deleteProduct(savedProduct['_id']);
     expect(deletedProduct).to.be.eql(savedProduct);
     expect(deletedProduct.name).to.be.eql(savedMockData.name);
     expect(deletedProduct.quantity).to.be.eql(savedMockData.quantity);
