@@ -27,6 +27,10 @@ app.post(
   productsControllers.postProduct
 );
 
+app.put('/products/:id',
+  productsMiddlewares.validateNameAndQtyBody,
+  productsControllers.putProduct
+);
 
 const PORT = 3000;
 app.listen(PORT, () => {
