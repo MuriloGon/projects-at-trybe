@@ -61,9 +61,9 @@ class Products {
   }
 
   async deleteProduct(id) {
-    const servRes = await this.model.deleteProduct(id);
-    if (!servRes) return apiError('Wrong id format', error.invalidData);
-    return { status: 200, data: servRes };
+    const deleteRes = await this.model.deleteProduct(id);
+    if (!deleteRes) return apiError('Wrong id format', error.invalidData);
+    return { status: 200, data: deleteRes };
   }
 }
 
