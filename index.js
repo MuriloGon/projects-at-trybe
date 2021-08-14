@@ -32,6 +32,11 @@ app.put('/products/:id',
   productsControllers.putProduct
 );
 
+app.delete('/products/:id',
+  productsMiddlewares.validateIdRouteParam,
+  productsControllers.deleteProduct
+);
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Listening Port: ${PORT}`);
