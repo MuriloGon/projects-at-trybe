@@ -37,9 +37,18 @@ async function putProduct(req, res) {
   return res.status(status).json(data);
 }
 
+async function deleteProduct(req, res) {
+  const { id } = req.params;
+  const productsService = new ProductsService();
+  const { status, err, data } = await productsService.deleteProduct(id);
+  if (err) return res.status(status).json({ err });
+  return res.status(status).json(data);
+}
+
 module.exports = {
   postProduct,
   getAllProducts,
   getProductById,
-  putProduct
+  putProduct,
+  deleteProduct
 };

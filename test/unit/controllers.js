@@ -129,7 +129,7 @@ describe('Requirement 04 - Controller - delete product by id', async () => {
     err: { code: 'invalid_data', message: 'Wrong id format' }
   };
 
-  it('must return status 200 and the deleted document', () => {
+  it('must return status 200 and the deleted document', async () => {
     sinon.stub(ProductsService.prototype, 'deleteProduct').resolves(successfullDelete);
     const res = mockResponse();
     const req = { params: { id: mockedData._id } };
@@ -138,7 +138,7 @@ describe('Requirement 04 - Controller - delete product by id', async () => {
     sinon.assert.calledOnceWithExactly(res.json, successfullDelete.data);
   });
 
-  it('must return status 422 and the ErrorObj when cannot delete', () => {
+  it('must return status 422 and the ErrorObj when cannot delete', async () => {
     sinon.stub(ProductsService.prototype, 'deleteProduct').resolves(unsuccDelete);
     const res = mockResponse();
     const req = { params: { id: mockedData._id } };
