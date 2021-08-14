@@ -26,6 +26,7 @@ describe('11 - Escreva testes para seus models', () => {
 
   it('Será validado que cobertura total das linhas dos arquivos na pasta `models` é maior ou igual a 80%', async () => {
     const coverageResults = await readCoverageFile();
+    console.log(`Req11 - models - ${coverageResults.total.lines.pct}%`)
     expect(coverageResults.total.lines.pct).toBeGreaterThanOrEqual(80);
   });
 });
@@ -41,6 +42,7 @@ describe('12 - Escreva testes para seus services', () => {
 
   it('Será validado que cobertura total das linhas dos arquivos na pasta `services` é maior ou igual a 80%', async () => {
     const coverageResults = await readCoverageFile();
+    console.log(`Req12 - services - ${coverageResults.total.lines.pct}%`)
     expect(coverageResults.total.lines.pct).toBeGreaterThanOrEqual(80);
   });
 });
@@ -56,6 +58,7 @@ describe('13 - Escreva testes para seus controllers', () => {
 
   it('Será validado que cobertura total das linhas dos arquivos na pasta `controllers` é maior ou igual a 80%', async () => {
     const coverageResults = await readCoverageFile();
+    console.log(`Req13 - controllers - ${coverageResults.total.lines.pct}%`)
     expect(coverageResults.total.lines.pct).toBeGreaterThanOrEqual(80);
   });
 });
