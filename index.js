@@ -17,13 +17,13 @@ app.get(
 
 app.get(
   '/products/:id',
-  productsMiddlewares.validateGetProductParams,
+  productsMiddlewares.validateIdRouteParam,
   productsControllers.getProductById
 );
 
 app.post(
   '/products',
-  productsMiddlewares.validatePostProduct,
+  productsMiddlewares.validateNameAndQtyBody,
   productsControllers.postProduct
 );
 

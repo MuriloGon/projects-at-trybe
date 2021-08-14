@@ -2,7 +2,7 @@ const { error, apiError } = require('../utils/Errors');
 const { validateNameQuantity } = require('../schemas/products.schema');
 const { ObjectId } = require('mongodb');
 
-function validatePostProduct(req, res, next) {
+function validateNameAndQtyBody(req, res, next) {
   const { name, quantity } = req.body;
   const { message } = validateNameQuantity(name, quantity);
   if (message) {
@@ -12,7 +12,7 @@ function validatePostProduct(req, res, next) {
   next();
 }
 
-function validateGetProductParams(req, res, next) {
+function validateIdRouteParam(req, res, next) {
   const { id } = req.params;
   const validateId = ObjectId.isValid(id);
   if (!validateId) {
@@ -23,6 +23,6 @@ function validateGetProductParams(req, res, next) {
 }
 
 module.exports = {
-  validatePostProduct,
-  validateGetProductParams
+  validateNameAndQtyBody,
+  validateIdRouteParam
 };
