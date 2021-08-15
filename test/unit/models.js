@@ -195,7 +195,7 @@ describe('Requirement 05 - Model - register sales', () => {
   });
 })
 
-describe.only('Requirement 06 - Model - get all', () => {
+describe('Requirement 06 - Model - get all', () => {
   before(async () => { mongod = await MongoMemoryServer.create(); });
   after(async () => { await mongod.stop(); });
   it('get all products sales', async () => {

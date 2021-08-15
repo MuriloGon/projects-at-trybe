@@ -175,3 +175,43 @@ describe('Requirement 05 - Service - register sale product(s)', () => {
     expect(data).to.be.eql(expected.data);
   });
 });
+
+describe('Requirement 06 - Service - get products (all | by id)', () => {
+  it('must return the OkObj with with status 200 and all fetched sales data', async () => {
+    const mockData = [
+      { _id: 'validId', itensSold: [{ productId: 'id1', quantity: 1 }] },
+      { _id: 'validId2', itensSold: [{ productId: 'id2', quantity: 2 }] }
+    ];
+    const expected = { status: 200, data: { sales: mockData } };
+    sinon.stub(SalesModel.prototype, 'getAllSales').resolves(mockData);
+    const service = new SalesService();
+    const { status, data } = await service.getAllSales();
+    expect(status).to.be.eql(expected.status);
+    expect(data).to.be.eql(expected.data);
+  });
+
+  it('must return the OkObj with with status 200 and the sale sale fetched by id', async () => {
+    const mockData = { _id: 'validId', itensSold: [{ productId: 'id1', quantity: 1 }] };
+    const expected = { status: 200, data: mockData };
+    sinon.stub(SalesModel.prototype, 'getSaleById').resolves(mockData);
+    const service = new SalesService();
+    const { status, data } = await service.getSaleById();
+    expect(status).to.be.eql(expected.status);
+    expect(data).to.be.eql(expected.data);
+  });
+
+  it('must return the ErrorObj with with status 404 if the id is not found', async () => {
+    const expected = {
+      status: 404, err: {
+        code: 'not_found',
+        message: 'Sale not found',
+        data: undefined
+      }
+    };
+    sinon.stub(SalesModel.prototype, 'getSaleById').resolves(null);
+    const service = new SalesService();
+    const { status, err } = await service.getSaleById();
+    expect(status).to.be.eql(expected.status);
+    expect(err).to.be.eql(expected.err);
+  });
+});

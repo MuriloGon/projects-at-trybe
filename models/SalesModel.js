@@ -38,7 +38,7 @@ class SalesModel {
   /**
    * Get a sale by id
    * @param {string} id
-   * @returns {Promise<SaleRegister>}
+   * @returns {Promise<SaleRegister> | Promise<null> }
    */
   async getSaleById(id) {
     if (!ObjectId.isValid(id)) return null;
