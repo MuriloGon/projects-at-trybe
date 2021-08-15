@@ -1,8 +1,9 @@
-const { MongoClient } = require('mongodb')
+const { MongoClient, ObjectId } = require('mongodb')
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const { expect } = require('chai');
 const ProductsModel = require('../../models/ProductsModel');
 const defaultConn = require('../../models/connection');
+const SalesModel = require('../../models/SalesModel');
 
 let db = null;
 let mongod = null;
@@ -23,7 +24,7 @@ describe('Main Db - Default connection', () => {
   });
 })
 
-describe('Requirement 01 - Model - registering a new product', async () => {
+describe('Requirement 01 - Model - registering a new product', () => {
   before(async () => { mongod = await MongoMemoryServer.create(); });
   after(async () => { await mongod.stop(); });
   it('saves name and quantity on database and returns the document saved', async () => {
@@ -161,3 +162,31 @@ describe('Requirement 04 - Model - delete product', () => {
     expect(deletedProduct).to.be.null;
   });
 });
+
+describe.only('Requirement 05 - Model - register sales', () => {
+  before(async () => { mongod = await MongoMemoryServer.create(); });
+  after(async () => { await mongod.stop(); });
+  const productsMockData = [{ name: 'data1', quantity: 1 },
+  { name: 'data2', quantity: 2 }, { name: 'data3', quantity: 3 }]
+  const createMockProducts = async () => {
+    const model = new ProductsModel(connection);
+    const product1 = await model.saveProduct(productsMockData[0].name, productsMockData[0].quantity);
+    const product2 = await model.saveProduct(productsMockData[1].name, productsMockData[1].quantity);
+    const product3 = await model.saveProduct(productsMockData[2].name, productsMockData[2].quantity);
+    return [product1, product2, product3]
+  }
+  it('register all sales', async () => {
+    const model = new SalesModel(connection);
+    const [{ _id: id1 }, { _id: id2 }, { _id: id3 }] = await createMockProducts(model);
+    mockProductsToInsertData = [
+      { productId: id1, quantity: 1 },
+      { productId: id2, quantity: 2 },
+      { productId: id3, quantity: 3 },
+    ]
+    const insertedDoc = await model.registerSale(mockProductsToInsertData);
+
+    expect(insertedDoc['_id']).to.be.string();
+    expect(ObjectId(insertedDoc['_id'])).to.be.true;
+    expect(insertedDoc.itemsSold).to.be.eql(mockProductsToInsertData);
+  });
+})
