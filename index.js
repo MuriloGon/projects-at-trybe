@@ -52,6 +52,10 @@ app.put('/sales/:id',
   salesControllers.updateItemsSold
 );
 
+app.delete('/sales/:id',
+  salesControllers.deleteSale
+);
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Listening Port: ${PORT}`);

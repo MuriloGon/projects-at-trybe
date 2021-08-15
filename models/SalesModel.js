@@ -64,9 +64,27 @@ class SalesModel {
       { $set: { itensSold } }
     );
     const { modifiedCount } = data;
-    if(!modifiedCount) return null;
+    if (!modifiedCount) return null;
 
     return { _id: saleId, itensSold };
+  }
+
+  /**
+   * Delete a sale and return the deleted document
+   * @param {string} id
+   * @returns {Promise<null> | Promise<SaleRegister>}
+   */
+  async deleteSaleById(id) {
+    if (!ObjectId.isValid(id)) return null;
+    const db = await this.conn();
+    const sales = await db.collection(this.collectionName);
+
+    const data = await this.getSaleById(id);
+    if (!data) return null;
+
+    const { deletedCount } = await sales.deleteOne({ _id: ObjectId(id) });
+    if (!deletedCount) return null;
+    return { ...data, _id: id };
   }
 }
 

@@ -43,11 +43,22 @@ class SalesService {
    * Update sale
    * @param {string} id
    * @param {Array<SaleProduct>} itemsSold
-   * @returns {{Promise<OkObj> | Promise<ErrorObj>}
+   * @returns {Promise<OkObj> | Promise<ErrorObj>}
    */
-  async updateProductById(id, itemsSold) {
+  async updateSaleItemsById(id, itemsSold) {
     const sale = await this.model.updateSaleItems(id, itemsSold);
     if (!sale) return apiError('Sale not found', error.notFound);
+    return { status: 200, data: sale };
+  }
+
+  /**
+   * Delete a sale and returns api response obj
+   * @param {string} id
+   * @returns {Promise<OkObj> | Promise<ErrorObj>}
+   */
+  async deleteSaleById(id) {
+    const sale = await this.model.deleteSaleById(id);
+    if (!sale) return apiError('Wrong sale ID format', error.invalidData);
     return { status: 200, data: sale };
   }
 }

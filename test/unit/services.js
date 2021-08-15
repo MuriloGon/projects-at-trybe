@@ -222,7 +222,7 @@ describe('Requirement 07 - Service - update sale items', () => {
     const expected = { status: 200, data: mockData };
     sinon.stub(SalesModel.prototype, 'updateSaleItems').resolves(mockData);
     const service = new SalesService();
-    const { status, data } = await service.updateProductById(mockData._id, mockData.itensSold);
+    const { status, data } = await service.updateSaleItemsById(mockData._id, mockData.itensSold);
     expect(status).to.be.eql(expected.status);
     expect(data).to.be.eql(expected.data);
   });
@@ -236,7 +236,7 @@ describe('Requirement 07 - Service - update sale items', () => {
     };
     sinon.stub(SalesModel.prototype, 'updateSaleItems').resolves(null);
     const service = new SalesService();
-    const { status, err } = await service.updateProductById(mockData._id, mockData.itensSold);
+    const { status, err } = await service.updateSaleItemsById(mockData._id, mockData.itensSold);
     expect(status).to.be.eql(expected.status);
     expect(err).to.be.eql(expected.err);
   });
