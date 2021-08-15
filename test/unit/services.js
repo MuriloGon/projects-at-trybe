@@ -1,8 +1,11 @@
 const sinon = require('sinon')
-const ProductsModel = require('../../models/ProductsModel');
 const { expect } = require('chai');
-const ProductsService = require('../../services/products.service');
 const { ObjectId } = require('mongodb');
+
+const ProductsModel = require('../../models/ProductsModel');
+const ProductsService = require('../../services/products.service');
+const SalesModel = require('../../models/SalesModel');
+const SalesService = require('../../services/sales.service');
 
 
 afterEach(() => {
@@ -138,7 +141,7 @@ describe('Requirement 04 - Service - delete product', () => {
     const { status, data } = await service.deleteProduct(mockData._id);
     expect(status).to.be.eql(expected.status);
     expect(data).to.be.eql(expected.data);
-  })
+  });
 
   it('must return the ErrorObj', async () => {
     const expected = {
@@ -154,5 +157,21 @@ describe('Requirement 04 - Service - delete product', () => {
     const { status, err } = await service.deleteProduct(invalidId);
     expect(status).to.be.eql(expected.status);
     expect(err).to.be.eql(expected.err);
-  })
+  });
+});
+
+describe('Requirement 05 - Service - register sale product(s)', () => {
+  it('must return the OkObj with with status 200 and the registered sale', async () => {
+    const mockData = {
+      _id: 'validId', itensSold: [
+        { productId: 'id1', quantity: 1 }, { productId: 'id2', quantity: 2 }
+      ]
+    };
+    const expected = { status: 200, data: mockData };
+    sinon.stub(SalesModel.prototype, 'registerSale').resolves(mockData);
+    const service = new SalesService();
+    const { status, data } = await service.registerSale();
+    expect(status).to.be.eql(expected.status);
+    expect(data).to.be.eql(expected.data);
+  });
 });
