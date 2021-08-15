@@ -44,6 +44,9 @@ app.post('/sales',
   salesControllers.postNewSale
 );
 
+app.get('/sales', salesControllers.getAllSales);
+app.get('/sales/:id', salesControllers.getSaleById);
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Listening Port: ${PORT}`);

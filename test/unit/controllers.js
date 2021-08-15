@@ -190,3 +190,49 @@ describe('Requirement 05 - Controller - post new sale', async () => {
   });
 });
 
+
+describe('Requirement 06 - Controller - GET /sales and GET /sales/:id', async () => {
+  const mockedData = [
+    { productId: 'id1', quantity: 10 },
+    { productId: 'id2', quantity: 20 },
+  ]
+  const sale = { _id: 'validId1', itensSold: mockedData };
+  const sales = [
+    { _id: 'validId1', itensSold: mockedData }, { _id: 'validId2', itensSold: mockedData }
+  ]
+  const succGetAll = { status: 200, data: { sales } };
+  const succGetById = { status: 200, data: sale }
+  const failGetById = {
+    status: 404, err: {
+      code: 'not_found',
+      message: 'Sale not found'
+    }
+  }
+  it('must return status 200 and all sales', async () => {
+    sinon.stub(SalesService.prototype, 'getAllSales').resolves(succGetAll);
+    const res = mockResponse();
+    const req = {};
+    await SalesController.getAllSales(req, res);
+    sinon.assert.calledOnceWithExactly(res.status, 200);
+    sinon.assert.calledOnceWithExactly(res.json, succGetAll.data);
+  });
+
+  it('must return status 200 and the sale by id', async () => {
+    sinon.stub(SalesService.prototype, 'getSaleById').resolves(succGetById);
+    const res = mockResponse();
+    const req = { params: { id: 'valid' } };
+    await SalesController.getSaleById(req, res);
+    sinon.assert.calledOnceWithExactly(res.status, 200);
+    sinon.assert.calledOnceWithExactly(res.json, succGetById.data);
+  });
+
+  it('must return status 404 and erroObj', async () => {
+    sinon.stub(SalesService.prototype, 'getSaleById').resolves(failGetById);
+    const res = mockResponse();
+    const req = { params: { id: 'invalid' } };
+    await SalesController.getSaleById(req, res);
+    sinon.assert.calledOnceWithExactly(res.status, 404);
+    const { err } = failGetById
+    sinon.assert.calledOnceWithExactly(res.json, { err });
+  });
+});
