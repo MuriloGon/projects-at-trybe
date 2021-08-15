@@ -2,8 +2,8 @@ const { MongoClient, ObjectId } = require('mongodb')
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const { expect } = require('chai');
 const ProductsModel = require('../../models/ProductsModel');
-const defaultConn = require('../../models/connection');
 const SalesModel = require('../../models/SalesModel');
+const defaultConn = require('../../models/connection');
 
 let db = null;
 let mongod = null;
@@ -194,3 +194,46 @@ describe('Requirement 05 - Model - register sales', () => {
     expect(insertedDoc).to.be.null;
   });
 })
+
+describe.only('Requirement 06 - Model - get all', () => {
+  before(async () => { mongod = await MongoMemoryServer.create(); });
+  after(async () => { await mongod.stop(); });
+  it('get all products sales', async () => {
+    const products = [
+      { productId: '61190a4eaa2fb60654a6702d', quantity: 1 },
+      { productId: '61190a6daa2fb60654a6702e', quantity: 2 },
+    ]
+    const model = new SalesModel(connection);
+    const sale1 = await model.registerSale(products);
+    const sale2 = await model.registerSale(products);
+    const expected = [sale1, sale2];
+
+    const received = await model.getAllSales();
+    expect(received).to.be.eql(expected);
+  });
+
+  it('get sale by id', async () => {
+    const products = [
+      { productId: '61190a4eaa2fb60654a6702d', quantity: 1 },
+      { productId: '61190a6daa2fb60654a6702e', quantity: 2 },
+    ]
+    const model = new SalesModel(connection);
+    const sale1 = await model.registerSale(products);
+    const sale2 = await model.registerSale(products);
+
+    const received = await model.getSaleById(sale1._id);
+    expect(received).to.be.eql(sale1);
+    expect(received).to.not.be.eql(sale2);
+  });
+
+  it('return null if the id doesn\'t exists', async () => {
+    const model = new SalesModel(connection);
+    const validId = ObjectId().toString();
+
+    const received1 = await model.getSaleById(validId);
+    expect(received1).to.be.null;
+
+    const received2 = await model.getSaleById('invalid');
+    expect(received2).to.be.null;
+  });
+});

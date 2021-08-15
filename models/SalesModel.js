@@ -21,6 +21,34 @@ class SalesModel {
     const { insertedId } = await sales.insertOne({ itensSold: products });
     return { _id: insertedId.toString(), itensSold: products };
   }
+
+  /**
+   * Get all sales registered
+   * @returns {Promise<SaleRegister[]>}
+   */
+  async getAllSales() {
+    const db = await this.conn();
+    const sales = await db.collection(this.collectionName);
+
+    const pipeline = [{ $addFields: { _id: { $toString: '$_id' } } }];
+    const data = await sales.aggregate(pipeline).toArray();
+    return data;
+  }
+
+  /**
+   * Get a sale by id
+   * @param {string} id
+   * @returns {Promise<SaleRegister>}
+   */
+  async getSaleById(id) {
+    if (!ObjectId.isValid(id)) return null;
+    const db = await this.conn();
+    const sales = await db.collection(this.collectionName);
+    const data = await sales.findOne({ _id: ObjectId(id) });
+    if (!data) return null;
+    const _id = data._id.toString();
+    return { ...data, _id };
+  }
 }
 
 module.exports = SalesModel;

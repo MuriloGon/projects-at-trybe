@@ -170,3 +170,23 @@ describe('Requirement 05 - Controller - post new sale', async () => {
     sinon.assert.calledOnceWithExactly(res.json, succssPostSale.data);
   });
 });
+
+
+describe('Requirement 05 - Controller - post new sale', async () => {
+  const mockedData = [
+    { productId: 'id1', quantity: 10 },
+    { productId: 'id2', quantity: 20 },
+  ]
+  const succssPostSale = {
+    status: 200, data: { _id: 'validId', itensSold: mockedData }
+  };
+  it('must return status 200 and the deleted document', async () => {
+    sinon.stub(SalesService.prototype, 'registerSale').resolves(succssPostSale);
+    const res = mockResponse();
+    const req = { body: mockedData };
+    await SalesController.postNewSale(req, res);
+    sinon.assert.calledOnceWithExactly(res.status, 200);
+    sinon.assert.calledOnceWithExactly(res.json, succssPostSale.data);
+  });
+});
+

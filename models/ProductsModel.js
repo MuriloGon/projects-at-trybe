@@ -12,7 +12,7 @@ class ProductsModel {
   /**
    * verify the product's name uniqueness
    * @param {string} name
-   * @return {boolean} true -> is unique, false -> is not unique
+   * @return {Promise<boolean>} true -> is unique, false -> is not unique
   */
   async isUniqueName(name) {
     const db = await this.conn();
