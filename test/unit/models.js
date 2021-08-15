@@ -163,7 +163,7 @@ describe('Requirement 04 - Model - delete product', () => {
   });
 });
 
-describe.only('Requirement 05 - Model - register sales', () => {
+describe('Requirement 05 - Model - register sales', () => {
   before(async () => { mongod = await MongoMemoryServer.create(); });
   after(async () => { await mongod.stop(); });
   const productsMockData = [{ name: 'data1', quantity: 1 },
@@ -184,9 +184,13 @@ describe.only('Requirement 05 - Model - register sales', () => {
       { productId: id3, quantity: 3 },
     ]
     const insertedDoc = await model.registerSale(mockProductsToInsertData);
-
-    expect(insertedDoc['_id']).to.be.string();
-    expect(ObjectId(insertedDoc['_id'])).to.be.true;
-    expect(insertedDoc.itemsSold).to.be.eql(mockProductsToInsertData);
+    expect(insertedDoc['_id']).to.be.string;
+    expect(ObjectId.isValid(insertedDoc['_id'])).to.be.true;
+    expect(insertedDoc.itensSold).to.be.eql(mockProductsToInsertData);
+  });
+  it('return null if the product array is empty', async () => {
+    const model = new SalesModel(connection);
+    const insertedDoc = await model.registerSale([]);
+    expect(insertedDoc).to.be.null;
   });
 })

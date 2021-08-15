@@ -31,3 +31,19 @@
  * @property {number} status
  * @property {ApiError} err
  */
+
+/* Sales */
+
+/**
+ * An object description for a sold product
+ * @typedef {Object} SaleProduct
+ * @property {string} productId
+ * @property {number} quantity
+ */
+
+/**
+ * An object description for a sold register
+ * @typedef {Object} SaleRegister
+ * @property {string} _id - Sale register id
+ * @property {Array<SaleProduct>} itensSold - Array with the items sold
+ */
