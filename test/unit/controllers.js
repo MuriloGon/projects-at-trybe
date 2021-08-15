@@ -1,8 +1,11 @@
 const sinon = require('sinon')
+const { expect } = require('chai');
+
 const ProductsController = require('../../controllers/productsController');
 const ProductsService = require('../../services/products.service');
-const { expect } = require('chai');
-const { mock } = require('sinon');
+
+const SalesController = require('../../controllers/salesController');
+const SalesService = require('../../services/sales.service');
 
 const mockResponse = () => {
   const res = {};
@@ -146,5 +149,24 @@ describe('Requirement 04 - Controller - delete product by id', async () => {
     sinon.assert.calledOnceWithExactly(res.status, 422);
     const err = unsuccDelete.err;
     sinon.assert.calledOnceWithExactly(res.json, { err });
+  });
+});
+
+
+describe('Requirement 05 - Controller - post new sale', async () => {
+  const mockedData = [
+    { productId: 'id1', quantity: 10 },
+    { productId: 'id2', quantity: 20 },
+  ]
+  const succssPostSale = {
+    status: 200, data: { _id: 'validId', itensSold: mockedData }
+  };
+  it('must return status 200 and the deleted document', async () => {
+    sinon.stub(SalesService.prototype, 'registerSale').resolves(succssPostSale);
+    const res = mockResponse();
+    const req = { body: mockedData };
+    await SalesController.postNewSale(req, res);
+    sinon.assert.calledOnceWithExactly(res.status, 200);
+    sinon.assert.calledOnceWithExactly(res.json, succssPostSale.data);
   });
 });

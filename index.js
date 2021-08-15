@@ -2,6 +2,7 @@ const express = require('express');
 const productsMiddlewares = require('./middlewares/products.middleware');
 const salesMiddlewares = require('./middlewares/sales.middlewares');
 const productsControllers = require('./controllers/productsController');
+const salesControllers = require('./controllers/salesController');
 
 const app = express();
 app.use(express.json());
@@ -40,9 +41,7 @@ app.delete('/products/:id',
 
 app.post('/sales',
   salesMiddlewares.validateSaleRegisterArray,
-  (req, res) => {
-    res.status(200).end('hello');
-  }
+  salesControllers.postNewSale
 );
 
 const PORT = 3000;
