@@ -49,7 +49,7 @@ app.get('/sales/:id', salesControllers.getSaleById);
 
 app.put('/sales/:id',
   salesMiddlewares.validateSaleRegisterArray,
-  (req, res) => { res.status(200).end; }
+  salesControllers.updateItemsSold
 );
 
 const PORT = 3000;
