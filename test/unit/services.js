@@ -215,3 +215,29 @@ describe('Requirement 06 - Service - get products (all | by id)', () => {
     expect(err).to.be.eql(expected.err);
   });
 });
+
+describe('Requirement 07 - Service - update sale items', () => {
+  const mockData = { _id: 'validId', itensSold: [{ productId: 'id1', quantity: 1 }] };
+  it('must return the OkObj with with status 200 and the itensSold updated', async () => {
+    const expected = { status: 200, data: mockData };
+    sinon.stub(SalesModel.prototype, 'updateSaleItems').resolves(mockData);
+    const service = new SalesService();
+    const { status, data } = await service.updateProductById(mockData._id, mockData.itensSold);
+    expect(status).to.be.eql(expected.status);
+    expect(data).to.be.eql(expected.data);
+  });
+  it('must return the OkObj with with status 404 and all fetched sales data', async () => {
+    const expected = {
+      status: 404, err: {
+        code: 'not_found',
+        message: 'Sale not found',
+        data: undefined
+      }
+    };
+    sinon.stub(SalesModel.prototype, 'updateSaleItems').resolves(null);
+    const service = new SalesService();
+    const { status, err } = await service.updateProductById(mockData._id, mockData.itensSold);
+    expect(status).to.be.eql(expected.status);
+    expect(err).to.be.eql(expected.err);
+  });
+});

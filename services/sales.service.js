@@ -19,13 +19,34 @@ class SalesService {
     return { status: 200, data: sale };
   }
 
+  /**
+   * Get all sales
+   * @returns {Promise<OkObj>}
+   */
   async getAllSales() {
     const sales = await this.model.getAllSales();
     return { status: 200, data: { sales } };
   }
 
+  /**
+   * get sale
+   * @param {string} id
+   * @returns {Promise<OkObj> | Promise<ErrorObj>}
+   */
   async getSaleById(id) {
     const sale = await this.model.getSaleById(id);
+    if (!sale) return apiError('Sale not found', error.notFound);
+    return { status: 200, data: sale };
+  }
+
+  /**
+   * Update sale
+   * @param {string} id
+   * @param {Array<SaleProduct>} itemsSold
+   * @returns {{Promise<OkObj> | Promise<ErrorObj>}
+   */
+  async updateProductById(id, itemsSold) {
+    const sale = await this.model.updateSaleItems(id, itemsSold);
     if (!sale) return apiError('Sale not found', error.notFound);
     return { status: 200, data: sale };
   }
