@@ -49,6 +49,25 @@ class SalesModel {
     const _id = data._id.toString();
     return { ...data, _id };
   }
+
+  /**
+   * Update a specific sale
+   * @param {string} saleId - Id sale to be updated
+   * @param {Array<SaleProduct>} itensSold - items to replace the previous sale
+   * @return {Promise<SaleRegister> | Promise<null>} Updated sale
+   */
+  async updateSaleItems(saleId, itensSold) {
+    const db = await this.conn();
+    const sales = await db.collection(this.collectionName);
+    const data = await sales.updateOne(
+      { _id: ObjectId(saleId) },
+      { $set: { itensSold } }
+    );
+    const { modifiedCount } = data;
+    if(!modifiedCount) return null;
+
+    return { _id: saleId, itensSold };
+  }
 }
 
 module.exports = SalesModel;

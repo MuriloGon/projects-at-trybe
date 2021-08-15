@@ -237,3 +237,27 @@ describe('Requirement 06 - Model - get all', () => {
     expect(received2).to.be.null;
   });
 });
+
+describe('Requirement 07 - Model - update product sale items', () => {
+  before(async () => { mongod = await MongoMemoryServer.create(); });
+  after(async () => { await mongod.stop(); });
+  const saveData = [{ productId: 'id1', quantity: 1 }, { productId: 'id2', quantity: 2 }];
+  const itemsToUpdate = [{ productId: 'id3', quantity: 3 }, { productId: 'id4', quantity: 4 }];
+  it('update the "itensSold" a sale with give param id', async () => {
+    const model = new SalesModel(connection);
+    const sale = await model.registerSale(saveData);
+
+    const updatedSale = await model.updateSaleItems(sale._id, itemsToUpdate);
+
+    expect(updatedSale._id).to.be.eql(sale._id);
+    expect(sale.itensSold).to.not.be.eql(itemsToUpdate);
+    expect(updatedSale.itensSold).to.not.be.eql(sale.itensSold);
+    expect(updatedSale.itensSold).to.be.eql(itemsToUpdate);
+  });
+  it('return null if the id does not exists', async () => {
+    const model = new SalesModel(connection);
+    const id ='6119133222f82c165a2e4557'
+    const updatedSale = await model.updateSaleItems(id, itemsToUpdate);
+    expect(updatedSale).to.be.null;
+  });
+});

@@ -47,6 +47,11 @@ app.post('/sales',
 app.get('/sales', salesControllers.getAllSales);
 app.get('/sales/:id', salesControllers.getSaleById);
 
+app.put('/sales/:id',
+  salesMiddlewares.validateSaleRegisterArray,
+  (req, res) => { res.status(200).end; }
+);
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Listening Port: ${PORT}`);
