@@ -150,9 +150,9 @@ Qualquer dúvida, procure a monitoria. Lembre-se que você pode consultar nosso 
 
 1. Clone o repositório
 
-- `git clone git@github.com:tryber/sd-0x-mongodb-commerce.git`.
+- `git clone git@github.com:tryber/sd-010-a-mongodb-commerce.git`.
 - Entre na pasta do repositório que você acabou de clonar:
-  - `cd sd-0x-mongodb-commerce`
+  - `cd sd-010-a-mongodb-commerce`
 
 2. Crie uma branch a partir da branch `master`
 
@@ -183,17 +183,17 @@ Qualquer dúvida, procure a monitoria. Lembre-se que você pode consultar nosso 
     - 
 5. Adicione a sua branch com o novo `commit` ao repositório remoto
 
-- Usando o exemplo anterior: `git push -u origin joaozinho-sd-0x-mongodb-commerce`
+- Usando o exemplo anterior: `git push -u origin joaozinho-sd-010-a-mongodb-commerce`
 
 6. Crie um novo `Pull Request` _(PR)_
 
-- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-mongodb-commerce/pulls)
+- Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-010-a-mongodb-commerce/pulls)
 - Clique no botão verde _"New pull request"_
 - Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
 - Clique no botão verde _"Create pull request"_
 - Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
 - **Não se preocupe em preencher mais nada por enquanto!**
-- Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-mongodb-commerce/pulls) e confira que o seu _Pull Request_ está criado
+- Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-mongodb-commerce/pulls) e confira que o seu _Pull Request_ está criado
 ---
 
 ### Durante o desenvolvimento
@@ -475,7 +475,7 @@ Use o conteúdo sobre [Code Review](https://course.betrybe.com/real-life-enginee
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/39qMu3s)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
 
