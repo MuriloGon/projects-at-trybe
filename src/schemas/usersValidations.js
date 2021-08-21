@@ -1,10 +1,9 @@
 const emailV = require('email-validator');
 
 function validateUserBody({ name, email, password }) {
-  const invalid = { error: { message: 'Invalid entries. Try again.' } };
-  if (!name || !email || !password) return invalid;
-  if (!emailV.validate(email)) return invalid;
-  return {};
+  if (!name || !email || !password) return false;
+  if (!emailV.validate(email)) return false;
+  return true;
 }
 
 module.exports = {
