@@ -29,7 +29,15 @@ async function getAllRecipes() {
   return data;
 }
 
+async function getRecipeById(recipeId) {
+  if (!ObjectId.isValid(recipeId)) return null;
+  const recipes = await (await conn()).collection(recipesCollection);
+  const data = await recipes.findOne({ _id: ObjectId(recipeId) });
+  return data;
+}
+
 module.exports = {
   registerRecipe,
   getAllRecipes,
+  getRecipeById,
 };

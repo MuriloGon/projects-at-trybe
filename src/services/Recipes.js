@@ -11,7 +11,14 @@ async function getRecipes() {
   return { status: 200, response };
 }
 
+async function getRecipeById(recipeId) {
+  const recipe = await RecipesModel.getRecipeById(recipeId);
+  if (!recipe) return { status: 404, response: { message: 'recipe not found' } };
+  return { status: 200, response: recipe };
+}
+
 module.exports = {
   addNewRecipe,
   getRecipes,
+  getRecipeById,
 };
