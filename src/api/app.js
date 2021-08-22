@@ -31,4 +31,10 @@ app.get('/recipes',
 app.get('/recipes/:id', 
   RecipesControllers.getRecipeById);
 
+app.put('/recipes/:id',
+  Middlewares.userAuthorization,
+  Middlewares.validateRecipesData,
+  Middlewares.canUserModify,
+  RecipesControllers.putUpdateRecipe);
+
 module.exports = app;

@@ -19,8 +19,15 @@ async function getRecipeById(recipeId) {
   return okRes(200, recipe);
 }
 
+async function updateRecipe(recipeId, name, ingredients, preparation) {
+  const data = await RecipesModel.updateRecipe(recipeId, name, ingredients, preparation);
+  if (!data) return errRes(404, { message: 'not found' });
+  return okRes(200, data);
+}
+
 module.exports = {
   addNewRecipe,
   getRecipes,
   getRecipeById,
+  updateRecipe,
 };

@@ -10,7 +10,6 @@ async function postUser(req, res) {
 async function postAuthUser(req, res) {
   const { email, password } = req.body;
   const { ok, error } = await UsersService.authUser(email, password);
-  console.log(ok, error);
   if (error) return res.status(error.status).json(error.data);
   return res.status(ok.status).json(ok.data);
 }

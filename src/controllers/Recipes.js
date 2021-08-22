@@ -21,8 +21,18 @@ async function getRecipeById(req, res) {
   return res.status(ok.status).json(ok.data);
 }
 
+async function putUpdateRecipe(req, res) {
+  const { id } = req.params;
+  const { name, ingredients, preparation } = req.body;
+
+  const { ok, error } = await RecipesService.updateRecipe(id, name, ingredients, preparation);
+  if (error) return res.status(error.status).json(error.data);
+  return res.status(ok.status).json(ok.data);
+}
+
 module.exports = {
   postRecipe,
   getRecipes,
   getRecipeById,
+  putUpdateRecipe,
 };

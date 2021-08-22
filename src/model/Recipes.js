@@ -33,11 +33,36 @@ async function getRecipeById(recipeId) {
   if (!ObjectId.isValid(recipeId)) return null;
   const recipes = await (await conn()).collection(recipesCollection);
   const data = await recipes.findOne({ _id: ObjectId(recipeId) });
-  return data;
+  if (!data) return null;
+  const idKey = '_id';
+  return { 
+    ...data, 
+    _id: data[idKey].toString(), 
+    userId: data.userId.toString(),
+  };
+}
+
+async function updateRecipe(recipeId, name, ingredients, preparation) {
+  if (!ObjectId.isValid(recipeId)) return null;
+
+  const recipes = await (await conn()).collection(recipesCollection);
+  await recipes.updateOne(
+    { _id: ObjectId(recipeId) },
+    { $set: { name, ingredients, preparation } },
+  );
+
+  const data = await getRecipeById(recipeId);
+  const idKey = '_id';
+  return { 
+    ...data, 
+    _id: data[idKey].toString(), 
+    userId: data.userId.toString(),
+  };
 }
 
 module.exports = {
   registerRecipe,
   getAllRecipes,
   getRecipeById,
+  updateRecipe,
 };
