@@ -8,7 +8,7 @@ function validateUserBody({ name, email, password }) {
 
 function validateAuthUserData(email, password) {
   if (!email || !password) return false;
-  if (!emailV.validate(email)) return false;
+  // if (!emailV.validate(email)) return false;
   return true;
 }
 

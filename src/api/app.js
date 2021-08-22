@@ -15,4 +15,8 @@ app.post('/users',
   Middlewares.validateUserData,
   UsersController.postUser);
 
+app.post('/login', 
+Middlewares.validateAuthData,
+UsersController.postAuthUser);
+
 module.exports = app;

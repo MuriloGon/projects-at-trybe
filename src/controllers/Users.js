@@ -6,6 +6,13 @@ async function postUser(req, res) {
   res.status(status).json(response);
 }
 
+async function postAuthUser(req, res) {
+  const { email, password } = req.body;
+  const { status, response } = await UsersService.authUser(email, password);
+  res.status(status).json(response);
+}
+
 module.exports = {
   postUser,
+  postAuthUser,
 };
