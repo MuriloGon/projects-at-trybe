@@ -30,13 +30,19 @@ async function isEmailUnique(email) {
  * verify user credentials
  * @param {string} email - user email
  * @param {string} password - user password
- * @returns {Promise<Boolean> | Promise<null>}
+ * @returns {Promise<Boolean> | Promise<null> | Promise<{id: string, email: string, role: string}>}
  */
 async function authUser(email, password) {
   const users = await (await conn()).collection('users');
   const user = await users.findOne({ email });
   if (!user) return null;
-  return user.password === password;
+  if (user.password !== password) return false;
+  const idKey = '_id';
+  return {
+    id: user[idKey].toString(),
+    email: user.email,
+    role: user.role,
+  };
 }
 
 module.exports = {

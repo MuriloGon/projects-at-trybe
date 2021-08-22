@@ -1,4 +1,7 @@
+const jwt = require('jsonwebtoken');
 const UsersModel = require('../model/Users');
+
+const secret = 'my-super-secret';
 
 async function registerUser(name, email, password) {
   const uniqueEmail = await UsersModel.isEmailUnique(email);
@@ -8,6 +11,14 @@ async function registerUser(name, email, password) {
   return { status: 201, response: { user: newUser } };
 }
 
+async function authUser(email, password) {
+  const auth = await UsersModel.authUser(email, password);
+  if (!auth) return { status: 401, response: { message: '' } };
+  const token = jwt.sign(auth, secret, { algorithm: 'HS256' });
+  return { status: 200, response: { token } };
+}
+
 module.exports = {
   registerUser,
+  authUser,
 };
