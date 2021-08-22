@@ -3,21 +3,22 @@ const RecipesService = require('../services/Recipes');
 async function postRecipe(req, res) {
   const { id } = req.user;
   const { name, ingredients, preparation } = req.body;
-  const { status, response } = await RecipesService
-    .addNewRecipe(id, name, ingredients, preparation);
-  return res.status(status).json(response);
+  const { ok, error } = await RecipesService.addNewRecipe(id, name, ingredients, preparation);
+  if (error) return res.status(error.status).json(error.data);
+  return res.status(ok.status).json(ok.data);
 }
 
 async function getRecipes(_req, res) {
-  const { status, response } = await RecipesService.getRecipes();
-  return res.status(status).json(response);
+  const { ok, error } = await RecipesService.getRecipes();
+  if (error) return res.status(error.status).json(error.data);
+  return res.status(ok.status).json(ok.data);
 }
 
 async function getRecipeById(req, res) {
   const { id } = req.params;
-  console.log(id);
-  const { status, response } = await RecipesService.getRecipeById(id);
-  return res.status(status).json(response);
+  const { ok, error } = await RecipesService.getRecipeById(id);
+  if (error) return res.status(error.status).json(error.data);
+  return res.status(ok.status).json(ok.data);
 }
 
 module.exports = {
