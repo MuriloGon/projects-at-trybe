@@ -8,6 +8,12 @@ async function postRecipe(req, res) {
   return res.status(status).json(response);
 }
 
+async function getRecipes(_req, res) {
+  const { status, response } = await RecipesService.getRecipes();
+  return res.status(status).json(response);
+}
+
 module.exports = {
   postRecipe,
+  getRecipes,
 };

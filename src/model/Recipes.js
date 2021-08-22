@@ -23,6 +23,13 @@ async function registerRecipe(userId, name, ingredients, preparation) {
   return { _id: insertedId.toString(), userId, name, ingredients, preparation };
 }
 
+async function getAllRecipes() {
+  const recipes = await (await conn()).collection(recipesCollection);
+  const data = await recipes.find({}).toArray();
+  return data;
+}
+
 module.exports = {
   registerRecipe,
+  getAllRecipes,
 };

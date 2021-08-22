@@ -17,12 +17,15 @@ app.post('/users',
   UsersControllers.postUser);
 
 app.post('/login', 
-Middlewares.validateAuthData,
-UsersControllers.postAuthUser);
+  Middlewares.validateAuthData,
+  UsersControllers.postAuthUser);
 
 app.post('/recipes',
-Middlewares.userAuthorization,
-Middlewares.validateRecipesData,
-RecipesControllers.postRecipe);
+  Middlewares.userAuthorization,
+  Middlewares.validateRecipesData,
+  RecipesControllers.postRecipe);
+
+app.get('/recipes', 
+  RecipesControllers.getRecipes);
 
 module.exports = app;

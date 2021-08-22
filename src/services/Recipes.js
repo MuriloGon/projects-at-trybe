@@ -6,6 +6,12 @@ async function addNewRecipe(userId, name, ingredients, preparation) {
   return { status: 201, response: { recipe: response } };
 }
 
+async function getRecipes() {
+  const response = await RecipesModel.getAllRecipes();
+  return { status: 200, response };
+}
+
 module.exports = {
   addNewRecipe,
+  getRecipes,
 };
