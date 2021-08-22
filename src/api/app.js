@@ -1,5 +1,6 @@
 const express = require('express');
-const UsersController = require('../controllers/Users');
+const UsersControllers = require('../controllers/Users');
+const RecipesControllers = require('../controllers/Recipes');
 const Middlewares = require('../middlewares');
 
 const app = express();
@@ -13,15 +14,15 @@ app.get('/', (request, response) => {
 
 app.post('/users',
   Middlewares.validateUserData,
-  UsersController.postUser);
+  UsersControllers.postUser);
 
 app.post('/login', 
 Middlewares.validateAuthData,
-UsersController.postAuthUser);
+UsersControllers.postAuthUser);
 
 app.post('/recipes',
 Middlewares.userAuthorization,
 Middlewares.validateRecipesData,
-(req, res) => { res.send(req.user); });
+RecipesControllers.postRecipe);
 
 module.exports = app;
