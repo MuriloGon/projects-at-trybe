@@ -19,4 +19,9 @@ app.post('/login',
 Middlewares.validateAuthData,
 UsersController.postAuthUser);
 
+app.post('/recipes',
+Middlewares.userAuthorization,
+Middlewares.validateRecipesData,
+(req, res) => { res.send(req.user); });
+
 module.exports = app;

@@ -3,12 +3,12 @@ const { secret } = require('../variables');
 
 function userAuthorization(req, res, next) {
   try {
-    const { token } = req.body;
-    const userData = jwt.verify(token, secret);
+    const { authorization } = req.headers;
+    const userData = jwt.verify(authorization, secret);
     req.user = userData;
     return next();
   } catch (error) {
-    return res.status(401).json({ message: 'nananinanão' });
+    return res.status(401).json({ message: 'jwt malformed' });
   }
 }
 
