@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const UsersModel = require('../model/Users');
-
-const secret = 'my-super-secret';
+const { secret } = require('../variables');
 
 async function registerUser(name, email, password) {
   const uniqueEmail = await UsersModel.isEmailUnique(email);
