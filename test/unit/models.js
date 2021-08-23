@@ -256,8 +256,23 @@ describe('Requirement 07 - Model - update product sale items', () => {
   });
   it('return null if the id does not exists', async () => {
     const model = new SalesModel(connection);
-    const id ='6119133222f82c165a2e4557'
+    const id = '6119133222f82c165a2e4557'
     const updatedSale = await model.updateSaleItems(id, itemsToUpdate);
     expect(updatedSale).to.be.null;
   });
 });
+
+describe('Requirement 08 - Model - delete sale by id', () => {
+  before(async () => { mongod = await MongoMemoryServer.create(); });
+  after(async () => { await mongod.stop(); });
+
+  const saveData = [{ productId: 'id1', quantity: 1 }, { productId: 'id2', quantity: 2 }];
+
+  it('update the "itensSold" a sale with give param id', async () => {
+    const model = new SalesModel(connection);
+    const sale = await model.registerSale(saveData);
+
+    const deletedSale = await model.deleteSaleById(sale._id);
+    expect(deletedSale._id).to.be.eql(sale._id);
+  });
+})
