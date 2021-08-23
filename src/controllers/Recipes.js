@@ -30,9 +30,18 @@ async function putUpdateRecipe(req, res) {
   return res.status(ok.status).json(ok.data);
 }
 
+async function deleteRecipe(req, res) {
+  const { id } = req.params;
+  
+  const { ok, error } = await RecipesService.deleteRecipe(id);
+  if (error) return res.status(error.status).json(error.data);
+  return res.status(ok.status).json(ok.data);
+}
+
 module.exports = {
   postRecipe,
   getRecipes,
   getRecipeById,
   putUpdateRecipe,
+  deleteRecipe,
 };

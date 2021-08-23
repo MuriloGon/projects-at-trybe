@@ -60,9 +60,19 @@ async function updateRecipe(recipeId, name, ingredients, preparation) {
   };
 }
 
+async function deleteRecipe(recipeId) {
+  if (!ObjectId.isValid(recipeId)) return null;
+
+  const recipes = await (await conn()).collection(recipesCollection);
+  const { deletedCount } = await recipes.deleteOne({ _id: ObjectId(recipeId) });
+  if (!deletedCount) return false;
+  return true;
+}
+
 module.exports = {
   registerRecipe,
   getAllRecipes,
   getRecipeById,
   updateRecipe,
+  deleteRecipe,
 };

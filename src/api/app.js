@@ -37,4 +37,9 @@ app.put('/recipes/:id',
   Middlewares.canUserModify,
   RecipesControllers.putUpdateRecipe);
 
+app.delete('/recipes/:id',
+  Middlewares.userAuthorization,
+  Middlewares.canUserModify,
+  RecipesControllers.deleteRecipe);
+
 module.exports = app;

@@ -25,9 +25,16 @@ async function updateRecipe(recipeId, name, ingredients, preparation) {
   return okRes(200, data);
 }
 
+async function deleteRecipe(recipeId) {
+  const deleteResult = await RecipesModel.deleteRecipe(recipeId);
+  if (!deleteResult) return errRes(401, { message: 'not deleted' });
+  return okRes(204, undefined);
+}
+
 module.exports = {
   addNewRecipe,
   getRecipes,
   getRecipeById,
   updateRecipe,
+  deleteRecipe,
 };
