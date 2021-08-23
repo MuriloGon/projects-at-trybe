@@ -52,6 +52,8 @@ async function updateRecipe(recipeId, name, ingredients, preparation) {
   );
 
   const data = await getRecipeById(recipeId);
+  if (!data) return null;
+
   const idKey = '_id';
   return { 
     ...data, 
@@ -77,6 +79,7 @@ async function updateRecipeImage(recipeId, imagePath) {
   );
 
   const data = await getRecipeById(recipeId);
+  if (!data) return null;
   const idKey = '_id';
   return { 
     ...data, 

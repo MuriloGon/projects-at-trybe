@@ -4,6 +4,7 @@ const RecipesControllers = require('../../controllers/Recipes');
 const Middlewares = require('../../middlewares');
 
 const route = Router({ mergeParams: true });
+console.log(`${process.env.PWD}/src/uploads`);
 
 route.get('/', 
   RecipesControllers.getRecipes);
