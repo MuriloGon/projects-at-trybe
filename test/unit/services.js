@@ -241,3 +241,32 @@ describe('Requirement 07 - Service - update sale items', () => {
     expect(err).to.be.eql(expected.err);
   });
 });
+
+
+describe('Requirement 08 - Service - delete sale by id', () => {
+  const mockData = { _id: 'validId', itensSold: [{ productId: 'id1', quantity: 1 }] };
+
+  it('must return the OkObj with with status 200 and the deleted sale', async () => {
+    const expected = { status: 200, data: mockData };
+    sinon.stub(SalesModel.prototype, 'deleteSaleById').resolves(mockData);
+    const service = new SalesService();
+    const { status, data } = await service.deleteSaleById(mockData._id);
+    expect(status).to.be.eql(expected.status);
+    expect(data).to.be.eql(expected.data);
+  });
+
+  it('return invalid data when the id is not in the right format', async () => {
+    const expected = {
+      status: 422, err: {
+        code: 'invalid_data',
+        message: 'Wrong sale ID format',
+        data: undefined
+      }
+    };
+    sinon.stub(SalesModel.prototype, 'deleteSaleById').resolves(null);
+    const service = new SalesService();
+    const { status, err } = await service.deleteSaleById(mockData._id);
+    expect(status).to.be.eql(expected.status);
+    expect(err).to.be.eql(expected.err);
+  });
+});
