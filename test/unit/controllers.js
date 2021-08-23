@@ -236,3 +236,27 @@ describe('Requirement 06 - Controller - GET /sales and GET /sales/:id', async ()
     sinon.assert.calledOnceWithExactly(res.json, { err });
   });
 });
+
+
+describe('Requirement 08 - Controller - Delete /sales/:id', async () => {
+  const mockedData = [
+    { productId: 'id1', quantity: 10 },
+    { productId: 'id2', quantity: 20 },
+  ]
+  const sale = { _id: 'validId1', itensSold: mockedData };
+  const succDelById = { status: 200, data: sale }
+  const failDelById = {
+    status: 404, err: {
+      code: 'not_found',
+      message: 'Sale not found'
+    }
+  }
+  it('must return status 200 and the deleted sale', async () => {
+    sinon.stub(SalesService.prototype, 'deleteSaleById').resolves(succDelById);
+    const res = mockResponse();
+    const req = { params: { id: 'valid' } };
+    await SalesController.deleteSale(req, res);
+    sinon.assert.calledOnceWithExactly(res.status, 200);
+    sinon.assert.calledOnceWithExactly(res.json, succDelById.data);
+  });
+});
