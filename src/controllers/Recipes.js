@@ -24,7 +24,6 @@ async function getRecipeById(req, res) {
 async function putUpdateRecipe(req, res) {
   const { id } = req.params;
   const { name, ingredients, preparation } = req.body;
-
   const { ok, error } = await RecipesService.updateRecipe(id, name, ingredients, preparation);
   if (error) return res.status(error.status).json(error.data);
   return res.status(ok.status).json(ok.data);
@@ -32,8 +31,15 @@ async function putUpdateRecipe(req, res) {
 
 async function deleteRecipe(req, res) {
   const { id } = req.params;
-  
   const { ok, error } = await RecipesService.deleteRecipe(id);
+  if (error) return res.status(error.status).json(error.data);
+  return res.status(ok.status).json(ok.data);
+}
+
+async function putRecipeImage(req, res) {
+  const { id } = req.params;
+  const path = `localhost:3000/src/uploads/${req.file.filename}`;
+  const { ok, error } = await RecipesService.updateImage(id, path);
   if (error) return res.status(error.status).json(error.data);
   return res.status(ok.status).json(ok.data);
 }
@@ -44,4 +50,5 @@ module.exports = {
   getRecipeById,
   putUpdateRecipe,
   deleteRecipe,
+  putRecipeImage,
 };

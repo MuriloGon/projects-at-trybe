@@ -31,10 +31,17 @@ async function deleteRecipe(recipeId) {
   return okRes(204, undefined);
 }
 
+async function updateImage(recipeId, imagePath) {
+  const updatedRecipe = await RecipesModel.updateRecipeImage(recipeId, imagePath);
+  if (!updatedRecipe) return errRes(401, { message: 'not deleted' });
+  return okRes(200, updatedRecipe);
+}
+
 module.exports = {
   addNewRecipe,
   getRecipes,
   getRecipeById,
   updateRecipe,
   deleteRecipe,
+  updateImage,
 };

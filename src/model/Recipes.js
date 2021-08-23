@@ -62,11 +62,27 @@ async function updateRecipe(recipeId, name, ingredients, preparation) {
 
 async function deleteRecipe(recipeId) {
   if (!ObjectId.isValid(recipeId)) return null;
-
   const recipes = await (await conn()).collection(recipesCollection);
   const { deletedCount } = await recipes.deleteOne({ _id: ObjectId(recipeId) });
   if (!deletedCount) return false;
   return true;
+}
+
+async function updateRecipeImage(recipeId, imagePath) {
+  if (!ObjectId.isValid(recipeId)) return null;
+  const recipes = await (await conn()).collection(recipesCollection);
+  await recipes.updateOne(
+    { _id: ObjectId(recipeId) },
+    { $set: { image: imagePath } },
+  );
+
+  const data = await getRecipeById(recipeId);
+  const idKey = '_id';
+  return { 
+    ...data, 
+    _id: data[idKey].toString(), 
+    userId: data.userId.toString(),
+  };
 }
 
 module.exports = {
@@ -75,4 +91,5 @@ module.exports = {
   getRecipeById,
   updateRecipe,
   deleteRecipe,
+  updateRecipeImage,
 };
