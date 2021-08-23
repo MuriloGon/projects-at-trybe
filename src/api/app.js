@@ -1,7 +1,5 @@
 const express = require('express');
-const UsersControllers = require('../controllers/Users');
-const RecipesControllers = require('../controllers/Recipes');
-const Middlewares = require('../middlewares');
+const routes = require('./routes');
 
 const app = express();
 app.use(express.json());
@@ -12,34 +10,8 @@ app.get('/', (request, response) => {
 });
 // Não remover esse end-point, ele é necessário para o avaliador
 
-app.post('/users',
-  Middlewares.validateUserData,
-  UsersControllers.postUser);
-
-app.post('/login', 
-  Middlewares.validateAuthData,
-  UsersControllers.postAuthUser);
-
-app.post('/recipes',
-  Middlewares.userAuthorization,
-  Middlewares.validateRecipesData,
-  RecipesControllers.postRecipe);
-
-app.get('/recipes', 
-  RecipesControllers.getRecipes);
-
-app.get('/recipes/:id', 
-  RecipesControllers.getRecipeById);
-
-app.put('/recipes/:id',
-  Middlewares.userAuthorization,
-  Middlewares.validateRecipesData,
-  Middlewares.canUserModify,
-  RecipesControllers.putUpdateRecipe);
-
-app.delete('/recipes/:id',
-  Middlewares.userAuthorization,
-  Middlewares.canUserModify,
-  RecipesControllers.deleteRecipe);
+app.use('/login', routes.login);
+app.use('/recipes', routes.recipes);
+app.use('/users', routes.users);
 
 module.exports = app;
