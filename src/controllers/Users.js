@@ -14,7 +14,15 @@ async function postAuthUser(req, res) {
   return res.status(ok.status).json(ok.data);
 }
 
+async function postAdminUser(req, res) {
+  const { name, email, password } = req.body;
+  const { ok, error } = await UsersService.registerUser(name, email, password, 'admin');
+  if (error) return res.status(error.status).json(error.data);
+  return res.status(ok.status).json(ok.data);
+}
+
 module.exports = {
   postUser,
   postAuthUser,
+  postAdminUser,
 };

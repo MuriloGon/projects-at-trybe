@@ -3,11 +3,11 @@ const UsersModel = require('../model/Users');
 const { okRes, errRes } = require('../utils/apiResponse');
 const { secret } = require('../variables');
 
-async function registerUser(name, email, password) {
+async function registerUser(name, email, password, role = 'user') {
   const uniqueEmail = await UsersModel.isEmailUnique(email);
   if (!uniqueEmail) return errRes(409, { message: 'Email already registered' });
 
-  const user = await UsersModel.registerUser(name, email, password, 'user');
+  const user = await UsersModel.registerUser(name, email, password, role);
   return okRes(201, { user });
 }
 

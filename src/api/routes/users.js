@@ -8,4 +8,10 @@ route.post('/',
   Middlewares.validateUserData,
   UsersControllers.postUser);
 
+route.post('/admin',
+  Middlewares.validateUserData,
+  Middlewares.userAuthorization,
+  Middlewares.adminOnly,
+  UsersControllers.postAdminUser);
+
 module.exports = route;
