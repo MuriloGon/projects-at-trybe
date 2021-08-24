@@ -95,6 +95,51 @@ class ProductsModel {
     if (!deletedCount) return null;
     return { ...productById, _id: id };
   }
+
+  async updateProductQty(sale, operation) {
+    const db = await this.conn();
+    const products = await db.collection(this.collectionName);
+
+    const { itensSold } = sale;
+    const itemsLen = itensSold.length;
+
+    const ZERO = 0;
+    const subQty = (currentDbQty, actionQty, productId) => {
+      const newQty = currentDbQty - actionQty;
+      const allowOperation = (currentDbQty - actionQty) >= ZERO;
+      return { allowOperation, productId, newQty };
+    };
+
+    const addQty = (currentDbQty, actionQty, productId) => {
+      const newQty = currentDbQty + actionQty;
+      const allowOperation = true;
+      return { allowOperation, productId, newQty };
+    };
+
+    const testObj = [];
+    for (let i = ZERO; i < itemsLen; i += 1) {
+      const soldProd = itensSold[i];
+
+      const product = await this.getProductById(soldProd.productId);
+      if(operation === 'add'){
+        testObj.push(addQty(product.quantity, soldProd.quantity, soldProd.productId));
+      } else {
+        testObj.push(subQty(product.quantity, soldProd.quantity, soldProd.productId));
+      }
+    }
+
+    const cannotUpdate = testObj.some(({ allowOperation }) => allowOperation === false);
+    if (cannotUpdate) return null;
+
+    for (let i = ZERO; i < itemsLen; i += 1) {
+      const { newQty: quantity, productId } = testObj[i];
+      const _id = ObjectId(productId);
+      await products.updateOne({ _id }, { $set: { quantity } });
+    }
+
+    return true;
+  }
 };
+
 
 module.exports = ProductsModel;

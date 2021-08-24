@@ -169,6 +169,7 @@ describe('Requirement 05 - Service - register sale product(s)', () => {
     };
     const expected = { status: 200, data: mockData };
     sinon.stub(SalesModel.prototype, 'registerSale').resolves(mockData);
+    sinon.stub(ProductsModel.prototype, 'updateProductQty').resolves(true);
     const service = new SalesService();
     const { status, data } = await service.registerSale();
     expect(status).to.be.eql(expected.status);
@@ -249,6 +250,7 @@ describe('Requirement 08 - Service - delete sale by id', () => {
   it('must return the OkObj with with status 200 and the deleted sale', async () => {
     const expected = { status: 200, data: mockData };
     sinon.stub(SalesModel.prototype, 'deleteSaleById').resolves(mockData);
+    sinon.stub(ProductsModel.prototype, 'updateProductQty').resolves(true);
     const service = new SalesService();
     const { status, data } = await service.deleteSaleById(mockData._id);
     expect(status).to.be.eql(expected.status);

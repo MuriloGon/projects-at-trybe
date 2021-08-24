@@ -1,11 +1,13 @@
 /// <reference path="../utils/types.js" />
 
 const SalesModel = require('../models/SalesModel');
+const ProdutsModel = require('../models/ProductsModel');
 const { apiError, error } = require('../utils/Errors');
 
 class SalesService {
-  constructor(Model = SalesModel) {
+  constructor(Model = SalesModel, pdModels = ProdutsModel) {
     this.model = new Model();
+    this.pdModel = new pdModels();
   }
 
   /**
@@ -16,6 +18,9 @@ class SalesService {
   async registerSale(products) {
     const sale = await this.model.registerSale(products);
     if (!sale) return apiError('Wrong product entry', error.invalidData);
+
+    const updtRes = await this.pdModel.updateProductQty(sale, 'sub');
+
     return { status: 200, data: sale };
   }
 
@@ -36,6 +41,7 @@ class SalesService {
   async getSaleById(id) {
     const sale = await this.model.getSaleById(id);
     if (!sale) return apiError('Sale not found', error.notFound);
+
     return { status: 200, data: sale };
   }
 
@@ -59,6 +65,8 @@ class SalesService {
   async deleteSaleById(id) {
     const sale = await this.model.deleteSaleById(id);
     if (!sale) return apiError('Wrong sale ID format', error.invalidData);
+    const updtRes = await this.pdModel.updateProductQty(sale, 'add');
+
     return { status: 200, data: sale };
   }
 }

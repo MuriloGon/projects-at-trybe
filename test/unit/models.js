@@ -276,3 +276,80 @@ describe('Requirement 08 - Model - delete sale by id', () => {
     expect(deletedSale._id).to.be.eql(sale._id);
   });
 })
+
+describe('Requirement 09 - Model - update product qty', () => {
+  before(async () => { mongod = await MongoMemoryServer.create(); });
+  after(async () => { await mongod.stop(); });
+
+  it('update quantity - subtraction', async () => {
+    const productsModel = new ProductsModel(connection);
+    const salesModel = new SalesModel(connection);
+
+    const pd1_old = await productsModel.saveProduct('product1', 10);
+    const pd2_old = await productsModel.saveProduct('product2', 20);
+
+    const sale = await salesModel.registerSale([
+      { productId: pd1_old._id, quantity: 7 },
+      { productId: pd2_old._id, quantity: 11 },
+    ]);
+
+    const updateQtyResponse = await productsModel.updateProductQty(sale, 'sub');
+
+    const pd1_new = await productsModel.getProductById(pd1_old._id);
+    const pd2_new = await productsModel.getProductById(pd2_old._id);
+
+    expect(updateQtyResponse).to.be.true;
+    expect(pd1_new.quantity).to.be.eql(3);
+    expect(pd2_new.quantity).to.be.eql(9);
+
+  })
+
+  it('update quantity - subtraction - do not permit subtract when there is no '
+     +' quantity avaliable - return null', async () => {
+    const productsModel = new ProductsModel(connection);
+    const salesModel = new SalesModel(connection);
+
+    const pd1_old = await productsModel.saveProduct('product1', 10);
+    const pd2_old = await productsModel.saveProduct('product2', 20);
+
+    const sale = await salesModel.registerSale([
+      { productId: pd1_old._id, quantity: 11 },
+      { productId: pd2_old._id, quantity: 11 },
+    ]);
+
+    const updateQtyResponse = await productsModel.updateProductQty(sale, 'sub');
+
+    const pd1_new = await productsModel.getProductById(pd1_old._id);
+    const pd2_new = await productsModel.getProductById(pd2_old._id);
+
+    expect(updateQtyResponse).to.not.be.true;
+    expect(updateQtyResponse).to.be.null;
+
+    expect(pd1_new.quantity).to.be.eql(10);
+    expect(pd2_new.quantity).to.be.eql(20);
+
+  })
+
+  it('update quantity - addition', async () => {
+    const productsModel = new ProductsModel(connection);
+    const salesModel = new SalesModel(connection);
+
+    const pd1_old = await productsModel.saveProduct('product1', 10);
+    const pd2_old = await productsModel.saveProduct('product2', 20);
+
+    const sale = await salesModel.registerSale([
+      { productId: pd1_old._id, quantity: 7 },
+      { productId: pd2_old._id, quantity: 11 },
+    ]);
+
+    const updateQtyResponse = await productsModel.updateProductQty(sale, 'add');
+
+    const pd1_new = await productsModel.getProductById(pd1_old._id);
+    const pd2_new = await productsModel.getProductById(pd2_old._id);
+
+    expect(updateQtyResponse).to.be.true;
+    expect(pd1_new.quantity).to.be.eql(17);
+    expect(pd2_new.quantity).to.be.eql(31);
+
+  })
+})
