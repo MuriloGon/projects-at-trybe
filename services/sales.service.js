@@ -20,6 +20,8 @@ class SalesService {
     if (!sale) return apiError('Wrong product entry', error.invalidData);
 
     const updtRes = await this.pdModel.updateProductQty(sale, 'sub');
+    if(!updtRes) return apiError(
+      'Such amount is not permitted to sell', error.notFoundStockProblem);
 
     return { status: 200, data: sale };
   }
@@ -66,6 +68,8 @@ class SalesService {
     const sale = await this.model.deleteSaleById(id);
     if (!sale) return apiError('Wrong sale ID format', error.invalidData);
     const updtRes = await this.pdModel.updateProductQty(sale, 'add');
+    if(!updtRes) return apiError(
+      'Such amount is not permitted to sell', error.notFoundStockProblem);
 
     return { status: 200, data: sale };
   }
