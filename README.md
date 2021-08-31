@@ -81,7 +81,7 @@ O projeto tem até a seguinte data: `08/09/2021 - 14:00h`. Para ser entregue a a
 
 1. Clone o repositório
 
-- `git clone https://github.com/betrybe/sd-010-a-project-talker-manager.git`.
+- `git clone git@github.com:tryber/sd-010-a-project-talker-manager.git`.
 - Entre na pasta do repositório que você acabou de clonar:
   - `cd sd-010-a-project-talker-manager`
 
