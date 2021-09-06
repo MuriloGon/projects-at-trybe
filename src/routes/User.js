@@ -11,4 +11,8 @@ route.post('/',
   middlewares.isUserRegistered,
   controllers.User.postUser);
 
+route.get('/',
+  middlewares.authUser,
+  controllers.User.getAllUsers);
+
 module.exports = route;

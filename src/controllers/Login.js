@@ -3,7 +3,6 @@ const { Token } = require('../services');
 
 async function postLogin(req, res) {
   const { login } = req;
-  console.log(login);
   const user = await User.findOne({ where: { email: login.email } });
   const { id, displayName, email, image } = user;
   const token = Token.generateToken({ id, displayName, email, image });

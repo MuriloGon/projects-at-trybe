@@ -9,7 +9,7 @@ function generateToken(data) {
 
 function verifyToken(token) {
   try {
-    const data = jwt.verify(token);
+    const data = jwt.verify(token, secret);
     return data;
   } catch (error) {
     return null;

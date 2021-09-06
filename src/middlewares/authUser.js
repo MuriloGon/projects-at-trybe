@@ -1,10 +1,14 @@
-const { User } = require('../../models');
+const { Token } = require('../services');
 
-async function authUser(req, res, next) {
-  const { email } = req.body;
-  const userQuery = await User.findOne({ where: { email } });
-  if (!userQuery) return res.status(400).json({ message: 'Invalid fields' });
-  req.user = userQuery;
+function authUser(req, res, next) {
+  const { authorization: token } = req.headers;
+  if (token === undefined || token === '') {
+    return res.status(401).json({ message: 'Token not found' });
+  }
+  const payload = Token.verifyToken(token);
+  if (payload === null) return res.status(401).json({ message: 'Expired or invalid token' });
+
+  req.user = payload;
   next();
 }
 
