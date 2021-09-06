@@ -9,5 +9,6 @@ app.get('/', (_request, response) => response.send());
 
 app.use('/user', routes.user);
 app.use('/login', routes.login);
+app.use('/categories', routes.categories);
 
 module.exports = app;
