@@ -8,5 +8,6 @@ app.use(express.json());
 app.get('/', (_request, response) => response.send());
 
 app.use('/user', routes.user);
+app.use('/login', routes.login);
 
 module.exports = app;

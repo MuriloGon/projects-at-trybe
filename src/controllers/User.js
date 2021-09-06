@@ -11,4 +11,6 @@ async function postUser(req, res) {
   res.status(201).json({ token });
 }
 
-module.exports = postUser;
+module.exports = { 
+  postUser,
+};
