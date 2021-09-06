@@ -9,6 +9,8 @@ route.post('/',
   middlewares.validateCategoriesPost,
   controllers.Categories.postCategory);
 
-route.get('/', (req, res) => { res.send('get'); });
+route.get('/', 
+  middlewares.authUser,
+  controllers.Categories.getCategories);
 
 module.exports = route;
