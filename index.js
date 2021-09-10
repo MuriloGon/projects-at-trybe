@@ -1,16 +1,28 @@
+// Modules
+require('dotenv').config({ path: 'config/.env' });
 const express = require('express');
-const bodyParser = require('body-parser');
+// Routes
+const talker = require('./routes/talker.route');
+const login = require('./routes/login.route');
+// Middlewares
+const bodyParseHandler = require('./middlewares/bodyErrorParse');
 
 const app = express();
-app.use(bodyParser.json());
+
+app.use(express.json());
+app.use(bodyParseHandler);
 
 const HTTP_OK_STATUS = 200;
-const PORT = '3000';
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
+
+app.use('/talker', talker);
+app.use('/login', login);
+
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log('Online');
