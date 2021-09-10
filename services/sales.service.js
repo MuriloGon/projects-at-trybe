@@ -5,9 +5,9 @@ const ProdutsModel = require('../models/ProductsModel');
 const { apiError, error } = require('../utils/Errors');
 
 class SalesService {
-  constructor(Model = SalesModel, pdModels = ProdutsModel) {
+  constructor(Model = SalesModel, PdModels = ProdutsModel) {
     this.model = new Model();
-    this.pdModel = new pdModels();
+    this.pdModel = new PdModels();
   }
 
   /**
@@ -20,8 +20,11 @@ class SalesService {
     if (!sale) return apiError('Wrong product entry', error.invalidData);
 
     const updtRes = await this.pdModel.updateProductQty(sale, 'sub');
-    if(!updtRes) return apiError(
-      'Such amount is not permitted to sell', error.notFoundStockProblem);
+      if (!updtRes) {
+        return apiError(
+        'Such amount is not permitted to sell', error.notFoundStockProblem,
+  );
+  }
 
     return { status: 200, data: sale };
   }
@@ -68,8 +71,11 @@ class SalesService {
     const sale = await this.model.deleteSaleById(id);
     if (!sale) return apiError('Wrong sale ID format', error.invalidData);
     const updtRes = await this.pdModel.updateProductQty(sale, 'add');
-    if(!updtRes) return apiError(
-      'Such amount is not permitted to sell', error.notFoundStockProblem);
+    if (!updtRes) {
+ return apiError(
+      'Such amount is not permitted to sell', error.notFoundStockProblem,
+);
+}
 
     return { status: 200, data: sale };
   }

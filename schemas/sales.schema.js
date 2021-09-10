@@ -10,7 +10,7 @@ const customIdMongoValidation = (value) => {
 function validateRegisterSaleProducts(array) {
   const schema = joi.array().items(joi.object({
     productId: joi.custom(customIdMongoValidation).required(),
-    quantity: joi.number().min(1).required()
+    quantity: joi.number().min(1).required(),
   }).required());
 
   const { error: err } = schema.validate(array);
@@ -19,5 +19,5 @@ function validateRegisterSaleProducts(array) {
 }
 
 module.exports = {
-  validateRegisterSaleProducts
+  validateRegisterSaleProducts,
 };

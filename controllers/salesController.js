@@ -44,5 +44,5 @@ module.exports = {
   getAllSales,
   getSaleById,
   updateItemsSold,
-  deleteSale
+  deleteSale,
 };

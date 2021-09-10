@@ -1,5 +1,4 @@
-
-/*** Error ***/
+/** * Error ** */
 /**
  * Base erro object
  * @typedef {Object} ApiError
@@ -8,8 +7,7 @@
  * @property {any} [data] - any data related to the error (optional)
  */
 
-
-/*** Product Layer ***/
+/** * Product Layer ** */
 /**
  * Represent a product from the database
  * @typedef  {Object} Product

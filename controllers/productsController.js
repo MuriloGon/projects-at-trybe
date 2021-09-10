@@ -31,7 +31,7 @@ async function putProduct(req, res) {
   const { name, quantity } = req.body;
   const productsService = new ProductsService();
   const { status, err, data } = await productsService.updateProductById(
-    id, name, quantity
+    id, name, quantity,
   );
   if (err) return res.status(status).json({ err });
   return res.status(status).json(data);
@@ -50,5 +50,5 @@ module.exports = {
   getAllProducts,
   getProductById,
   putProduct,
-  deleteProduct
+  deleteProduct,
 };

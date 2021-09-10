@@ -7,6 +7,7 @@ class Products {
   constructor(Model = ProductModel) {
     this.model = new Model();
   }
+
   /**
    * Save a product in database
    * @param {string} name
@@ -18,9 +19,8 @@ class Products {
     if (isUniqueName) {
       const data = await this.model.saveProduct(name, quantity);
       return { status: 201, data };
-    } else {
+    } 
       return apiError('Product already exists', error.invalidData);
-    }
   }
 
   /**
@@ -30,8 +30,7 @@ class Products {
    */
   async getProductById(id) {
     let data;
-    try { data = await this.model.getProductById(id); }
-    catch (err) {
+    try { data = await this.model.getProductById(id); } catch (err) {
       return apiError('Wrong id format', error.invalidData);
     }
     if (data === null) return apiError('Wrong id format', error.invalidData);

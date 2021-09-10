@@ -1,7 +1,30 @@
 /// <reference path="../utils/types.js" />
 
-const connection = require('./connection');
 const { ObjectId } = require('mongodb');
+const connection = require('./connection');
+
+const ZERO = 0;
+
+const subQty = (currentDbQty, actionQty, productId) => {
+  const newQty = currentDbQty - actionQty;
+  const allowOperation = (currentDbQty - actionQty) >= ZERO;
+  return { allowOperation, productId, newQty };
+};
+
+const addQty = (currentDbQty, actionQty, productId) => {
+  const newQty = currentDbQty + actionQty;
+  const allowOperation = true;
+  return { allowOperation, productId, newQty };
+};
+
+const buildOperationArray = (operation, self) => async (_item, i, itensSold) => {
+  const soldProd = itensSold[i];
+  const product = await self.getProductById(soldProd.productId);
+  if (operation === 'add') {
+    return addQty(product.quantity, soldProd.quantity, soldProd.productId);
+  }
+  return (subQty(product.quantity, soldProd.quantity, soldProd.productId));
+};
 
 class ProductsModel {
   constructor(MongoDBConnection = connection) {
@@ -72,7 +95,7 @@ class ProductsModel {
     const products = await db.collection(this.collectionName);
     const updateOperation = { $set: { name, quantity } };
     const { modifiedCount } = await products.updateOne(
-      { _id: ObjectId(_id) }, updateOperation
+      { _id: ObjectId(_id) }, updateOperation,
     );
 
     if (!modifiedCount) return null;
@@ -97,49 +120,25 @@ class ProductsModel {
   }
 
   async updateProductQty(sale, operation) {
-    const db = await this.conn();
-    const products = await db.collection(this.collectionName);
-
+    const products = (await this.conn()).collection(this.collectionName);
     const { itensSold } = sale;
-    const itemsLen = itensSold.length;
+    const testObj = itensSold.map(buildOperationArray(operation, this));
 
-    const ZERO = 0;
-    const subQty = (currentDbQty, actionQty, productId) => {
-      const newQty = currentDbQty - actionQty;
-      const allowOperation = (currentDbQty - actionQty) >= ZERO;
-      return { allowOperation, productId, newQty };
-    };
+    const itensToUpdate = await Promise.all(testObj);
 
-    const addQty = (currentDbQty, actionQty, productId) => {
-      const newQty = currentDbQty + actionQty;
-      const allowOperation = true;
-      return { allowOperation, productId, newQty };
-    };
-
-    const testObj = [];
-    for (let i = ZERO; i < itemsLen; i += 1) {
-      const soldProd = itensSold[i];
-
-      const product = await this.getProductById(soldProd.productId);
-      if(operation === 'add'){
-        testObj.push(addQty(product.quantity, soldProd.quantity, soldProd.productId));
-      } else {
-        testObj.push(subQty(product.quantity, soldProd.quantity, soldProd.productId));
-      }
-    }
-
-    const cannotUpdate = testObj.some(({ allowOperation }) => allowOperation === false);
+    const cannotUpdate = itensToUpdate.some(
+      ({ allowOperation }) => allowOperation === false,
+    );
     if (cannotUpdate) return null;
 
-    for (let i = ZERO; i < itemsLen; i += 1) {
-      const { newQty: quantity, productId } = testObj[i];
-      const _id = ObjectId(productId);
-      await products.updateOne({ _id }, { $set: { quantity } });
-    }
+    itensToUpdate.forEach(async (item, i) => {
+     const { newQty: quantity, productId } = await testObj[i];
+     await products
+        .updateOne({ _id: ObjectId(productId) }, { $set: { quantity } });
+    });
 
     return true;
   }
-};
-
+}
 
 module.exports = ProductsModel;

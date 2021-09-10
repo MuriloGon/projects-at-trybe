@@ -33,10 +33,11 @@
     "nodemon": "^2.0.4"
   },
   "devDependencies": {
+    "@types/mongodb": "^3.6.20",
     "chai": "^4.3.4",
     "eslint-config-trybe-backend": "^1.0.3",
     "mocha": "^8.4.0",
-    "mongodb-memory-server": "^6.9.6",
+    "mongodb-memory-server": "^7.3.6",
     "nyc": "^15.1.0",
     "sinon": "^11.1.1"
   }

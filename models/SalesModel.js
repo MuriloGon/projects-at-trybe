@@ -1,7 +1,7 @@
 /// <reference path="../utils/types.js" />
 
-const connection = require('./connection');
 const { ObjectId } = require('mongodb');
+const connection = require('./connection');
 
 class SalesModel {
   constructor(MongoDBConnection = connection) {
@@ -46,8 +46,9 @@ class SalesModel {
     const sales = await db.collection(this.collectionName);
     const data = await sales.findOne({ _id: ObjectId(id) });
     if (!data) return null;
-    const _id = data._id.toString();
-    return { ...data, _id };
+    const idToken = '_id';
+    const strId = data[idToken].toString();
+    return { ...data, _id: strId };
   }
 
   /**
@@ -61,7 +62,7 @@ class SalesModel {
     const sales = await db.collection(this.collectionName);
     const data = await sales.updateOne(
       { _id: ObjectId(saleId) },
-      { $set: { itensSold } }
+      { $set: { itensSold } },
     );
     const { modifiedCount } = data;
     if (!modifiedCount) return null;

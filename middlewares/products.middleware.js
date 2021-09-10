@@ -1,6 +1,6 @@
+const { ObjectId } = require('mongodb');
 const { error, apiError } = require('../utils/Errors');
 const { validateNameQuantity } = require('../schemas/products.schema');
-const { ObjectId } = require('mongodb');
 
 function validateNameAndQtyBody(req, res, next) {
   const { name, quantity } = req.body;
@@ -24,5 +24,5 @@ function validateIdRouteParam(req, res, next) {
 
 module.exports = {
   validateNameAndQtyBody,
-  validateIdRouteParam
+  validateIdRouteParam,
 };

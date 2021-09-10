@@ -14,47 +14,42 @@ app.get('/', async (_request, response) => {
 
 app.get(
   '/products/',
-  productsControllers.getAllProducts
+  productsControllers.getAllProducts,
 );
 
 app.get(
   '/products/:id',
   productsMiddlewares.validateIdRouteParam,
-  productsControllers.getProductById
+  productsControllers.getProductById,
 );
 
 app.post(
   '/products',
   productsMiddlewares.validateNameAndQtyBody,
-  productsControllers.postProduct
+  productsControllers.postProduct,
 );
 
 app.put('/products/:id',
   productsMiddlewares.validateNameAndQtyBody,
-  productsControllers.putProduct
-);
+  productsControllers.putProduct);
 
 app.delete('/products/:id',
   productsMiddlewares.validateIdRouteParam,
-  productsControllers.deleteProduct
-);
+  productsControllers.deleteProduct);
 
 app.post('/sales',
   salesMiddlewares.validateSaleRegisterArray,
-  salesControllers.postNewSale
-);
+  salesControllers.postNewSale);
 
 app.get('/sales', salesControllers.getAllSales);
 app.get('/sales/:id', salesControllers.getSaleById);
 
 app.put('/sales/:id',
   salesMiddlewares.validateSaleRegisterArray,
-  salesControllers.updateItemsSold
-);
+  salesControllers.updateItemsSold);
 
 app.delete('/sales/:id',
-  salesControllers.deleteSale
-);
+  salesControllers.deleteSale);
 
 const PORT = 3000;
 app.listen(PORT, () => {
