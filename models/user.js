@@ -13,8 +13,7 @@ function User(sequelize, DataTypes) {
       defaultValue: 'null',
     },
   }, {
-    createdAt: false,
-    updatedAt: false,
+    timestamps: false,
   });
 
   return UserModel;

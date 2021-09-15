@@ -7,8 +7,7 @@
   const CategoryModel = sequelize.define('Category', {
     name: DataTypes.STRING,
   }, {
-    createdAt: false,
-    updatedAt: false,
+    timestamps: false,
   });
 
   return CategoryModel;
