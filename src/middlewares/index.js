@@ -6,6 +6,7 @@ const authorizateEmailUser = require('./authorizateEmailUser');
 const validateLogin = require('./validateLogin');
 const authUser = require('./authUser');
 const validateCategoriesPost = require('./validateCategoriesPost');
+const validatePostPost = require('./validatePostPost');
 
 module.exports = {
   validateDisplayName,
@@ -16,4 +17,5 @@ module.exports = {
   validateLogin,
   authUser,
   validateCategoriesPost,
+  validatePostPost,
 };

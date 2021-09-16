@@ -1,12 +1,12 @@
-function postPost() {
+const { Router } = require('express');
+const middlewares = require('../middlewares');
+const controllers = require('../controllers');
 
-}
+const router = Router();
 
-function getPost() {
+router.post('/', 
+middlewares.authUser, 
+middlewares.validatePostPost,
+controllers.Post.postPost);
 
-}
-
-module.exports = {
-  postPost,
-  getPost,
-};
+module.exports = router;

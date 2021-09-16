@@ -7,25 +7,29 @@ module.exports = {
    * @param {import('sequelize').DataTypes} Sequelize 
    */
   up: async (queryInterface, Sequelize) => {
-     await queryInterface.createTable('PostsCategories', { 
-       postId: {
+    await queryInterface.createTable('PostsCategories', {
+      postId: {
         type: Sequelize.INTEGER,
-         references: {
+        allowNull: false,
+        primaryKey: true,
+        references: {
           model: 'BlogPosts',
           key: 'id',
-         }
-       },
-       categoryId: {
-         type: Sequelize.INTEGER,
-         references: {
+        }
+      },
+      categoryId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        references: {
           model: 'Categories',
           key: 'id',
-         }
-       }
+        }
+      }
     });
   },
 
   down: async (queryInterface, Sequelize) => {
-     await queryInterface.dropTable('PostsCategories');
+    await queryInterface.dropTable('PostsCategories');
   }
 };

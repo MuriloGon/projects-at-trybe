@@ -6,11 +6,12 @@
  */
  function BlogPost(sequelize, DataTypes) {
   const BlogPostModel = sequelize.define('BlogPost', {
+      userId: DataTypes.INTEGER,
       title: DataTypes.STRING,
       content: DataTypes.TEXT,
   }, {
-    createdAt: false,
-    updatedAt: false,
+    createdAt: 'published',
+    updatedAt: 'updated',
   });
 
   BlogPostModel.associate = (models) => {
