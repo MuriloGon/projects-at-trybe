@@ -31,7 +31,24 @@ async function getPosts(_req, res) {
   res.status(200).json(posts);
 }
 
+async function getPostById(req, res) {
+  const { id } = req.params;
+  const posts = await BlogPost.findOne({
+    where: { id },
+    include: [
+      { model: User, as: 'user' },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  if (posts === null) {
+    return res.status(404).json({ message: 'Post does not exist' });
+  }
+
+  res.status(200).json(posts);
+}
 module.exports = {
   postPost,
   getPosts,
+  getPostById,
 };

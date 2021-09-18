@@ -13,4 +13,7 @@ router.get('/',
 middlewares.authUser, 
 controllers.Post.getPosts);
 
+router.get('/:id', 
+middlewares.authUser, 
+controllers.Post.getPostById);
 module.exports = router;
