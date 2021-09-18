@@ -27,8 +27,19 @@ async function getById(req, res) {
   res.status(200).json(user);
 }
 
+async function deleteMe(req, res) {
+  const { id } = req.user;
+  const rowCount = await User.destroy({ where: { id } });
+  if (rowCount < 1) {
+    return res.status(500).json({ message: 'error on delete user' });
+  }
+
+  res.status(204).end();
+}
+
 module.exports = { 
   postUser,
   getAllUsers,
   getById,
+  deleteMe,
 };

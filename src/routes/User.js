@@ -19,4 +19,8 @@ route.get('/',
   middlewares.auth.authUser,
   controllers.User.getAllUsers);
 
+route.delete('/me',
+  middlewares.auth.authUser,
+  controllers.User.deleteMe);
+
 module.exports = route;
