@@ -14,7 +14,7 @@
     "shelljs": "0.8.4"
   },
   "scripts": {
-    "all": "sequelize-cli db:drop $ && sequelize-cli db:create && sequelize-cli db:migrate $ && node index.js && sequelize-cli db:seed:all $",
+    "all": "sequelize-cli db:drop $ && sequelize-cli db:create && sequelize-cli db:migrate $ sequelize-cli db:seed:all $",
     "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate $",
     "start": "node index.js",
     "drop": "npx sequelize-cli db:drop $",

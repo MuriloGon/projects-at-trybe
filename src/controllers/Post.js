@@ -64,9 +64,19 @@ async function updatePostById(req, res) {
   res.status(200).json(post);
 }
 
+async function deletePostById(req, res) {
+  const { id } = req.params;
+  const affectedRows = await BlogPost.destroy({ where: { id } });
+  if (affectedRows < 1) {
+    return res.status(500).json({ message: 'Cannot delete post' });
+  }
+  res.status(204).end();
+}
+
 module.exports = {
   postPost,
   getPosts,
   getPostById,
   updatePostById,
+  deletePostById,
 };

@@ -23,4 +23,9 @@ middlewares.post.validateEditPostBody,
 middlewares.post.isPostOwner,
 controllers.Post.updatePostById);
 
+router.delete('/:id', 
+middlewares.auth.authUser,
+middlewares.post.isPostOwner,
+controllers.Post.deletePostById);
+
 module.exports = router;

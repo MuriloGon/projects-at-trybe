@@ -23,7 +23,7 @@ async function isPostOwner(req, res, next) {
 
   const user = await BlogPost.findOne({ where: { id: postToEditId } });
 
-  if (user === null) return res.status(404).json({ message: 'Post not found' });
+  if (user === null) return res.status(404).json({ message: 'Post does not exist' });
   if (authUserId !== user.userId) return res.status(401).json({ message: 'Unauthorized user' });
 
   next();

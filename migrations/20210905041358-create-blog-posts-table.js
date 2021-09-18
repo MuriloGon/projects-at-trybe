@@ -22,7 +22,7 @@ module.exports = {
          references: {
            model: 'Users',
            key: 'id'
-         }
+         },
        },
        published: {
          type: Sequelize.DATE,
