@@ -5,15 +5,16 @@ const controllers = require('../controllers');
 const router = Router();
 
 router.post('/', 
-middlewares.authUser, 
-middlewares.validatePostPost,
+middlewares.auth.authUser, 
+middlewares.post.validatePost,
 controllers.Post.postPost);
 
 router.get('/', 
-middlewares.authUser, 
+middlewares.auth.authUser, 
 controllers.Post.getPosts);
 
 router.get('/:id', 
-middlewares.authUser, 
+middlewares.auth.authUser, 
 controllers.Post.getPostById);
+
 module.exports = router;

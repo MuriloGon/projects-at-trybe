@@ -1,5 +1,13 @@
+const { User } = require('../../models');
 const schema = require('../schemas');
 
+async function validateUniqueEmail(req, res, next) {
+  const { email } = req.body;
+  const userQuery = await User.findOne({ where: { email } });
+  if (!userQuery) return res.status(400).json({ message: 'Invalid fields' });
+  req.user = userQuery;
+  next();
+}
 async function validateLogin(req, res, next) {
   const { email, password } = req.body;
 
@@ -13,4 +21,7 @@ async function validateLogin(req, res, next) {
   next();
 }
 
-module.exports = validateLogin;
+module.exports = {
+  validateUniqueEmail,
+  validateLogin,
+};

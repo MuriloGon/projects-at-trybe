@@ -5,12 +5,12 @@ const controllers = require('../controllers');
 const route = Router({ mergeParams: true });
 
 route.post('/', 
-  middlewares.authUser,
-  middlewares.validateCategoriesPost,
+  middlewares.auth.authUser,
+  middlewares.categories.validateCategories,
   controllers.Categories.postCategory);
 
 route.get('/', 
-  middlewares.authUser,
+  middlewares.auth.authUser,
   controllers.Categories.getCategories);
 
 module.exports = route;

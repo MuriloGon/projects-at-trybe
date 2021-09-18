@@ -1,21 +1,13 @@
-const validateDisplayName = require('./validateDisplayName');
-const validateEmail = require('./validateEmail');
-const validatePassword = require('./validatePassword');
-const isUserRegistered = require('./isUserRegistered');
-const authorizateEmailUser = require('./authorizateEmailUser');
-const validateLogin = require('./validateLogin');
-const authUser = require('./authUser');
-const validateCategoriesPost = require('./validateCategoriesPost');
-const validatePostPost = require('./validatePostPost');
+const auth = require('./auth');
+const login = require('./login');
+const categories = require('./categories');
+const user = require('./user');
+const post = require('./post');
 
 module.exports = {
-  validateDisplayName,
-  validateEmail,
-  validatePassword,
-  isUserRegistered,
-  authorizateEmailUser,
-  validateLogin,
-  authUser,
-  validateCategoriesPost,
-  validatePostPost,
+  auth,
+  login,
+  categories,
+  user,
+  post,
 };

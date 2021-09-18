@@ -5,8 +5,8 @@ const controllers = require('../controllers');
 const router = Router();
 
 router.post('/',
-  middlewares.validateLogin,
-  middlewares.authorizateEmailUser,
+  middlewares.login.validateLogin,
+  middlewares.login.validateUniqueEmail,
   controllers.Login.postLogin);
 
 module.exports = router;

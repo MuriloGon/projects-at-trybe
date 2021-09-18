@@ -5,18 +5,18 @@ const controllers = require('../controllers');
 const route = Router({ mergeParams: true });
 
 route.post('/',
-  middlewares.validateDisplayName,
-  middlewares.validateEmail,
-  middlewares.validatePassword,
-  middlewares.isUserRegistered,
+  middlewares.user.validateDisplayName,
+  middlewares.user.validateEmail,
+  middlewares.user.validatePassword,
+  middlewares.user.isUserRegistered,
   controllers.User.postUser);
 
 route.get('/:id',
-  middlewares.authUser,
+  middlewares.auth.authUser,
   controllers.User.getById);
 
 route.get('/',
-  middlewares.authUser,
+  middlewares.auth.authUser,
   controllers.User.getAllUsers);
 
 module.exports = route;
