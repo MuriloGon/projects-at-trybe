@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 /**
  * @param {import('sequelize').Sequelize} sequelize 
  * @param {import('sequelize').DataTypes} DataTypes 
@@ -6,19 +5,22 @@
  */
  function BlogPost(sequelize, DataTypes) {
   const BlogPostModel = sequelize.define('BlogPost', {
-      userId: DataTypes.INTEGER,
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
       title: DataTypes.STRING,
       content: DataTypes.TEXT,
+      userId: { type: DataTypes.INTEGER },
   }, {
     createdAt: 'published',
     updatedAt: 'updated',
+    tableName: 'BlogPosts',
   });
 
   BlogPostModel.associate = (models) => {
-    BlogPostModel.hasMany(models.Category, {
-        foreignKey: 'id',
-        as: 'categories',
-      });
+    BlogPostModel.hasOne(models.User, {
+      foreignKey: 'id',
+      sourceKey: 'userId',
+      as: 'user',
+    });
   };
 
   return BlogPostModel;

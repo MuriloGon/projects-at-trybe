@@ -5,6 +5,7 @@
  */
 function User(sequelize, DataTypes) {
   const UserModel = sequelize.define('User', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
@@ -14,7 +15,11 @@ function User(sequelize, DataTypes) {
     },
   }, {
     timestamps: false,
+    tableName: 'Users',
   });
+  UserModel.associate = (models) => {
+    UserModel.belongsTo(models.BlogPost, { foreignKey: 'id' });
+  };
 
   return UserModel;
 }
