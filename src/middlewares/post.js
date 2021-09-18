@@ -1,4 +1,4 @@
-const { Category } = require('../../models');
+const { Category, BlogPost } = require('../../models');
 const schemas = require('../schemas');
 
 async function validatePost(req, res, next) {
@@ -17,6 +17,26 @@ async function validatePost(req, res, next) {
   next();
 }
 
-module.exports = { 
+async function isPostOwner(req, res, next) {
+  const { id: postToEditId } = req.params;
+  const { id: authUserId } = req.user;
+
+  const user = await BlogPost.findOne({ where: { id: postToEditId } });
+
+  if (user === null) return res.status(404).json({ message: 'Post not found' });
+  if (authUserId !== user.userId) return res.status(401).json({ message: 'Unauthorized user' });
+
+  next();
+}
+
+async function validateEditPostBody(req, res, next) {
+  const { valid, message } = schemas.Post.validateEditBody(req.body);
+  if (!valid) return res.status(400).json({ message });
+  next();
+}
+
+module.exports = {
   validatePost,
+  isPostOwner,
+  validateEditPostBody,
 };

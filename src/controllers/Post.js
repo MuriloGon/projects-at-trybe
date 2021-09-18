@@ -24,7 +24,7 @@ async function postPost(req, res) {
 async function getPosts(_req, res) {
   const posts = await BlogPost.findAll({
     include: [
-      { model: User, as: 'user' },
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
       { model: Category, as: 'categories', through: { attributes: [] } },
     ],
   });
@@ -36,7 +36,7 @@ async function getPostById(req, res) {
   const posts = await BlogPost.findOne({
     where: { id },
     include: [
-      { model: User, as: 'user' },
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
       { model: Category, as: 'categories', through: { attributes: [] } },
     ],
   });
@@ -47,8 +47,26 @@ async function getPostById(req, res) {
 
   res.status(200).json(posts);
 }
+
+async function updatePostById(req, res) {
+  const { title, content } = req.body;
+  const { id } = req.params;
+  const [affectedRows] = await BlogPost.update({ title, content }, { where: { id } });
+  if (affectedRows < 1) {
+    return res.status(500).json({ message: 'Cannot update post' });
+  }
+  const post = await BlogPost.findOne({
+    where: { id },
+    include: [
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+  res.status(200).json(post);
+}
+
 module.exports = {
   postPost,
   getPosts,
   getPostById,
+  updatePostById,
 };

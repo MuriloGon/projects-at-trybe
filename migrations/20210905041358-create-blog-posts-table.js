@@ -31,7 +31,7 @@ module.exports = {
        updated: {
          type: Sequelize.DATE,
          defaultValue: Sequelize.NOW,
-         onUpdate: Sequelize.NOW
+         onUpdate: 'SET DEFAULT'
        }
     });
   },

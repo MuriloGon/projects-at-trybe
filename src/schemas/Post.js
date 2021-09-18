@@ -34,10 +34,27 @@ function validatePost(post) {
   return { valid: true };
 }
 
+function validateEditBody(editBody) {
+  const schema = joi.object({
+    title: joi.string().required(),
+    content: joi.string().required(),
+    categoryIds: joi.forbidden().messages({ 'any.unknown': 'Categories cannot be edited' }),
+    });
+
+  const { error } = schema.validate(editBody);
+  if (error) {
+    const { details } = error;
+    const { message } = details[0];
+    return { valid: false, message };
+  }
+  return { valid: true };
+}
+
 module.exports = {
   validateTitle,
   validateContent,
   validateCategoryId,
   validatePost,
+  validateEditBody,
   validatePostData: [validateTitle, validateContent, validateCategoryId],
 };

@@ -17,4 +17,10 @@ router.get('/:id',
 middlewares.auth.authUser, 
 controllers.Post.getPostById);
 
+router.put('/:id', 
+middlewares.auth.authUser,
+middlewares.post.validateEditPostBody,
+middlewares.post.isPostOwner,
+controllers.Post.updatePostById);
+
 module.exports = router;
