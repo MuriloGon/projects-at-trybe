@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const { BlogPost, PostCategory, Category, User } = require('../../models');
 
 async function postPost(req, res) {
@@ -73,10 +74,34 @@ async function deletePostById(req, res) {
   res.status(204).end();
 }
 
+async function searchQuery(req, res) {
+  const { q } = req.query;
+
+  if (q === '' || q === undefined) {
+    const posts = await BlogPost.findAll({
+      include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ] });
+    return res.status(200).json(posts);
+  }
+
+  const posts = await BlogPost.findAll({ where: {
+    [Op.or]: [
+      { title: q },
+      { content: q }],
+   }, 
+   include: [
+    { model: User, as: 'user', attributes: { exclude: ['password'] } },
+    { model: Category, as: 'categories', through: { attributes: [] } }] });
+  res.status(200).json(posts);
+}
+
 module.exports = {
   postPost,
   getPosts,
   getPostById,
   updatePostById,
   deletePostById,
+  searchQuery,
 };

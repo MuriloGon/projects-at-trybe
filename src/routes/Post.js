@@ -2,7 +2,7 @@ const { Router } = require('express');
 const middlewares = require('../middlewares');
 const controllers = require('../controllers');
 
-const router = Router();
+const router = Router({ mergeParams: true });
 
 router.post('/', 
 middlewares.auth.authUser, 
@@ -12,6 +12,10 @@ controllers.Post.postPost);
 router.get('/', 
 middlewares.auth.authUser, 
 controllers.Post.getPosts);
+
+router.get('/search', 
+middlewares.auth.authUser,
+controllers.Post.searchQuery);
 
 router.get('/:id', 
 middlewares.auth.authUser, 
