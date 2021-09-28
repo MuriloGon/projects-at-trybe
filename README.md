@@ -64,9 +64,9 @@ Nesse projeto, você será capaz de:
 
 Para entregar o seu projeto você deverá criar um Pull Request em **cada um destes** repositórios:
 
-- [Repositório com o backend](https://github.com/betrybe/sd-0x-stranger-things-backend).
+- [Repositório com o backend](https://github.com/tryber/sd-010-a-stranger-things-backend).
 
-- [Repositório com o frontend](https://github.com/betrybe/sd-0x-stranger-things-frontend);
+- [Repositório com o frontend](https://github.com/tryber/sd-010-a-stranger-things-frontend);
 
 Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://course.betrybe.com/intro/git/) sempre que precisar!
 
@@ -82,8 +82,8 @@ Adapte e configure os projetos descritos nesse *README* para que seja feito o de
 
 ## Data de entrega
 
-  - Serão `X` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+  - Serão `2` dias de projeto.
+  - Data de entrega para avaliação final do projeto: `11/10/2021 - 14:00h`.
 
 # Instruções para entregar seu projeto:
 
@@ -91,13 +91,13 @@ Adapte e configure os projetos descritos nesse *README* para que seja feito o de
 
 1. Clone os **dois** repositórios
 
-- `git clone https://github.com/tryber/sd-0x-stranger-things-backend.git`.
-- `git clone https://github.com/tryber/sd-0x-stranger-things-frontend.git`.
+- `git clone https://github.com/tryber/sd-010-a-stranger-things-backend.git`.
+- `git clone https://github.com/tryber/sd-010-a-stranger-things-frontend.git`.
 
 2. Navegue entre as pastas dos repositórios que você acabou de clonar
 
-- `cd sd-0x-stranger-things-backend`
-- `cd sd-0x-stranger-things-frontend`
+- `cd sd-010-a-stranger-things-backend`
+- `cd sd-010-a-stranger-things-frontend`
 
 3. Instale as dependências dos dois projetos
 
@@ -116,24 +116,24 @@ Adapte e configure os projetos descritos nesse *README* para que seja feito o de
 - Agora crie uma branch à qual você vai submeter os `commits` dos seus projetos
   - Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
   - Exemplo:
-    - `git checkout -b joaozinho-sd-0x-stranger-things-backend`
-    - `git checkout -b joaozinho-sd-0x-stranger-things-frontend`
+    - `git checkout -b joaozinho-sd-010-a-stranger-things-backend`
+    - `git checkout -b joaozinho-sd-010-a-stranger-things-frontend`
     
 5. Adicione a sua branch com o novo `commit` ao repositório remoto
 
   - Usando o exemplo anterior:
-    - `git push -u origin joaozinho-sd-0x-stranger-things-backend`
-    - `git push -u origin joaozinho-sd-0x-stranger-things-frontend`
+    - `git push -u origin joaozinho-sd-010-a-stranger-things-backend`
+    - `git push -u origin joaozinho-sd-010-a-stranger-things-frontend`
 
 6. Crie um novo `Pull Request` _(PR)_
-  * Vá até a página de _Pull Requests_ dos repositórios no GitHub: [Backend](https://github.com/tryber/sd-0x-stranger-things-backend/pulls) | [Frontend](https://github.com/tryber/sd-0x-stranger-things-frontend/pulls)
+  * Vá até a página de _Pull Requests_ dos repositórios no GitHub: [Backend](https://github.com/tryber/sd-010-a-stranger-things-backend/pulls) | [Frontend](https://github.com/tryber/sd-010-a-stranger-things-frontend/pulls)
   * Clique no botão verde _"New pull request"_
   * Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
   * Clique no botão verde _"Create pull request"_
   * Adicione uma descrição para o _Pull Request_ e clique no botão verde _"Create pull request"_
   * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-stranger-things-backend/pulls) e confira que o seu _Pull Request_ está criado
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-stranger-things-frontend/pulls) e confira que o seu _Pull Request_ está criado
+  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-stranger-things-backend/pulls) e confira que o seu _Pull Request_ está criado
+  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-stranger-things-frontend/pulls) e confira que o seu _Pull Request_ está criado
 
 * ⚠ **Observação: Os PRs não devem ser abertos neste repositório, apenas nos outros dois repositórios.** ⚠
 
@@ -164,7 +164,7 @@ Para **"entregar"** seu projeto, siga os passos a seguir:
 * Vá até a página **DO SEU** _Pull Request_, adicione a label de _"code-review"_ e marque seus colegas
   * No menu à direita, clique no _link_ **"Labels"** e escolha a _label_ **code-review**
   * No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**
-  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-0x`
+  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-010-a`
 
 Se ainda houver alguma dúvida sobre como entregar seu projeto, [aqui tem um video explicativo](https://vimeo.com/362189205).
 
@@ -222,9 +222,9 @@ npm run cy // (via CLI)
 
 Esse repositório contém as instruções e os requisitos para o projeto de Deploy com Heroku e PM2. O código base para o desenvolvimento do projeto está dividido em duas partes: uma API de backend utilizando Node.js e Express e um frontend com React. Abaixo estão disponíveis os links de acesso aos respectivos repositórios:
 
-- [Repositório com o frontend](https://github.com/tryber/sd-0x-stranger-things-frontend);
+- [Repositório com o frontend](https://github.com/tryber/sd-010-a-stranger-things-frontend);
 
-- [Repositório com o backend](https://github.com/tryber/sd-0x-stranger-things-backend).
+- [Repositório com o backend](https://github.com/tryber/sd-010-a-stranger-things-backend).
 
 A seguir, temos algumas explicações sobre a estrutura base e alguns comportamentos dessas aplicações. Você explorará esses pontos durante o projeto, alterando o código preexistente.
 
@@ -625,7 +625,7 @@ Para sinalizar que o seu projeto está pronto para o _"Code Review"_ de colegas,
 
   * No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
 
-  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-0x`.
+  * No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-010-a`.
 
 Caso tenha alguma dúvida, [aqui tem um video explicativo](https://vimeo.com/362189205).
 
