@@ -1,0 +1,101 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.App {
+  height: 100vh;
+}
+
+.reality {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  transition: background-position 2.5s, background-image 3s ease-in-out;
+  -webkit-transition: background-position 2.5s, background-image 3s ease-in-out;
+}
+
+.stranger-things {
+  background-image: url('./assets/stranger-things.jpg');
+  background-position: left;
+}
+
+.upside-down {
+  background-image: url('./assets/upside-down.jpg');
+  background-position: right;
+}
+
+.change-reality {
+  margin-bottom: 8%;
+}
+
+.content {
+  margin-top: 5%;
+}
+
+.strangerfy > div > * {
+  font-family: 'BenguiatITCW01-BoldCn';
+  src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/161676/BenguiatProITC-BoldCond.eot')
+      format('embedded-opentype'),
+    url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/161676/BenguiatProITC-BoldCond.woff')
+      format('woff'),
+    url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/161676/BenguiatProITC-BoldCond.ttf')
+      format('truetype');
+  font-style: normal;
+  font-weight: bold;
+
+  color: #c11b1f;
+  background: rgba(211, 211, 211, 0.637);
+
+  font-size: x-large;
+
+  margin: 10px;
+}
+
+.strangerfy > div > input {
+  width: 500px;
+}
+
+.strangerfy > div > table {
+  width: 900px;
+  text-align: left;
+}
