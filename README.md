@@ -261,7 +261,7 @@ Caso prefira testar um requisito por vez pode executar o teste da seguinte forma
 
 #### ⚠️ &nbsp; DICA: Para desenvolver esse requisito não é necessário se conectar ao banco de dados.
 
-#### ⚠️ &nbsp; DICA: Para facilitar armazenar e/ou recuperar o _nickname_ do cliente, lembre-se de usar o _localStorage_.
+#### ⚠️ &nbsp; DICA: Para facilitar armazenar e/ou recuperar o _nickname_ do cliente, lembre-se de usar o _sessionStorage_.
 
 - O front-end e o back-end têm que usar a mesma porta - `localhost:3000`;
 
