@@ -1,0 +1,48 @@
+{
+  "name": "webchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --runInBand  --detectOpenHandles --forceExit",
+    "test-coverage": "jest --coverage",
+    "start": "node server.js",
+    "debug": "nodemon server.js",
+    "lint": "eslint --no-inline-config --ext .js,.jsx --no-error-on-unmatched-pattern -c .eslintrc.json .",
+    "lint:styles": "stylelint **/*.css --config .stylelintrc.json --ignore-disables --allow-empty-input"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv": "8.2.0",
+    "ejs": "3.1.5",
+    "express": "4.17.1",
+    "moment": "2.29.1",
+    "mongodb": "3.6.2",
+    "socket.io": "3.0.4",
+    "socket.io-client": "3.0.5"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "7.24.5",
+    "@testing-library/jest-dom": "5.11.4",
+    "@testing-library/react": "11.0.4",
+    "@testing-library/user-event": "12.1.7",
+    "@types/jest": "26.0.14",
+    "axios": "0.21.1",
+    "cheerio": "1.0.0-rc.5",
+    "eslint": "6.8.0",
+    "eslint-config-trybe-backend": "1.0.3",
+    "faker": "5.1.0",
+    "jest": "26.5.2",
+    "jest-puppeteer": "4.4.0",
+    "jsdom": "16.4.0",
+    "nodemon": "2.0.7",
+    "lodash": "4.17.20",
+    "puppeteer": "5.3.1",
+    "stylelint": "13.8.0",
+    "stylelint-config-standard": "20.0.0",
+    "stylelint-order": "4.1.0"
+  }
+}

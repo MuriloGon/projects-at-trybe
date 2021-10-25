@@ -1,0 +1,13 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2020": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": "trybe-backend",
+    "parserOptions": { "ecmaVersion": 11 }
+  }
+  

@@ -1,0 +1,20 @@
+{
+  "requirements": [
+    {
+      "description": "1 - Crie um back-end para conexão simultânea de clientes e troca de mensagens em chat público",
+      "bonus": false
+    },
+    {
+      "description": "2 - Crie um frontend para que as pessoas interajam com o chat",
+      "bonus": false
+    },
+    {
+      "description": "3 - Elabore o histórico do chat para que as mensagens persistam",
+      "bonus": false
+    },
+    {
+      "description": "4 - Informe a todos os clientes quem está online no momento",
+      "bonus": false
+    }
+  ]
+}
