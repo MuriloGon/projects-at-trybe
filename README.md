@@ -100,9 +100,9 @@ O MVC será usado para renderizar as mensagens do histórico e usuários online,
 
 1. Clone o repositório
 
-   - `git clone https://github.com/tryber/sd-0x-project-webchat.git`.
+   - `git clone https://github.com/tryber/sd-010-a-project-webchat.git`.
    - Entre na pasta do repositório que você acabou de clonar:
-     - `cd sd-0x-project-webchat`
+     - `cd sd-010-a-project-webchat`
 
 2. Crie uma branch a partir da branch `master`
 
@@ -117,7 +117,7 @@ O MVC será usado para renderizar as mensagens do histórico e usuários online,
 3. Crie na raiz do projeto os arquivos que você precisará desenvolver:
 
    - Verifique que você está na raiz do projeto
-     - Exemplo: `pwd` -> o retorno vai ser algo tipo _/Users/joaozinho/code/**sd-0x-project-webchat**_
+     - Exemplo: `pwd` -> o retorno vai ser algo tipo _/Users/joaozinho/code/**sd-010-a-project-webchat**_
 
 4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
 
@@ -138,13 +138,13 @@ O MVC será usado para renderizar as mensagens do histórico e usuários online,
 
 6. Crie um novo `Pull Request` _(PR)_
 
-   - Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-project-webchat/pulls)
+   - Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-010-a-project-webchat/pulls)
    - Clique no botão verde _"New pull request"_
    - Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
    - Clique no botão verde _"Create pull request"_
    - Adicione uma descrição para o _Pull Request_, um título claro que o identifique, e clique no botão verde _"Create pull request"_
    - **Não se preocupe em preencher mais nada por enquanto!**
-   - Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-0x-project-webchat/pulls) e confira que o seu _Pull Request_ está criado
+   - Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-010-a-project-webchat/pulls) e confira que o seu _Pull Request_ está criado
 
 ---
 
@@ -178,7 +178,7 @@ Para garantir a qualidade do código, usaremos o [ESLint](https://eslint.org/) p
 
 Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
 
-- `sd-0x-project-webchat/package.json`
+- `sd-010-a-project-webchat/package.json`
 
 Para poder rodar os `ESLint` em um projeto basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
 
@@ -186,7 +186,7 @@ Você também pode instalar o plugin do `ESLint` no `VSCode`, bastar ir em exten
 
 ## Variáveis
 
-Haverá um arquivo no caminho: `sd-0x-project-webchat/models/connection.js` que fará a conexão com o Banco de Dados. Neste arquivo, na linha 9, haverá o seguinte comando:
+Haverá um arquivo no caminho: `sd-010-a-project-webchat/models/connection.js` que fará a conexão com o Banco de Dados. Neste arquivo, na linha 9, haverá o seguinte comando:
 
 `.connect(process.env.DB_URL, {`
 
@@ -374,7 +374,7 @@ Para sinalizar que o seu projeto está pronto para o _"Code Review"_ dos seus co
 
   - No menu à direita, clique no _link_ **"Assignees"** e escolha **o seu usuário**;
 
-  - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-0x`.
+  - No menu à direita, clique no _link_ **"Reviewers"** e digite `students`, selecione o time `tryber/students-sd-010-a`.
 
 Caso tenha alguma dúvida, [aqui tem um video explicativo](https://vimeo.com/362189205).
 
@@ -392,6 +392,6 @@ Use o conteúdo sobre [Code Review](https://course.betrybe.com/real-life-enginee
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!	Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://bit.ly/39qMu3s)
 
 O avaliador automático **não** necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
