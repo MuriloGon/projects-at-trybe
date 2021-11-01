@@ -16,7 +16,7 @@ module.exports = (io, socket, payload) => {
   const updateUsers = () => io.emit('online:update', users);
 
   // events
-  users.push(createUser(socket.id, /* socket.handshake.headers.nickname */) socket.id.substring(0, 16));
+  users.push(createUser(socket.id, socket.id.substring(0, 16)));
 
   updateUsers();
 
@@ -27,8 +27,6 @@ module.exports = (io, socket, payload) => {
     users[indexToUpdate].nickname = newUsername;
     updateUsers();
   });
-
-  socket.on('user:');
 
   socket.on('disconnect', () => {
     const indexToDelete = users.findIndex(({ id }) => socket.id === id);

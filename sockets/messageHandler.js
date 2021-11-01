@@ -7,7 +7,16 @@ const moment = require('moment');
  */
 module.exports = (io, socket) => {
   socket.on('message', ({ chatMessage, nickname }) => {
-    console.log({ chatMessage, nickname });
-    io.emit('message', `${moment().format('DD-MM-yyyy HH:mm:ss')} ${nickname} ${chatMessage}`);
+    const date = `${moment().format('DD-MM-yyyy HH:mm:ss')}`;
+    const message = {
+      userId: socket.id,
+      nickname,
+      date: new Date().getTime(),
+      dateFormatted: date,
+      message: chatMessage,
+      chatMessage: `${date} ${nickname} ${chatMessage}`,
+    };
+    io.emit('message', `${date} ${nickname} ${chatMessage}`);
+    io.emit('message:better', message);
   });
 };

@@ -183,7 +183,7 @@
     }
 
     .chat {
-      background: rgb(255, 178, 165);
+      background: rgb(248, 197, 255);
       display: grid;
       grid-template-rows: 1fr max-content;
     }
@@ -216,6 +216,41 @@
     .message-input>button:hover {
       filter: saturate(2);
     }
+
+    .msg-item {
+      padding: 10px;
+    }
+
+    .msg-avatar {
+      width: 40px;
+      height: 40px;
+      background: rgb(255, 255, 255);
+      border-radius: 5px;
+      margin-top: 4px;
+      background-size: contain;
+    }
+
+    .msg-item {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      column-gap: 2px;
+    }
+
+    .msg-header {
+      padding: 0 10px 0 10px;
+    }
+
+    .msg-header-nick {
+      font-weight: 600;
+    }
+
+    .msg-header-time {
+      color: rgb(66, 66, 66);
+    }
+
+    .msg-text {
+      padding-inline: 10px;
+    }
   </style>
 </head>
 
@@ -233,6 +268,8 @@
   <!-- <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script> -->
 
   <script crossorigin src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
   <script src="socket.io/socket.io.js"></script>
 
@@ -254,15 +291,15 @@
         id: '',
         nickname: '',
         connectedUsers: [], //{}
-        messages: [] //  {userId: 'string', nickname: 'string', chatMessage: 'string'}
+        messages: [] //  {userId: 'string', nickname: 'string', chatMessage: 'string', date: number, dateFormatted: string, message}: string}
       })
 
       const updateOnlineUsersList = (onlineUsersList) => {
         setData(dt => ({ ...dt, connectedUsers: onlineUsersList }));
       }
 
-      const addMessage = (userId, nickname, chatMessage) => {
-        setData(dt => ({ ...dt, messages: [...dt.messages, { userId, nickname, chatMessage }] }));
+      const addMessage = (incomingMsg) => {
+        setData(dt => ({ ...dt, messages: [...dt.messages, incomingMsg] }));
       }
 
       const updateNickname = (newNick) => {
@@ -277,7 +314,7 @@
       }
 
       useEffect(() => {
-        socket.on('message', ({ userId, nickname, chatMessage }) => { addMessage(userId, nickname, chatMessage); })
+        socket.on('message:better', (msg) => { addMessage(msg); })
         socket.on('user:firstConnection', ({ id, nickname }) => { setData(dt => ({ ...dt, userId: id, nickname })); });
         socket.on('online:update', (users) => updateOnlineUsersList(users));
       }, []);
@@ -418,34 +455,56 @@
 
   <script type="text/babel" data-name="COMP_CHAT">
 
-    function Message() {
-      return (<div />)
+    function Message({ msg }) {
+      const { userId, nickname, chatMessage, date, dateFormatted, message } = msg;
+      const uglyRequirement = <div data-testid="message" style={{ display: 'none' }}>{chatMessage}</div>;
+
+      const data = moment(date).format('LT');
+
+      return (
+        <li className="msg-item">
+          <div className="msg-avatar" style={{ backgroundImage: `url(https://i.pravatar.cc/150?u=${userId})` }} />
+          <div className="msg-content">
+            <div className="msg-header"><span className="msg-header-nick">{nickname}</span> <span className="msg-header-time">{data}</span></div>
+            <div className="msg-text">{message}</div>
+          </div>
+          {uglyRequirement}
+        </li>
+      );
     }
 
     function MessageInput() {
-      const [text, setText] = useState('');
-      const btnStyle = text.length === 0 ? {
+      const [chatMessage, setChatMsg] = useState('');
+      const { data: { nickname } } = useContext(MyContext);
+      const btnStyle = chatMessage.length === 0 ? {
         filter: 'grayscale(1)',
         poiter: 'not-allowed'
       } : {}
 
       function sendMsg(e) {
         e.preventDefault();
-
+        socket.emit('message', { chatMessage, nickname });
+        setChatMsg('');
       }
 
       return (
-        <form className="message-input">
-          <input data-testid="message-box" value={text} placeholder="Message #Webchat Team" onChange={({ target: { value } }) => setText(value)} />
+        <form className="message-input" onSubmit={sendMsg}>
+          <input data-testid="message-box" value={chatMessage} placeholder="Message #Webchat Team" onChange={({ target: { value } }) => setChatMsg(value)} />
           <button data-testid="send-button" type="submit" style={btnStyle} />
         </form>
       );
     }
 
     function Chat() {
+      const { data: { messages } } = useContext(MyContext);
+
       return (
         <div className="chat">
-          <h1>messages area</h1>
+          <ul>
+            {messages.map((msg, index) => (
+              <Message key={index} msg={msg} />
+            ))}
+          </ul>
           <MessageInput />
         </div>
       )
