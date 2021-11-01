@@ -184,6 +184,37 @@
 
     .chat {
       background: rgb(255, 178, 165);
+      display: grid;
+      grid-template-rows: 1fr max-content;
+    }
+
+    .message-input {
+      padding: 10px;
+      display: flex;
+    }
+
+    .message-input>input {
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      padding: 5px;
+      width: 100%;
+      outline: none;
+    }
+
+    .message-input>button {
+      margin-left: 10px;
+      width: 40px;
+      height: 40px;
+      background: #007a5aff;
+      background-image: url(assets/send-btn.svg);
+      background-size: 18px 18px;
+      background-position: center center;
+      background-repeat: no-repeat;
+      border-radius: 5px;
+    }
+
+    .message-input>button:hover {
+      filter: saturate(2);
     }
   </style>
 </head>
@@ -296,11 +327,11 @@
             </div>
             <div className="nickname-input">
               <div className="nickname-circ-stats" />
-              <input value={nickname} onChange={({ target: { value } }) => updateNickname(value)} type="text" />
+              <input data-testid="nickname-box" value={nickname} onChange={({ target: { value } }) => updateNickname(value)} type="text" />
             </div>
           </div>
           <div>
-            <button type="submit" className="nickname-btn"></button>
+            <button data-testid="nickname-button" type="submit" className="nickname-btn"></button>
           </div>
         </form>
       );
@@ -359,10 +390,10 @@
             </ul>
           </div>
           <div className="users-online-subcontainer">
-            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Webchat" selected />
+            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Webchat Project" selected />
+            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Software Engineers" />
+            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Node.Js Devs" />
             <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text=".Net Core Devs" />
-            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Node.Js Devs" />
-            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Node.Js Devs" />
           </div>
           <div className="users-online-subcontainer">
             <ul>
@@ -387,10 +418,35 @@
 
   <script type="text/babel" data-name="COMP_CHAT">
 
+    function Message() {
+      return (<div />)
+    }
+
+    function MessageInput() {
+      const [text, setText] = useState('');
+      const btnStyle = text.length === 0 ? {
+        filter: 'grayscale(1)',
+        poiter: 'not-allowed'
+      } : {}
+
+      function sendMsg(e) {
+        e.preventDefault();
+
+      }
+
+      return (
+        <form className="message-input">
+          <input data-testid="message-box" value={text} placeholder="Message #Webchat Team" onChange={({ target: { value } }) => setText(value)} />
+          <button data-testid="send-button" type="submit" style={btnStyle} />
+        </form>
+      );
+    }
+
     function Chat() {
       return (
         <div className="chat">
-          <h1>Chat</h1>
+          <h1>messages area</h1>
+          <MessageInput />
         </div>
       )
     }
