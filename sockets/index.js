@@ -19,6 +19,7 @@ const payload = { users };
  */
 module.exports = (io) => {
   io.on('connect', (socket) => {
+    // socket.disconnect(true);
     messageHandler(io, socket, payload);
     userHandler(io, socket, payload);
   });

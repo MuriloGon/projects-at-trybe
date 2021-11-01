@@ -288,7 +288,7 @@
 
     function Provider({ children }) {
       const [data, setData] = useState({
-        id: '',
+        userId: '',
         nickname: '',
         connectedUsers: [], //{}
         messages: [] //  {userId: 'string', nickname: 'string', chatMessage: 'string', date: number, dateFormatted: string, message}: string}
@@ -349,6 +349,7 @@
   <script type="text/babel" data-name="COMP_ONLINE">
     function SetName() {
       const { data: { connectedUsers, nickname }, updateNickname } = useContext(MyContext);
+      const [nick, setNick] = useState('');
 
       function updateUsernameServer(e) {
         e.preventDefault();
@@ -364,7 +365,13 @@
             </div>
             <div className="nickname-input">
               <div className="nickname-circ-stats" />
-              <input data-testid="nickname-box" value={nickname} onChange={({ target: { value } }) => updateNickname(value)} type="text" />
+              <input
+                data-testid="nickname-box"
+                type="text"
+                value={nick}
+                placeholder={nickname}
+                onChange={({ target: { value } }) => { updateNickname(value); setNick(value); }}
+              />
             </div>
           </div>
           <div>
@@ -415,8 +422,14 @@
     }
 
     function UsersOnline() {
-      const { data: { connectedUsers } } = useContext(MyContext);
+      const { data: { connectedUsers, nickname, userId } } = useContext(MyContext);
       const labels = ['All unread', 'Threads', 'All DMs', 'Mentions & Reactions', 'Drafts', 'Saved Items', 'More',];
+
+      const connected = [
+        ...connectedUsers.filter(x => x.id === userId),
+        ...connectedUsers.filter(x => x.id !== userId),
+      ];
+
       return (
         <div className="users-online">
           <div className="users-online-subcontainer">
@@ -434,7 +447,7 @@
           </div>
           <div className="users-online-subcontainer">
             <ul>
-              {connectedUsers.map(({ id, nickname }) => (
+              {connected.map(({ id, nickname }) => (
                 <MenuItem key={id} text={nickname} icon={<UserIcon />} testid="online-user" />
               ))}
             </ul>
