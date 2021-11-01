@@ -1,6 +1,9 @@
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
+/**
+ * @type {import('mongodb').Db}
+ */
 let schema = null;
 
 async function connection() {

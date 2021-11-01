@@ -1,6 +1,17 @@
+const model = require('../models');
+
 const createUser = (id, nick = id) => ({
   id,
   nickname: nick === 'null' ? id.substring(0, 16) : nick,
+});
+
+const deserializeMsg = ({ message, timestamp, nickname, userId }) => ({
+  userId,
+  nickname,
+  date: new Date(timestamp).getTime(),
+  dateFormatted: timestamp,
+  message,
+  chatMessage: `${timestamp} ${nickname} ${message}`,
 });
 
 /**
@@ -8,19 +19,22 @@ const createUser = (id, nick = id) => ({
  * @param {import('socket.io').Server} io 
  * @param {import('socket.io').Socket} socket 
  */
-module.exports = (io, socket, payload) => {
+module.exports = async (io, socket, payload) => {
   // vars
   const { users } = payload;
 
   // closures
   const updateUsers = () => io.emit('online:update', users);
 
-  // events
+  // online users
   users.push(createUser(socket.id, socket.id.substring(0, 16)));
-
   updateUsers();
 
-  socket.emit('user:firstConnection', users.find(({ id }) => id === socket.id));
+  const stateSaved = (await model.getMessages()).map(deserializeMsg);
+
+  socket.emit('user:firstConnection', users.find(({ id }) => id === socket.id), stateSaved);
+
+  // events
 
   socket.on('user:updateNickname', (newUsername) => {
     const indexToUpdate = users.findIndex(({ id }) => socket.id === id);

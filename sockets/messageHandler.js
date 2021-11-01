@@ -1,4 +1,5 @@
 const moment = require('moment');
+const model = require('../models');
 
 /**
  * 
@@ -6,7 +7,7 @@ const moment = require('moment');
  * @param {import('socket.io').Socket} socket 
  */
 module.exports = (io, socket) => {
-  socket.on('message', ({ chatMessage, nickname }) => {
+  socket.on('message', async ({ chatMessage, nickname }) => {
     const date = `${moment().format('DD-MM-yyyy HH:mm:ss')}`;
     const message = {
       userId: socket.id,
@@ -16,6 +17,10 @@ module.exports = (io, socket) => {
       message: chatMessage,
       chatMessage: `${date} ${nickname} ${chatMessage}`,
     };
+
+    await model.saveMessages([
+      { message: chatMessage, nickname, timestamp: date, userId: socket.id }]);
+
     io.emit('message', `${date} ${nickname} ${chatMessage}`);
     io.emit('message:better', message);
   });

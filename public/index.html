@@ -188,6 +188,11 @@
       grid-template-rows: 1fr max-content;
     }
 
+    .messages-area {
+      height: calc(100vh - 60px);
+      overflow-y: scroll;
+    }
+
     .message-input {
       padding: 10px;
       display: flex;
@@ -280,7 +285,10 @@
         nickname: sessionStorage.getItem('nickname') || 'null'
       }
     });
-    const { useState, useEffect, useContext } = React;
+    const { useState, useEffect, useContext, useRef } = React;
+    const audio_receive_msg = new Audio('assets/new-msg.mp3');
+    const audio_send_msg = new Audio('assets/send-msg.mp3');
+    // const audio = new Audio('assets/new-msg.mp3');
   </script>
 
   <script type="text/babel" data-name="CONTEXT_REACT">
@@ -293,6 +301,7 @@
         connectedUsers: [], //{}
         messages: [] //  {userId: 'string', nickname: 'string', chatMessage: 'string', date: number, dateFormatted: string, message}: string}
       })
+      const idRef = useRef('');
 
       const updateOnlineUsersList = (onlineUsersList) => {
         setData(dt => ({ ...dt, connectedUsers: onlineUsersList }));
@@ -300,6 +309,10 @@
 
       const addMessage = (incomingMsg) => {
         setData(dt => ({ ...dt, messages: [...dt.messages, incomingMsg] }));
+      }
+
+      const uploadPreviousMsg = (messages) => {
+        setData(dt => ({ ...dt, messages }));
       }
 
       const updateNickname = (newNick) => {
@@ -314,8 +327,16 @@
       }
 
       useEffect(() => {
-        socket.on('message:better', (msg) => { addMessage(msg); })
-        socket.on('user:firstConnection', ({ id, nickname }) => { setData(dt => ({ ...dt, userId: id, nickname })); });
+        socket.on('message:better', (msg) => {
+          addMessage(msg);
+          if (msg.userId === idRef.current) audio_send_msg.play();
+          else audio_receive_msg.play();
+        })
+        socket.on('user:firstConnection', ({ id, nickname }, messages) => {
+          idRef.current = id;
+          setData(dt => ({ ...dt, userId: id, nickname }));
+          uploadPreviousMsg(messages);
+        });
         socket.on('online:update', (users) => updateOnlineUsersList(users));
       }, []);
 
@@ -510,10 +531,15 @@
 
     function Chat() {
       const { data: { messages } } = useContext(MyContext);
+      const ref = useRef();
+
+      useEffect(() => { 
+        ref.current.scrollBy(0, ref.current.scrollHeight);
+      }, [messages])
 
       return (
         <div className="chat">
-          <ul>
+          <ul ref={ref} className="messages-area">
             {messages.map((msg, index) => (
               <Message key={index} msg={msg} />
             ))}
