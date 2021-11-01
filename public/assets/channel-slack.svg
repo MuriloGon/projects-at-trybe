@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="30"
+   height="30"
+   viewBox="0 0 7.9374997 7.9375003"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (eb90963e84, 2021-10-02)"
+   sodipodi:docname="channel-slack.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     width="30px"
+     inkscape:zoom="6.998541"
+     inkscape:cx="22.933352"
+     inkscape:cy="37.079157"
+     inkscape:window-width="1280"
+     inkscape:window-height="662"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-65.507112,-84.271341)">
+    <path
+       id="path937"
+       style="fill:#ffffff;stroke:none;stroke-width:0.0535238px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 70.288858,92.208841 0.340796,-2.5431 h 1.083123 v -0.7439 h -0.983394 l 0.212736,-1.587416 h 1.047893 v -0.743896 h -0.948164 l 0.310793,-2.319187 h -0.815504 l -0.274205,2.319187 h -1.178775 l 0.310897,-2.319187 H 68.57955 l -0.274204,2.319187 h -1.066397 v 0.743896 h 0.978375 l -0.187646,1.587416 h -1.067965 v 0.7439 h 0.979943 l -0.300652,2.5431 h 0.690163 l 0.3409,-2.5431 h 1.227176 l -0.300652,2.5431 z m -0.301593,-3.287 h -1.215573 l 0.212734,-1.587417 h 1.190484 z" />
+  </g>
+</svg>

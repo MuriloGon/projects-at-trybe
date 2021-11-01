@@ -5,44 +5,399 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
   <title>Document</title>
+  <style>
+    html,
+    body,
+    #root {
+      height: 100%;
+      font-size: 14px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      height: 100%;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #c348d367;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      opacity: 0;
+      background: #35123a;
+      border-radius: 5px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #501c57;
+    }
+
+    .main>* {
+      height: 100%;
+    }
+
+    .online {
+      background: #401646;
+      user-select: none;
+      position: relative;
+      overflow-y: scroll;
+    }
+
+    /* .online ::-webkit-scrollbar-track-piece {
+      opacity: 0;
+    } */
+
+    .nickname-form {
+      color: white;
+      display: flex;
+      width: 100%;
+      padding-inline: 10px;
+      border-bottom: solid 1px rgba(255, 255, 255, 0.5);
+      position: sticky;
+      top: 0;
+      background: #401646;
+      z-index: 10;
+    }
+
+    .nickname-form input {
+      width: 100%;
+    }
+
+    .nickname-name {
+      font-weight: 600;
+    }
+
+    .nickname-info {
+      flex: 1;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+    }
+
+    .nickname-input {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .nickname-input input {
+      background: none;
+      color: white;
+    }
+
+    .nickname-info+* {
+      padding-left: 5px;
+    }
+
+    .nickname-circ-stats {
+      --side: 10px;
+      width: var(--side);
+      height: var(--side);
+      background-color: #018f01;
+      margin-right: 6px;
+      border-radius: 50%;
+    }
+
+    .nickname-btn {
+      flex: 1;
+      border-radius: 50%;
+      margin-block: 20px;
+      height: 35px;
+      width: 35px;
+      background: white url(https://upload.wikimedia.org/wikipedia/commons/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg);
+      background-size: 20px 20px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      transition: filter 0.25s;
+    }
+
+    .nickname-btn:hover {
+      filter: brightness(0.8);
+    }
+
+    .users-online {
+      color: white;
+    }
+
+    .menu-item,
+    .menu-item-icon {
+      display: flex;
+      align-items: center;
+      padding: 3px;
+    }
+
+    .menu-item:hover {
+      background: rgba(0, 0, 0, 0.39);
+      cursor: pointer;
+    }
+
+    .slack-icon-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-item-icon {
+      margin-right: 10px;
+    }
+
+    .user-icon {
+      position: relative;
+    }
+
+    .user-icon-photo {
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 25%;
+    }
+
+    .user-icon-status {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid white;
+      right: -2px;
+      bottom: -4px;
+      background: green;
+    }
+
+    .users-online-subcontainer:nth-child(1) {
+      /* margin-top: 80px; */
+    }
+
+    .users-online-subcontainer {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      padding-block: 5px;
+    }
+
+    .chat {
+      background: rgb(255, 178, 165);
+    }
+  </style>
 </head>
 
 <body>
   <div id="root"></div>
 
-  <!-- <script src="scripts/babel.min.js"></script> -->
-  <!-- <script src="scripts/react.development.js"></script> -->
-  <!-- <script src="scripts/react-dom.development.js"></script> -->
-
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+  <script crossorigin src="https://unpkg.com/react-is/umd/react-is.production.min.js"></script>
+
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+  <!-- <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script> -->
+  <!-- <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script> -->
+
+  <script crossorigin src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
 
   <script src="socket.io/socket.io.js"></script>
 
 
-  <script></script>
+  <script type="text/babel" data-name="GLOBAL_VARIABLES">
+    const socket = io({
+      extraHeaders: {
+        nickname: sessionStorage.getItem('nickname') || 'null'
+      }
+    });
+    const { useState, useEffect, useContext } = React;
+  </script>
 
-  <script type="text/babel">
-    const socket = io();
-    const { useState, useEffect } = React;
+  <script type="text/babel" data-name="CONTEXT_REACT">
+    const MyContext = React.createContext();
 
-    function App() {
-      const [messages, setMessages] = useState([]);
+    function Provider({ children }) {
+      const [data, setData] = useState({
+        id: '',
+        nickname: '',
+        connectedUsers: [], //{}
+        messages: [] //  {userId: 'string', nickname: 'string', chatMessage: 'string'}
+      })
+
+      const updateOnlineUsersList = (onlineUsersList) => {
+        setData(dt => ({ ...dt, connectedUsers: onlineUsersList }));
+      }
+
+      const addMessage = (userId, nickname, chatMessage) => {
+        setData(dt => ({ ...dt, messages: [...dt.messages, { userId, nickname, chatMessage }] }));
+      }
+
+      const updateNickname = (newNick) => {
+        setData(dt => ({ ...dt, nickname: newNick }));
+      }
+
+      const updateMsgsNickname = (userId, newNickname) => {
+        const dataCpy = { ...data };
+        const indexsToUpdate = data.messages.find((msg) => msg.userId === userId);
+        indexsToUpdate.forEach((index) => { dataCpy.messages[index].nickname = newNickname; });
+        setData(dataCpy);
+      }
 
       useEffect(() => {
-        socket.on('message', (msg) => setMessages(mgs => [...mgs, msg]));
+        socket.on('message', ({ userId, nickname, chatMessage }) => { addMessage(userId, nickname, chatMessage); })
+        socket.on('user:firstConnection', ({ id, nickname }) => { setData(dt => ({ ...dt, userId: id, nickname })); });
+        socket.on('online:update', (users) => updateOnlineUsersList(users));
       }, []);
 
+      const context = {
+        data: { ...data },
+        addMessage,
+        updateOnlineUsersList,
+        updateMsgsNickname,
+        updateNickname
+      }
+
       return (
-        <ul>
-          {messages.map((msg, i) => <li key={i}>{msg}</li>)}
-        </ul>
+        <MyContext.Provider value={context}>
+          {children}
+        </MyContext.Provider>
+      );
+    }
+  </script>
+
+  <script type="text/babel" data-name="COMP_APP">
+    function App() {
+      return (
+        <main className="main">
+          <Online />
+          <Chat />
+        </main>
+      );
+    }
+  </script>
+
+  <script type="text/babel" data-name="COMP_ONLINE">
+    function SetName() {
+      const { data: { connectedUsers, nickname }, updateNickname } = useContext(MyContext);
+
+      function updateUsernameServer(e) {
+        e.preventDefault();
+        sessionStorage.setItem('nickname', nickname);
+        socket.emit('user:updateNickname', nickname);
+      }
+
+      return (
+        <form onSubmit={updateUsernameServer} className="nickname-form">
+          <div className="nickname-info">
+            <div className="nickname-name">
+              Fullstack Dev Inc
+            </div>
+            <div className="nickname-input">
+              <div className="nickname-circ-stats" />
+              <input value={nickname} onChange={({ target: { value } }) => updateNickname(value)} type="text" />
+            </div>
+          </div>
+          <div>
+            <button type="submit" className="nickname-btn"></button>
+          </div>
+        </form>
       );
     }
 
-    ReactDOM.render(<App />, document.getElementById('root'));
+    function SlackIcon({ img = "assets/icons.svg", num = 1 }) {
+      const size = 20;
+      const iconStyles = {
+        width: `${size}px`,
+        height: `${size}px`,
+        backgroundImage: `url(${img})`,
+        backgroundPositionX: `${num * size}px`,
+        backgroundSize: 'cover',
+        display: 'inline-block',
+      };
+      return (
+        <div className="slack-icon-container">
+          <span className="online-item-img" style={iconStyles} />
+        </div>
+      );
+    }
+
+    function UserIcon() {
+      return (
+        <div className="user-icon">
+          <div className="user-icon-photo" />
+          <div className="user-icon-status" />
+        </div>
+      );
+    }
+
+    function MenuItem({ text, icon, testid = null, selected = false }) {
+      const style = selected ? { fontWeight: '800', background: 'rgba(0, 0, 0, 0.39)' } : {};
+      return (
+        <li className="menu-item" data-testid={testid} style={style}>
+          <div className="menu-item-icon">
+            {icon}
+          </div>
+          <div>
+            {text}
+          </div>
+        </li>
+      );
+    }
+
+    function UsersOnline() {
+      const { data: { connectedUsers } } = useContext(MyContext);
+      const labels = ['All unread', 'Threads', 'All DMs', 'Mentions & Reactions', 'Drafts', 'Saved Items', 'More',];
+      return (
+        <div className="users-online">
+          <div className="users-online-subcontainer">
+            <ul>
+              {labels.map((lbl, index) => (
+                <MenuItem key={'genneric-item-' + index} icon={<SlackIcon num={-index} />} text={lbl} />
+              ))}
+            </ul>
+          </div>
+          <div className="users-online-subcontainer">
+            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Webchat" selected />
+            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text=".Net Core Devs" />
+            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Node.Js Devs" />
+            <MenuItem icon={<SlackIcon img="assets/channel-slack.svg" />} text="Node.Js Devs" />
+          </div>
+          <div className="users-online-subcontainer">
+            <ul>
+              {connectedUsers.map(({ id, nickname }) => (
+                <MenuItem key={id} text={nickname} icon={<UserIcon />} testid="online-user" />
+              ))}
+            </ul>
+          </div>
+        </div>
+      );
+    };
+
+    function Online() {
+      return (
+        <div className="online">
+          <SetName />
+          <UsersOnline />
+        </div>
+      );
+    }
+  </script>
+
+  <script type="text/babel" data-name="COMP_CHAT">
+
+    function Chat() {
+      return (
+        <div className="chat">
+          <h1>Chat</h1>
+        </div>
+      )
+    }
+  </script>
+
+  <script type="text/babel" data-name="REACT_RENDER">
+    ReactDOM.render(<Provider><App /></Provider>, document.getElementById('root'));
   </script>
 </body>
 
