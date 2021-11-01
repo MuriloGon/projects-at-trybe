@@ -12,7 +12,8 @@ const userHandler = require('./userHandler');
  * @type {Array.<User>} Users
  */
 const users = [];
-const payload = { users };
+const persistentMsgs = [];
+const payload = { users, persistentMsgs };
 
 /** 
  * @param {import('socket.io').Server} io 

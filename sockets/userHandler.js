@@ -1,4 +1,4 @@
-const model = require('../models');
+// const model = require('../models');
 
 const createUser = (id, nick = id) => ({
   id,
@@ -21,7 +21,7 @@ const deserializeMsg = ({ message, timestamp, nickname, userId }) => ({
  */
 module.exports = async (io, socket, payload) => {
   // vars
-  const { users } = payload;
+  const { users, persistentMsgs } = payload;
 
   // closures
   const updateUsers = () => io.emit('online:update', users);
@@ -30,7 +30,8 @@ module.exports = async (io, socket, payload) => {
   users.push(createUser(socket.id, socket.id.substring(0, 16)));
   updateUsers();
 
-  const stateSaved = (await model.getMessages()).map(deserializeMsg);
+  // const stateSaved = (await model.getMessages()).map(deserializeMsg);
+  const stateSaved = persistentMsgs;
 
   socket.emit('user:firstConnection', users.find(({ id }) => id === socket.id), stateSaved);
 
